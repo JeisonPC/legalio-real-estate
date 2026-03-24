@@ -1,0 +1,62 @@
+/* cyrillic-ext */
+@font-face {
+  font-family: "Marcellus SC", serif;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap)
+}
+
+/* cyrillic */
+@font-face {
+  font-family: "Marcellus SC", serif;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap)
+}
+
+/* greek */
+@font-face {
+  font-family: "Marcellus SC", serif;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap)
+}
+
+/* vietnamese */
+@font-face {
+  font-family: "Marcellus SC", serif;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap)
+}
+
+/* latin-ext */
+@font-face {
+  font-family: "Marcellus SC", serif;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap)
+}
+
+/* latin */
+@font-face {
+  font-family: "Marcellus SC", serif;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(https://fonts.googleapis.com/css2?family=Marcellus+SC&display=swap)
+}
+
+/* body */
+@font-face {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url(https://fonts.googleapis.com/css2?family=Inter&display=swap)
+}
