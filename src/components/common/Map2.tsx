@@ -8,9 +8,9 @@ export interface Property {
     id: number | string;
     address: string;
     title: string;
-    beds?: number;
-    baths?: number;
-    sqft?: number;
+    bedrooms?: number;
+    bathrooms?: number;
+    area?: number;
     lat: number;
     long: number;
     coordinates?: [number, number];
@@ -34,9 +34,9 @@ export default function MapComponent({ property }: { property: Property }) {
                 <p class="text-caption-1 mb_4">${p.address}</p>
                 <h6 class="mb_12 line-clamp-1">${p.title}</h6>
                 <ul class="info d-flex">
-                    <li><i class="icon-Bed"></i> ${p.beds ?? 0} Bed</li>
-                    <li><i class="icon-Bathtub"></i> ${p.baths ?? 0} Bath</li>
-                    <li><i class="icon-Ruler"></i> ${p.sqft ?? 0} sqft</li>
+                    <li><i class="icon-Bed"></i> ${p.bedrooms ?? 0} Bed</li>
+                    <li><i class="icon-Bathtub"></i> ${p.bathrooms ?? 0} Bath</li>
+                    <li><i class="icon-Ruler"></i> ${p.area ?? 0} area</li>
                 </ul>
             </div>
         </div>

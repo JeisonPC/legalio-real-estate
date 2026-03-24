@@ -6,10 +6,10 @@ type Property = {
     alt?: string;
     address: string;
     title: string;
-    beds?: number;
-    baths?: number;
-    sqft?: number;
-    categories: string;
+    bedrooms?: number;
+    bathrooms?: number;
+    area?: number;
+    propertyType: string;
     type: string;
     price: number;
 };
@@ -30,7 +30,7 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                         For {property.type}
                     </div>
                     <div className="tag categoreis text-title fw-6 text_primary-color">
-                        {property.categories}
+                        {property.propertyType}
                     </div>
                 </div>
                 <h2>{property.title}</h2>

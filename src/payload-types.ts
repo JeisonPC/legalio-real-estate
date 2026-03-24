@@ -175,6 +175,7 @@ export interface Property {
   price: number;
   propertyType: 'casa' | 'apartamento' | 'oficina' | 'local';
   businessType: 'venta' | 'arriendo';
+  featured?: boolean | null;
   images?: (number | Media)[] | null;
   bedrooms: number;
   bathrooms: number;
@@ -325,6 +326,7 @@ export interface PropertiesSelect<T extends boolean = true> {
   price?: T;
   propertyType?: T;
   businessType?: T;
+  featured?: T;
   images?: T;
   bedrooms?: T;
   bathrooms?: T;

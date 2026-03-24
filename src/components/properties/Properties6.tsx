@@ -71,11 +71,11 @@ export default function Properties5() {
         // Bedrooms filter - FIXED
         if (bedrooms && bedrooms !== "Any Bedrooms") {
             if (bedrooms === "4+") {
-                filteredList = filteredList.filter((p) => Number(p.beds) >= 4);
+                filteredList = filteredList.filter((p) => Number(p.bedrooms) >= 4);
             } else {
                 const bedroomNum = parseInt(bedrooms, 10);
                 filteredList = filteredList.filter(
-                    (p) => p.beds === bedroomNum
+                    (p) => p.bedrooms === bedroomNum
                 );
             }
         }
@@ -83,11 +83,11 @@ export default function Properties5() {
         // Bathrooms filter - FIXED
         if (bathrooms && bathrooms !== "Any Bathrooms") {
             if (bathrooms === "4+") {
-                filteredList = filteredList.filter((p) => Number(p.baths) >= 4);
+                filteredList = filteredList.filter((p) => Number(p.bathrooms) >= 4);
             } else {
                 const bathroomNum = parseInt(bathrooms, 10);
                 filteredList = filteredList.filter(
-                    (p) => p.baths === bathroomNum
+                    (p) => p.bathrooms === bathroomNum
                 );
             }
         }
@@ -141,7 +141,7 @@ export default function Properties5() {
             const min = parseInt(parseSizeValue(minSize), 10);
             if (!isNaN(min)) {
                 filteredList = filteredList.filter(
-                    (p) => p.sqft !== undefined && Number(p.sqft) >= min
+                    (p) => p.area !== undefined && Number(p.area) >= min
                 );
             }
         }
@@ -151,7 +151,7 @@ export default function Properties5() {
             const max = parseInt(parseSizeValue(maxSize), 10);
             if (!isNaN(max)) {
                 filteredList = filteredList.filter(
-                    (p) => p.sqft !== undefined && Number(p.sqft) <= max
+                    (p) => p.area !== undefined && Number(p.area) <= max
                 );
             }
         }
@@ -374,7 +374,7 @@ export default function Properties5() {
                                                             </div>
                                                             <div className="tag categoreis text-button-small fw-6 text_primary-color">
                                                                 {
-                                                                    property.categories
+                                                                    property.propertyType
                                                                 }
                                                             </div>
                                                         </div>
@@ -419,12 +419,12 @@ export default function Properties5() {
                                                         <ul className="info d-flex">
                                                             <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                                                 <i className="icon-Bed"></i>
-                                                                {property.beds}{" "}
+                                                                {property.bedrooms}{" "}
                                                                 Bed
                                                             </li>
                                                             <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                                                 <i className="icon-Bathtub"></i>
-                                                                {property.baths}{" "}
+                                                                {property.bathrooms}{" "}
                                                                 Bath
                                                             </li>
                                                             <li
@@ -432,8 +432,8 @@ export default function Properties5() {
                                                                 suppressHydrationWarning
                                                             >
                                                                 <i className="icon-Ruler"></i>
-                                                                {property.sqft
-                                                                    ? property.sqft.toLocaleString()
+                                                                {property.area
+                                                                    ? property.area.toLocaleString()
                                                                     : "0"}{" "}
                                                                 Sqft
                                                             </li>
@@ -506,11 +506,11 @@ export default function Properties5() {
                                                                     {property.type ===
                                                                     "Sale"
                                                                         ? "For Sale"
-                                                                        : "For Rent"}
+                                                                        : "Alquiler"}
                                                                 </div>
                                                                 <div className="tag categoreis text-button-small fw-6 text_primary-color">
                                                                     {
-                                                                        property.categories
+                                                                        property.propertyType
                                                                     }
                                                                 </div>
                                                             </div>
@@ -527,12 +527,12 @@ export default function Properties5() {
                                                         <ul className="info d-flex">
                                                             <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                                                 <i className="icon-Bed"></i>
-                                                                {property.beds}{" "}
+                                                                {property.bedrooms}{" "}
                                                                 Bed
                                                             </li>
                                                             <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                                                 <i className="icon-Bathtub"></i>
-                                                                {property.baths}{" "}
+                                                                {property.bathrooms}{" "}
                                                                 Bath
                                                             </li>
                                                             <li
@@ -540,8 +540,8 @@ export default function Properties5() {
                                                                 suppressHydrationWarning
                                                             >
                                                                 <i className="icon-Ruler"></i>
-                                                                {property.sqft
-                                                                    ? property.sqft.toLocaleString()
+                                                                {property.area
+                                                                    ? property.area.toLocaleString()
                                                                     : "0"}{" "}
                                                                 Sqft
                                                             </li>

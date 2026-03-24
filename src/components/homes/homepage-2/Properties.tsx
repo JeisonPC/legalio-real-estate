@@ -72,19 +72,19 @@ export default function Properties() {
                                         <ul className="info d-flex mb_32">
                                             <li className="d-flex align-items-center gap_12 h6 text_primary-color fw-6">
                                                 <i className="icon-Bed"></i>
-                                                {property.beds} Beds
+                                                {property.bedrooms} Beds
                                             </li>
                                             <li className="d-flex align-items-center gap_12 h6 text_primary-color fw-6">
                                                 <i className="icon-Bathstub"></i>
-                                                {property.baths} Baths
+                                                {property.bathrooms} Baths
                                             </li>
                                             <li
                                                 className="d-flex align-items-center gap_12 h6 text_primary-color fw-6"
                                                 suppressHydrationWarning
                                             >
                                                 <i className="icon-Ruler"></i>
-                                                {property.sqft
-                                                    ? property.sqft.toLocaleString()
+                                                {property.area
+                                                    ? property.area.toLocaleString()
                                                     : "0"}{" "}
                                                 Sqft
                                             </li>
@@ -170,7 +170,7 @@ export default function Properties() {
                                                 For {property.type}
                                             </div>
                                             <div className="tag categoreis text-button-small fw-6 text_primary-color">
-                                                {property.categories}
+                                                {property.propertyType}
                                             </div>
                                         </div>
                                         <Link

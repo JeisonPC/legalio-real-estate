@@ -61,6 +61,12 @@ export const Properties: CollectionConfig = {
       ],
     },
     {
+      name: "featured",
+      label: "Destacada",
+      type: "checkbox",
+      defaultValue: false,
+    },
+    {
       name: "images",
       label: "Imágenes",
       type: "relationship",

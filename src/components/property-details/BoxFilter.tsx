@@ -89,7 +89,7 @@ export default function BoxFilter() {
                             className="text-title tab-link fw-6 active"
                             data-bs-toggle="tab"
                         >
-                            For Rent
+                            Alquiler
                         </a>
                     </li>
                     <li className="nav-tab-item" role="presentation">

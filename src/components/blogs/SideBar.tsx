@@ -15,7 +15,7 @@ export default function SideBar() {
         id: number;
         name: string;
     };
-    const categories: Category[] = [
+    const propertyType: Category[] = [
         {
             id: 1,
             name: "Market Trends",

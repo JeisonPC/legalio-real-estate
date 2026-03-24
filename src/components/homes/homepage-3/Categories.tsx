@@ -11,7 +11,7 @@ type Category = {
     grid: "3" | "2";
 };
 
-const categories: Category[] = [
+const propertyType: Category[] = [
     {
         name: "Apartment",
         image: "/assets/images/section/category-1.png",

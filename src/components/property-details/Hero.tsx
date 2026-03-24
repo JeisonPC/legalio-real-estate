@@ -8,10 +8,10 @@ type Property = {
     alt?: string;
     address: string;
     title: string;
-    beds?: number;
-    baths?: number;
-    sqft?: number;
-    categories: string;
+    bedrooms?: number;
+    bathrooms?: number;
+    area?: number;
+    propertyType: string;
     type: string;
     price: number;
 };

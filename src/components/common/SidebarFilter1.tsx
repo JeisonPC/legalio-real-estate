@@ -62,7 +62,7 @@ export default function SidebarFilter1({
                         className="nav-link-item active"
                         data-bs-toggle="tab"
                     >
-                        For Rent
+                        Alquiler
                     </a>
                 </li>
                 <li
@@ -74,7 +74,7 @@ export default function SidebarFilter1({
                         className="nav-link-item"
                         data-bs-toggle="tab"
                     >
-                        For Sale
+                        Venta
                     </a>
                 </li>
             </ul>

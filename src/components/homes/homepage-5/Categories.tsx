@@ -13,7 +13,7 @@ type Category = {
   delay: number
 }
 
-const categories: Category[] = [
+const propertyType: Category[] = [
   {
     image: '/assets/images/section/category-6.jpg',
     name: 'Apartment',

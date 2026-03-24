@@ -62,7 +62,7 @@ export default function Relatest() {
                                             For {property.type}
                                         </div>
                                         <div className="tag categoreis text-button-small fw-6 text_primary-color">
-                                            {property.categories}
+                                            {property.propertyType}
                                         </div>
                                     </div>
                                     <div className="wrap-btn">
@@ -116,19 +116,19 @@ export default function Relatest() {
                                     <ul className="info d-flex">
                                         <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                             <i className="icon-Bed"></i>
-                                            {property.beds} Bed
+                                            {property.bedrooms} Bed
                                         </li>
                                         <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                             <i className="icon-Bathtub"></i>
-                                            {property.baths} Bath
+                                            {property.bathrooms} Bath
                                         </li>
                                         <li
                                             className="d-flex align-items-center gap_8 text-title text_primary-color fw-6 "
                                             suppressHydrationWarning
                                         >
                                             <i className="icon-Ruler"></i>
-                                            {property.sqft
-                                                ? property.sqft.toLocaleString()
+                                            {property.area
+                                                ? property.area.toLocaleString()
                                                 : "0"}{" "}
                                             Sqft
                                         </li>

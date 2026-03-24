@@ -40,7 +40,7 @@ export default function Populor() {
                                         For {property.type}
                                     </div>
                                     <div className="tag categoreis text-button-small fw-6 text_primary-color">
-                                        {property.categories}
+                                        {property.propertyType}
                                     </div>
                                 </div>
                                 <a
@@ -75,15 +75,15 @@ export default function Populor() {
                                 <ul className="info d-flex">
                                     <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                         <i className="icon-Bed"></i>
-                                        {property.beds} Beds
+                                        {property.bedrooms} Beds
                                     </li>
                                     <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                         <i className="icon-Bathstub"></i>
-                                        {property.baths} Baths
+                                        {property.bathrooms} Baths
                                     </li>
                                     <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                         <i className="icon-Ruler"></i>
-                                        {property.sqft}
+                                        {property.area}
                                     </li>
                                 </ul>
                             </div>

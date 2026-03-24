@@ -17,9 +17,9 @@ type HeroSlide = {
     priceUnit: string;
     title: string;
     address: string;
-    beds: number;
-    baths: number;
-    sqft: string;
+    bedrooms: number;
+    bathrooms: number;
+    area: string;
 };
 
 const heroSlides: HeroSlide[] = [
@@ -32,9 +32,9 @@ const heroSlides: HeroSlide[] = [
         priceUnit: "/month",
         title: "Coastal Serenity Cottage",
         address: "918 Maple Avenue, Brooklyn, NY 11215",
-        beds: 4,
-        baths: 2,
-        sqft: "2,600 Sqft",
+        bedrooms: 4,
+        bathrooms: 2,
+        area: "2,600 Sqft",
     },
     {
         id: 2,
@@ -45,9 +45,9 @@ const heroSlides: HeroSlide[] = [
         priceUnit: "/SqFT",
         title: "Sunset Heights Estate",
         address: "245 Elm Street, San Francisco, CA 94102",
-        beds: 3,
-        baths: 2,
-        sqft: "1,600 Sqft",
+        bedrooms: 3,
+        bathrooms: 2,
+        area: "1,600 Sqft",
     },
 ];
 
@@ -119,15 +119,15 @@ export default function Hero() {
                                                     <ul className="info d-flex effect-up effect-item effect-7">
                                                         <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                                             <i className="icon-Bed"></i>
-                                                            {slide.beds} Beds
+                                                            {slide.bedrooms} Beds
                                                         </li>
                                                         <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                                             <i className="icon-Bathstub"></i>
-                                                            {slide.baths} Baths
+                                                            {slide.bathrooms} Baths
                                                         </li>
                                                         <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                                             <i className="icon-Ruler"></i>
-                                                            {slide.sqft}
+                                                            {slide.area}
                                                         </li>
                                                     </ul>
                                                 </div>

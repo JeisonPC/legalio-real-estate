@@ -128,7 +128,7 @@ export default function SidebarFilter2({
                                 className="text-title tab-link fw-6 active"
                                 data-bs-toggle="tab"
                             >
-                                For Rent
+                                Alquiler
                             </a>
                         </li>
                         <li className="nav-tab-item" role="presentation">

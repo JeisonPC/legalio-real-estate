@@ -48,7 +48,7 @@ export default function SidebarFilterDefault() {
                             className="nav-link-item active"
                             data-bs-toggle="tab"
                         >
-                            For Rent
+                            Alquiler
                         </a>
                     </li>
                     <li

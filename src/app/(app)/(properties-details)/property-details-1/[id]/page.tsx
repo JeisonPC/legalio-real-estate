@@ -29,13 +29,13 @@ function mapProperty(property: Property): PropertyDetailsData {
     price: property.price,
     coordinates,
     address: property.address || "",
-    beds: property.bedrooms || 0,
-    baths: property.bathrooms || 0,
-    sqft: property.area || 0,
+    bedrooms: property.bedrooms || 0,
+    bathrooms: property.bathrooms || 0,
+    area: property.area || 0,
     garages: property.garages || 0,
     city: property.city || "",
     type: property.businessType || "",
-    categories: property.propertyType || "",
+    propertyType: property.propertyType || "",
     imgSrc:
       Array.isArray(property.images) &&
       property.images.length > 0 &&

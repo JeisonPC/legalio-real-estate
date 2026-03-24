@@ -3,10 +3,10 @@ type Property = {
     id: number;
     address: string;
     title: string;
-    beds?: number;
-    baths?: number;
-    sqft?: number;
-    categories: string;
+    bedrooms?: number;
+    bathrooms?: number;
+    area?: number;
+    propertyType: string;
     type: string;
     price: number;
 };
@@ -29,7 +29,7 @@ export default function PropertiesTitle2({ property }: { property: Property }) {
                             For {property.type}
                         </div>
                         <div className="tag categoreis text-button-small fw-6 text_primary-color">
-                            {property.categories}
+                            {property.propertyType}
                         </div>
                     </div>
                     <h4>{property.title}</h4>
@@ -47,16 +47,16 @@ export default function PropertiesTitle2({ property }: { property: Property }) {
                     <ul className="info d-flex">
                         <li className="d-flex align-items-center gap_8 h6 text_primary-color fw-6">
                             <i className="icon-Bed"></i>
-                            {property.beds}
+                            {property.bedrooms}
                             Beds
                         </li>
                         <li className="d-flex align-items-center gap_8 h6 text_primary-color fw-6">
                             <i className="icon-Bathstub"></i>
-                            {property.baths} Baths
+                            {property.bathrooms} Baths
                         </li>
                         <li className="d-flex align-items-center gap_8 h6 text_primary-color fw-6">
                             <i className="icon-Ruler"></i>
-                            {property.sqft} sqft
+                            {property.area} area
                         </li>
                     </ul>
                 </div>

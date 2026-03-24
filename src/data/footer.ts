@@ -15,7 +15,7 @@ export const footerSections: FooterSection[] = [
         heading: "Our Company",
         links: [
             { href: "/listing-topmap-grid", label: "Property For Sale" },
-            { href: "/listing-topmap-grid", label: "Property For Rent" },
+            { href: "/listing-topmap-grid", label: "Property Alquiler" },
             { href: "/listing-topmap-grid", label: "Property For Buy" },
             { href: "/listing-topmap-grid", label: "All Properties" },
             { href: "#", label: "Our Agents" },

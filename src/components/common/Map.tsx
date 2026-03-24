@@ -8,9 +8,9 @@ interface Property {
     id: number | string;
     address: string;
     title: string;
-    beds?: number;
-    baths?: number;
-    sqft?: number;
+    bedrooms?: number;
+    bathrooms?: number;
+    area?: number;
     lat: number;
     long: number;
     coordinates?: [number, number];
@@ -21,9 +21,9 @@ interface ProcessedProperty {
     id: string;
     address: string;
     title: string;
-    beds?: number;
-    baths?: number;
-    sqft?: number;
+    bedrooms?: number;
+    bathrooms?: number;
+    area?: number;
     coordinates: [number, number];
     image: string;
 }
@@ -52,14 +52,14 @@ export default function MapComponent({ sorted }: MapComponentProps) {
                     <h6 class="mb_12 line-clamp-1">${property.title}</h6>
                     <ul class="info d-flex">
                         <li><i class="icon-Bed"></i> ${
-                            property.beds ?? 0
+                            property.bedrooms ?? 0
                         } Bed</li>
                         <li><i class="icon-Bathtub"></i> ${
-                            property.baths ?? 0
+                            property.bathrooms ?? 0
                         } Bath</li>
                         <li><i class="icon-Ruler"></i> ${
-                            property.sqft ?? 0
-                        } sqft</li>
+                            property.area ?? 0
+                        } area</li>
                     </ul>
                 </div>
             </div>
@@ -152,9 +152,9 @@ export default function MapComponent({ sorted }: MapComponentProps) {
                     id: p.id.toString(),
                     address: p.address,
                     title: p.title,
-                    beds: p.beds,
-                    baths: p.baths,
-                    sqft: p.sqft,
+                    bedrooms: p.bedrooms,
+                    bathrooms: p.bathrooms,
+                    area: p.area,
                     coordinates: p.coordinates ?? [p.long, p.lat],
                     image: p.imgSrc,
                 }));
@@ -252,9 +252,9 @@ export default function MapComponent({ sorted }: MapComponentProps) {
                 id: p.id.toString(),
                 address: p.address,
                 title: p.title,
-                beds: p.beds,
-                baths: p.baths,
-                sqft: p.sqft,
+                bedrooms: p.bedrooms,
+                bathrooms: p.bathrooms,
+                area: p.area,
                 coordinates: p.coordinates ?? [p.long, p.lat],
                 image: p.imgSrc,
             }));
