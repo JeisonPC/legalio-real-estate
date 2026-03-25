@@ -51,11 +51,11 @@ export const menuItems: MenuItem[] = [
     {
         title: "Pages",
         links: [
-            { href: "/about-us", label: "About Us" },
+            { href: "/about-us", label: "Acerca de" },
             { href: "/our-pricing", label: "Our Pricing" },
             { href: "/FAQs", label: "FAQs" },
             { href: "/privacy-policy", label: "Privacy Policy" },
-            { href: "/login", label: "Login/Register" },
+            { href: "/login", label: "Inicio de Sesión/Registro" },
         ],
     },
     {

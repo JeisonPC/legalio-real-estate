@@ -10,7 +10,7 @@ export default function About() {
                         <div className="col-lg-5">
                             <div className="heading-section mb_20">
                                 <span className="sub text-uppercase fw-6 text_secondary-color-2 split-text effect-rotate">
-                                    ABout Us
+                                    Acerca de
                                 </span>
                                 <h3 className="split-text effect-blur-fade">
                                     Building Dreams, One Home At A Time

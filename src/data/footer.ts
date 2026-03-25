@@ -12,9 +12,9 @@ export type FooterSection = {
 export const footerSections: FooterSection[] = [
     {
         className: "company",
-        heading: "Our Company",
+        heading: "Nuestra Compañía",
         links: [
-            { href: "/listing-topmap-grid", label: "Property For Sale" },
+            { href: "/listing-topmap-grid", label: "Propiedades a la Venta" },
             { href: "/listing-topmap-grid", label: "Property Alquiler" },
             { href: "/listing-topmap-grid", label: "Property For Buy" },
             { href: "/listing-topmap-grid", label: "All Properties" },
@@ -25,8 +25,8 @@ export const footerSections: FooterSection[] = [
         className: "quick-link",
         heading: "Quick Links",
         links: [
-            { href: "/about-us", label: "About Us" },
-            { href: "/contacts", label: "Contact Us" },
+            { href: "/about-us", label: "Acerca de" },
+            { href: "/contacts", label: "Contactanos" },
             { href: "#", label: "Our Team" },
             { href: "/blog-standard", label: "Latest News" },
             { href: "/our-pricing", label: "Our Pricing" },

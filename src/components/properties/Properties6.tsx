@@ -43,7 +43,7 @@ export default function Properties5() {
         bathrooms,
         garages,
         city,
-        budget,
+        price,
         minSize,
         maxSize,
         features,
@@ -62,14 +62,14 @@ export default function Properties5() {
         let filteredList: Property[] = allProperties;
 
         // City filter
-        if (city && city !== "All Cities") {
+        if (city && city !== "Todas las Ciudades") {
             filteredList = filteredList.filter(
                 (p) => p.city && p.city === city
             );
         }
 
-        // Bedrooms filter - FIXED
-        if (bedrooms && bedrooms !== "Any Bedrooms") {
+        // Habitaciones filter - FIXED
+        if (bedrooms && bedrooms !== "Cualquiera") {
             if (bedrooms === "4+") {
                 filteredList = filteredList.filter((p) => Number(p.bedrooms) >= 4);
             } else {
@@ -106,32 +106,32 @@ export default function Properties5() {
             }
         }
 
-        // Budget filter
-        if (budget && budget !== "Max. Price") {
-            let maxBudget = 0;
-            if (budget.startsWith("Under $")) {
-                maxBudget = parseInt(
-                    budget.replace("Under $", "").replace(/,/g, ""),
+        // Price filter
+        if (price && price !== "Precio Max.") {
+            let maxPrice = 0;
+            if (price.startsWith("Under $")) {
+                maxPrice = parseInt(
+                    price.replace("Under $", "").replace(/,/g, ""),
                     10
                 );
                 filteredList = filteredList.filter(
-                    (p) => Number(p.price) <= maxBudget
+                    (p) => Number(p.price) <= maxPrice
                 );
-            } else if (budget.startsWith("$")) {
-                maxBudget = parseInt(
-                    budget.replace("$", "").replace(/,/g, ""),
+            } else if (price.startsWith("$")) {
+                maxPrice = parseInt(
+                    price.replace("$", "").replace(/,/g, ""),
                     10
                 );
                 filteredList = filteredList.filter(
-                    (p) => Number(p.price) <= maxBudget
+                    (p) => Number(p.price) <= maxPrice
                 );
-            } else if (budget.startsWith("Above $")) {
-                maxBudget = parseInt(
-                    budget.replace("Above $", "").replace(/,/g, ""),
+            } else if (price.startsWith("Above $")) {
+                maxPrice = parseInt(
+                    price.replace("Above $", "").replace(/,/g, ""),
                     10
                 );
                 filteredList = filteredList.filter(
-                    (p) => Number(p.price) > maxBudget
+                    (p) => Number(p.price) > maxPrice
                 );
             }
         }
@@ -165,7 +165,7 @@ export default function Properties5() {
             );
         }
 
-        // Search keyword filter
+        // Buscar keyword filter
         if (searchKeyword && searchKeyword.trim() !== "") {
             const kw = searchKeyword.trim().toLowerCase();
             filteredList = filteredList.filter(
@@ -182,7 +182,7 @@ export default function Properties5() {
         bathrooms,
         garages,
         city,
-        budget,
+        price,
         minSize,
         maxSize,
         features,
@@ -192,9 +192,9 @@ export default function Properties5() {
     // Sorting logic
     useEffect(() => {
         const sortedList = [...filtered];
-        if (sortingOption === "Price Ascending") {
+        if (sortingOption === "Precio Ascendiente") {
             sortedList.sort((a, b) => a.price - b.price);
-        } else if (sortingOption === "Price Descending") {
+        } else if (sortingOption === "Precio Descendiente") {
             sortedList.sort((a, b) => b.price - a.price);
         }
         dispatch({ type: "SET_SORTED", payload: sortedList });
@@ -232,9 +232,9 @@ export default function Properties5() {
         garages,
         setGarages: (newGarages: string) =>
             dispatch({ type: "SET_GARAGES", payload: newGarages }),
-        budget,
-        setBudget: (newBudget: string) =>
-            dispatch({ type: "SET_BUDGET", payload: newBudget }),
+        price,
+        setPrice: (newPrice: string) =>
+            dispatch({ type: "SET_PRICE", payload: newPrice }),
         minSize,
         setMinSize: (newMinSize: string) =>
             dispatch({ type: "SET_MINSIZE", payload: newMinSize }),
@@ -322,9 +322,9 @@ export default function Properties5() {
                                     }
                                     addtionalParentClass="list-sort"
                                     options={[
-                                        "Sort by (Default)",
-                                        "Price Ascending",
-                                        "Price Descending",
+                                        "Ordenar por (Predeterminado)",
+                                        "Precio Ascendiente",
+                                        "Precio Descendiente",
                                     ]}
                                 />
                             </div>
@@ -360,17 +360,17 @@ export default function Properties5() {
                                                         <div className="wrap-tag d-flex gap_8 mb_12">
                                                             <div
                                                                 className={`tag ${
-                                                                    property.type ===
-                                                                    "Sale"
+                                                                    property.businessType ===
+                                                                    "venta"
                                                                         ? "sale"
-                                                                        : property.type ===
-                                                                          "Rent"
+                                                                        : property.businessType ===
+                                                                          "arriendo"
                                                                         ? "rent"
-                                                                        : property.type
+                                                                        : property.businessType
                                                                 } text-button-small fw-6 text_primary-color`}
                                                             >
                                                                 For{" "}
-                                                                {property.type}
+                                                                {property.businessType}
                                                             </div>
                                                             <div className="tag categoreis text-button-small fw-6 text_primary-color">
                                                                 {
@@ -401,7 +401,7 @@ export default function Properties5() {
                                                             $
                                                             {property.price.toLocaleString()}
                                                             <span className="text_secondary-color text-body-default">
-                                                                {property.type ===
+                                                                {property.businessType ===
                                                                 "Sale"
                                                                     ? "/Sqft"
                                                                     : "/month"}
@@ -488,7 +488,7 @@ export default function Properties5() {
                                                                 $
                                                                 {property.price.toLocaleString()}
                                                                 <span className="text_secondary-color text-body-default">
-                                                                    {property.type ===
+                                                                    {property.businessType ===
                                                                     "Sale"
                                                                         ? "/Sqft"
                                                                         : "/month"}
@@ -497,15 +497,15 @@ export default function Properties5() {
                                                             <div className="wrap-tag d-flex gap_8">
                                                                 <div
                                                                     className={`tag ${
-                                                                        property.type ===
+                                                                        property.businessType ===
                                                                         "Sale"
                                                                             ? "sale"
                                                                             : "rent"
                                                                     } text-button-small fw-6 text_primary-color`}
                                                                 >
-                                                                    {property.type ===
+                                                                    {property.businessType ===
                                                                     "Sale"
-                                                                        ? "For Sale"
+                                                                        ? "A la venta"
                                                                         : "Alquiler"}
                                                                 </div>
                                                                 <div className="tag categoreis text-button-small fw-6 text_primary-color">

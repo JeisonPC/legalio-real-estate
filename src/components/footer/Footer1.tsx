@@ -147,10 +147,10 @@ export default function Footer1() {
                                 </Link>
                                 <div className="mb_16">
                                     <p className="mb_4 text_color-1">
-                                        Our Address:
+                                        Nuestra dirección
                                     </p>
                                     <p className="text_white">
-                                        101 E 129th St, East Chicago, 2nd Floor
+                                        Calle 3 28-131
                                         New York, NY 10017
                                     </p>
                                 </div>
@@ -277,7 +277,7 @@ export default function Footer1() {
                             href="#"
                             className="text_white hover-underline-link"
                         >
-                            Luminor.
+                            Legalio.
                         </Link>{" "}
                         {"  "}
                         All Rights Reserved.

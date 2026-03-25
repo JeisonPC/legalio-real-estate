@@ -90,13 +90,13 @@ export default function SideBar() {
     return (
         <div className="tf-sidebar">
             <div className="sidebar-item sidebar-search ">
-                <h5 className="sidebar-title mb_14">Search</h5>
+                <h5 className="sidebar-title mb_14">Buscar</h5>
                 <form  className="form-search">
                     <fieldset>
                         <input
                             className=""
                             type="text"
-                            placeholder="Search..."
+                            placeholder="Buscar..."
                             name="text"
                             tabIndex={2}
                             defaultValue=""
@@ -114,7 +114,7 @@ export default function SideBar() {
             <div className="sidebar-item sidebar-categories ">
                 <h5 className="sidebar-title mb_17">Categories</h5>
                 <ul className="list-categories d-grid gap_8">
-                    {categories.map((category) => (
+                    {propertyType.map((category) => (
                         <li
                             className="d-flex align-items-center justify-content-between text-body-default "
                             key={category.id}

@@ -16,7 +16,7 @@
     line-height: 26px;
     font-weight: 700;
     span {
-        color: var(--Text-primary);
+        color: var(--white);
         @include transition3();
         white-space: nowrap;
         display: flex;

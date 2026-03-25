@@ -1,8 +1,8 @@
-export const bedroomOptions: string[] = ["Any Bedrooms", "1", "2", "3", "4+"];
+export const bedroomOptions: string[] = ["Cualquiera", "1", "2", "3", "4+"];
 export const bathroomOptions: string[] = ["Any Bathrooms", "1", "2", "3", "4+"];
 export const garageOptions: string[] = ["Any Garages", "1", "2", "3+"];
 export const cityOptions: string[] = [
-    "All Cities",
+    "Todas las Ciudades",
     "New York",
     "Los Angeles",
     "Chicago",
@@ -10,10 +10,10 @@ export const cityOptions: string[] = [
     "Phoenix",
 ];
 export const budgetOptions: string[] = [
-    "Max. Price",
+    "Precio Max.",
     "Under $500",
     "Under $1,000",
-    "Under $1,500",
+    "Under $1,500", 
     "Under $2,000",
     "Under $2,500",
     "$3,000",
@@ -48,7 +48,7 @@ export const amenitiesList: string[] = [
     "Furnishing",
     "Intercom",
     "Security",
-    "Search property",
+    "Buscar property",
     "Ceiling Height",
     "Fence",
     "Garage",

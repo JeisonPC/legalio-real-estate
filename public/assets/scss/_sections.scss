@@ -32,6 +32,11 @@
         }
     }
     &.style-1 {
+        .searching-home {
+            padding: 150px 0 32px 0;
+            background-color: var(--gray-100);
+            margin-bottom: 16px;
+        }
         .content {
             display: flex;
             margin-bottom: 70px;
@@ -277,7 +282,7 @@
         }
         .flat-tab-form {
             background-color: var(--Bg-light);
-            padding: 60px 0;
+            padding: 160px 0 60px 0;
         }
         .sw-button {
             position: absolute;

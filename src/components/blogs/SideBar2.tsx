@@ -84,7 +84,7 @@ export default function SideBar2({
             <div className="sidebar-item sidebar-categories ">
                 <h5 className="sidebar-title mb_17">Categories</h5>
                 <ul className="list-categories d-grid gap_8">
-                    {categories.map((category) => (
+                    {propertyType.map((category) => (
                         <li
                             className="d-flex align-items-center justify-content-between text-body-default "
                             key={category.id}

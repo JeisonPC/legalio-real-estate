@@ -61,14 +61,14 @@ export default function Properties3() {
         let filteredList: Property[] = allProperties;
 
         // City filter
-        if (city && city !== "All Cities") {
+        if (city && city !== "Todas las Ciudades") {
             filteredList = filteredList.filter(
                 (p) => p.city && p.city === city
             );
         }
 
-        // Bedrooms filter - FIXED
-        if (bedrooms && bedrooms !== "Any Bedrooms") {
+        // Habitaciones filter - FIXED
+        if (bedrooms && bedrooms !== "Cualquiera") {
             if (bedrooms === "4+") {
                 filteredList = filteredList.filter((p) => Number(p.bedrooms) >= 4);
             } else {
@@ -106,7 +106,7 @@ export default function Properties3() {
         }
 
         // Budget filter
-        if (budget && budget !== "Max. Price") {
+        if (budget && budget !== "Precio Max.") {
             let maxBudget = 0;
             if (budget.startsWith("Under $")) {
                 maxBudget = parseInt(
@@ -164,7 +164,7 @@ export default function Properties3() {
             );
         }
 
-        // Search keyword filter
+        // Buscar keyword filter
         if (searchKeyword && searchKeyword.trim() !== "") {
             const kw = searchKeyword.trim().toLowerCase();
             filteredList = filteredList.filter(
@@ -191,9 +191,9 @@ export default function Properties3() {
     // Sorting logic
     useEffect(() => {
         const sortedList = [...filtered];
-        if (sortingOption === "Price Ascending") {
+        if (sortingOption === "Precio Ascendiente") {
             sortedList.sort((a, b) => a.price - b.price);
-        } else if (sortingOption === "Price Descending") {
+        } else if (sortingOption === "Precio Descendiente") {
             sortedList.sort((a, b) => b.price - a.price);
         }
         dispatch({ type: "SET_SORTED", payload: sortedList });
@@ -305,9 +305,9 @@ export default function Properties3() {
                                     }
                                     addtionalParentClass="list-sort"
                                     options={[
-                                        "Sort by (Default)",
-                                        "Price Ascending",
-                                        "Price Descending",
+                                        "Ordenar por (Predeterminado)",
+                                        "Precio Ascendiente",
+                                        "Precio Descendiente",
                                     ]}
                                 />
                             </div>
@@ -523,7 +523,7 @@ export default function Properties3() {
                                                                         >
                                                                             {property.type ===
                                                                             "Sale"
-                                                                                ? "For Sale"
+                                                                                ? "A la venta"
                                                                                 : "Alquiler"}
                                                                         </div>
                                                                         <div className="tag categoreis text-button-small fw-6 text_primary-color">

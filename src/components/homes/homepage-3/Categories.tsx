@@ -60,8 +60,8 @@ const propertyType: Category[] = [
 ];
 
 export default function Categories() {
-    const grid3 = categories.filter((cat) => cat.grid === "3");
-    const grid2 = categories.filter((cat) => cat.grid === "2");
+    const grid3 = propertyType.filter((cat) => cat.grid === "3");
+    const grid2 = propertyType.filter((cat) => cat.grid === "2");
 
     return (
         <div className="section-categories tf-spacing-1">

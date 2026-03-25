@@ -15,7 +15,7 @@ export default function Header4() {
                     <div className="row">
                         <div className="col-12">
                             <div className="header-inner">
-                                <a href="index.html" className="site-logo">
+                                <Link href="/" className="site-logo">
                                     <Image
                                         className="logo_header"
                                         alt="logo"
@@ -23,19 +23,19 @@ export default function Header4() {
                                         height={48}
                                         src="/assets/images/logo/logo.png"
                                     />
-                                </a>
+                                </Link>
                                 <Nav />
                                 <div className="header-right d-flex align-items-center gap_20">
-                                    <a
+                                    <Link
                                         href="login.html"
                                         className="link text-button text_primary-color"
                                     >
-                                        Login/Regiser
-                                    </a>
-                                    <a href="#" className="tf-btn md-hide">
-                                        <span>Submit Property</span>
+                                        Inicio de sesión/Registro
+                                    </Link>
+                                    <Link href="#" className="tf-btn md-hide">
+                                        <span>Publicar Propiedad</span>
                                         <span className="bg-effect"></span>
-                                    </a>
+                                    </Link>
                                     <div
                                         className="mobile-button d-xl-none"
                                         onClick={() => setIsMenuOpen(true)}
@@ -82,14 +82,14 @@ export default function Header4() {
                         <div className="mb-body">
                             <MobileMenu />
                             <div className="support">
-                                <a href="#" className="tf-btn ">
-                                    <span>Submit Property</span>
+                                <Link href="#" className="tf-btn ">
+                                    <span>Publicar Propiedad</span>
                                     <span className="bg-effect"></span>
-                                </a>
-                                <a href="#" className="text-need">
+                                </Link>
+                                <Link href="#" className="text-need">
                                     {" "}
                                     Need help?
-                                </a>
+                                </Link>
                                 <ul className="mb-info">
                                     <li>
                                         Call Us Now:{" "}
@@ -99,43 +99,43 @@ export default function Header4() {
                                     </li>
                                     <li>
                                         Support 24/7:{" "}
-                                        <a href="#" className="link">
+                                        <Link href="#" className="link">
                                             themesflat@gmail.com
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
                                         <div className="wrap-social">
                                             <p>Follow us:</p>
                                             <ul className="social align-items-center d-flex gap_24">
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-FacebookLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-XLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-TiktokLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-InstagramLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-YoutubeLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                             </ul>
                                         </div>

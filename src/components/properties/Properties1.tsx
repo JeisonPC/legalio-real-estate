@@ -82,7 +82,7 @@ export default function Properties1({
     bathrooms,
     garages,
     city,
-    budget,
+    price,
     minSize,
     maxSize,
     features,
@@ -102,11 +102,18 @@ export default function Properties1({
     let filteredList: Property[] = properties;
     console.log("filteredList before dispatch", filteredList);
 
-    if (city && city !== "All Cities") {
-      filteredList = filteredList.filter((p) => p.city && p.city === city);
+    if (city && city !== "Todas las Ciudades") {
+      filteredList = filteredList.filter((p) => {
+        const cityName =
+          typeof p.city === "object" && p.city !== null && "name" in p.city
+            ? p.city.name
+            : "";
+
+        return cityName === city;
+      });
     }
 
-    if (bedrooms && bedrooms !== "Any Bedrooms") {
+    if (bedrooms && bedrooms !== "Cualquiera") {
       if (bedrooms === "4+") {
         filteredList = filteredList.filter((p) => Number(p.bedrooms) >= 4);
       } else {
@@ -133,24 +140,18 @@ export default function Properties1({
       }
     }
 
-    if (budget && budget !== "Max. Price") {
-      let maxBudget = 0;
+    if (price && price !== "Precio Max.") {
+      let maxPrice = 0;
 
-      if (budget.startsWith("Under $")) {
-        maxBudget = parseInt(
-          budget.replace("Under $", "").replace(/,/g, ""),
-          10,
-        );
-        filteredList = filteredList.filter((p) => Number(p.price) <= maxBudget);
-      } else if (budget.startsWith("$")) {
-        maxBudget = parseInt(budget.replace("$", "").replace(/,/g, ""), 10);
-        filteredList = filteredList.filter((p) => Number(p.price) <= maxBudget);
-      } else if (budget.startsWith("Above $")) {
-        maxBudget = parseInt(
-          budget.replace("Above $", "").replace(/,/g, ""),
-          10,
-        );
-        filteredList = filteredList.filter((p) => Number(p.price) > maxBudget);
+      if (price.startsWith("Under $")) {
+        maxPrice = parseInt(price.replace("Under $", "").replace(/,/g, ""), 10);
+        filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
+      } else if (price.startsWith("$")) {
+        maxPrice = parseInt(price.replace("$", "").replace(/,/g, ""), 10);
+        filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
+      } else if (price.startsWith("Above $")) {
+        maxPrice = parseInt(price.replace("Above $", "").replace(/,/g, ""), 10);
+        filteredList = filteredList.filter((p) => Number(p.price) > maxPrice);
       }
     }
 
@@ -184,12 +185,22 @@ export default function Properties1({
 
     if (searchKeyword && searchKeyword.trim() !== "") {
       const kw = searchKeyword.trim().toLowerCase();
-      filteredList = filteredList.filter(
-        (p) =>
+
+      filteredList = filteredList.filter((p) => {
+        const cityName =
+          typeof p.city === "object" &&
+          p.city !== null &&
+          "name" in p.city &&
+          typeof p.city.name === "string"
+            ? p.city.name.toLowerCase()
+            : "";
+
+        return (
           (p.title && p.title.toLowerCase().includes(kw)) ||
           (p.address && p.address.toLowerCase().includes(kw)) ||
-          (p.city && p.city.toLowerCase().includes(kw)),
-      );
+          cityName.includes(kw)
+        );
+      });
     }
 
     dispatch({ type: "SET_FILTERED", payload: filteredList });
@@ -199,7 +210,7 @@ export default function Properties1({
     bathrooms,
     garages,
     city,
-    budget,
+    price,
     minSize,
     maxSize,
     features,
@@ -208,9 +219,9 @@ export default function Properties1({
 
   useEffect(() => {
     const sortedList = [...filtered];
-    if (sortingOption === "Price Ascending") {
+    if (sortingOption === "Precio Ascendiente") {
       sortedList.sort((a, b) => a.price - b.price);
-    } else if (sortingOption === "Price Descending") {
+    } else if (sortingOption === "Precio Descendiente") {
       sortedList.sort((a, b) => b.price - a.price);
     }
     dispatch({ type: "SET_SORTED", payload: sortedList });
@@ -247,9 +258,9 @@ export default function Properties1({
     garages,
     setGarages: (newGarages: string) =>
       dispatch({ type: "SET_GARAGES", payload: newGarages }),
-    budget,
-    setBudget: (newBudget: string) =>
-      dispatch({ type: "SET_BUDGET", payload: newBudget }),
+    price,
+    setPrice: (newPrice: string) =>
+      dispatch({ type: "SET_PRICE", payload: newPrice }),
     minSize,
     setMinSize: (newMinSize: string) =>
       dispatch({ type: "SET_MINSIZE", payload: newMinSize }),
@@ -291,7 +302,7 @@ export default function Properties1({
             <div>
               <ul className="breadcrumb style-1 text-button fw-4 mb_4">
                 <li>
-                  <a href="index.html">Home</a>
+                  <Link href="/">Home</Link>
                 </li>
                 <li>With Top Map</li>
               </ul>
@@ -332,9 +343,9 @@ export default function Properties1({
                 }
                 addtionalParentClass="list-sort"
                 options={[
-                  "Sort by (Default)",
-                  "Price Ascending",
-                  "Price Descending",
+                  "Ordenar por (Predeterminado)",
+                  "Precio Ascendiente",
+                  "Precio Descendiente",
                 ]}
               />
             </div>

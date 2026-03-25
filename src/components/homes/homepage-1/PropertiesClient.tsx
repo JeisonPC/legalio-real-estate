@@ -49,7 +49,13 @@ export default function PropertiesClient({
         data-id={property.id}
       >
         <div className="img-style mb_20">
-          <Image src={imageUrl} width={410} height={308} alt={property.title} />
+          <Image
+            src={imageUrl}
+            style={{height:"258px", objectFit:"cover"}}
+            width={property.imgWidth}
+            height={property.imgHeight}
+            alt={property.title}
+          />
           <div className="wrap-tag d-flex gap_8 mb_12">
             <div
               className={`tag ${businessClass} text-button-small fw-6 text_primary-color`}
@@ -116,7 +122,7 @@ export default function PropertiesClient({
   return (
     <div className="section-features-property-4 tf-spacing-1 pt-0">
       <div className="tf-container">
-        <div className="heading-section justify-content-center text-center mb_46">
+        <div className="heading-section justify-content-center text-center mb_46 mt_24">
           <span className="sub text-uppercase fw-6 text_secondary-color-2 split-text effect-rotate">
             Propiedades destacadas
           </span>
@@ -153,7 +159,7 @@ export default function PropertiesClient({
         )}
 
         <Link
-          href="/listing-topmap-grid"
+          href="/listing-half-map-grid"
           className="tf-btn btn-bg-1 mx-auto btn-px-32 scrolling-effect effectBottom"
         >
           <span>Ver todas las propiedades</span>

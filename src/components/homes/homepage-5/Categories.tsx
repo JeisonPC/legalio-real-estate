@@ -74,7 +74,7 @@ export default function Categories() {
           }}
           className="category-swiper"
         >
-          {categories.map((cat, idx) => (
+          {propertyType.map((cat, idx) => (
             <SwiperSlide key={idx}>
               <div
                 className="category-item style-1 hover-image-translate scrolling-effect effectFade"

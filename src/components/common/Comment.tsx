@@ -52,7 +52,7 @@ export default function Comment() {
                             </li>
                         </ul>
                         <p className="comment text-body-2">
-                            This home is exactly what we were looking for—quiet,
+                            This home is exactly what we were Búsqueda—quiet,
                             spacious, and surrounded by nature. The location is
                             perfect for our family, close to schools and just a
                             short drive to the city.

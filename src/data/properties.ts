@@ -46,7 +46,7 @@ export const properties: Property[] = [
       filterOptions: ["Apartment"],
       features: [
         "Air Condition", "Disabled Access", "Floor", "Heating", "Renovation", "Window Type", "Cable TV", "Elevator",
-        "Furnishing", "Intercom", "Security", "Search property", "Ceiling Height", "Fence", "Garage", "Parking",
+        "Furnishing", "Intercom", "Security", "Buscar property", "Ceiling Height", "Fence", "Garage", "Parking",
         "Swimming Pool", "Construction Year", "Fireplace", "Garden", "Pet Friendly", "WiFi"
       ],
       price: 250,
@@ -71,7 +71,7 @@ export const properties: Property[] = [
       filterOptions: ["Villa"],
       features: [
         "Air Condition", "Disabled Access", "Floor", "Heating", "Window Type", "Cable TV", "Furnishing", "Intercom",
-        "Security", "Search property", "Fence", "Garage", "Parking", "Fireplace", "Garden", "Pet Friendly", "WiFi"
+        "Security", "Buscar property", "Fence", "Garage", "Parking", "Fireplace", "Garden", "Pet Friendly", "WiFi"
       ],
       price: 6130,
       coordinates: [-122.4094, 37.7799],
@@ -166,7 +166,7 @@ export const properties: Property[] = [
       filterOptions: ["Townhouse"],
       features: [
         "Air Condition", "Disabled Access", "Renovation", "Window Type", "Cable TV", "Elevator", "Furnishing",
-        "Search property", "Ceiling Height", "Fence", "Garage", "Parking", "Swimming Pool", "Construction Year",
+        "Buscar property", "Ceiling Height", "Fence", "Garage", "Parking", "Swimming Pool", "Construction Year",
         "Pet Friendly", "WiFi"
       ],
       price: 5210,
@@ -215,7 +215,7 @@ export const properties: Property[] = [
       filterOptions: ["Villa"],
       features: [
         "Air Condition", "Disabled Access", "Floor", "Heating", "Renovation", "Window Type", "Cable TV", "Elevator",
-        "Furnishing", "Intercom", "Security", "Search property", "Ceiling Height", "Fence", "Garage", "Parking",
+        "Furnishing", "Intercom", "Security", "Buscar property", "Ceiling Height", "Fence", "Garage", "Parking",
         "Swimming Pool", "Construction Year", "Fireplace", "Garden", "Pet Friendly", "WiFi"
       ],
       price: 320,
@@ -263,7 +263,7 @@ export const properties: Property[] = [
       long: -74.07152705896405,
       filterOptions: ["House"],
       features: [
-        "Air Condition", "Disabled Access", "Cable TV", "Elevator", "Furnishing", "Search property", "Ceiling Height",
+        "Air Condition", "Disabled Access", "Cable TV", "Elevator", "Furnishing", "Buscar property", "Ceiling Height",
         "Fence", "Parking", "Swimming Pool", "Construction Year", "Pet Friendly", "WiFi"
       ],
       price: 5210,
@@ -491,7 +491,7 @@ export const populor: Property[] = [
             "Cable TV",
             "Elevator",
             "Furnishing",
-            "Search property",
+            "Buscar property",
             "Ceiling Height",
             "Fence",
             "Garage",
@@ -666,7 +666,7 @@ export const topProperties: Property[] = [
             "Cable TV",
             "Elevator",
             "Furnishing",
-            "Search property",
+            "Buscar property",
             "Ceiling Height",
             "Fence",
             "Garage",
@@ -819,7 +819,7 @@ export const propertieslist: Property[] = [
       filterOptions: ["Apartment"],
       features: [
         "Air Condition", "Disabled Access", "Floor", "Heating", "Renovation", "Window Type", "Cable TV", "Elevator",
-        "Furnishing", "Intercom", "Security", "Search property", "Ceiling Height", "Fence", "Garage", "Parking",
+        "Furnishing", "Intercom", "Security", "Buscar property", "Ceiling Height", "Fence", "Garage", "Parking",
         "Swimming Pool", "Construction Year", "Fireplace", "Garden", "Pet Friendly", "WiFi"
       ],
       price: 250,
@@ -845,7 +845,7 @@ export const propertieslist: Property[] = [
       filterOptions: ["Villa"],
       features: [
         "Air Condition", "Disabled Access", "Floor", "Heating", "Window Type", "Cable TV", "Furnishing", "Intercom",
-        "Security", "Search property", "Fence", "Garage", "Parking", "Fireplace", "Garden", "Pet Friendly", "WiFi"
+        "Security", "Buscar property", "Fence", "Garage", "Parking", "Fireplace", "Garden", "Pet Friendly", "WiFi"
       ],
       price: 6130,
       coordinates: [-122.4094, 37.7799],

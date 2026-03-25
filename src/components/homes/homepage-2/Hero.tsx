@@ -15,7 +15,7 @@ const heroSlides = [
         image: "/assets/images/page-title/page-title-4.jpg",
         title: "Your Perfect Home Awaits",
         description:
-            "From cozy bedrooms to open-concept living areas, Luminor offers thoughtfully designed spaces tailored to fit your lifestyle and dreams.",
+            "From cozy bedrooms to open-concept living areas, Legalio offers thoughtfully designed spaces tailored to fit your lifestyle and dreams.",
         buttons: [
             {
                 href: "/listing-topmap-grid",
@@ -25,7 +25,7 @@ const heroSlides = [
             {
                 href: "/contacts",
                 className: "tf-btn btn-bg-white btn-px-32",
-                label: "Contact Us",
+                label: "Contactanos",
             },
         ],
     },
@@ -33,7 +33,7 @@ const heroSlides = [
         image: "/assets/images/page-title/page-title-5.jpg",
         title: "Your Perfect Home Awaits",
         description:
-            "From cozy bedrooms to open-concept living areas, Luminor offers thoughtfully designed spaces tailored to fit your lifestyle and dreams.",
+            "From cozy bedrooms to open-concept living areas, Legalio offers thoughtfully designed spaces tailored to fit your lifestyle and dreams.",
         buttons: [
             {
                 href: "/listing-topmap-grid",
@@ -43,7 +43,7 @@ const heroSlides = [
             {
                 href: "/contacts",
                 className: "tf-btn btn-bg-white btn-px-32",
-                label: "Contact Us",
+                label: "Contactanos",
             },
         ],
     },

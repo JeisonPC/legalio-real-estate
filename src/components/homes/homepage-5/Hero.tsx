@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import Image from "next/image";
-import { Autoplay, EffectFade, Navigation } from "swiper/modules";
+// import Image from "next/image";
+// import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
@@ -59,7 +59,7 @@ export default function Hero() {
 
     return (
         <div className="page-title style-5 sw-layout">
-            <div className="page-inner position-relative">
+            {/* <div className="page-inner position-relative">
                 <Swiper
                     className="effect-content-slide"
                     loop={true}
@@ -145,7 +145,7 @@ export default function Hero() {
                 <div className="sw-button nav-next-layout lg-hide swbn-02">
                     <i className="icon-CaretRight"></i>
                 </div>
-            </div>
+            </div> */}
             <SidebarFilterDefault />
         </div>
     );

@@ -1,6 +1,6 @@
-import About from "@/components/homes/homepage-1/About";
+// import About from "@/components/homes/homepage-1/About";
 import Banner from "@/components/homes/homepage-1/Banner";
-import Hero from "@/components/homes/homepage-1/Hero";
+import Hero from "@/components/homes/homepage-5/Hero";
 import Location from "@/components/homes/homepage-1/Location";
 import Process from "@/components/homes/homepage-1/Process";
 import Properties from "@/components/homes/homepage-1/Properties";
@@ -13,7 +13,7 @@ export default function Home() {
     return (
         <Layout>
             <Hero />
-            <About />
+            {/* <About /> */}
             <Properties />
             <Banner />
             <Properties2 />

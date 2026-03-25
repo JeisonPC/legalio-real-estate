@@ -19,9 +19,16 @@ type PropertyDetailsData = React.ComponentProps<
 
 function mapProperty(property: Property): PropertyDetailsData {
   const coordinates: [number, number] =
-    Array.isArray(property.location) && property.location.length === 2
-      ? [property.location[0], property.location[1]]
+    Array.isArray(property.coordinates) && property.coordinates.length === 2
+      ? [property.coordinates[0], property.coordinates[1]]
       : [-76.532, 3.4516];
+
+  const cityName =
+    typeof property.city === "object" &&
+    property.city !== null &&
+    "name" in property.city
+      ? property.city.name
+      : "";
 
   return {
     id: property.id,
@@ -33,7 +40,7 @@ function mapProperty(property: Property): PropertyDetailsData {
     bathrooms: property.bathrooms || 0,
     area: property.area || 0,
     garages: property.garages || 0,
-    city: property.city || "",
+    city: cityName,
     type: property.businessType || "",
     propertyType: property.propertyType || "",
     imgSrc:

@@ -28,7 +28,20 @@ export const Properties: CollectionConfig = {
     {
       name: "city",
       label: "Ciudad",
-      type: "text",
+      type: "relationship",
+      relationTo: "cities",
+      required: true,
+    },
+    {
+      name: "imgWidth",
+      label: "Ancho de imagen",
+      type: "number",
+      required: true,
+    },
+    {
+      name: "imgHeight",
+      label: "Alto de imagen",
+      type: "number",
       required: true,
     },
     {
@@ -116,7 +129,7 @@ export const Properties: CollectionConfig = {
       ],
     },
     {
-      name: "location",
+      name: "coordinates",
       label: "Ubicación en mapa",
       type: "point",
     },

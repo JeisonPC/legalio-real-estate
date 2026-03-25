@@ -282,7 +282,7 @@ export const blogPostsGrid: BlogPost[] = [
         category: "Luxury",
         title: "Luxury Real Estate Trends: What Buyers Want Now",
         description:
-            "High-end buyers are looking for more than just square footage these days...",
+            "High-end buyers are Búsqueda more than just square footage these days...",
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",

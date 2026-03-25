@@ -39,7 +39,7 @@ export default function Map3() {
                 const popupContent = `
                     <div class="office-popup">
                         <div class="text-title text_primary-color fw-6 mb_4">My Office</div>
-                        <p>101 E 129th St, East Chicago, 2nd Floor, NY</p>
+                        <p>Calle 3 28-131, NY</p>
                     </div>
                 `;
 

@@ -1,11 +1,11 @@
 import Footer1 from "../footer/Footer1";
-import Header from "../header/Header";
+import Header4 from "../header/Header4";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     return (
         <>
             <div id="wrapper" className="clearfix">
-                <Header />
+                <Header4 />
                 {children}
                 <Footer1 />
             </div>

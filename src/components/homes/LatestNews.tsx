@@ -15,7 +15,7 @@ export default function LatestNews() {
                         Latest New
                     </span>
                     <h3 className="split-text effect-blur-fade">
-                        Helpful Luminor Guides
+                        Helpful Legalio Guides
                     </h3>
                 </div>
                 <Swiper

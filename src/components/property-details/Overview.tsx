@@ -26,7 +26,7 @@ export default function Overview() {
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Bed"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Bedrooms:</span>
+                        <span className="text-body-default">Habitaciones:</span>
                         <span className="text-title fw-6 text_primary-color">
                             3 Rooms
                         </span>

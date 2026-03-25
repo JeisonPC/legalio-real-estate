@@ -5,8 +5,8 @@ export type PropertiesFilterState = {
   bathrooms: string;
   garages: string;
   city: string;
-  type: string;
-  budget: string;
+  businessType: string;
+  price: string;
   minSize: string;
   maxSize: string;
   features: string[];
@@ -22,8 +22,8 @@ export type PropertiesFilterAction =
   | { type: "SET_BATHROOMS"; payload: string }
   | { type: "SET_GARAGES"; payload: string }
   | { type: "SET_CITY"; payload: string }
-  | { type: "SET_TYPE"; payload: string }
-  | { type: "SET_BUDGET"; payload: string }
+  | { type: "SET_BUSINESS_TYPE"; payload: string }
+  | { type: "SET_PRICE"; payload: string }
   | { type: "SET_MINSIZE"; payload: string }
   | { type: "SET_MAXSIZE"; payload: string }
   | { type: "SET_FEATURES"; payload: string[] }
@@ -35,17 +35,17 @@ export type PropertiesFilterAction =
   | { type: "CLEAR_FILTER" };
 
 export const initialState: PropertiesFilterState = {
-  bedrooms: "Any Bedrooms",
-  bathrooms: "Any Bathrooms",
-  garages: "Any Garages",
-  city: "All Cities",
-  budget: "Max. Price",
-  type: "Any Type",
-  maxSize: "Max (SqFt)",
-  minSize: "Min (SqFt)",
+  bedrooms: "Todas las Habitaciones",
+  bathrooms: "Todos los Baños",
+  garages: "Todos los Garajes",
+  city: "Todas las Ciudades",
+  price: "Precio Max.",
+  businessType: "Ambos",
+  maxSize: "Max (Mts/2)",
+  minSize: "Min (Mts/2)",
   features: [],
   filtered: [],
-  sortingOption: "Sort by (Default)",
+  sortingOption: "Ordenar por (Predeterminado)",
   sorted: [],
   currentPage: 1,
   itemPerPage: 9,
@@ -62,12 +62,12 @@ export function reducer(
       return { ...state, bathrooms: action.payload };
     case "SET_GARAGES":
       return { ...state, garages: action.payload };
-    case "SET_TYPE":
-      return { ...state, type: action.payload };
+    case "SET_BUSINESS_TYPE":
+      return { ...state, businessType: action.payload };
     case "SET_CITY":
       return { ...state, city: action.payload };
-    case "SET_BUDGET":
-      return { ...state, budget: action.payload };
+    case "SET_PRICE":
+      return { ...state, price: action.payload };
     case "SET_MAXSIZE":
       return { ...state, maxSize: action.payload };
     case "SET_MINSIZE":

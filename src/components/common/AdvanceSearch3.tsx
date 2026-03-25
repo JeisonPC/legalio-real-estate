@@ -5,7 +5,7 @@ export default function AdvanceSearch3() {
     return (
         <div className="wd-search-form style-1">
             <div className="modal-header">
-                <h4>Advanced Search</h4>
+                <h4>Advanced Buscar</h4>
             </div>
             <div className="modal-body">
                 <div className="group-checkbox">

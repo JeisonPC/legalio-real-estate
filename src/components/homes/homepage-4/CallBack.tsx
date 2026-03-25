@@ -30,7 +30,7 @@ export default function CallBack() {
                                     </div>
                                     <div>
                                         <div className="text-title fw-6 text_primary-color mb_4">
-                                            Contact Us
+                                            Contactanos
                                         </div>
                                         <p>1-555-678-8888</p>
                                     </div>

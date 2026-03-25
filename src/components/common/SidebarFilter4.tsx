@@ -137,7 +137,7 @@ export default function SidebarFilter4({
                                 className="text-title tab-link fw-6"
                                 data-bs-toggle="tab"
                             >
-                                For Sale
+                                A la venta
                             </a>
                         </li>
                     </ul>
@@ -155,12 +155,12 @@ export default function SidebarFilter4({
                                             htmlFor="lookingFor"
                                             className="text-button text_primary-color mb_8"
                                         >
-                                            Looking For
+                                            Búsqueda
                                         </label>
                                         <fieldset>
                                             <input
                                                 type="text"
-                                                placeholder="Search keyword"
+                                                placeholder="Buscar keyword"
                                                 id="lookingFor"
                                                 value={searchKeyword}
                                                 onChange={(e) =>
@@ -183,7 +183,7 @@ export default function SidebarFilter4({
                                     </div>
                                     <div>
                                         <div className="text-button text_primary-color mb_8">
-                                            Bedrooms
+                                            Habitaciones
                                         </div>
                                         <DropdownSelect
                                             options={bedroomOptions}
@@ -203,7 +203,7 @@ export default function SidebarFilter4({
                                     </div>
                                     <div>
                                         <div className="text-button text_primary-color mb_8">
-                                            Your Budget
+                                            Precio
                                         </div>
                                         <DropdownSelect
                                             options={budgetOptions}
@@ -259,7 +259,7 @@ export default function SidebarFilter4({
                                             type="submit"
                                             className="tf-btn w-full"
                                         >
-                                            <span>Search</span>
+                                            <span>Buscar</span>
                                             <span className="bg-effect"></span>
                                         </button>
                                     </div>

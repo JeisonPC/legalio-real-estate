@@ -70,6 +70,9 @@ export interface Config {
     users: User;
     media: Media;
     properties: Property;
+    countries: Country;
+    departments: Department;
+    cities: City;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +83,9 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     properties: PropertiesSelect<false> | PropertiesSelect<true>;
+    countries: CountriesSelect<false> | CountriesSelect<true>;
+    departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
+    cities: CitiesSelect<false> | CitiesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -171,7 +177,9 @@ export interface Property {
   id: number;
   title: string;
   address: string;
-  city: string;
+  city: number | City;
+  imgWidth: number;
+  imgHeight: number;
   price: number;
   propertyType: 'casa' | 'apartamento' | 'oficina' | 'local';
   businessType: 'venta' | 'arriendo';
@@ -186,7 +194,7 @@ export interface Property {
    * @minItems 2
    * @maxItems 2
    */
-  location?: [number, number] | null;
+  coordinates?: [number, number] | null;
   features?:
     | {
         value: string;
@@ -194,6 +202,50 @@ export interface Property {
       }[]
     | null;
   description?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cities".
+ */
+export interface City {
+  id: number;
+  name: string;
+  slug: string;
+  department: number | Department;
+  isActive?: boolean | null;
+  /**
+   * @minItems 2
+   * @maxItems 2
+   */
+  location?: [number, number] | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments".
+ */
+export interface Department {
+  id: number;
+  name: string;
+  slug: string;
+  country: number | Country;
+  isActive?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries".
+ */
+export interface Country {
+  id: number;
+  name: string;
+  code: string;
+  slug: string;
+  isActive?: boolean | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -232,6 +284,18 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'properties';
         value: number | Property;
+      } | null)
+    | ({
+        relationTo: 'countries';
+        value: number | Country;
+      } | null)
+    | ({
+        relationTo: 'departments';
+        value: number | Department;
+      } | null)
+    | ({
+        relationTo: 'cities';
+        value: number | City;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -323,6 +387,8 @@ export interface PropertiesSelect<T extends boolean = true> {
   title?: T;
   address?: T;
   city?: T;
+  imgWidth?: T;
+  imgHeight?: T;
   price?: T;
   propertyType?: T;
   businessType?: T;
@@ -333,7 +399,7 @@ export interface PropertiesSelect<T extends boolean = true> {
   area?: T;
   garages?: T;
   estrato?: T;
-  location?: T;
+  coordinates?: T;
   features?:
     | T
     | {
@@ -341,6 +407,43 @@ export interface PropertiesSelect<T extends boolean = true> {
         id?: T;
       };
   description?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "countries_select".
+ */
+export interface CountriesSelect<T extends boolean = true> {
+  name?: T;
+  code?: T;
+  slug?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "departments_select".
+ */
+export interface DepartmentsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  country?: T;
+  isActive?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "cities_select".
+ */
+export interface CitiesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  department?: T;
+  isActive?: T;
+  location?: T;
   updatedAt?: T;
   createdAt?: T;
 }

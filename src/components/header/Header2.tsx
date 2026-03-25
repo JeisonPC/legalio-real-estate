@@ -30,13 +30,13 @@ export default function Header2() {
                                 href={"/login"}
                                 className="link text-button text_white"
                             >
-                                Login/Regiser
+                                Inicio de sesión/Registro
                             </Link>
                             <a
                                 href="#"
                                 className="tf-btn btn-bg-primary-2 sm-hide"
                             >
-                                <span>Submit Property</span>
+                                <span>Publicar Propiedad</span>
                                 <span className="bg-effect"></span>
                             </a>
                         </div>
@@ -74,7 +74,7 @@ export default function Header2() {
                             <MobileMenu />
                             <div className="support">
                                 <a href="#" className="tf-btn ">
-                                    <span>Submit Property</span>
+                                    <span>Publicar Propiedad</span>
                                     <span className="bg-effect"></span>
                                 </a>
                                 <a href="#" className="text-need">

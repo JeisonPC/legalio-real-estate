@@ -9,6 +9,9 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Properties } from "./collections/Properties";
 import { es } from '@payloadcms/translations/languages/es'
+import { Cities } from "./collections/Cities";
+import { Countries } from "./collections/Countries";
+import { Departments } from "./collections/Departments";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -24,7 +27,7 @@ export default buildConfig({
     fallbackLanguage: "es",
     supportedLanguages: { es },
   },
-  collections: [Users, Media, Properties],
+  collections: [Users, Media, Properties, Countries, Departments, Cities],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

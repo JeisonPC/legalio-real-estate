@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import Image from "next/image";
 
 type Agent = {
   id: number;
@@ -120,7 +121,7 @@ export default function Agents() {
               <SwiperSlide key={agent.id}>
                 <div className="agent-item">
                   <a href="#" className="img-style">
-                    <img
+                    <Image
                       loading="lazy"
                       decoding="async"
                       src={agent.img}

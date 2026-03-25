@@ -15,7 +15,7 @@ export default function FormContact() {
                         <h4 className="mb_8">Reach Out To Us</h4>
                         <p>
                             We’re here to assist with any questions, concerns,
-                            or inquiries—contact us today!
+                            or inquiries—Contactanos today!
                         </p>
                     </div>
                     <ul className="info d-grid gap_20 mb_36">
@@ -23,10 +23,10 @@ export default function FormContact() {
                             <i className="icon icon-MapPin"></i>
                             <div className="content">
                                 <div className="text-title fw-6 text_primary-color mb_4">
-                                    Our Address:
+                                    Nuestra dirección
                                 </div>
                                 <p>
-                                    101 E 129th St, East Chicago, 2nd Floor, NY
+                                    Calle 3 28-131, NY
                                 </p>
                             </div>
                         </li>
@@ -34,7 +34,7 @@ export default function FormContact() {
                             <i className="icon icon-PhoneCall"></i>
                             <div className="content">
                                 <div className="text-title fw-6 text_primary-color mb_4">
-                                    Contact Us
+                                    Contactanos
                                 </div>
                                 <p>1-555-678-8888</p>
                             </div>

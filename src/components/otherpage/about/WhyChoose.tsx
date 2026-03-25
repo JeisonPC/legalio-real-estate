@@ -35,7 +35,7 @@ export default function WhyChoose() {
                     </h3>
                 </div>
                 <a href="#" className="tf-btn btn-bg-white btn-px-32">
-                    <span>Contact Us</span>
+                    <span>Contactanos</span>
                     <span className="bg-effect"></span>
                 </a>
             </div>

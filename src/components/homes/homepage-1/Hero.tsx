@@ -1,17 +1,17 @@
 "use client";
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import Image from "next/image";
+// import Image from "next/image";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
 
 export default function Hero() {
   return (
     <div className="page-title style-1 sw-layout">
       <div className="thumbs effect-content-slide">
-        <Swiper
+        {/* <Swiper
           modules={[Navigation, Autoplay]}
           navigation={{
             nextEl: ".nav-next-layout",
@@ -52,10 +52,12 @@ export default function Hero() {
           <div className="sw-button nav-next-layout">
             <i className="icon-CaretRight"></i>
           </div>
-        </Swiper>
+        </Swiper> */}
       </div>
 
-      <SidebarFilterDefault />
+      <div className="searching-home">
+        <SidebarFilterDefault />
+      </div>
     </div>
   );
 }

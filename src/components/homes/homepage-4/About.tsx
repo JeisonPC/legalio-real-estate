@@ -6,7 +6,7 @@ export default function About() {
     <div className="tf-container tf-spacing-1">
       <div className="heading-section justify-content-center text-center mb_48">
         <span className="sub text-uppercase fw-6 text_secondary-color-2 split-text effect-rotate">
-          About Us
+          Acerca de
         </span>
         <h3 className="split-text effect-blur-fade">
           Building Dreams, One Home At A Time
@@ -60,7 +60,7 @@ export default function About() {
                 href="about-us.html"
                 className="hover-underline-link text_primary-color text-button fw-7"
               >
-                About Us
+                Acerca de
               </a>
             </div>
           </div>
@@ -78,7 +78,7 @@ export default function About() {
                 href="constacts.html"
                 className="hover-underline-link text_white text-button fw-7"
               >
-                Contact Us
+                Contactanos
               </a>
             </div>
           </div>

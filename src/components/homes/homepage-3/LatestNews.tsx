@@ -12,7 +12,7 @@ export default function LatestNew() {
                         Latest New
                     </span>
                     <h3 className="split-text effect-blur-fade">
-                        Helpful Luminor Guides
+                        Helpful Legalio Guides
                     </h3>
                 </div>
                 <div className="tf-grid-layout lg-col-2">
