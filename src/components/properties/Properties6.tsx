@@ -175,6 +175,7 @@ export default function Properties6({
     maxSize,
     features,
     searchKeyword,
+    properties,
   ]);
 
   // Sorting logic
