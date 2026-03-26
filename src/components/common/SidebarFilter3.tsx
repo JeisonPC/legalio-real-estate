@@ -1,7 +1,7 @@
 import React from "react";
 import DropdownSelect from "./DropdownSelect";
 import AdvanceSearch from "./AdvanceSearch1";
-import { bedroomOptions, budgetOptions } from "@/data/optionfilter";
+import { bedroomOptions, priceOptions } from "@/data/optionfilter";
 import type { City } from "@/payload-types";
 
 interface SidebarFilter1Props {
@@ -108,7 +108,7 @@ export default function SidebarFilter3({
                     Precio
                   </div>
                   <DropdownSelect
-                    options={budgetOptions}
+                    options={priceOptions}
                     selected={price}
                     setSelected={allProps.setPrice}
                   />

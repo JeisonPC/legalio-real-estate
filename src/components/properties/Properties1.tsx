@@ -4,7 +4,7 @@ import Image from "next/image";
 import React, { useEffect, useRef, useState, useReducer } from "react";
 import { initialState, reducer } from "@/context/propertiesFilterReduce";
 import Pagination from "@/components/common/Pagination";
-import type { Property } from "@/payload-types";
+import type { City, Property } from "@/payload-types";
 import SidebarFilter1 from "../common/SidebarFilter1";
 import Map from "../common/Map";
 import DropdownSelect2 from "../common/DropdownSelect2";
@@ -51,7 +51,9 @@ function getBusinessClass(property: Property) {
 
 export default function Properties1({
   properties,
+  cities,
 }: {
+    cities: City[];
   properties: Property[];
 }) {
   console.log("properties", properties);
@@ -284,6 +286,7 @@ export default function Properties1({
         </div>
         <div className="tf-container">
           <SidebarFilter1
+            cities={cities}
             allProps={allProps}
             searchKeyword={searchKeyword}
             setSearchKeyword={setSearchKeyword}

@@ -5,7 +5,7 @@ import { Modal } from "react-bootstrap";
 import {
     bathroomOptions,
     bedroomOptions,
-    budgetOptions,
+    priceOptions,
     cityOptions,
     garageOptions,
     maxSizeOptions,
@@ -147,7 +147,7 @@ export default function BoxFilter() {
                                     <div className="text-button text_primary-color mb_8">
                                         Precio
                                     </div>
-                                    <DropdownSelect2 options={budgetOptions} />
+                                    <DropdownSelect2 options={priceOptions} />
                                 </div>
                                 <div className="tf-grid-layout sm-col-2 gap_20">
                                     <div className="box-select">

@@ -1,12 +1,12 @@
 import Header from "@/components/header/Header";
-import Properties6 from "@/components/properties/Properties6";
+import Properties6Section from "@/components/properties/Properties6Section";
 import React from "react";
 
 export default function page() {
     return (
         <>
             <Header />
-            <Properties6 />
+            <Properties6Section />
         </>
     );
 }

@@ -3,7 +3,7 @@ import DropdownSelect from "./DropdownSelect";
 import AdvanceSearch from "./AdvanceSearch1";
 import {
   bedroomOptions,
-  budgetOptions,
+  priceOptions,
 } from "@/data/optionfilter";
 import { City } from "@/payload-types";
 
@@ -119,7 +119,7 @@ export default function SidebarFilter1({
                   Precio
                 </div>
                 <DropdownSelect
-                  options={budgetOptions}
+                  options={priceOptions}
                   selected={price}
                   setSelected={allProps.setPrice}
                 />

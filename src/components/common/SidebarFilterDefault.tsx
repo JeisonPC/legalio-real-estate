@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import {
     bedroomOptions,
-    budgetOptions,
+    priceOptions,
     cityOptions,
 } from "@/data/optionfilter";
 import DropdownSelect2 from "./DropdownSelect2";
@@ -100,7 +100,7 @@ export default function SidebarFilterDefault() {
                                     <div className="text-button text_primary-color mb_8">
                                         Precio
                                     </div>
-                                    <DropdownSelect2 options={budgetOptions} />
+                                    <DropdownSelect2 options={priceOptions} />
                                 </div>
                             </div>
                             <div className="wrap-btn">

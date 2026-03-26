@@ -2,6 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { loginAction } from "@/actions/loginAction"; 
+import Image from "next/image";
 
 export default function FormLogin() {
     const [showPassword, setShowPassword] = useState(false);
@@ -90,21 +91,21 @@ export default function FormLogin() {
                         <div className="signin-with d-grid gap_9 mb_24">
                             <a href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
-                                    <img src="/assets/images/logo/facebook.svg" alt="logo" />
+                                    <Image src="/assets/images/logo/facebook.svg" alt="logo" />
                                     Continue With Facebook
                                 </span>
                                 <span className="bg-effect"></span>
                             </a>
                             <a href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
-                                    <img src="/assets/images/logo/google.svg" alt="logo" />
+                                    <Image src="/assets/images/logo/google.svg" alt="logo" />
                                     Continue With Google
                                 </span>
                                 <span className="bg-effect"></span>
                             </a>
                             <a href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
-                                    <img src="/assets/images/logo/twitter.svg" alt="logo" />
+                                    <Image src="/assets/images/logo/twitter.svg" alt="logo" />
                                     Continue With Twitter
                                 </span>
                                 <span className="bg-effect"></span>

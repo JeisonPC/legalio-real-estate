@@ -1,600 +1,546 @@
 "use client";
-import { allProperties } from "@/data/properties";
 import Image from "next/image";
 import React, { useEffect, useRef, useState, useReducer } from "react";
 import { initialState, reducer } from "@/context/propertiesFilterReduce";
 import Pagination from "@/components/common/Pagination";
-import type { Property } from "@/data/properties";
 import DropdownSelect2 from "../common/DropdownSelect2";
 import SidebarFilter2 from "../common/SidebarFilter2";
 import Link from "next/link";
+import { City, Property } from "@/payload-types";
 
 function parseSizeValue(val: string) {
-    if (val === "Min (SqFt)" || val === "Max (SqFt)") return val;
-    return val.replace(/[^0-9]/g, "");
+  if (val === "Min (SqFt)" || val === "Max (SqFt)") return val;
+  return val.replace(/[^0-9]/g, "");
 }
 
-export default function Properties3() {
-    const ddContainer = useRef<HTMLDivElement>(null);
-    const advanceBtnRef = useRef<HTMLDivElement>(null);
+export default function Properties3({
+  cities,
+  properties,
+}: {
+  cities: City[];
+  properties: Property[];
+}) {
+  const ddContainer = useRef<HTMLDivElement>(null);
+  const advanceBtnRef = useRef<HTMLDivElement>(null);
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (
-                ddContainer.current &&
-                !ddContainer.current.contains(event.target as Node) &&
-                advanceBtnRef.current &&
-                !advanceBtnRef.current.contains(event.target as Node)
-            ) {
-                ddContainer.current.classList.remove("show");
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => {
-            document.removeEventListener("mousedown", handleClickOutside);
-        };
-    }, []);
-
-    const [state, dispatch] = useReducer(reducer, initialState);
-
-    const {
-        bedrooms,
-        bathrooms,
-        garages,
-        city,
-        budget,
-        minSize,
-        maxSize,
-        features,
-        filtered,
-        sortingOption,
-        sorted,
-        currentPage,
-        itemPerPage,
-    } = state;
-
-    // Additional state for form elements
-    const [searchKeyword, setSearchKeyword] = useState<string>("");
-
-    // Filtering logic
-    useEffect(() => {
-        let filteredList: Property[] = allProperties;
-
-        // City filter
-        if (city && city !== "Todas las Ciudades") {
-            filteredList = filteredList.filter(
-                (p) => p.city && p.city === city
-            );
-        }
-
-        // Habitaciones filter - FIXED
-        if (bedrooms && bedrooms !== "Cualquiera") {
-            if (bedrooms === "4+") {
-                filteredList = filteredList.filter((p) => Number(p.bedrooms) >= 4);
-            } else {
-                const bedroomNum = parseInt(bedrooms, 10);
-                filteredList = filteredList.filter(
-                    (p) => p.bedrooms === bedroomNum
-                );
-            }
-        }
-
-        // Bathrooms filter - FIXED
-        if (bathrooms && bathrooms !== "Any Bathrooms") {
-            if (bathrooms === "4+") {
-                filteredList = filteredList.filter((p) => Number(p.bathrooms) >= 4);
-            } else {
-                const bathroomNum = parseInt(bathrooms, 10);
-                filteredList = filteredList.filter(
-                    (p) => p.bathrooms === bathroomNum
-                );
-            }
-        }
-
-        // Garages filter - FIXED
-        if (garages && garages !== "Any Garages") {
-            if (garages === "3+") {
-                filteredList = filteredList.filter(
-                    (p) => Number(p.garages) >= 3
-                );
-            } else {
-                const garageNum = parseInt(garages, 10);
-                filteredList = filteredList.filter(
-                    (p) => p.garages === garageNum
-                );
-            }
-        }
-
-        // Budget filter
-        if (budget && budget !== "Precio Max.") {
-            let maxBudget = 0;
-            if (budget.startsWith("Under $")) {
-                maxBudget = parseInt(
-                    budget.replace("Under $", "").replace(/,/g, ""),
-                    10
-                );
-                filteredList = filteredList.filter(
-                    (p) => Number(p.price) <= maxBudget
-                );
-            } else if (budget.startsWith("$")) {
-                maxBudget = parseInt(
-                    budget.replace("$", "").replace(/,/g, ""),
-                    10
-                );
-                filteredList = filteredList.filter(
-                    (p) => Number(p.price) <= maxBudget
-                );
-            } else if (budget.startsWith("Above $")) {
-                maxBudget = parseInt(
-                    budget.replace("Above $", "").replace(/,/g, ""),
-                    10
-                );
-                filteredList = filteredList.filter(
-                    (p) => Number(p.price) > maxBudget
-                );
-            }
-        }
-
-        // Min size filter
-        if (minSize && minSize !== "Min (SqFt)") {
-            const min = parseInt(parseSizeValue(minSize), 10);
-            if (!isNaN(min)) {
-                filteredList = filteredList.filter(
-                    (p) => p.area !== undefined && Number(p.area) >= min
-                );
-            }
-        }
-
-        // Max size filter
-        if (maxSize && maxSize !== "Max (SqFt)") {
-            const max = parseInt(parseSizeValue(maxSize), 10);
-            if (!isNaN(max)) {
-                filteredList = filteredList.filter(
-                    (p) => p.area !== undefined && Number(p.area) <= max
-                );
-            }
-        }
-
-        // Features filter
-        if (features && features.length > 0) {
-            filteredList = filteredList.filter(
-                (p) =>
-                    Array.isArray(p.features) &&
-                    features.every((f) => p.features!.includes(f))
-            );
-        }
-
-        // Buscar keyword filter
-        if (searchKeyword && searchKeyword.trim() !== "") {
-            const kw = searchKeyword.trim().toLowerCase();
-            filteredList = filteredList.filter(
-                (p) =>
-                    (p.title && p.title.toLowerCase().includes(kw)) ||
-                    (p.address && p.address.toLowerCase().includes(kw)) ||
-                    (p.city && p.city.toLowerCase().includes(kw))
-            );
-        }
-
-        dispatch({ type: "SET_FILTERED", payload: filteredList });
-    }, [
-        bedrooms,
-        bathrooms,
-        garages,
-        city,
-        budget,
-        minSize,
-        maxSize,
-        features,
-        searchKeyword,
-    ]);
-
-    // Sorting logic
-    useEffect(() => {
-        const sortedList = [...filtered];
-        if (sortingOption === "Precio Ascendiente") {
-            sortedList.sort((a, b) => a.price - b.price);
-        } else if (sortingOption === "Precio Descendiente") {
-            sortedList.sort((a, b) => b.price - a.price);
-        }
-        dispatch({ type: "SET_SORTED", payload: sortedList });
-        dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
-    }, [filtered, sortingOption]);
-
-    const handleFeatureChange = (feature: string) => {
-        const updated = features.includes(feature)
-            ? features.filter((elm) => elm !== feature)
-            : [...features, feature];
-        dispatch({ type: "SET_FEATURES", payload: updated });
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        ddContainer.current &&
+        !ddContainer.current.contains(event.target as Node) &&
+        advanceBtnRef.current &&
+        !advanceBtnRef.current.contains(event.target as Node)
+      ) {
+        ddContainer.current.classList.remove("show");
+      }
     };
-
-    const handleSearch = (e: React.FormEvent) => {
-        e.preventDefault();
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
     };
+  }, []);
 
-    const toggleAdvancedFilter = () => {
-        if (ddContainer.current) {
-            ddContainer.current.classList.toggle("show");
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const {
+    bedrooms,
+    bathrooms,
+    garages,
+    city,
+    price,
+    minSize,
+    maxSize,
+    features,
+    filtered,
+    sortingOption,
+    sorted,
+    currentPage,
+    itemPerPage,
+  } = state;
+
+  // Additional state for form elements
+  const [searchKeyword, setSearchKeyword] = useState<string>("");
+
+  // Filtering logic
+  useEffect(() => {
+    let filteredList: Property[] = properties;
+
+    // City filter
+    if (city && city !== "Todas las Ciudades") {
+      filteredList = filteredList.filter((p) => {
+        if (!p.city) return false;
+        if (typeof p.city === "object") {
+          return p.city.name === city || String(p.city.id) === city;
         }
-    };
+        return String(p.city) === city;
+      });
+    }
 
-    // Props for DropdownSelect
-    const allProps = {
-        city,
-        setCity: (newCity: string) =>
-            dispatch({ type: "SET_CITY", payload: newCity }),
-        bedrooms,
-        setBedrooms: (newBedrooms: string) =>
-            dispatch({ type: "SET_BEDROOMS", payload: newBedrooms }),
-        bathrooms,
-        setBathrooms: (newBathrooms: string) =>
-            dispatch({ type: "SET_BATHROOMS", payload: newBathrooms }),
-        garages,
-        setGarages: (newGarages: string) =>
-            dispatch({ type: "SET_GARAGES", payload: newGarages }),
-        budget,
-        setBudget: (newBudget: string) =>
-            dispatch({ type: "SET_BUDGET", payload: newBudget }),
-        minSize,
-        setMinSize: (newMinSize: string) =>
-            dispatch({ type: "SET_MINSIZE", payload: newMinSize }),
-        maxSize,
-        setMaxSize: (newMaxSize: string) =>
-            dispatch({ type: "SET_MAXSIZE", payload: newMaxSize }),
-        features,
-        setFeatures: (newFeature: string) => {
-            const updated = features.includes(newFeature)
-                ? features.filter((elm) => elm !== newFeature)
-                : [...features, newFeature];
-            dispatch({ type: "SET_FEATURES", payload: updated });
-        },
-    };
+    // Habitaciones filter - FIXED
+    if (bedrooms && bedrooms !== "Cualquiera") {
+      if (bedrooms === "4+") {
+        filteredList = filteredList.filter((p) => Number(p.bedrooms) >= 4);
+      } else {
+        const bedroomNum = parseInt(bedrooms, 10);
+        filteredList = filteredList.filter((p) => p.bedrooms === bedroomNum);
+      }
+    }
 
-    return (
-        <>
-            <div className="main-content">
-                <div className="tf-spacing-1 section-properties">
-                    <div className="tf-container">
-                        <div className="box-title mb_40">
-                            <div>
-                                <ul className="breadcrumb style-1 text-button fw-4 mb_4">
-                                    <li>
-                                        <Link className="" href={"/"}>
-                                            Home
-                                        </Link>
-                                    </li>
-                                    <li>With Left Sidebar</li>
-                                </ul>
-                                <h4>With Left Sidebar</h4>
-                            </div>
-                            <div className="right d-flex gap_12">
-                                <ul
-                                    className="nav-tab-filter align-items-center group-layout  d-flex gap_12"
-                                    role="tablist"
-                                >
-                                    <li
-                                        className="nav-tab-item"
-                                        role="presentation"
-                                    >
-                                        <a
-                                            href="#gridLayout"
-                                            className=" btn-layout grid nav-link-item active"
-                                            data-bs-toggle="tab"
-                                        >
-                                            <i className="icon-SquaresFour"></i>
-                                        </a>
-                                    </li>
-                                    <li
-                                        className="nav-tab-item"
-                                        role="presentation"
-                                    >
-                                        <a
-                                            href="#listLayout"
-                                            className="nav-link-item btn-layout list "
-                                            data-bs-toggle="tab"
-                                        >
-                                            <i className="icon-Rows"></i>
-                                        </a>
-                                    </li>
-                                </ul>
-                                <DropdownSelect2
-                                    onChange={(value) =>
-                                        dispatch({
-                                            type: "SET_SORTING_OPTION",
-                                            payload: value,
-                                        })
-                                    }
-                                    addtionalParentClass="list-sort"
-                                    options={[
-                                        "Ordenar por (Predeterminado)",
-                                        "Precio Ascendiente",
-                                        "Precio Descendiente",
-                                    ]}
-                                />
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-lg-4">
-                                <SidebarFilter2
-                                    allProps={allProps}
-                                    searchKeyword={searchKeyword}
-                                    setSearchKeyword={setSearchKeyword}
-                                    handleSearch={handleSearch}
-                                    handleFeatureChange={handleFeatureChange}
-                                    ddContainer={
-                                        ddContainer as React.RefObject<HTMLDivElement>
-                                    }
-                                    advanceBtnRef={
-                                        advanceBtnRef as React.RefObject<HTMLDivElement>
-                                    }
-                                    toggleAdvancedFilter={toggleAdvancedFilter}
-                                />
-                            </div>
-                            <div className="col-lg-8">
-                                <div className="flat-animate-tab">
-                                    <div className="tab-content">
-                                        <div
-                                            className="tab-pane active show"
-                                            id="gridLayout"
-                                            role="tabpanel"
-                                        >
-                                            <div className="tf-grid-layout md-col-2">
-                                                {sorted
-                                                    .slice(
-                                                        (currentPage - 1) * 8,
-                                                        currentPage * 8
-                                                    )
-                                                    .map((property) => (
-                                                        <div
-                                                            key={property.id}
-                                                            className="card-house style-default hover-image"
-                                                            data-id={
-                                                                property.id
-                                                            }
-                                                        >
-                                                            <div className="img-style mb_20">
-                                                                <Image
-                                                                    src={
-                                                                        property.imgSrc
-                                                                    }
-                                                                    width={410}
-                                                                    height={308}
-                                                                    alt="home"
-                                                                />
-                                                                <div className="wrap-tag d-flex gap_8 mb_12">
-                                                                    <div
-                                                                        className={`tag ${
-                                                                            property.type ===
-                                                                            "Sale"
-                                                                                ? "sale"
-                                                                                : property.type ===
-                                                                                  "Rent"
-                                                                                ? "rent"
-                                                                                : property.type
-                                                                        } text-button-small fw-6 text_primary-color`}
-                                                                    >
-                                                                        For{" "}
-                                                                        {
-                                                                            property.type
-                                                                        }
-                                                                    </div>
-                                                                    <div className="tag categoreis text-button-small fw-6 text_primary-color">
-                                                                        {
-                                                                            property.propertyType
-                                                                        }
-                                                                    </div>
-                                                                </div>
-                                                                <Link
-                                                                    href={`/property-details-1/${property.id}`}
-                                                                    className="overlay-link"
-                                                                ></Link>
-                                                                <div className="wishlist">
-                                                                    <div className="hover-tooltip tooltip-left box-icon">
-                                                                        <span className="icon icon-Heart"></span>
-                                                                        <span className="tooltip">
-                                                                            Add
-                                                                            to
-                                                                            Wishlist
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="content">
-                                                                <h4
-                                                                    className="price mb_12"
-                                                                    suppressHydrationWarning
-                                                                >
-                                                                    $
-                                                                    {property.price.toLocaleString()}
-                                                                    <span className="text_secondary-color text-body-default">
-                                                                        {property.type ===
-                                                                        "Sale"
-                                                                            ? "/Sqft"
-                                                                            : "/month"}
-                                                                    </span>
-                                                                </h4>
-                                                                <Link
-                                                                    href={`/property-details-1/${property.id}`}
-                                                                    className="title mb_8 h5 link text_primary-color"
-                                                                >
-                                                                    {
-                                                                        property.title
-                                                                    }
-                                                                </Link>
-                                                                <p>
-                                                                    {
-                                                                        property.address
-                                                                    }
-                                                                </p>
-                                                                <ul className="info d-flex">
-                                                                    <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
-                                                                        <i className="icon-Bed"></i>
-                                                                        {
-                                                                            property.bedrooms
-                                                                        }{" "}
-                                                                        Bed
-                                                                    </li>
-                                                                    <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
-                                                                        <i className="icon-Bathtub"></i>
-                                                                        {
-                                                                            property.bathrooms
-                                                                        }{" "}
-                                                                        Bath
-                                                                    </li>
-                                                                    <li
-                                                                        className="d-flex align-items-center gap_8 text-title text_primary-color fw-6 "
-                                                                        suppressHydrationWarning
-                                                                    >
-                                                                        <i className="icon-Ruler"></i>
-                                                                        {property.area
-                                                                            ? property.area.toLocaleString()
-                                                                            : "0"}{" "}
-                                                                        Sqft
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                            </div>
-                                        </div>
-                                        <div
-                                            className="tab-pane"
-                                            id="listLayout"
-                                            role="tabpanel"
-                                        >
-                                            <div className="wrap-list d-grid gap_30">
-                                                {sorted
-                                                    .slice(
-                                                        (currentPage - 1) * 5,
-                                                        currentPage * 5
-                                                    )
-                                                    .map((property) => (
-                                                        <div
-                                                            className="card-house style-list v3"
-                                                            data-id={
-                                                                property.id
-                                                            }
-                                                            key={property.id}
-                                                        >
-                                                            <div className="wrap-img">
-                                                                <Link
-                                                                    href={`/property-details-1/${property.id}`}
-                                                                    className="img-style"
-                                                                >
-                                                                    <Image
-                                                                        src={
-                                                                            property.imgSrc
-                                                                        }
-                                                                        width={
-                                                                            392
-                                                                        }
-                                                                        height={
-                                                                            260
-                                                                        }
-                                                                        alt={
-                                                                            property.alt ||
-                                                                            "home"
-                                                                        }
-                                                                    />
-                                                                </Link>
-                                                            </div>
-                                                            <div className="content">
-                                                                <div className="d-flex align-items-center gap_6 top mb_16 flex-wrap justify-content-between">
-                                                                    <h4
-                                                                        className="price "
-                                                                        suppressHydrationWarning
-                                                                    >
-                                                                        $
-                                                                        {property.price.toLocaleString()}
-                                                                        <span className="text_secondary-color text-body-default">
-                                                                            {property.type ===
-                                                                            "Sale"
-                                                                                ? "/Sqft"
-                                                                                : "/month"}
-                                                                        </span>
-                                                                    </h4>
-                                                                    <div className="wrap-tag d-flex gap_8">
-                                                                        <div
-                                                                            className={`tag ${
-                                                                                property.type ===
-                                                                                "Sale"
-                                                                                    ? "sale"
-                                                                                    : "rent"
-                                                                            } text-button-small fw-6 text_primary-color`}
-                                                                        >
-                                                                            {property.type ===
-                                                                            "Sale"
-                                                                                ? "A la venta"
-                                                                                : "Alquiler"}
-                                                                        </div>
-                                                                        <div className="tag categoreis text-button-small fw-6 text_primary-color">
-                                                                            {
-                                                                                property.propertyType
-                                                                            }
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <Link
-                                                                    href={`/property-details-1/${property.id}`}
-                                                                    className="title mb_8 h5 link text_primary-color"
-                                                                >
-                                                                    {
-                                                                        property.title
-                                                                    }
-                                                                </Link>
-                                                                <p>
-                                                                    {
-                                                                        property.address
-                                                                    }
-                                                                </p>
-                                                                <ul className="info d-flex">
-                                                                    <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
-                                                                        <i className="icon-Bed"></i>
-                                                                        {
-                                                                            property.bedrooms
-                                                                        }{" "}
-                                                                        Bed
-                                                                    </li>
-                                                                    <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
-                                                                        <i className="icon-Bathtub"></i>
-                                                                        {
-                                                                            property.bathrooms
-                                                                        }{" "}
-                                                                        Bath
-                                                                    </li>
-                                                                    <li
-                                                                        className="d-flex align-items-center gap_8 text-title text_primary-color fw-6"
-                                                                        suppressHydrationWarning
-                                                                    >
-                                                                        <i className="icon-Ruler"></i>
-                                                                        {property.area
-                                                                            ? property.area.toLocaleString()
-                                                                            : "0"}{" "}
-                                                                        Sqft
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    ))}
-                                            </div>
-                                        </div>
-                                        <Pagination
-                                            currentPage={currentPage}
-                                            setPage={(value) =>
-                                                dispatch({
-                                                    type: "SET_CURRENT_PAGE",
-                                                    payload: value,
-                                                })
-                                            }
-                                            itemLength={sorted.length}
-                                            itemPerPage={itemPerPage}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    // Bathrooms filter - FIXED
+    if (bathrooms && bathrooms !== "Any Bathrooms") {
+      if (bathrooms === "4+") {
+        filteredList = filteredList.filter((p) => Number(p.bathrooms) >= 4);
+      } else {
+        const bathroomNum = parseInt(bathrooms, 10);
+        filteredList = filteredList.filter((p) => p.bathrooms === bathroomNum);
+      }
+    }
+
+    // Garages filter - FIXED
+    if (garages && garages !== "Any Garages") {
+      if (garages === "3+") {
+        filteredList = filteredList.filter((p) => Number(p.garages) >= 3);
+      } else {
+        const garageNum = parseInt(garages, 10);
+        filteredList = filteredList.filter((p) => p.garages === garageNum);
+      }
+    }
+
+    // Price filter
+    if (price && price !== "Precio Max.") {
+      let maxPrice = 0;
+      if (price.startsWith("Under $")) {
+        maxPrice = parseInt(price.replace("Under $", "").replace(/,/g, ""), 10);
+        filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
+      } else if (price.startsWith("$")) {
+        maxPrice = parseInt(price.replace("$", "").replace(/,/g, ""), 10);
+        filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
+      } else if (price.startsWith("Above $")) {
+        maxPrice = parseInt(price.replace("Above $", "").replace(/,/g, ""), 10);
+        filteredList = filteredList.filter((p) => Number(p.price) > maxPrice);
+      }
+    }
+
+    // Min size filter
+    if (minSize && minSize !== "Min (SqFt)") {
+      const min = parseInt(parseSizeValue(minSize), 10);
+      if (!isNaN(min)) {
+        filteredList = filteredList.filter(
+          (p) => p.area !== undefined && Number(p.area) >= min,
+        );
+      }
+    }
+
+    // Max size filter
+    if (maxSize && maxSize !== "Max (SqFt)") {
+      const max = parseInt(parseSizeValue(maxSize), 10);
+      if (!isNaN(max)) {
+        filteredList = filteredList.filter(
+          (p) => p.area !== undefined && Number(p.area) <= max,
+        );
+      }
+    }
+
+    // Features filter
+    if (features && features.length > 0) {
+      filteredList = filteredList.filter(
+        (p) =>
+          Array.isArray(p.features) &&
+          features.every((f) => p.features!.some((item) => item?.value === f)),
+      );
+    }
+
+    // Buscar keyword filter
+    if (searchKeyword && searchKeyword.trim() !== "") {
+      const kw = searchKeyword.trim().toLowerCase();
+      filteredList = filteredList.filter(
+        (p) =>
+          (p.title && p.title.toLowerCase().includes(kw)) ||
+          (p.address && p.address.toLowerCase().includes(kw)) ||
+          (p.city &&
+            typeof p.city === "object" &&
+            p.city.name.toLowerCase().includes(kw)),
+      );
+    }
+
+    dispatch({ type: "SET_FILTERED", payload: filteredList });
+  }, [
+    bedrooms,
+    bathrooms,
+    garages,
+    city,
+    price,
+    minSize,
+    maxSize,
+    features,
+    searchKeyword,
+    properties,
+  ]);
+
+  // Sorting logic
+  useEffect(() => {
+    const sortedList = [...filtered];
+    if (sortingOption === "Precio Ascendiente") {
+      sortedList.sort((a, b) => a.price - b.price);
+    } else if (sortingOption === "Precio Descendiente") {
+      sortedList.sort((a, b) => b.price - a.price);
+    }
+    dispatch({ type: "SET_SORTED", payload: sortedList });
+    dispatch({ type: "SET_CURRENT_PAGE", payload: 1 });
+  }, [filtered, sortingOption]);
+
+  const handleFeatureChange = (feature: string) => {
+    const updated = features.includes(feature)
+      ? features.filter((elm) => elm !== feature)
+      : [...features, feature];
+    dispatch({ type: "SET_FEATURES", payload: updated });
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+  };
+
+  const toggleAdvancedFilter = () => {
+    if (ddContainer.current) {
+      ddContainer.current.classList.toggle("show");
+    }
+  };
+
+  // Props for DropdownSelect
+  const allProps = {
+    city,
+    setCity: (newCity: string) =>
+      dispatch({ type: "SET_CITY", payload: newCity }),
+    bedrooms,
+    setBedrooms: (newBedrooms: string) =>
+      dispatch({ type: "SET_BEDROOMS", payload: newBedrooms }),
+    bathrooms,
+    setBathrooms: (newBathrooms: string) =>
+      dispatch({ type: "SET_BATHROOMS", payload: newBathrooms }),
+    garages,
+    setGarages: (newGarages: string) =>
+      dispatch({ type: "SET_GARAGES", payload: newGarages }),
+    price,
+    setPrice: (newPrice: string) =>
+      dispatch({ type: "SET_PRICE", payload: newPrice }),
+    minSize,
+    setMinSize: (newMinSize: string) =>
+      dispatch({ type: "SET_MINSIZE", payload: newMinSize }),
+    maxSize,
+    setMaxSize: (newMaxSize: string) =>
+      dispatch({ type: "SET_MAXSIZE", payload: newMaxSize }),
+    features,
+    setFeatures: (newFeature: string) => {
+      const updated = features.includes(newFeature)
+        ? features.filter((elm) => elm !== newFeature)
+        : [...features, newFeature];
+      dispatch({ type: "SET_FEATURES", payload: updated });
+    },
+  };
+
+  return (
+    <>
+      <div className="main-content">
+        <div className="tf-spacing-1 section-properties">
+          <div className="tf-container">
+            <div className="box-title mb_40">
+              <div>
+                <ul className="breadcrumb style-1 text-button fw-4 mb_4">
+                  <li>
+                    <Link className="" href={"/"}>
+                      Home
+                    </Link>
+                  </li>
+                  <li>With Left Sidebar</li>
+                </ul>
+                <h4>With Left Sidebar</h4>
+              </div>
+              <div className="right d-flex gap_12">
+                <ul
+                  className="nav-tab-filter align-items-center group-layout  d-flex gap_12"
+                  role="tablist"
+                >
+                  <li className="nav-tab-item" role="presentation">
+                    <a
+                      href="#gridLayout"
+                      className=" btn-layout grid nav-link-item active"
+                      data-bs-toggle="tab"
+                    >
+                      <i className="icon-SquaresFour"></i>
+                    </a>
+                  </li>
+                  <li className="nav-tab-item" role="presentation">
+                    <a
+                      href="#listLayout"
+                      className="nav-link-item btn-layout list "
+                      data-bs-toggle="tab"
+                    >
+                      <i className="icon-Rows"></i>
+                    </a>
+                  </li>
+                </ul>
+                <DropdownSelect2
+                  onChange={(value) =>
+                    dispatch({
+                      type: "SET_SORTING_OPTION",
+                      payload: value,
+                    })
+                  }
+                  addtionalParentClass="list-sort"
+                  options={[
+                    "Ordenar por (Predeterminado)",
+                    "Precio Ascendiente",
+                    "Precio Descendiente",
+                  ]}
+                />
+              </div>
             </div>
-        </>
-    );
+            <div className="row">
+              <div className="col-lg-4">
+                <SidebarFilter2
+                  cities={cities}
+                  allProps={allProps}
+                  searchKeyword={searchKeyword}
+                  setSearchKeyword={setSearchKeyword}
+                  handleSearch={handleSearch}
+                  handleFeatureChange={handleFeatureChange}
+                  ddContainer={ddContainer as React.RefObject<HTMLDivElement>}
+                  advanceBtnRef={
+                    advanceBtnRef as React.RefObject<HTMLDivElement>
+                  }
+                  toggleAdvancedFilter={toggleAdvancedFilter}
+                />
+              </div>
+              <div className="col-lg-8">
+                <div className="flat-animate-tab">
+                  <div className="tab-content">
+                    <div
+                      className="tab-pane active show"
+                      id="gridLayout"
+                      role="tabpanel"
+                    >
+                      <div className="tf-grid-layout md-col-2">
+                        {sorted
+                          .slice((currentPage - 1) * 8, currentPage * 8)
+                          .map((property) => (
+                            <div
+                              key={property.id}
+                              className="card-house style-default hover-image"
+                              data-id={property.id}
+                            >
+                              <div className="img-style mb_20">
+                                <Image
+                                  src={
+                                    typeof property.images?.[0] === "object" &&
+                                    property.images?.[0] !== null &&
+                                    "url" in property.images[0] &&
+                                    property.images[0].url
+                                      ? property.images[0].url
+                                      : "/assets/images/placeholder.png"
+                                  }
+                                  width={410}
+                                  height={308}
+                                  alt={
+                                    typeof property.images?.[0] === "object" &&
+                                    property.images?.[0] !== null &&
+                                    "alt" in property.images[0] &&
+                                    property.images[0].alt
+                                      ? property.images[0].alt
+                                      : property.title || "home"
+                                  }
+                                />
+                                <div className="wrap-tag d-flex gap_8 mb_12">
+                                  <div
+                                    className={`tag ${
+                                      property.businessType === "venta"
+                                        ? "sale"
+                                        : property.businessType === "arriendo"
+                                          ? "rent"
+                                          : property.businessType
+                                    } text-button-small fw-6 text_primary-color`}
+                                  >
+                                    For {property.businessType}
+                                  </div>
+                                  <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                                    {property.propertyType}
+                                  </div>
+                                </div>
+                                <Link
+                                  href={`/property-details-1/${property.id}`}
+                                  className="overlay-link"
+                                ></Link>
+                                <div className="wishlist">
+                                  <div className="hover-tooltip tooltip-left box-icon">
+                                    <span className="icon icon-Heart"></span>
+                                    <span className="tooltip">
+                                      Add to Wishlist
+                                    </span>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="content">
+                                <h4
+                                  className="price mb_12"
+                                  suppressHydrationWarning
+                                >
+                                  ${property.price.toLocaleString()}
+                                  <span className="text_secondary-color text-body-default">
+                                    {property.businessType === "venta"
+                                      ? "/Sqft"
+                                      : "/month"}
+                                  </span>
+                                </h4>
+                                <Link
+                                  href={`/property-details-1/${property.id}`}
+                                  className="title mb_8 h5 link text_primary-color"
+                                >
+                                  {property.title}
+                                </Link>
+                                <p>{property.address}</p>
+                                <ul className="info d-flex">
+                                  <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
+                                    <i className="icon-Bed"></i>
+                                    {property.bedrooms} Bed
+                                  </li>
+                                  <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
+                                    <i className="icon-Bathtub"></i>
+                                    {property.bathrooms} Bath
+                                  </li>
+                                  <li
+                                    className="d-flex align-items-center gap_8 text-title text_primary-color fw-6 "
+                                    suppressHydrationWarning
+                                  >
+                                    <i className="icon-Ruler"></i>
+                                    {property.area
+                                      ? property.area.toLocaleString()
+                                      : "0"}{" "}
+                                    Sqft
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                    <div className="tab-pane" id="listLayout" role="tabpanel">
+                      <div className="wrap-list d-grid gap_30">
+                        {sorted
+                          .slice((currentPage - 1) * 5, currentPage * 5)
+                          .map((property) => (
+                            <div
+                              className="card-house style-list v3"
+                              data-id={property.id}
+                              key={property.id}
+                            >
+                              <div className="wrap-img">
+                                <Link
+                                  href={`/property-details-1/${property.id}`}
+                                  className="img-style"
+                                >
+                                  <Image
+                                    src={
+                                      typeof property.images?.[0] ===
+                                        "object" &&
+                                      property.images?.[0] !== null &&
+                                      "url" in property.images[0] &&
+                                      property.images[0].url
+                                        ? property.images[0].url
+                                        : "/assets/images/placeholder.png"
+                                    }
+                                    width={392}
+                                    height={260}
+                                    alt={
+                                      typeof property.images?.[0] ===
+                                        "object" &&
+                                      property.images?.[0] !== null &&
+                                      "alt" in property.images[0] &&
+                                      property.images[0].alt
+                                        ? property.images[0].alt
+                                        : property.title || "home"
+                                    }
+                                  />
+                                </Link>
+                              </div>
+                              <div className="content">
+                                <div className="d-flex align-items-center gap_6 top mb_16 flex-wrap justify-content-between">
+                                  <h4
+                                    className="price "
+                                    suppressHydrationWarning
+                                  >
+                                    ${property.price.toLocaleString()}
+                                    <span className="text_secondary-color text-body-default">
+                                      {property.businessType === "venta"
+                                        ? "/Sqft"
+                                        : "/month"}
+                                    </span>
+                                  </h4>
+                                  <div className="wrap-tag d-flex gap_8">
+                                    <div
+                                      className={`tag ${
+                                        property.businessType === "venta"
+                                          ? "sale"
+                                          : "rent"
+                                      } text-button-small fw-6 text_primary-color`}
+                                    >
+                                      {property.businessType === "venta"
+                                        ? "A la venta"
+                                        : "Alquiler"}
+                                    </div>
+                                    <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                                      {property.propertyType}
+                                    </div>
+                                  </div>
+                                </div>
+                                <Link
+                                  href={`/property-details-1/${property.id}`}
+                                  className="title mb_8 h5 link text_primary-color"
+                                >
+                                  {property.title}
+                                </Link>
+                                <p>{property.address}</p>
+                                <ul className="info d-flex">
+                                  <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
+                                    <i className="icon-Bed"></i>
+                                    {property.bedrooms} Bed
+                                  </li>
+                                  <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
+                                    <i className="icon-Bathtub"></i>
+                                    {property.bathrooms} Bath
+                                  </li>
+                                  <li
+                                    className="d-flex align-items-center gap_8 text-title text_primary-color fw-6"
+                                    suppressHydrationWarning
+                                  >
+                                    <i className="icon-Ruler"></i>
+                                    {property.area
+                                      ? property.area.toLocaleString()
+                                      : "0"}{" "}
+                                    Sqft
+                                  </li>
+                                </ul>
+                              </div>
+                            </div>
+                          ))}
+                      </div>
+                    </div>
+                    <Pagination
+                      currentPage={currentPage}
+                      setPage={(value) =>
+                        dispatch({
+                          type: "SET_CURRENT_PAGE",
+                          payload: value,
+                        })
+                      }
+                      itemLength={sorted.length}
+                      itemPerPage={itemPerPage}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  );
 }

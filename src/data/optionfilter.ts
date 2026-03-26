@@ -9,7 +9,7 @@ export const cityOptions: string[] = [
     "Houston",
     "Phoenix",
 ];
-export const budgetOptions: string[] = [
+export const priceOptions: string[] = [
     "Precio Max.",
     "Under $500",
     "Under $1,000",
