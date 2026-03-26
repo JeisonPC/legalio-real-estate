@@ -9,18 +9,20 @@ import Testimonials from "@/components/homes/homepage-1/Testimonials";
 import LatestNews from "@/components/homes/LatestNews";
 import Layout from "@/components/layouts/Layout-defaul";
 
+export const dynamic = "force-dynamic";
+
 export default function Home() {
-    return (
-        <Layout>
-            <Hero />
-            {/* <About /> */}
-            <Properties />
-            <Banner />
-            <Properties2 />
-            <Location />
-            <Process />
-            <Testimonials />
-            <LatestNews />
-        </Layout>
-    );
+  return (
+    <Layout>
+      <Hero />
+      {/* <About /> */}
+      <Properties />
+      <Banner />
+      <Properties2 />
+      <Location />
+      <Process />
+      <Testimonials />
+      <LatestNews />
+    </Layout>
+  );
 }
