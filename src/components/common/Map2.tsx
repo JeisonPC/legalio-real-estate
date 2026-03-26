@@ -148,7 +148,7 @@ export default function MapComponent({ property }: { property: Property }) {
             map.current?.remove();
             map.current = null;
         };
-    }, [property]);
+    }, [property, showPopup]);
 
     if (error) return <div className="text-red-600">{error}</div>;
     return <div ref={mapContainer} className="map-container" />;

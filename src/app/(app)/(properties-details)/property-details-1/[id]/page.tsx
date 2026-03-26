@@ -73,17 +73,3 @@ export default async function Page({ params }: PageProps) {
     </Layout>
   );
 }
-
-export async function generateStaticParams() {
-  const payload = await getPayload({ config });
-
-  const result = await payload.find({
-    collection: "properties",
-    limit: 1000,
-    depth: 0,
-  });
-
-  return result.docs.map((property) => ({
-    id: String(property.id),
-  }));
-}
