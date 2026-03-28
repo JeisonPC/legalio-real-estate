@@ -150,7 +150,7 @@ export default function Slide2() {
                                                         >
                                                             <span className="d-flex align-items-center gap_8">
                                                                 <i className="icon-PlayCircle"></i>
-                                                                Play Video
+                                                                Reproducir Video
                                                             </span>
                                                             <span className="bg-effect"></span>
                                                         </a>
@@ -162,7 +162,7 @@ export default function Slide2() {
                                                     >
                                                         <span className="d-flex align-items-center gap_8">
                                                             <i className="icon-Image"></i>
-                                                            View All Photo
+                                                            Ver todas las fotos
                                                         </span>
                                                         <span className="bg-effect"></span>
                                                     </a>

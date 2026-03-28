@@ -7,10 +7,10 @@ export default function Location() {
             <div className="tf-container">
                 <div className="heading-section justify-content-center text-center mb_48">
                     <span className="sub text-uppercase fw-6 text_secondary-color-2 split-text effect-rotate">
-                        Explore Cities
+                        Explora Ciudades
                     </span>
                     <h3 className="split-text effect-blur-fade">
-                        Our Location For You
+                        Ubicaciones de propiedades populares
                     </h3>
                 </div>
                 <div className="wrap-location">

@@ -12,10 +12,10 @@ export default function FormContact() {
             <div className="col-md-6">
                 <div className="box-contact">
                     <div className="heading mb_23">
-                        <h4 className="mb_8">Reach Out To Us</h4>
+                        <h4 className="mb_8">¿Cómo ubicarnos?</h4>
                         <p>
-                            We’re here to assist with any questions, concerns,
-                            or inquiries—Contactanos today!
+                            Estamos aquí para ayudar con cualquier pregunta, inquietud
+                            o consulta—¡Contáctanos hoy!
                         </p>
                     </div>
                     <ul className="info d-grid gap_20 mb_36">
@@ -26,7 +26,7 @@ export default function FormContact() {
                                     Nuestra dirección
                                 </div>
                                 <p>
-                                    Calle 3 28-131, NY
+                                    Calle 3 28-131, Palmira
                                 </p>
                             </div>
                         </li>
@@ -49,13 +49,13 @@ export default function FormContact() {
                                     href="mailto:themesflat@gmail.com"
                                     className="link text_secondary-color text-body-default"
                                 >
-                                    themesflat@gmail.com
+                                    contacto@legalio.com.co
                                 </a>
                             </div>
                         </li>
                     </ul>
                     <div>
-                        <h5 className="mb_12">Follow Us:</h5>
+                        <h5 className="mb_12">Síguenos:</h5>
                         <ul className="tf-social d-flex gap_24">
                             <li>
                                 <a href="#" className="icon-FacebookLogo"></a>

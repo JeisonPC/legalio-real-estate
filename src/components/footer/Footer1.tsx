@@ -151,7 +151,6 @@ export default function Footer1() {
                                     </p>
                                     <p className="text_white">
                                         Calle 3 28-131
-                                        New York, NY 10017
                                     </p>
                                 </div>
                                 <div className="text-body-default text_secondary-color mb_16">
@@ -164,13 +163,13 @@ export default function Footer1() {
                                 </div>
                                 <div className="text-body-default text_secondary-color">
                                     <span className="text_color-1">
-                                        Email Address:{" "}
+                                        Correo:
                                     </span>
                                     <Link
                                         href="mailto:themesflat@gmail.com"
                                         className="text_white link ms_4"
                                     >
-                                        themesflat@gmail.com
+                                        contacto@legalio.com.co
                                     </Link>
                                 </div>
                             </div>

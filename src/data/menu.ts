@@ -69,7 +69,7 @@ export const menuItems: MenuItem[] = [
         ],
     },
     {
-        title: "Contacts",
+        title: "Contacto",
         href: "/contacts",
         links: [],
     },

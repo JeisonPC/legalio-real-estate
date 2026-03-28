@@ -35,7 +35,7 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                 </div>
                 <h2>{property.title}</h2>
                 <ul className="list-action d-flex gap_16">
-                    <li className="compare">
+                    {/* <li className="compare">
                         <a href="#" className="gap_8">
                             <i className="icon-ArrowsLeftRight"></i>
                             <span className="text-button">Compare</span>
@@ -45,9 +45,8 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                         <a href="#">
                             <span className="icon icon-Heart"></span>
                         </a>
-                    </li>
+                    </li> */}
                     <li>
-                        {" "}
                         <a href="#" className="">
                             <i className="icon-ShareNetwork"></i>
                         </a>
@@ -55,11 +54,11 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                 </ul>
             </div>
             <div>
-                <h5 className="mb_16">Price:</h5>
+                <h5 className="mb_16">Precio:</h5>
                 <h2 className="price">
                     {property.price}
                     <span className="text_secondary-color text-body-1">
-                        {property.type === "Sale" ? "/Sqft" : "/month"}
+                        {property.type === "venta" ? "M2" : "/mes"}
                     </span>
                 </h2>
             </div>

@@ -4,8 +4,8 @@ import config from "@payload-config";
 import type { Property } from "@/payload-types";
 
 import Layout from "@/components/layouts/Layout-defaul";
-import PropertyDetails1 from "@/components/property-details/PropertyDetails1";
 import Relatest from "@/components/property-details/Relatest";
+import PropertyDetails3 from "@/components/property-details/PropertyDetails3";
 
 type PageProps = {
   params: Promise<{
@@ -14,7 +14,7 @@ type PageProps = {
 };
 
 type PropertyDetailsData = React.ComponentProps<
-  typeof PropertyDetails1
+  typeof PropertyDetails3
 >["property"];
 
 function mapProperty(property: Property): PropertyDetailsData {
@@ -68,7 +68,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <Layout>
-      <PropertyDetails1 property={property} />
+      <PropertyDetails3 property={property} />
       <Relatest />
     </Layout>
   );

@@ -103,7 +103,7 @@ export default function MenuTab({ property }: { property: Property }) {
                             className="h5 tab-link "
                             data-bs-toggle="tab"
                         >
-                            Floor Plans
+                            Planos de Piso
                         </a>
                     </li>
                     <li className="nav-tab-item active" role="presentation">

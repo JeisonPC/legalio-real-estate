@@ -37,13 +37,13 @@ const locations = [
 
 export default function Location() {
   return (
-    <div className="section-location-3 sw-layout">
+    <div className="section-location tf-spacing-1 pt-0">
       <div className="tf-container w-1830">
         <div className="heading-section justify-content-center text-center mb_46">
           <span className="sub text-uppercase fw-6 text_secondary-color-2 split-text effect-rotate">
-            Explore Cities
+            Explora por Ciudad
           </span>
-          <h3 className="split-text effect-blur-fade">Property Location</h3>
+          <h3 className="split-text effect-blur-fade">Ubicación de las propiedades</h3>
         </div>
         <div className="position-relative">
           <Swiper

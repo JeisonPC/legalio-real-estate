@@ -5,7 +5,7 @@ import { calculateLoan } from "@/actions/calculatorAction";
 export default function Caculator() {
     return (
         <div>
-            <h5 className="properties-title mb_20">Loan Calculator</h5>
+            <h5 className="properties-title mb_20">Calculadora de Préstamos</h5>
             <div className="wrap-form">
                 <form className="form-calculator" action={calculateLoan}>
                     <div className=" tf-grid-layout xl-col-4 md-col-2">
@@ -14,7 +14,7 @@ export default function Caculator() {
                                 htmlFor="total"
                                 className="text-body-default text_primary-color mb_8"
                             >
-                                Total Amount:
+                                Monto Total:
                             </label>
                             <input
                                 className=""
@@ -32,7 +32,7 @@ export default function Caculator() {
                                 htmlFor="interest"
                                 className="text-body-default text_primary-color mb_8"
                             >
-                                Interest Rate
+                                Tasa de Interés
                             </label>
                             <input
                                 className=""

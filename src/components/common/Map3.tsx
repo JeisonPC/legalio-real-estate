@@ -20,7 +20,7 @@ export default function Map3() {
         let map: mapboxgl.Map | undefined;
         try {
             mapboxgl.accessToken = accessToken;
-            const officeCoordinates: [number, number] = [-87.4548, 41.6389];
+            const officeCoordinates: [number, number] = [-76.300892, 3.498241];
 
             map = new mapboxgl.Map({
                 container: mapContainer.current,
@@ -38,8 +38,8 @@ export default function Map3() {
                 markerElement.innerHTML = `<i class="icon-HouseLine"></i>`;
                 const popupContent = `
                     <div class="office-popup">
-                        <div class="text-title text_primary-color fw-6 mb_4">My Office</div>
-                        <p>Calle 3 28-131, NY</p>
+                        <div class="text-title text_primary-color fw-6 mb_4">Nuestra Oficina</div>
+                        <p>Calle 3 28-131, Palmira</p>
                     </div>
                 `;
 

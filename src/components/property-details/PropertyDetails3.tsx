@@ -112,7 +112,7 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                         <ul className="tab-slide overflow-x-auto" id="navbar">
                             <li className="text-button nav-tab-item text_primary-color active">
                                 <a href="#overview" className="nav_link">
-                                    Overview
+                                    Descripción General
                                 </a>
                             </li>
                             <li className="text-button nav-tab-item text_primary-color">
@@ -120,7 +120,7 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                                     href="#property-utility"
                                     className="nav_link"
                                 >
-                                    Property Utility
+                                    Propiedad y Servicios Públicos
                                 </a>
                             </li>
                             <li className="text-button nav-tab-item text_primary-color">
@@ -131,22 +131,22 @@ export default function PropertyDetails3({ property }: { property: Property }) {
 
                             <li className="text-button nav-tab-item text_primary-color">
                                 <a href="#loan-calculator" className="nav_link">
-                                    Loan Calculator
+                                    Calculadora de Préstamos
                                 </a>
                             </li>
                             <li className="text-button nav-tab-item text_primary-color">
                                 <a href="#floor-plans" className="nav_link">
-                                    Floor Plans
+                                    Planos de Piso
                                 </a>
                             </li>
                             <li className="text-button nav-tab-item text_primary-color">
                                 <a href="#location" className="nav_link">
-                                    Location
+                                    Ubicación
                                 </a>
                             </li>
                             <li className="text-button nav-tab-item text_primary-color">
                                 <a href="#nearby" className="nav_link">
-                                    What’s Nearby?
+                                    ¿Qué hay cerca?
                                 </a>
                             </li>
                             <li className="text-button nav-tab-item text_primary-color">
@@ -154,12 +154,12 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                                     href="#customer-reviews"
                                     className="nav_link"
                                 >
-                                    Customer Reviews
+                                    Reseñas de clientes
                                 </a>
                             </li>
                             <li className="text-button nav-tab-item text_primary-color">
                                 <a href="#reviews" className="nav_link">
-                                    Reviews
+                                    Reseñas
                                 </a>
                             </li>
                         </ul>

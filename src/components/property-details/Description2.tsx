@@ -21,7 +21,7 @@ export default function Description2() {
                 href="#"
                 className="hover-underline-link text_primary-color text-button"
             >
-                View More
+                Ver más
             </a>
         </div>
     );

@@ -23,7 +23,7 @@ export const footerSections: FooterSection[] = [
     },
     {
         className: "quick-link",
-        heading: "Quick Links",
+        heading: "Acceso Rápido",
         links: [
             { href: "/about-us", label: "Acerca de" },
             { href: "/contacts", label: "Contactanos" },

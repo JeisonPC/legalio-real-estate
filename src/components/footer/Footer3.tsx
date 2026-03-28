@@ -20,9 +20,7 @@ export default function Footer3() {
               </Link>
               <div className="mb_24">
                 <p className="mb_4 text_color-1">Location:</p>
-                <p className="text_white h5">
-                  101 E 129th St, Chicago, New York
-                </p>
+                <p className="text_white h5">Calle 3 28-131, Palmira</p>
               </div>
               <div>
                 <p className="mb_4 text_color-1">Contactanos:</p>

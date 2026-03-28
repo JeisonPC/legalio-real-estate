@@ -4,7 +4,7 @@ import React from "react";
 export default function BoxSeller3() {
     return (
         <>
-            <h5 className="properties-title mb_24">Contact Sellers</h5>
+            <h5 className="properties-title mb_24">Contactar al vendedor</h5>
             <div className="box-sellers style-2">
                 <div className="wrap-author">
                     <div className="author d-flex align-items-start">

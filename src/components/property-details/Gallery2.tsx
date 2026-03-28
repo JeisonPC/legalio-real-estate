@@ -188,7 +188,7 @@ const GalleryItem = ({
                         >
                             <span className="d-flex align-items-center gap_8">
                                 <i className="icon-PlayCircle"></i>
-                                Play Video
+                                Reproducir Video
                             </span>
                             <span className="bg-effect"></span>
                         </a>

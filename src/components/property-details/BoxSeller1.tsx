@@ -5,7 +5,7 @@ import React from "react";
 export default function BoxSeller1() {
     return (
         <>
-            <h5 className="mb_24">Contact Sellers</h5>
+            <h5 className="mb_24">Contactar al vendedor</h5>
             <div className="author d-flex mb_24">
                 <div className="avatar">
                     <Image

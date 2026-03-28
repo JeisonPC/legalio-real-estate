@@ -86,7 +86,7 @@ export default function SidebarFilterDefault() {
                                 </form>
                                 <div>
                                     <div className="text-button text_primary-color mb_8">
-                                        Location
+                                        Ciudad
                                     </div>
                                     <DropdownSelect2 options={cityOptions} />
                                 </div>

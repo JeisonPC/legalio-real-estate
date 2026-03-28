@@ -46,7 +46,7 @@ export default function Process1() {
 
     const handleMouseLeave = useCallback(() => {
         clearTimeout(hoverTimer);
-    }, []);
+    }, []); 
 
     return (
         <div className="section-process tf-spacing-1">
@@ -55,10 +55,10 @@ export default function Process1() {
                     <div className="col-lg-5">
                         <div className="heading-section mb_48">
                             <span className="sub text-uppercase fw-6 text_secondary-color-2">
-                                Our Process
+                                Nuestro proceso
                             </span>
                             <h3 className="split-text effect-blur-fade">
-                                Homebuying Steps
+                                Pasos para Comprar una Casa
                             </h3>
                         </div>
                         {tabs.map((tab) => (

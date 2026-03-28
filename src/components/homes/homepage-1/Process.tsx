@@ -13,43 +13,43 @@ export default function Process() {
                     <div className="box scrolling-effect effectFade">
                         <div className="heading-section mb_32">
                             <span className="sub text-uppercase fw-6 text_secondary-color-2">
-                                Our Process
+                                Nuestro proceso
                             </span>
-                            <h3>Homebuying Steps</h3>
+                            <h3>Pasos para Comprar una Casa</h3>
                         </div>
                         <div className="wrap-process">
                             <div className="process-item style-1">
                                 <span className="number h5">01.</span>
                                 <div className="content">
                                     <h5 className="mb_8">
-                                        Discover Your Dream Home
+                                        Descubre tu casa de ensueño
                                     </h5>
                                     <p>
-                                        Browse through a curated selection of
-                                        properties tailored to your lifestyle
-                                        and budget.
+                                        Explora una selección curada de
+                                        propiedades adaptadas a tu estilo de vida
+                                        y presupuesto.
                                     </p>
                                 </div>
                             </div>
                             <div className="process-item style-1">
                                 <span className="number h5">02.</span>
                                 <div className="content">
-                                    <h5 className="mb_8">Schedule A Viewing</h5>
+                                    <h5 className="mb_8">Programa una Visita</h5>
                                     <p>
-                                        Book a tour at your convenience and
-                                        explore the space in person or
-                                        virtually.
+                                        Reserva un recorrido a tu conveniencia y
+                                        explora el espacio en persona o
+                                        virtualmente.
                                     </p>
                                 </div>
                             </div>
                             <div className="process-item style-1">
                                 <span className="number h5">03.</span>
                                 <div className="content">
-                                    <h5 className="mb_8">Seal The Deal</h5>
+                                    <h5 className="mb_8">Cierra el Trato</h5>
                                     <p>
-                                        Get expert guidance to finalize
-                                        paperwork and move into your new home
-                                        with confidence.
+                                        Obtén orientación experta para finalizar
+                                        la documentación y mudarte a tu nuevo hogar
+                                        con confianza.
                                     </p>
                                 </div>
                             </div>

@@ -4,7 +4,7 @@ import React from "react";
 export default function Floor() {
     return (
         <>
-            <h5 className="properties-title mb_20">Floor Plans</h5>
+            <h5 className="properties-title mb_20">Planos de Piso</h5>
             <ul className="box-floor d-grid gap_20 mb_20" id="parent-floor">
                 <li className="floor-item">
                     <div
@@ -18,15 +18,15 @@ export default function Floor() {
                         <div className="inner-left d-flex gap_8 align-items-center text_primary-color">
                             <i className="icon icon-CaretDown"></i>
                             <span className="text-button fw-7">
-                                First Floor
+                                Primer Piso
                             </span>
                         </div>
                         <ul className="inner-right d-flex gap_20">
                             <li className="d-flex align-items-center gap_8 text-body-default text_primary-color">
-                                <i className="icon icon-Bed"></i>3 Beds
+                                <i className="icon icon-Bed"></i>3 Dormitorios
                             </li>
                             <li className="d-flex align-items-center gap_8 text-body-default text_primary-color">
-                                <i className="icon icon-Bathstub"></i>2 Baths
+                                <i className="icon icon-Bathstub"></i>2 Baños
                             </li>
                         </ul>
                     </div>

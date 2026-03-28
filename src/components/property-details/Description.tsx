@@ -3,7 +3,7 @@ import React from "react";
 export default function Description() {
     return (
         <div>
-            <h5 className="properties-title mb_20">Description</h5>
+            <h5 className="properties-title mb_20">Descripción</h5>
             <p className="mb_8 text-body-2">
                 Casa Lomas de Machalí offers a perfect blend of comfort,
                 privacy, and nature. Nestled in one of Machalí’s most secure and
@@ -20,7 +20,7 @@ export default function Description() {
                 href="#"
                 className="hover-underline-link text_primary-color text-button"
             >
-                View More
+                Ver más
             </a>
         </div>
     );
