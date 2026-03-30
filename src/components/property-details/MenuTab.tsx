@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import Location from "./Location";
 import Floor2 from "./Floor2";
 import GallerySection from "./Gallery";
+import { Property } from "@/payload-types";
 function updateTabSlideEffect() {
     const tabSlide = document.querySelector(".tab-slide");
     if (!tabSlide) return;
@@ -58,25 +59,6 @@ function useTabSlide() {
         };
     }, []);
 }
-
-type Property = {
-    id: number;
-    imgSrc: string;
-    alt?: string;
-    address: string;
-    title: string;
-    bedrooms?: number;
-    bathrooms?: number;
-    area?: number;
-    propertyType: string;
-    type: string;
-    lat?: number;
-    long?: number;
-    price: number;
-    coordinates: [number, number];
-    garages: number;
-    city: string;
-};
 
 export default function MenuTab({ property }: { property: Property }) {
     useTabSlide();
