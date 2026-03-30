@@ -4,6 +4,7 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import AutoRepeatMarquee from "./AutoRepeatMarquee";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Testimonial1() {
     const testimonial = [
@@ -128,7 +129,9 @@ export default function Testimonial1() {
                     {brands.map((brand, idx) => (
                         <div className="marquee-item" key={idx}>
                             <div className="brand">
-                                <img src={brand.src} alt={brand.alt} />
+                                <Link href="#">
+                                    <Image src={brand.src} alt={brand.alt} width={120} height={40} />
+                                </Link>
                             </div>
                         </div>
                     ))}
