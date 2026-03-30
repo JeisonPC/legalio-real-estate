@@ -1,6 +1,7 @@
+import { Property } from "@/payload-types";
 import React from "react";
 
-export default function Overview() {
+export default function Overview({ property }: { property: Property }) {
     return (
         <div>
             <h5 className="properties-title mb_20">Descripción General</h5>
@@ -10,16 +11,16 @@ export default function Overview() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">ID:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            423146
+                            {property.id}
                         </span>
                     </div>
                 </div>
                 <div className="item d-flex gap_16">
                     <i className="icon icon-SlidersHorizontal"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Type:</span>
+                        <span className="text-body-default">Tipo:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            Villa
+                            {property.propertyType}
                         </span>
                     </div>
                 </div>
@@ -28,7 +29,7 @@ export default function Overview() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Habitaciones:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            3 Habitaciones
+                            {property.bedrooms} Habitaciones
                         </span>
                     </div>
                 </div>
@@ -37,7 +38,7 @@ export default function Overview() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Bathrooms:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            3 Baños
+                            {property.bathrooms} Baños
                         </span>
                     </div>
                 </div>
@@ -55,7 +56,7 @@ export default function Overview() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Size:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            54 m²
+                            {property.area} área
                         </span>
                     </div>
                 </div>

@@ -14,29 +14,7 @@ import BoxSeller1 from "./BoxSeller1";
 import BoxFilter from "./BoxFilter";
 import Slide1 from "./Slide1";
 import Comment from "../common/Comment";
-
-type Property = {
-    id: number;
-    imgSrc: string;
-    imgSrc2?: string;
-    imgSrc3?: string;
-    alt?: string;
-    address: string;
-    title: string;
-    bedrooms?: number;
-    bathrooms?: number;
-    area?: number;
-    propertyType: string;
-    type: string;
-    lat?: number;
-    long?: number;
-    filterOptions?: string[];
-    features?: string[];
-    price: number;
-    coordinates: [number, number];
-    garages: number;
-    city: string;
-};
+import { Property } from "@/payload-types";
 
 export default function PropertyDetails1({ property }: { property: Property }) {
     return (
@@ -50,13 +28,13 @@ export default function PropertyDetails1({ property }: { property: Property }) {
                                 <PropertiesTitle property={property} />
                             </div>
                             <div className="properties-overview tf-spacing-8">
-                                <Overview />
+                                <Overview property={property} />
                             </div>
                             <div className="properties-description">
-                                <Description />
+                                <Description property={property} />
                             </div>
                             <div className="properties-utility tf-spacing-8">
-                                <PropertiesUtility />
+                                <PropertiesUtility property={property} />
                             </div>
                             <div className="properties-video">
                                 <Video property={property} />
@@ -65,7 +43,7 @@ export default function PropertyDetails1({ property }: { property: Property }) {
                                 <Caculator />
                             </div>
                             <div className="properties-floor">
-                                <Floor />
+                                <Floor property={property} />
                             </div>
                             <div className="properties-location tf-spacing-8">
                                 <Location property={property} />

@@ -1,18 +1,6 @@
+import { Property } from "@/payload-types";
 import React from "react";
 
-type Property = {
-    id: number;
-    imgSrc: string;
-    alt?: string;
-    address: string;
-    title: string;
-    bedrooms?: number;
-    bathrooms?: number;
-    area?: number;
-    propertyType: string;
-    type: string;
-    price: number;
-};
 export default function PropertiesTitle3({ property }: { property: Property }) {
     return (
         <>
@@ -20,14 +8,14 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                 <div className="wrap-tag d-flex gap_12 mb_16">
                     <div
                         className={`tag ${
-                            property.type === "Sale"
+                            property.businessType === "venta"
                                 ? "sale"
-                                : property.type === "Rent"
+                                : property.businessType === "arriendo"
                                 ? "rent"
-                                : property.type
+                                : property.businessType
                         }  text-title fw-6 text_primary-color`}
                     >
-                        For {property.type}
+                        For {property.businessType}
                     </div>
                     <div className="tag categoreis text-title fw-6 text_primary-color">
                         {property.propertyType}
@@ -58,7 +46,7 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                 <h2 className="price">
                     {property.price}
                     <span className="text_secondary-color text-body-1">
-                        {property.type === "venta" ? "M2" : "/mes"}
+                        {property.businessType === "venta" ? "M2" : "/mes"}
                     </span>
                 </h2>
             </div>

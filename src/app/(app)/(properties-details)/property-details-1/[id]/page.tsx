@@ -13,46 +13,6 @@ type PageProps = {
   }>;
 };
 
-type PropertyDetailsData = React.ComponentProps<
-  typeof PropertyDetails3
->["property"];
-
-function mapProperty(property: Property): PropertyDetailsData {
-  const coordinates: [number, number] =
-    Array.isArray(property.coordinates) && property.coordinates.length === 2
-      ? [property.coordinates[0], property.coordinates[1]]
-      : [-76.532, 3.4516];
-
-  const cityName =
-    typeof property.city === "object" &&
-    property.city !== null &&
-    "name" in property.city
-      ? property.city.name
-      : "";
-
-  return {
-    id: property.id,
-    title: property.title,
-    price: property.price,
-    coordinates,
-    address: property.address || "",
-    bedrooms: property.bedrooms || 0,
-    bathrooms: property.bathrooms || 0,
-    area: property.area || 0,
-    garages: property.garages || 0,
-    city: cityName,
-    type: property.businessType || "",
-    propertyType: property.propertyType || "",
-    imgSrc:
-      Array.isArray(property.images) &&
-      property.images.length > 0 &&
-      typeof property.images[0] === "object" &&
-      property.images[0]?.url
-        ? property.images[0].url
-        : "/assets/images/placeholder.jpg",
-  };
-}
-
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
 
@@ -64,7 +24,7 @@ export default async function Page({ params }: PageProps) {
     depth: 2,
   });
 
-  const property = mapProperty(result);
+  const property = result as Property;
 
   return (
     <Layout>

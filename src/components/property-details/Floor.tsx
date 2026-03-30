@@ -1,7 +1,8 @@
+import { Property } from "@/payload-types";
 import Image from "next/image";
 import React from "react";
 
-export default function Floor() {
+export default function Floor({ property }: { property: Property }) {
     return (
         <>
             <h5 className="properties-title mb_20">Planos de Piso</h5>
@@ -23,10 +24,10 @@ export default function Floor() {
                         </div>
                         <ul className="inner-right d-flex gap_20">
                             <li className="d-flex align-items-center gap_8 text-body-default text_primary-color">
-                                <i className="icon icon-Bed"></i>3 Dormitorios
+                                <i className="icon icon-Bed"></i>{property.bedrooms} Dormitorios
                             </li>
                             <li className="d-flex align-items-center gap_8 text-body-default text_primary-color">
-                                <i className="icon icon-Bathstub"></i>2 Baños
+                                <i className="icon icon-Bathstub"></i>{property.bathrooms} Baños
                             </li>
                         </ul>
                     </div>
