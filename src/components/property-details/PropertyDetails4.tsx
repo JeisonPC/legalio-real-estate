@@ -12,29 +12,7 @@ import Floor2 from "./Floor2";
 import BoxSeller3 from "./BoxSeller3";
 import Gallery2 from "./Gallery2";
 import Comment from "../common/Comment";
-
-type Property = {
-    id: number;
-    imgSrc: string;
-    imgSrc2?: string;
-    imgSrc3?: string;
-    alt?: string;
-    address: string;
-    title: string;
-    bedrooms?: number;
-    bathrooms?: number;
-    area?: number;
-    propertyType: string;
-    type: string;
-    lat?: number;
-    long?: number;
-    filterOptions?: string[];
-    features?: string[];
-    price: number;
-    coordinates: [number, number];
-    garages: number;
-    city: string;
-};
+import { Property } from "@/payload-types";
 
 export default function PropertyDetails4({ property }: { property: Property }) {
     return (
@@ -46,15 +24,15 @@ export default function PropertyDetails4({ property }: { property: Property }) {
                         <PropertiesTitle2 property={property} />
                     </div>
                     <div className="properties-overview v4 tf-spacing-8">
-                        <Overview2 />
+                        <Overview2 property={property} />
                     </div>
 
                     <div className="properties-description">
-                        <Description />
+                        <Description property={property} />
                     </div>
 
                     <div className="properties-utility tf-spacing-8">
-                        <PropertyUtility />
+                        <PropertyUtility property={property} />
                     </div>
 
                     <div className="properties-video v2">
@@ -62,7 +40,7 @@ export default function PropertyDetails4({ property }: { property: Property }) {
                     </div>
 
                     <div className="properties-calculator tf-spacing-8">
-                        <Caculator />
+                        <Caculator/>
                     </div>
 
                     <div className="properties-floor">

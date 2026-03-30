@@ -10,29 +10,7 @@ import MenuTab from "./MenuTab";
 import Caculator2 from "./Caculator2";
 import BoxSeller2 from "./BoxSeller2";
 import Comment from "../common/Comment";
-
-type Property = {
-    id: number;
-    imgSrc: string;
-    imgSrc2?: string;
-    imgSrc3?: string;
-    alt?: string;
-    address: string;
-    title: string;
-    bedrooms?: number;
-    bathrooms?: number;
-    area?: number;
-    propertyType: string;
-    type: string;
-    lat?: number;
-    long?: number;
-    filterOptions?: string[];
-    features?: string[];
-    price: number;
-    coordinates: [number, number];
-    garages: number;
-    city: string;
-};
+import { Property } from "@/payload-types";
 
 export default function PropertyDetails2({ property }: { property: Property }) {
     return (
@@ -55,11 +33,11 @@ export default function PropertyDetails2({ property }: { property: Property }) {
                     </div>
                     <div className="row wrap-properties">
                         <div className="col-lg-6">
-                            <Description />
+                            <Description property={property} />
                         </div>
                         <div className="col-lg-5 offset-xl-1">
                             <div className="properties-overview v2">
-                                <Overview2 />
+                                <Overview2 property={property} />
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,7 @@
+import { Property } from "@/payload-types";
 import React from "react";
 
-export default function Overview2() {
+export default function Overview2({ property }: { property: Property }) {
     return (
         <>
             <h5 className="properties-title mb_20 ">Overview</h5>
@@ -10,7 +11,7 @@ export default function Overview2() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">ID:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            423146
+                            {property.id}
                         </span>
                     </div>
                 </div>
@@ -19,7 +20,7 @@ export default function Overview2() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Type:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            Villa
+                            {property.propertyType}
                         </span>
                     </div>
                 </div>
@@ -28,7 +29,7 @@ export default function Overview2() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Habitaciones:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            3 Rooms
+                            {property.bedrooms} Rooms
                         </span>
                     </div>
                 </div>
@@ -37,7 +38,7 @@ export default function Overview2() {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Bathrooms:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            3 Rooms
+                            {property.bathrooms} Bathrooms
                         </span>
                     </div>
                 </div>

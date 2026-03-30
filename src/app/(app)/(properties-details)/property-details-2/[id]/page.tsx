@@ -1,31 +1,34 @@
 import Layout from "@/components/layouts/Layout-defaul";
 import PropertyDetails2 from "@/components/property-details/PropertyDetails2";
 import Relatest from "@/components/property-details/Relatest";
-import { allProperties } from "@/data/properties";
+import { getPayload } from "payload";
 import React from "react";
+import config from "@payload-config";
+import { Property } from "@/payload-types";
 
 type PageProps = {
-    params: Promise<{
-        id: string;
-    }>;
+  params: Promise<{
+    id: string;
+  }>;
 };
 
 export default async function Page({ params }: PageProps) {
-    const { id } = await params;
+  const { id } = await params;
 
-    const property =
-        allProperties.find((elm) => String(elm.id) === id) || allProperties[0];
+  const payload = await getPayload({ config });
 
-    return (
-        <Layout>
-            <PropertyDetails2 property={property} />
-            <Relatest />
-        </Layout>
-    );
-}
+  const result = await payload.findByID({
+    collection: "properties",
+    id,
+    depth: 2,
+  });
 
-export async function generateStaticParams() {
-    return allProperties.map((property) => ({
-        id: String(property.id),
-    }));
+  const property = result as Property;
+
+  return (
+    <Layout>
+      <PropertyDetails2 property={property} />
+      <Relatest />
+    </Layout>
+  );
 }

@@ -1,15 +1,6 @@
+import { Property } from "@/payload-types";
 import React from "react";
-type Property = {
-    id: number;
-    address: string;
-    title: string;
-    bedrooms?: number;
-    bathrooms?: number;
-    area?: number;
-    propertyType: string;
-    type: string;
-    price: number;
-};
+
 
 export default function PropertiesTitle2({ property }: { property: Property }) {
     return (
@@ -19,14 +10,14 @@ export default function PropertiesTitle2({ property }: { property: Property }) {
                     <div className="wrap-tag d-flex gap_8 mb_12">
                         <div
                             className={`tag ${
-                                property.type === "Sale"
-                                    ? "sale"
-                                    : property.type === "Rent"
-                                    ? "rent"
-                                    : property.type
+                                property.businessType === "venta"
+                                    ? "En Venta"
+                                    : property.businessType === "arriendo"
+                                    ? "En Arriendo"
+                                    : property.businessType
                             }  text-button-small fw-6 text_primary-color`}
                         >
-                            For {property.type}
+                            For {property.businessType}
                         </div>
                         <div className="tag categoreis text-button-small fw-6 text_primary-color">
                             {property.propertyType}
@@ -37,7 +28,7 @@ export default function PropertiesTitle2({ property }: { property: Property }) {
                 <h3 className="price">
                     ${property.price}
                     <span className="text_secondary-color text-body-1">
-                        {property.type === "Sale" ? "/Sqft" : "/month"}
+                        {property.businessType === "venta" ? "/Sqft" : "/mes"}
                     </span>
                 </h3>
             </div>
@@ -48,15 +39,15 @@ export default function PropertiesTitle2({ property }: { property: Property }) {
                         <li className="d-flex align-items-center gap_8 h6 text_primary-color fw-6">
                             <i className="icon-Bed"></i>
                             {property.bedrooms}
-                            Beds
+                            Habitaciones
                         </li>
                         <li className="d-flex align-items-center gap_8 h6 text_primary-color fw-6">
                             <i className="icon-Bathstub"></i>
-                            {property.bathrooms} Baths
+                            {property.bathrooms} Baños
                         </li>
                         <li className="d-flex align-items-center gap_8 h6 text_primary-color fw-6">
                             <i className="icon-Ruler"></i>
-                            {property.area} area
+                            {property.area} área
                         </li>
                     </ul>
                 </div>

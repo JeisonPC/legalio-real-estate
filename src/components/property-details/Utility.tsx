@@ -25,7 +25,6 @@ import React from "react";
 // ];
 
 export default function PropertyUtility({ property }: { property: Property }) {
-    console.log("Características adicionales de la propiedad:", property.features);
     const renderColumn = () => (
         <div className="col-utility">
             {property?.features?.map((item, index) => (

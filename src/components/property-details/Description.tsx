@@ -4,8 +4,6 @@ import { Property } from "@/payload-types";
 export default function Description({ property }: { property: Property }) {
   const description = property.description ?? "";
 
-  console.log("Descripción de la propiedad:", description);
-
   return (
     <div>
       <h5 className="properties-title mb_20">Descripción</h5>
