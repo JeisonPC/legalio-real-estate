@@ -1637,7 +1637,7 @@
     .thumb-main {
         border-radius: 0 !important;
         img {
-            min-height: 660px;
+            max-height: 660px;
             object-fit: cover;
         }
     }
