@@ -5,8 +5,8 @@ import Location from "@/components/homes/homepage-2/Location";
 import Process from "@/components/homes/homepage-1/Process";
 import Properties from "@/components/homes/homepage-1/Properties";
 // import Properties2 from "@/components/homes/homepage-1/Properties2";
-import Testimonials from "@/components/homes/homepage-1/Testimonials";
-import LatestNews from "@/components/homes/LatestNews";
+// import Testimonials from "@/components/homes/homepage-1/Testimonials";
+// import LatestNews from "@/components/homes/LatestNews";
 import Layout from "@/components/layouts/Layout-defaul";
 
 export const dynamic = "force-dynamic";
