@@ -153,7 +153,7 @@ export default function SidebarFilter4({
                     <fieldset>
                       <input
                         type="text"
-                        placeholder="Buscar keyword"
+                        placeholder="Buscar por nombre"
                         id="lookingFor"
                         value={searchKeyword}
                         onChange={(e) => setSearchKeyword(e.target.value)}

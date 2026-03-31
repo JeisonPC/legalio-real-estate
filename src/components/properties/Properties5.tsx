@@ -8,6 +8,7 @@ import DropdownSelect2 from "../common/DropdownSelect2";
 import SidebarFilter3 from "../common/SidebarFilter3";
 import Link from "next/link";
 import MapComponent from "../common/Map";
+import { useRouter, useSearchParams } from "next/navigation";
 
 function parseSizeValue(val: string) {
   if (val === "Min (Mts/2)" || val === "Max (Mts/2)") return val;
@@ -21,6 +22,7 @@ export default function Properties5({
   cities: City[];
   properties: Property[];
 }) {
+  const router = useRouter();
   const ddContainer = useRef<HTMLDivElement>(null);
   const advanceBtnRef = useRef<HTMLDivElement>(null);
 
@@ -42,6 +44,31 @@ export default function Properties5({
   }, []);
 
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const searchParams = useSearchParams();
+  const [hydratedFromUrl, setHydratedFromUrl] = useState(false);
+
+  useEffect(() => {
+    if (hydratedFromUrl) return;
+
+    const q = searchParams.get("q") || "";
+    const cityParam = searchParams.get("city") || "";
+    const bedroomsParam = searchParams.get("bedrooms") || "";
+    const businessTypeParam = searchParams.get("businessType") || "";
+    const priceParam = searchParams.get("price") || "";
+
+    setSearchKeyword(q);
+
+    if (cityParam) dispatch({ type: "SET_CITY", payload: cityParam });
+    if (bedroomsParam)
+      dispatch({ type: "SET_BEDROOMS", payload: bedroomsParam });
+    if (businessTypeParam) {
+      dispatch({ type: "SET_BUSINESS_TYPE", payload: businessTypeParam });
+    }
+    if (priceParam) dispatch({ type: "SET_PRICE", payload: priceParam });
+
+    setHydratedFromUrl(true);
+  }, [searchParams, hydratedFromUrl]);
 
   const {
     bedrooms,
@@ -122,13 +149,19 @@ export default function Properties5({
     if (price && price !== "Precio Max.") {
       let maxPrice = 0;
       if (price.startsWith("Menos de $")) {
-        maxPrice = parseInt(price.replace("Menos de $", "").replace(/,/g, ""), 10);
+        maxPrice = parseInt(
+          price.replace("Menos de $", "").replace(/,/g, ""),
+          10,
+        );
         filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
       } else if (price.startsWith("$")) {
         maxPrice = parseInt(price.replace("$", "").replace(/,/g, ""), 10);
         filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
       } else if (price.startsWith("Más de $")) {
-        maxPrice = parseInt(price.replace("Más de $", "").replace(/,/g, ""), 10);
+        maxPrice = parseInt(
+          price.replace("Más de $", "").replace(/,/g, ""),
+          10,
+        );
         filteredList = filteredList.filter((p) => Number(p.price) > maxPrice);
       }
     }
@@ -162,7 +195,7 @@ export default function Properties5({
       );
     }
 
-    // Buscar keyword filter
+    // Buscar por nombre filter
     if (searchKeyword && searchKeyword.trim() !== "") {
       const kw = searchKeyword.trim().toLowerCase();
 
@@ -211,8 +244,73 @@ export default function Properties5({
     dispatch({ type: "SET_FEATURES", payload: updated });
   };
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
+  useEffect(() => {
+    const params = new URLSearchParams();
+
+    if (searchKeyword.trim()) {
+      params.set("q", searchKeyword.trim());
+    }
+
+    if (city && city !== "Todas las Ciudades") {
+      params.set("city", city);
+    }
+
+    if (businessType && businessType !== "Ambos") {
+      params.set("businessType", businessType);
+    }
+
+    if (bedrooms && bedrooms !== "Todas las Habitaciones") {
+      params.set("bedrooms", bedrooms);
+    }
+
+    if (bathrooms && bathrooms !== "Todos los Baños") {
+      params.set("bathrooms", bathrooms);
+    }
+
+    if (garages && garages !== "Todos los Garajes") {
+      params.set("garages", garages);
+    }
+
+    if (price && price !== "Precio Max.") {
+      params.set("price", price);
+    }
+
+    if (minSize && minSize !== "Min (Mts/2)") {
+      params.set("minSize", minSize);
+    }
+
+    if (maxSize && maxSize !== "Max (Mts/2)") {
+      params.set("maxSize", maxSize);
+    }
+
+    if (features.length > 0) {
+      params.set("features", features.join(","));
+    }
+
+    if (sortingOption && sortingOption !== "Ordenar por (Predeterminado)") {
+      params.set("sort", sortingOption);
+    }
+
+    router.replace(`/listing-half-map-grid?${params.toString()}`, {
+      scroll: false,
+    });
+  }, [
+    router,
+    searchKeyword,
+    city,
+    businessType,
+    bedrooms,
+    bathrooms,
+    garages,
+    price,
+    minSize,
+    maxSize,
+    features,
+    sortingOption,
+  ]);
+
+  const handleSearch = (e?: React.FormEvent) => {
+    e?.preventDefault();
   };
 
   const toggleAdvancedFilter = () => {
@@ -378,7 +476,7 @@ export default function Properties5({
                                   } text-button-small fw-6 text_primary-color`}
                                 >
                                   {property.businessType === "venta"
-                                    ? "A la venta"
+                                    ? "Venta"
                                     : "Alquiler"}
                                 </div>
                                 <div className="tag categoreis text-button-small fw-6 text_primary-color">

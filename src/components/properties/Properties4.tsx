@@ -150,7 +150,7 @@ export default function Properties4({
       );
     }
 
-    // Buscar keyword filter
+    // Buscar por nombre filter
     if (searchKeyword && searchKeyword.trim() !== "") {
       const kw = searchKeyword.trim().toLowerCase();
       filteredList = filteredList.filter(
