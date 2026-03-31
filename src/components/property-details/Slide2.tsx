@@ -78,8 +78,8 @@ export default function Slide2({ property }: { property: Property }) {
                                 alt={image.alt}
                                 src={image.url ?? ""}
                                 ref={ref}
-                                width={image.width ?? 1200}
-                                height={image.height ?? 675}
+                                width={1200}
+                                height={675}
                                 priority
                               />
                             </Link>
