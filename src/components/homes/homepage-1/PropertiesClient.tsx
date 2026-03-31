@@ -29,12 +29,16 @@ export default function PropertiesClient({
   const items = properties.slice(0, 6);
 
   const renderCard = (property: Property) => {
+    const firstImage =
+      Array.isArray(property.images) && property.images.length > 0
+        ? property.images[0]
+        : null;
+
     const imageUrl =
-      Array.isArray(property.images) &&
-      property.images.length > 0 &&
-      typeof property.images[0] === "object" &&
-      property.images[0]?.url
-        ? property.images[0].url
+      typeof firstImage === "object" && firstImage !== null
+        ? firstImage.cloudinarySecureUrl ||
+          firstImage.url ||
+          "/assets/images/placeholder.jpg"
         : "/assets/images/placeholder.jpg";
 
     const businessLabel =
@@ -51,9 +55,9 @@ export default function PropertiesClient({
         <div className="img-style mb_20">
           <Image
             src={imageUrl}
-            style={{height:"258px", objectFit:"cover"}}
-            width={property.imgWidth}
-            height={property.imgHeight}
+            style={{ height: "258px", objectFit: "cover" }}
+            width={410}
+            height={258}
             alt={property.title}
           />
           <div className="wrap-tag d-flex gap_8 mb_12">
