@@ -9,20 +9,22 @@ import TopBar from "@/components/homes/homepage-2/TopBar";
 import TopProperties from "@/components/homes/TopProperties";
 import React from "react";
 
+export const dynamic = "force-dynamic";
+
 export default function page() {
-    return (
-        <>
-            <TopBar />
-            <Header2 />
-            <Hero />
-            <Populor />
-            <TopProperties />
-            <Properties />
-            <Location />
-            <div className="section-faqs-1 tf-spacing-2">
-                <FAQs1 />
-            </div>
-            <Footer2 />
-        </>
-    );
+  return (
+    <>
+      <TopBar />
+      <Header2 />
+      <Hero />
+      <Populor />
+      <TopProperties />
+      <Properties />
+      <Location />
+      <div className="section-faqs-1 tf-spacing-2">
+        <FAQs1 />
+      </div>
+      <Footer2 />
+    </>
+  );
 }
