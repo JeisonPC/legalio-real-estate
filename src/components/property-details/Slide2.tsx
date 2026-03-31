@@ -17,6 +17,9 @@ export default function Slide2({ property }: { property: Property }) {
       typeof image === "object" && image !== null && "url" in image,
   );
 
+  const getImageUrl = (img: Media) =>
+    img.cloudinarySecureUrl || img.url || "/images/placeholder.jpg";
+
   const thumbProps = {
     spaceBetween: 14,
     slidesPerView: "auto" as const,
@@ -66,17 +69,21 @@ export default function Slide2({ property }: { property: Property }) {
                   <SwiperSlide key={index}>
                     <div className="thumb-main">
                       <Item
-                        original={image.url ?? undefined}
-                        thumbnail={image.url ?? undefined}
+                        original={getImageUrl(image)}
+                        thumbnail={getImageUrl(image)}
                         width={1200}
                         height={675}
                       >
                         {({ ref, open }) => (
                           <div className="thumb-main">
-                            <Link onClick={open} data-fancybox="gallery" href={""}>
+                            <Link
+                              onClick={open}
+                              data-fancybox="gallery"
+                              href={""}
+                            >
                               <Image
                                 alt={image.alt}
-                                src={image.url ?? ""}
+                                src={getImageUrl(image)}
                                 ref={ref}
                                 width={1200}
                                 height={675}
@@ -139,7 +146,7 @@ export default function Slide2({ property }: { property: Property }) {
                 <div className="image-detail">
                   <Image
                     alt={thumb.alt}
-                    src={thumb.url ?? ""}
+                    src={getImageUrl(thumb)}
                     width={100}
                     height={100}
                   />

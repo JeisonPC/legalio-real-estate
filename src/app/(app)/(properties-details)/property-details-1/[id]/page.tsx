@@ -29,7 +29,7 @@ export default async function Page({ params }: PageProps) {
   return (
     <Layout>
       <PropertyDetails3 property={property} />
-      <Relatest />
+      {/* <Relatest /> */}
     </Layout>
   );
 }

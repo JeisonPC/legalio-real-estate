@@ -165,33 +165,33 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                 </div>
               </div>
 
-              <div
+              {/* <div
                 id="loan-calculator"
                 className="properties-calculator v2 section tf-spacing-9"
               >
                 <div className="properties-calculator">
                   <Caculator/>
                 </div>
-              </div>
+              </div> */}
 
-              <div id="floor-plans" className="section tf-spacing-9">
+              {/* <div id="floor-plans" className="section tf-spacing-9">
                 <div className="properties-floor properties-2">
                   <Floor property={property} />
                 </div>
-              </div>
+              </div> */}
 
               <div id="location" className="section  tf-spacing-9">
                 <div className="properties-location v2 properties-2">
                   <Location property={property} />
                 </div>
               </div>
-              <div id="nearby" className="section tf-spacing-9">
+              {/* <div id="nearby" className="section tf-spacing-9">
                 <div className="properties-nearby properties-2">
                   <Nearby />
                 </div>
-              </div>
+              </div> */}
 
-              <div className="tf-spacing-9">
+              {/* <div className="tf-spacing-9">
                 <div className="properties-2 ">
                   <div id="customer-reviews" className="section">
                     <Comment />
@@ -200,9 +200,9 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                     <FormComments />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
-            <div className="col-lg-4 tf-spacing-9">
+            {/* <div className="col-lg-4 tf-spacing-9">
               <div className="wrap-sidebar-right">
                 <div className="box-sellers style-no-border  mb_30">
                   <BoxSeller1 />
@@ -211,7 +211,7 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                   <BoxFilter />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
