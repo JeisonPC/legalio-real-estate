@@ -145,14 +145,14 @@ export default function Properties1({
     if (price && price !== "Precio Max.") {
       let maxPrice = 0;
 
-      if (price.startsWith("Under $")) {
-        maxPrice = parseInt(price.replace("Under $", "").replace(/,/g, ""), 10);
+      if (price.startsWith("Menos de $")) {
+        maxPrice = parseInt(price.replace("Menos de $", "").replace(/,/g, ""), 10);
         filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
       } else if (price.startsWith("$")) {
         maxPrice = parseInt(price.replace("$", "").replace(/,/g, ""), 10);
         filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
-      } else if (price.startsWith("Above $")) {
-        maxPrice = parseInt(price.replace("Above $", "").replace(/,/g, ""), 10);
+      } else if (price.startsWith("Más de $")) {
+        maxPrice = parseInt(price.replace("Más de $", "").replace(/,/g, ""), 10);
         filteredList = filteredList.filter((p) => Number(p.price) > maxPrice);
       }
     }

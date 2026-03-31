@@ -83,7 +83,7 @@ export default function LocationSlider({ cities }: { cities: CityCard[] }) {
                         {city.name}
                       </Link>
                       <p className="text-caption-1">
-                        {city.propertiesCount} Properties
+                        {city.propertiesCount} Propiedades
                       </p>
                     </div>
                   </div>

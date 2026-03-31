@@ -87,7 +87,7 @@ export default function Properties3({
     }
 
     // Bathrooms filter - FIXED
-    if (bathrooms && bathrooms !== "Any Bathrooms") {
+    if (bathrooms && bathrooms !== "Cualquier Baños") {
       if (bathrooms === "4+") {
         filteredList = filteredList.filter((p) => Number(p.bathrooms) >= 4);
       } else {
@@ -109,14 +109,14 @@ export default function Properties3({
     // Price filter
     if (price && price !== "Precio Max.") {
       let maxPrice = 0;
-      if (price.startsWith("Under $")) {
-        maxPrice = parseInt(price.replace("Under $", "").replace(/,/g, ""), 10);
+      if (price.startsWith("Menos de $")) {
+        maxPrice = parseInt(price.replace("Menos de $", "").replace(/,/g, ""), 10);
         filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
       } else if (price.startsWith("$")) {
         maxPrice = parseInt(price.replace("$", "").replace(/,/g, ""), 10);
         filteredList = filteredList.filter((p) => Number(p.price) <= maxPrice);
-      } else if (price.startsWith("Above $")) {
-        maxPrice = parseInt(price.replace("Above $", "").replace(/,/g, ""), 10);
+      } else if (price.startsWith("Más de $")) {
+        maxPrice = parseInt(price.replace("Más de $", "").replace(/,/g, ""), 10);
         filteredList = filteredList.filter((p) => Number(p.price) > maxPrice);
       }
     }
