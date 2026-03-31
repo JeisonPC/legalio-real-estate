@@ -46,7 +46,7 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                 <h2 className="price">
                     {property.price}
                     <span className="text_secondary-color text-body-1">
-                        {property.businessType === "venta" ? "M2" : "/mes"}
+                        {property.businessType === "arriendo" && "/mes"}
                     </span>
                 </h2>
             </div>

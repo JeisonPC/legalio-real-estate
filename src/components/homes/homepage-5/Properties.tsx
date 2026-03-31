@@ -86,7 +86,7 @@ export default function Properties() {
                                         <div className="hover-tooltip tooltip-left box-icon">
                                             <span className="icon icon-Heart"></span>
                                             <span className="tooltip">
-                                                Add to Wishlist
+                                                Agregar a la lista de deseos
                                             </span>
                                         </div>
                                     </div>
@@ -117,7 +117,7 @@ export default function Properties() {
                                         </li>
                                         <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                             <i className="icon-Bathtub"></i>
-                                            {property.bathrooms} Bath
+                                            {property.bathrooms} Baños
                                         </li>
                                         <li
                                             className="d-flex align-items-center gap_8 text-title text_primary-color fw-6 "

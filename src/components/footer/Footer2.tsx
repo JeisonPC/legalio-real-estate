@@ -26,11 +26,11 @@ export default function Footer2() {
             All Rights Reserved.
           </p>
           <ul className="social d-flex gap_24">
-            <li><a href="#" className="icon-FacebookLogo"></a></li>
-            <li><a href="#" className="icon-XLogo"></a></li>
-            <li><a href="#" className="icon-TiktokLogo"></a></li>
-            <li><a href="#" className="icon-InstagramLogo"></a></li>
-            <li><a href="#" className="icon-YoutubeLogo"></a></li>
+            <li><a href="https://www.facebook.com/LegalioColombia" className="icon-FacebookLogo"></a></li>
+            {/* <li><a href="#" className="icon-XLogo"></a></li> */}
+            {/* <li><a href="#" className="icon-TiktokLogo"></a></li> */}
+            <li><a href="https://www.instagram.com/legalio_sas/" className="icon-InstagramLogo"></a></li>
+            <li><a href="https://www.youtube.com/channel/UCpWnbhiYJH-XDX8nu88fypw" className="icon-YoutubeLogo"></a></li>
           </ul>
         </div>
       </div>

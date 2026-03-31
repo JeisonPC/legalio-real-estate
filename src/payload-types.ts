@@ -157,6 +157,11 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
+  cloudinaryPublicId?: string | null;
+  cloudinaryUrl?: string | null;
+  cloudinarySecureUrl?: string | null;
+  bytes?: number | null;
+  format?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -220,6 +225,7 @@ export interface City {
    * @maxItems 2
    */
   location?: [number, number] | null;
+  image?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
 }
@@ -367,6 +373,11 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  cloudinaryPublicId?: T;
+  cloudinaryUrl?: T;
+  cloudinarySecureUrl?: T;
+  bytes?: T;
+  format?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -444,6 +455,7 @@ export interface CitiesSelect<T extends boolean = true> {
   department?: T;
   isActive?: T;
   location?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
 }

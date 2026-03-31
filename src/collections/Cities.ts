@@ -45,5 +45,10 @@ export const Cities: CollectionConfig = {
       label: "Ubicación",
       type: "point",
     },
+    {
+      name: "image",
+      type: "relationship",
+      relationTo: "media",
+    },
   ],
 };

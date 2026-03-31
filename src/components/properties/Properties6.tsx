@@ -385,11 +385,11 @@ export default function Properties6({
                             <ul className="info d-flex">
                               <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                 <i className="icon-Bed"></i>
-                                {property.bedrooms} Bed
+                                {property.bedrooms} Habitaciones
                               </li>
                               <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                 <i className="icon-Bathtub"></i>
-                                {property.bathrooms} Bath
+                                {property.bathrooms} Baños
                               </li>
                               <li
                                 className="d-flex align-items-center gap_8 text-title text_primary-color fw-6 "
@@ -489,11 +489,11 @@ export default function Properties6({
                             <ul className="info d-flex">
                               <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                 <i className="icon-Bed"></i>
-                                {property.bedrooms} Bed
+                                {property.bedrooms} Habitaciones
                               </li>
                               <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
                                 <i className="icon-Bathtub"></i>
-                                {property.bathrooms} Bath
+                                {property.bathrooms} Baños
                               </li>
                               <li
                                 className="d-flex align-items-center gap_8 text-title text_primary-color fw-6"

@@ -40,9 +40,9 @@ export default function MapComponent({ property }: { property: MapProperty }) {
           <p class="text-caption-1 mb_4">${p.address}</p>
           <h6 class="mb_12 line-clamp-1">${p.title}</h6>
           <ul class="info d-flex">
-            <li><i class="icon-Bed"></i> ${p.bedrooms ?? 0} Bed</li>
-            <li><i class="icon-Bathtub"></i> ${p.bathrooms ?? 0} Bath</li>
-            <li><i class="icon-Ruler"></i> ${p.area ?? 0} area</li>
+            <li><i class="icon-Bed"></i> ${p.bedrooms ?? 0} Habitaciones</li>
+            <li><i class="icon-Bathtub"></i> ${p.bathrooms ?? 0} Baños</li>
+            <li><i class="icon-Ruler"></i> ${p.area ?? 0} m²</li>
           </ul>
         </div>
       </div>

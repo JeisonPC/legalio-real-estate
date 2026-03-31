@@ -21,8 +21,8 @@ export default function Home() {
       {/* <Properties2 /> */}
       <Location />
       <Process />
-      <Testimonials />
-      <LatestNews />
+      {/* <Testimonials /> */}
+      {/* <LatestNews /> */}
     </Layout>
   );
 }

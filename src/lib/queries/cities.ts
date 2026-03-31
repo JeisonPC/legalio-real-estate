@@ -14,7 +14,5 @@ export async function getCities() {
     depth: 1,
   });
 
-  console.log("Fetched cities:", result.docs);
-
   return result.docs;
 }
