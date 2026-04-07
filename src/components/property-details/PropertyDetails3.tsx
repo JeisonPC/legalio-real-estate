@@ -4,15 +4,15 @@ import Overview from "./Overview";
 import Description from "./Description";
 import PropertiesUtility from "./Utility";
 import Video from "./Video";
-import Caculator from "./Caculator";
-import Floor from "./Floor";
+// import Caculator from "./Caculator";
+// import Floor from "./Floor";
 import Location from "./Location";
-import Nearby from "./Nearby";
-import FormComments from "../common/FormComments";
+// import Nearby from "./Nearby";
+// import FormComments from "../common/FormComments";
 // import BoxSeller1 from "./BoxSeller1";
-import BoxFilter from "./BoxFilter";
+// import BoxFilter from "./BoxFilter";
 import Hero from "./Hero";
-import Comment from "../common/Comment";
+// import Comment from "../common/Comment";
 import { Property } from "@/payload-types";
 
 function useOneNavOnePage() {
