@@ -26,12 +26,12 @@ export default function Header() {
                                 </Link>
                                 <Nav />
                                 <div className="header-right d-flex align-items-center gap_20">
-                                    <Link
+                                    {/* <Link
                                         href="/login"
                                         className="link text-button text_primary-color"
                                     >
                                         Inicio de Sesión/Registro
-                                    </Link>
+                                    </Link> */}
                                     <Link href="#" className="tf-btn ">
                                         <span>Publicar Propiedad</span>
                                         <span className="bg-effect"></span>
@@ -101,7 +101,7 @@ export default function Header() {
                                     <li>
                                         Support 24/7:{" "}
                                         <a href="#" className="link">
-                                            themesflat@gmail.com
+                                            contacto@legalio.com.co
                                         </a>
                                     </li>
                                     <li>

@@ -22,7 +22,7 @@ export default function BoxSeller1() {
                         href="#"
                         className="text_secondary-color text-body-default link"
                     >
-                        themesflat@gmail.com
+                        contacto@legalio.com.co
                     </Link>
                 </div>
             </div>

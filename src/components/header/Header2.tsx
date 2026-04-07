@@ -91,7 +91,7 @@ export default function Header2() {
                                     <li>
                                         Support 24/7:{" "}
                                         <a href="#" className="link">
-                                            themesflat@gmail.com
+                                            contacto@legalio.com.co
                                         </a>
                                     </li>
                                     <li>

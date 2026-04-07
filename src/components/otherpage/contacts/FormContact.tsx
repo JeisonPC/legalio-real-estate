@@ -46,7 +46,7 @@ export default function FormContact() {
                                     Email Address:
                                 </div>
                                 <a
-                                    href="mailto:themesflat@gmail.com"
+                                    href="mailto:contacto@legalio.com.co"
                                     className="link text_secondary-color text-body-default"
                                 >
                                     contacto@legalio.com.co

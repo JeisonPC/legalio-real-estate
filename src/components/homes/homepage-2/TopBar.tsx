@@ -38,7 +38,7 @@ export default function TopBar() {
                                 <p className="text-caption-2 mb_4">Email Us:</p>
                                 <span className="text-title fw-6 text_primary-color">
                                     <a href="#" className="link">
-                                        themesflat@gmail.com
+                                        contacto@legalio.com.co
                                     </a>
                                 </span>
                             </div>

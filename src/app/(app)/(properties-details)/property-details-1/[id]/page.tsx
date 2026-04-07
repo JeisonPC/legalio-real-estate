@@ -4,7 +4,7 @@ import config from "@payload-config";
 import type { Property } from "@/payload-types";
 
 import Layout from "@/components/layouts/Layout-defaul";
-import Relatest from "@/components/property-details/Relatest";
+// import Relatest from "@/components/property-details/Relatest";
 import PropertyDetails3 from "@/components/property-details/PropertyDetails3";
 
 type PageProps = {

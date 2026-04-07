@@ -166,7 +166,7 @@ export default function Footer1() {
                                         Correo:
                                     </span>
                                     <Link
-                                        href="mailto:themesflat@gmail.com"
+                                        href="mailto:contacto@legalio.com.co"
                                         className="text_white link ms_4"
                                     >
                                         contacto@legalio.com.co

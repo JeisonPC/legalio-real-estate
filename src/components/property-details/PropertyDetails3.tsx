@@ -9,7 +9,7 @@ import Floor from "./Floor";
 import Location from "./Location";
 import Nearby from "./Nearby";
 import FormComments from "../common/FormComments";
-import BoxSeller1 from "./BoxSeller1";
+// import BoxSeller1 from "./BoxSeller1";
 import BoxFilter from "./BoxFilter";
 import Hero from "./Hero";
 import Comment from "../common/Comment";

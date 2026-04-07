@@ -13,6 +13,4 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withPayload(
-  withPayload(withPayload(withPayload(withPayload(withPayload(nextConfig))))),
-);
+export default withPayload(nextConfig);
