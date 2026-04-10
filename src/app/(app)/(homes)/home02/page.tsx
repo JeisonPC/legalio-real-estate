@@ -7,16 +7,19 @@ import Populor from "@/components/homes/homepage-2/Populor";
 import Properties from "@/components/homes/homepage-2/Properties";
 import TopBar from "@/components/homes/homepage-2/TopBar";
 import TopProperties from "@/components/homes/TopProperties";
+import { getCities } from "@/lib/queries/cities";
 import React from "react";
 
 export const dynamic = "force-dynamic";
 
-export default function page() {
+export default async function page() {
+  const cities = await getCities();
+
   return (
     <>
       <TopBar />
       <Header2 />
-      <Hero />
+      <Hero cities={cities} />
       <Populor />
       <TopProperties />
       <Properties />

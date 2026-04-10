@@ -26,12 +26,12 @@ export default function Header4() {
                                 </Link>
                                 <Nav />
                                 <div className="header-right d-flex align-items-center gap_20">
-                                    <Link
+                                    {/* <Link
                                         href="login.html"
                                         className="link text-button text_primary-color"
                                     >
                                         Inicio de sesión/Registro
-                                    </Link>
+                                    </Link> */}
                                     <Link href="#" className="tf-btn md-hide">
                                         <span>Publicar Propiedad</span>
                                         <span className="bg-effect"></span>

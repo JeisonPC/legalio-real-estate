@@ -6,8 +6,13 @@ import "swiper/css";
 import "swiper/css/navigation";
 // import Image from "next/image";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
+import type { City } from "@/payload-types";
 
-export default function Hero() {
+interface HeroProps {
+  cities: City[];
+}
+
+export default function Hero({ cities }: HeroProps) {
   return (
     <div className="page-title style-1 sw-layout">
       <div className="thumbs effect-content-slide">
@@ -56,7 +61,7 @@ export default function Hero() {
       </div>
 
       <div className="searching-home">
-        <SidebarFilterDefault />
+        <SidebarFilterDefault cities={cities} />
       </div>
     </div>
   );

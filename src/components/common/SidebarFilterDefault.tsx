@@ -2,11 +2,16 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { bedroomOptions, priceOptions, cityOptions } from "@/data/optionfilter";
+import { bedroomOptions, priceOptions } from "@/data/optionfilter";
+import type { City } from "@/payload-types";
 import DropdownSelect2 from "./DropdownSelect2";
 import AdvanceSearchDefault from "./AdvanceSearchDefault";
 
-export default function SidebarFilterDefault() {
+interface SidebarFilterDefaultProps {
+  cities: City[];
+}
+
+export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultProps) {
   const router = useRouter();
   const ddContainer = useRef<HTMLDivElement>(null);
   const advanceBtnRef = useRef<HTMLDivElement>(null);
@@ -14,6 +19,8 @@ export default function SidebarFilterDefault() {
   const [businessType, setBusinessType] = useState<"arriendo" | "venta">(
     "arriendo",
   );
+  const cityOptions = ["Todas", ...cities.map((c) => c.name)];
+
   const [keyword, setKeyword] = useState("");
   const [city, setCity] = useState("");
   const [bedrooms, setBedrooms] = useState("");

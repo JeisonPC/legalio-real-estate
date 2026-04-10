@@ -2,7 +2,27 @@
 import Image from "next/image";
 import React, { useState, useCallback, useMemo } from "react";
 import ModalVideo from "../common/ModalVideo";
-import { Media, Property } from "@/payload-types";
+import { Property } from "@/payload-types";
+
+function getYouTubeVideoId(url?: string | null): string | undefined {
+  if (!url) return undefined;
+
+  const regex =
+    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+
+  const match = url.match(regex);
+  return match?.[1];
+}
+
+function getYouTubeEmbedUrl(url?: string | null): string | undefined {
+  const videoId = getYouTubeVideoId(url);
+  return videoId ? `https://www.youtube.com/embed/${videoId}` : undefined;
+}
+
+function getYouTubeThumbnailUrl(url?: string | null): string | undefined {
+  const videoId = getYouTubeVideoId(url);
+  return videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : undefined;
+}
 
 export default function Video({ property }: { property: Property }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,16 +31,15 @@ export default function Video({ property }: { property: Property }) {
     setIsOpen(true);
   }, []);
 
-  const coverImage = useMemo(() => {
-    const images = (property?.images ?? []).filter(
-      (image): image is Media =>
-        typeof image === "object" && image !== null && "url" in image,
-    );
+  const embedUrl = useMemo(() => {
+    return getYouTubeEmbedUrl(property.videoUrl);
+  }, [property.videoUrl]);
 
-    return images[0] ?? null;
-  }, [property?.images]);
+  const thumbnailUrl = useMemo(() => {
+    return getYouTubeThumbnailUrl(property.videoUrl);
+  }, [property.videoUrl]);
 
-  if (!coverImage?.url) return null;
+  if (!embedUrl || !thumbnailUrl) return null;
 
   return (
     <>
@@ -28,16 +47,14 @@ export default function Video({ property }: { property: Property }) {
 
       <div className="widget-video" style={{ position: "relative" }}>
         <Image
-          data-src={coverImage.url}
-          src={coverImage.url}
-          alt={coverImage.alt || property.title || "Video de la propiedad"}
-          width={coverImage.width ?? 850}
-          height={coverImage.height ?? 400}
+          src={thumbnailUrl}
+          alt={property.title || "Video de la propiedad"}
+          width={850}
+          height={400}
         />
 
         <div
           onClick={handleVideoClick}
-          data-fancybox="gallery2"
           className="btn-video popup-youtube"
           aria-label="Play Video"
         >
@@ -53,7 +70,7 @@ export default function Video({ property }: { property: Property }) {
       <ModalVideo
         setIsOpen={setIsOpen}
         isOpen={isOpen}
-        videoId={"XHOmBV4js_E"}
+        src={embedUrl}
       />
     </>
   );

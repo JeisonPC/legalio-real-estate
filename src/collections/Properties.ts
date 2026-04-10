@@ -151,5 +151,15 @@ export const Properties: CollectionConfig = {
       label: "Descripción",
       type: "textarea",
     },
+    {
+      name: 'videoId',
+      type: 'text',
+      label: 'ID del video de YouTube',
+    },
+    {
+      name: 'videoUrl',
+      type: 'text',
+      label: 'URL del video de YouTube',
+    }
   ],
 };

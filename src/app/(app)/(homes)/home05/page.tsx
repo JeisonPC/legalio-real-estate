@@ -8,13 +8,16 @@ import Properties2 from "@/components/homes/homepage-5/Properties2";
 import Testimonials from "@/components/homes/homepage-5/Testimonials";
 import WhyChoose from "@/components/homes/homepage-5/WhyChoose";
 import LatestNews from "@/components/homes/LatestNews";
+import { getCities } from "@/lib/queries/cities";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+    const cities = await getCities();
+
     return (
         <>
             <Header5 />
-            <Hero />
+            <Hero cities={cities} />
             <About />
             <Properties />
             <WhyChoose />

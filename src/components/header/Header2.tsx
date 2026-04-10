@@ -26,12 +26,12 @@ export default function Header2() {
                         </div>
                         <Nav />
                         <div className="header-right d-flex align-items-center gap_20">
-                            <Link
+                            {/* <Link
                                 href={"/login"}
                                 className="link text-button text_white"
                             >
                                 Inicio de sesión/Registro
-                            </Link>
+                            </Link> */}
                             <a
                                 href="#"
                                 className="tf-btn btn-bg-primary-2 sm-hide"

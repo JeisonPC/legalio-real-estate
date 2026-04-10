@@ -207,6 +207,8 @@ export interface Property {
       }[]
     | null;
   description?: string | null;
+  videoId?: string | null;
+  videoUrl?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -418,6 +420,8 @@ export interface PropertiesSelect<T extends boolean = true> {
         id?: T;
       };
   description?: T;
+  videoId?: T;
+  videoUrl?: T;
   updatedAt?: T;
   createdAt?: T;
 }

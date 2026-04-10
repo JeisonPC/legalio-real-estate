@@ -8,13 +8,16 @@ import Properties from "@/components/homes/homepage-1/Properties";
 // import Testimonials from "@/components/homes/homepage-1/Testimonials";
 // import LatestNews from "@/components/homes/LatestNews";
 import Layout from "@/components/layouts/Layout-defaul";
+import { getCities } from "@/lib/queries/cities";
 
 export const dynamic = "force-dynamic";
 
-export default function Home() {
+export default async function Home() {
+  const cities = await getCities();
+
   return (
     <Layout>
-      <Hero />
+      <Hero cities={cities} />
       {/* <About /> */}
       <Properties />
       {/* <Banner /> */}

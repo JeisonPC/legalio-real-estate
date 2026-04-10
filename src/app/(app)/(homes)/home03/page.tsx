@@ -7,13 +7,16 @@ import Hero from "@/components/homes/homepage-3/Hero";
 import LatestNew from "@/components/homes/homepage-3/LatestNews";
 import Properties from "@/components/homes/homepage-3/Properties";
 import TopProperties from "@/components/homes/TopProperties";
+import { getCities } from "@/lib/queries/cities";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+    const cities = await getCities();
+
     return (
         <>
             <Header3 />
-            <Hero />
+            <Hero cities={cities} />
             <Properties />
             <Categories />
             <Process1 />

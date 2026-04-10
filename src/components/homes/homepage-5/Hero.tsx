@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
+import type { City } from "@/payload-types";
 
 type HeroSlide = {
     id: number;
@@ -51,7 +52,11 @@ const heroSlides: HeroSlide[] = [
     },
 ];
 
-export default function Hero() {
+interface HeroProps {
+    cities: City[];
+}
+
+export default function Hero({ cities }: HeroProps) {
     // Check if there are slides to display
     if (!heroSlides || heroSlides.length === 0) {
         return null;
@@ -146,7 +151,7 @@ export default function Hero() {
                     <i className="icon-CaretRight"></i>
                 </div>
             </div> */}
-            <SidebarFilterDefault />
+            <SidebarFilterDefault cities={cities} />
         </div>
     );
 }
