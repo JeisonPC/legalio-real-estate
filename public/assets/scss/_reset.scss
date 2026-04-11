@@ -1724,22 +1724,23 @@ a {
     -webkit-transition: all 400ms linear;
     -o-transition: all 400ms linear;
     transition: all 400ms linear;
-    background: var(--White);
+    background: var(--whatsapp-green);
     box-shadow: 0px 10px 25px 0px #475c851a;
 
     &::after {
         position: absolute;
-        content: "\e900";
+        content: "\ea93";
         font-family: $fontIcon;
         text-align: center;
         line-height: 40px;
         font-size: 24px;
-        color: var(--Text-primary);
+        // color: var(--Text-primary);
         cursor: pointer;
         z-index: 1;
         -webkit-transition: all 400ms linear;
         -o-transition: all 400ms linear;
         transition: all 400ms linear;
+        color: var(--White);
     }
 
     &.active-progress {
