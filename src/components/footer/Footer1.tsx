@@ -1,10 +1,10 @@
 "use client";
-import { footerSections } from "@/data/footer";
-import Image from "next/image";
+// import { footerSections } from "@/data/footer";
+// import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
-import { subscribeNewsletter } from "@/actions/newsletterAction";
+// import { subscribeNewsletter } from "@/actions/newsletterAction";
 
 // Accordion logic unchanged
 const handleFooter = (): void => {
@@ -121,13 +121,13 @@ export default function Footer1() {
         };
     }, [pathname]);
 
-    const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const form = event.currentTarget;
-        const formData = new FormData(form);
-        // Call the server action
-        await subscribeNewsletter(formData);
-    };
+    // const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
+    //     const form = event.currentTarget;
+    //     const formData = new FormData(form);
+    //     // Call the server action
+    //     await subscribeNewsletter(formData);
+    // };
 
     return (
         <footer className="footer" style={{paddingTop: 0}}>
