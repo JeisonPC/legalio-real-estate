@@ -26,16 +26,16 @@ export default function Header4() {
                                 </Link>
                                 <Nav />
                                 <div className="header-right d-flex align-items-center gap_20">
-                                    {/* <Link
-                                        href="login.html"
+                                    <Link
+                                        href="/login"
                                         className="link text-button text_primary-color"
                                     >
                                         Inicio de sesión/Registro
-                                    </Link> */}
-                                    <Link href="#" className="tf-btn md-hide">
+                                    </Link>
+                                    {/* <Link href="#" className="tf-btn md-hide">
                                         <span>Publicar Propiedad</span>
                                         <span className="bg-effect"></span>
-                                    </Link>
+                                    </Link> */}
                                     <div
                                         className="mobile-button d-xl-none"
                                         onClick={() => setIsMenuOpen(true)}

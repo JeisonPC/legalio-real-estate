@@ -23,7 +23,7 @@ export default function page() {
                             <li>
                                 <Link href="/">Home</Link>
                             </li>
-                            <li>Login</li>
+                            <li>Inicio de Sesión</li>
                         </ul>
                     </div>
                 </div>

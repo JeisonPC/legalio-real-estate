@@ -16,13 +16,13 @@ export default function FormLogin() {
             <div className="row justify-content-center">
                 <div className="col-lg-6">
                     <form className="form-account" action={loginAction}>
-                        <h3 className="text-center mb_23">Log In</h3>
+                        <h3 className="text-center mb_23">Inicio de Sesión</h3>
                         <fieldset className="mb_20">
                             <label
                                 htmlFor="email"
                                 className="form-label text_primary-color text-button mb_8"
                             >
-                                Your Email <span className="required">*</span>
+                                Tu correo electrónico <span className="required">*</span>
                             </label>
                             <input
                                 type="email"
@@ -30,7 +30,7 @@ export default function FormLogin() {
                                 id="email"
                                 name="email"
                                 autoComplete="email"
-                                placeholder="Enter your email"
+                                placeholder="Ingresa tu correo electrónico"
                                 required
                             />
                         </fieldset>
@@ -38,7 +38,7 @@ export default function FormLogin() {
                             htmlFor="password"
                             className="form-label text_primary-color text-button mb_8"
                         >
-                            Password <span className="required">*</span>
+                            Contraseña <span className="required">*</span>
                         </label>
                         <fieldset className="mb_20 position-relative">
                             <input
@@ -46,7 +46,7 @@ export default function FormLogin() {
                                 className="form-input"
                                 id="password"
                                 name="password"
-                                placeholder="Enter your password"
+                                placeholder="Ingresa tu contraseña"
                                 required
                             />
                             <button
@@ -74,7 +74,7 @@ export default function FormLogin() {
                                     <input type="checkbox" name="remember" />
                                     <span className="btn-checkbox"></span>
                                     <span className="text-body-default">
-                                        Remember me
+                                        Recuérdame
                                     </span>
                                 </label>
                             </fieldset>
@@ -82,30 +82,30 @@ export default function FormLogin() {
                                 href="#"
                                 className="hover-line-text forgot text-body-default"
                             >
-                                Forgot password?
+                                ¿Perdiste la contraseña?
                             </a>
                         </div>
                         <div className="or">
-                            <span className="text-body-default">or sign up with</span>
+                            <span className="text-body-default">o regístrate con</span>
                         </div>
                         <div className="signin-with d-grid gap_9 mb_24">
                             <a href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
-                                    <Image src="/assets/images/logo/facebook.svg" alt="logo" />
+                                    <Image width={50} height={50} src="/assets/images/logo/facebook.svg" alt="logo" />
                                     Continue With Facebook
                                 </span>
                                 <span className="bg-effect"></span>
                             </a>
                             <a href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
-                                    <Image src="/assets/images/logo/google.svg" alt="logo" />
+                                    <Image width={50} height={50} src="/assets/images/logo/google.svg" alt="logo" />
                                     Continue With Google
                                 </span>
                                 <span className="bg-effect"></span>
                             </a>
                             <a href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
-                                    <Image src="/assets/images/logo/twitter.svg" alt="logo" />
+                                    <Image width={50} height={50} src="/assets/images/logo/twitter.svg" alt="logo" />
                                     Continue With Twitter
                                 </span>
                                 <span className="bg-effect"></span>
@@ -120,12 +120,12 @@ export default function FormLogin() {
                         </button>
 
                         <p className="login-link text-center">
-                            Not registered yet?{" "}
+                            ¿No tienes cuenta?{" "}
                             <Link
                                 href="/register"
                                 className="hover-underline-link text_primary-color fw-6"
                             >
-                                Sign Up
+                                Regístrate
                             </Link>
                         </p>
                     </form>
