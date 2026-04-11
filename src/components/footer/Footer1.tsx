@@ -130,9 +130,9 @@ export default function Footer1() {
     };
 
     return (
-        <footer className="footer">
+        <footer className="footer" style={{paddingTop: 0}}>
             <div className="tf-container ">
-                <div className="footer-body">
+                {/* <div className="footer-body">
                     <div className="row">
                         <div className="col-lg-4 col-md-6">
                             <div className="footer-about footer-item">
@@ -155,7 +155,7 @@ export default function Footer1() {
                                 </div>
                                 <div className="text-body-default text_secondary-color mb_16">
                                     <span className="text_color-1">
-                                        Support 24/7:{" "}
+                                        Support 24/7:
                                     </span>
                                     <span className="text_white ms_4">
                                         1-555-678-8888
@@ -268,7 +268,7 @@ export default function Footer1() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="footer-bottom d-flex align-items-center justify-content-between">
                     <p className="text_muted-color">
                         ©2025 {"  "}
