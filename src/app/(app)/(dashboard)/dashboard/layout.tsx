@@ -1,0 +1,87 @@
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+import { getPayload } from "payload";
+import config from "@/payload.config";
+// import Layout from "@/components/layouts/Layout-defaul";
+import styles from "./dashboard.module.css";
+// import CardDocuments from "@/components/cards/cards-documents";
+import Aside from "@/components/aside/Aside";
+// import { DocumentListPanel } from "@/components/documentListPanel/documentListPanel";
+
+export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("legalio_token")?.value;
+
+    if (!token) {
+        redirect("/login");
+    }
+
+    const payload = await getPayload({ config });
+
+    const headers = new Headers();
+    headers.set("authorization", `JWT ${token}`);
+
+    const { user } = await payload.auth({
+        headers,
+    });
+
+
+    if (!user) {
+        redirect("/login");
+    }
+
+    const roleLabels = {
+        admin: "Administrador",
+        tenant: "Arrendatario",
+        owner: "Propietario",
+    };
+
+    const roleLabel = roleLabels[user.role] || user.role;
+
+
+    return (
+        <div className={styles.container}>
+            <section className={styles.heading}>
+                <div className={styles["heading-left"]}>
+                    <p>GESTIÓN DE ACTIVOS</p>
+
+                    <h1>Expediente Digital de Arrendamiento
+                    </h1>
+                </div>
+                <div className={styles["heading-right"]}>
+                    <p>Acceda a su documentación legal con la seguridad de
+                        nuestra firma. Todos sus contratos y recibos validados
+                        en un solo entorno soberano.</p>
+                </div>
+            </section>
+            <p>
+                Bienvenido, <strong>{user.fullName || user.email}</strong>
+            </p>
+
+            <p>Rol: {roleLabel}</p>
+
+            <hr style={{ margin: "20px 0" }} />
+
+            <section className={styles["aside-section"]}>
+                <div className={styles["aside-container"]}>
+                    <Aside
+                        items={[
+                            { label: "Contrato", href: "/dashboard" },
+                            { label: "Documentos", href: "/dashboard/documents" },
+                            { label: "Recibos", href: "/dashboard/receipts" },
+                            { label: "Inventario", href: "/dashboard/inventory" },
+                        ]}
+                    />
+                    <div className={styles["card-security"]}>
+                        <h3>Seguridad Legalio</h3>
+                        <p>Encriptación de grado militar y firma
+                            digital certificada en cada documento.</p>
+                    </div>
+                </div>
+                <div className={styles["document-list-container"]}>
+                    {children}
+                </div>
+            </section>
+        </div>
+    );
+}

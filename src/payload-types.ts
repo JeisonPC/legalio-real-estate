@@ -73,6 +73,8 @@ export interface Config {
     countries: Country;
     departments: Department;
     cities: City;
+    leases: Lease;
+    documents: Document;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -86,6 +88,8 @@ export interface Config {
     countries: CountriesSelect<false> | CountriesSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     cities: CitiesSelect<false> | CitiesSelect<true>;
+    leases: LeasesSelect<false> | LeasesSelect<true>;
+    documents: DocumentsSelect<false> | DocumentsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -131,6 +135,8 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  role: 'admin' | 'tenant' | 'owner';
+  fullName?: string | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -157,11 +163,7 @@ export interface User {
 export interface Media {
   id: number;
   alt: string;
-  cloudinaryPublicId?: string | null;
-  cloudinaryUrl?: string | null;
-  cloudinarySecureUrl?: string | null;
-  bytes?: number | null;
-  format?: string | null;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -259,6 +261,51 @@ export interface Country {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leases".
+ */
+export interface Lease {
+  id: number;
+  leaseCode: string;
+  property: number | Property;
+  owner: number | User;
+  tenant: number | User;
+  startDate: string;
+  endDate: string;
+  monthlyRent: number;
+  depositValue?: number | null;
+  status: 'active' | 'ended' | 'suspended' | 'late';
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  title: string;
+  documentType: 'contract' | 'inventory' | 'application' | 'payment_receipt';
+  tenant: number | User;
+  lease?: (number | null) | Lease;
+  month?: string | null;
+  year?: number | null;
+  isVisibleToTenant?: boolean | null;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -304,6 +351,14 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'cities';
         value: number | City;
+      } | null)
+    | ({
+        relationTo: 'leases';
+        value: number | Lease;
+      } | null)
+    | ({
+        relationTo: 'documents';
+        value: number | Document;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -352,6 +407,8 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  role?: T;
+  fullName?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -375,11 +432,7 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
-  cloudinaryPublicId?: T;
-  cloudinaryUrl?: T;
-  cloudinarySecureUrl?: T;
-  bytes?: T;
-  format?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -462,6 +515,49 @@ export interface CitiesSelect<T extends boolean = true> {
   image?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "leases_select".
+ */
+export interface LeasesSelect<T extends boolean = true> {
+  leaseCode?: T;
+  property?: T;
+  owner?: T;
+  tenant?: T;
+  startDate?: T;
+  endDate?: T;
+  monthlyRent?: T;
+  depositValue?: T;
+  status?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents_select".
+ */
+export interface DocumentsSelect<T extends boolean = true> {
+  title?: T;
+  documentType?: T;
+  tenant?: T;
+  lease?: T;
+  month?: T;
+  year?: T;
+  isVisibleToTenant?: T;
+  prefix?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  url?: T;
+  thumbnailURL?: T;
+  filename?: T;
+  mimeType?: T;
+  filesize?: T;
+  width?: T;
+  height?: T;
+  focalX?: T;
+  focalY?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

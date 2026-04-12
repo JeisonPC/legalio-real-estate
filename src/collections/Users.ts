@@ -8,10 +8,35 @@ export const Users: CollectionConfig = {
   },
   admin: {
     useAsTitle: "email",
+    defaultColumns: ["email", "role"],
   },
   auth: true,
   fields: [
-    // Email added by default
-    // Add more fields as needed
+    {
+      name: "role",
+      label: "Rol",
+      type: "select",
+      required: true,
+      defaultValue: "tenant",
+      options: [
+        {
+          label: "Administrador",
+          value: "admin",
+        },
+        {
+          label: "Arrendatario",
+          value: "tenant",
+        },
+        {
+          label: "Propietario",
+          value: "owner",
+        },
+      ],
+    },
+    {
+      name: "fullName",
+      label: "Nombre completo",
+      type: "text",
+    },
   ],
 };

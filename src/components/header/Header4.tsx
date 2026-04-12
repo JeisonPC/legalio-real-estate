@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Nav from "./Nav";
 import Image from "next/image";
@@ -6,8 +7,25 @@ import MobileMenu from "./MobileMenu";
 import Link from "next/link";
 import Offcanvas from "../common/Offcanvas";
 
-export default function Header4() {
+type Header4Props = {
+    isLoggedIn: boolean;
+};
+
+export default function Header4({ isLoggedIn }: Header4Props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const handleLogout = async () => {
+        try {
+            await fetch("/api/logout", {
+                method: "POST",
+            });
+
+            window.location.href = "/login";
+        } catch (error) {
+            console.error("Error cerrando sesión:", error);
+        }
+    };
+
     return (
         <>
             <header className="header style-3 header-fixed">
@@ -24,18 +42,33 @@ export default function Header4() {
                                         src="/assets/images/logo/logo.png"
                                     />
                                 </Link>
+
                                 <Nav />
+
                                 <div className="header-right d-flex align-items-center gap_20">
-                                    <Link
-                                        href="/login"
-                                        className="link text-button text_primary-color"
-                                    >
-                                        Inicio de sesión/Registro
-                                    </Link>
-                                    {/* <Link href="#" className="tf-btn md-hide">
-                                        <span>Publicar Propiedad</span>
-                                        <span className="bg-effect"></span>
-                                    </Link> */}
+                                    {isLoggedIn ? (
+                                        <button
+                                            type="button"
+                                            onClick={handleLogout}
+                                            className="link text-button text_primary-color"
+                                            style={{
+                                                background: "none",
+                                                border: "none",
+                                                padding: 0,
+                                                cursor: "pointer",
+                                            }}
+                                        >
+                                            Cerrar sesión
+                                        </button>
+                                    ) : (
+                                        <Link
+                                            href="/login"
+                                            className="link text-button text_primary-color"
+                                        >
+                                            Inicio de sesión/Registro
+                                        </Link>
+                                    )}
+
                                     <div
                                         className="mobile-button d-xl-none"
                                         onClick={() => setIsMenuOpen(true)}
@@ -71,6 +104,7 @@ export default function Header4() {
                                 />
                             </Link>
                         </div>
+
                         <div
                             className="btn-close-menu"
                             onClick={() => setIsMenuOpen(false)}
@@ -78,18 +112,37 @@ export default function Header4() {
                             <i className="icon-times-solid"></i>
                         </div>
                     </div>
+
                     <div className="offcanvas-body inner-mobile-nav">
                         <div className="mb-body">
                             <MobileMenu />
+
                             <div className="support">
                                 <Link href="#" className="tf-btn ">
                                     <span>Publicar Propiedad</span>
                                     <span className="bg-effect"></span>
                                 </Link>
-                                <Link href="#" className="text-need">
-                                    {" "}
-                                    Need help?
-                                </Link>
+
+                                {isLoggedIn ? (
+                                    <button
+                                        type="button"
+                                        onClick={handleLogout}
+                                        className="text-need"
+                                        style={{
+                                            background: "none",
+                                            border: "none",
+                                            padding: 0,
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        Cerrar sesión
+                                    </button>
+                                ) : (
+                                    <Link href="/login" className="text-need">
+                                        Inicio de sesión
+                                    </Link>
+                                )}
+
                                 <ul className="mb-info">
                                     <li>
                                         Call Us Now:{" "}
@@ -102,43 +155,6 @@ export default function Header4() {
                                         <Link href="#" className="link">
                                             contacto@legalio.com.co
                                         </Link>
-                                    </li>
-                                    <li>
-                                        <div className="wrap-social">
-                                            <p>Follow us:</p>
-                                            <ul className="social align-items-center d-flex gap_24">
-                                                <li>
-                                                    <Link
-                                                        href="#"
-                                                        className="icon-FacebookLogo"
-                                                    ></Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        href="#"
-                                                        className="icon-XLogo"
-                                                    ></Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        href="#"
-                                                        className="icon-TiktokLogo"
-                                                    ></Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        href="#"
-                                                        className="icon-InstagramLogo"
-                                                    ></Link>
-                                                </li>
-                                                <li>
-                                                    <Link
-                                                        href="#"
-                                                        className="icon-YoutubeLogo"
-                                                    ></Link>
-                                                </li>
-                                            </ul>
-                                        </div>
                                     </li>
                                 </ul>
                             </div>

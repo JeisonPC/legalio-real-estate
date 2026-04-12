@@ -7,7 +7,7 @@ $fontIcon: "icomoon";
     --Black: #000000;
     --White: #ffffff;
     --Primary: #031756;
-    --Secondary: #d8a203;
+    --Secondary: #F7BE2E;
     --Secondary-2: #77f3a7;
     --Hover: #eaf050;
     --Text-primary: #111111;
@@ -19,11 +19,26 @@ $fontIcon: "icomoon";
     --Bg-light: #f8f7f3;
     --Line: #e4e4e4;
 
-    // Grises
-    --gray-100: #F3F4F6;  /* Background suave */
-    --gray-50:  #F9FAFB;  /* Fondo general */
-    --white:    #FFFFFF;  /* Blanco puro */
+    /* ========================
+       WARM GRAYS (Legalio)
+    ======================== */
+
+    --gray-50: #FAFAF9;
+    --gray-100: #F5F5F4;
+    --gray-200: #E7E5E4;
+    --gray-300: #D6D3D1;
+    --gray-400: #A8A29E;
+    --gray-500: #78716C;
+    --gray-600: #57534E;
+    --gray-700: #44403C;
+    --gray-800: #292524;
+    --gray-900: #1C1917;
+
+
+    --white: #FFFFFF;
+    /* Blanco puro */
 
     // WhatsApp
-    --whatsapp-green: #25D366;  /* Verde WhatsApp */
+    --whatsapp-green: #25D366;
+    /* Verde WhatsApp */
 }

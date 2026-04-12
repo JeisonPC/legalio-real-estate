@@ -36,9 +36,7 @@ export default function PropertiesClient({
 
     const imageUrl =
       typeof firstImage === "object" && firstImage !== null
-        ? firstImage.cloudinarySecureUrl ||
-          firstImage.url ||
-          "/assets/images/placeholder.jpg"
+        ? firstImage.url || "/assets/images/placeholder.jpg"
         : "/assets/images/placeholder.jpg";
 
     const businessLabel =

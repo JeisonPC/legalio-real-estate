@@ -1,38 +1,45 @@
 "use server";
 
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
 export async function loginAction(formData: FormData) {
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const remember = formData.get("remember");
+    const email = String(formData.get("email") || "");
+    const password = String(formData.get("password") || "");
+    const remember = Boolean(formData.get("remember"));
 
-    // Validate form data
     if (!email || !password) {
-        console.error("Login error: Email and password are required");
-        return;
+        throw new Error("Correo y contraseña son obligatorios");
     }
 
-    if (typeof email !== "string" || !email.includes("@")) {
-        console.error("Login error: Invalid email address");
-        return;
+    if (!email.includes("@")) {
+        throw new Error("Correo inválido");
     }
 
-    if (typeof password !== "string" || password.length < 6) {
-        console.error("Login error: Password too short");
-        return;
+    const res = await fetch(`${process.env.PAYLOAD_URL}/api/users/login`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+        cache: "no-store",
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+        throw new Error(data?.errors?.[0]?.message || "Credenciales inválidas");
     }
 
-    try {
-        // Simulate authentication process
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+    const cookieStore = await cookies();
 
-        // Here you would typically:
-        // 1. Verify user credentials against database
-        // 2. Create session/token
-        // 3. Set cookies if remember is true
-        // 4. Log the login attempt
+    cookieStore.set("legalio_token", data.token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "lax",
+        path: "/",
+        maxAge: remember ? 60 * 60 * 24 * 30 : 60 * 60 * 2,
+    });
 
-        console.log("Login successful:", { email, remember: !!remember });
-    } catch (error) {
-        console.error("Login error:", error);
-    }
+    redirect("/dashboard");
 }

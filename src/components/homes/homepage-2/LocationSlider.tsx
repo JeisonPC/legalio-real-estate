@@ -58,9 +58,9 @@ export default function LocationSlider({ cities }: { cities: CityCard[] }) {
           >
             {cities.map((city) => {
               const imageUrl = isMedia(city.image)
-                ? city.image.cloudinarySecureUrl ||
-                  city.image.url ||
-                  "/assets/images/section/location-7.jpg"
+                ?
+                city.image.url ||
+                "/assets/images/section/location-7.jpg"
                 : "/assets/images/section/location-7.jpg";
 
               return (

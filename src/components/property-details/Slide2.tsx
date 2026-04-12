@@ -18,7 +18,7 @@ export default function Slide2({ property }: { property: Property }) {
   );
 
   const getImageUrl = (img: Media) =>
-    img.cloudinarySecureUrl || img.url || "/images/placeholder.jpg";
+    img.url || "/images/placeholder.jpg";
 
   const thumbProps = {
     spaceBetween: 14,

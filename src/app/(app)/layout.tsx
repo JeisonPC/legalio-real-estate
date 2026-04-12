@@ -7,7 +7,12 @@ import "../../../public/assets/icons/icomoon/style.css";
 import "../../../public/assets/scss/app.scss";
 import BackToTop from "@/components/common/BackToTop";
 import ClientScripts from "@/components/common/ClientScripts";
+import Footer1 from "@/components/footer/Footer1";
+import Header4 from "@/components/header/Header4";
 import { Metadata } from "next";
+import { cookies } from "next/headers";
+import styles from "./layout.module.css";
+
 
 const manrope = Manrope({
     variable: "--font-manrope",
@@ -30,15 +35,28 @@ export const metadata: Metadata = {
     ],
 };
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
+    const cookieStore = await cookies();
+    const token = cookieStore.get("legalio_token")?.value;
+    const isLoggedIn = Boolean(token);
+
     return (
-        <html lang="en">
+        <html lang="es">
             <body className={manrope.variable}>
-                <div id="wrapper">{children}</div>
+                <div
+                    id="wrapper"
+                    className={`clearfix bg-light-color ${styles["content-global"]}`}
+                >
+                    <Header4 isLoggedIn={isLoggedIn} />
+                    <section className={styles.contentMain}>
+                        {children}
+                    </section>
+                    <Footer1 />
+                </div>
                 <ClientScripts />
                 <BackToTop />
             </body>
