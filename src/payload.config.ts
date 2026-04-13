@@ -81,17 +81,19 @@ export default buildConfig({
     }),
   ],
 
-  email: nodemailerAdapter({
-    defaultFromAddress: "contacto@legalio.com.co",
-    defaultFromName: "Legalio",
-    transportOptions: {
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS,
+  email: process.env.SMTP_HOST
+    ? nodemailerAdapter({
+      defaultFromAddress: "contacto@legalio.com.co",
+      defaultFromName: "Legalio",
+      transportOptions: {
+        host: process.env.SMTP_HOST,
+        port: Number(process.env.SMTP_PORT),
+        secure: Number(process.env.SMTP_PORT) === 465,
+        auth: {
+          user: process.env.SMTP_USER,
+          pass: process.env.SMTP_PASS,
+        },
       },
-    },
-  }),
+    })
+    : undefined,
 });
