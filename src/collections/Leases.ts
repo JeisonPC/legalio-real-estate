@@ -110,5 +110,30 @@ export const Leases: CollectionConfig = {
             label: 'Observaciones',
             type: 'textarea',
         },
+        {
+            name: 'contractDocument',
+            label: 'Documento del contrato',
+            type: 'upload',
+            relationTo: 'documents',
+            required: false,
+            maxDepth: 1,
+        },
+        {
+            name: 'inventoryDocument',
+            label: 'Inventario y acta de entrega',
+            type: 'upload',
+            relationTo: 'documents',
+            required: false,
+            maxDepth: 1,
+        },
+        {
+            name: 'otherDocuments',
+            label: 'Otros documentos',
+            type: 'upload',
+            relationTo: 'documents',
+            hasMany: true,
+            required: false,
+            maxDepth: 1,
+        }
     ],
 }

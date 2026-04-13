@@ -209,7 +209,6 @@ export interface Property {
       }[]
     | null;
   description?: string | null;
-  videoId?: string | null;
   videoUrl?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -275,6 +274,9 @@ export interface Lease {
   depositValue?: number | null;
   status: 'active' | 'ended' | 'suspended' | 'late';
   notes?: string | null;
+  contractDocument?: (number | null) | Document;
+  inventoryDocument?: (number | null) | Document;
+  otherDocuments?: (number | Document)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -473,7 +475,6 @@ export interface PropertiesSelect<T extends boolean = true> {
         id?: T;
       };
   description?: T;
-  videoId?: T;
   videoUrl?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -531,6 +532,9 @@ export interface LeasesSelect<T extends boolean = true> {
   depositValue?: T;
   status?: T;
   notes?: T;
+  contractDocument?: T;
+  inventoryDocument?: T;
+  otherDocuments?: T;
   updatedAt?: T;
   createdAt?: T;
 }

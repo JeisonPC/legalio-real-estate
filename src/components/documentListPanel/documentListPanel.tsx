@@ -1,86 +1,87 @@
-'use client';
-
 import Link from 'next/link';
 import styles from './documentListPanel.module.css';
-import type { Document } from '@/payload-types';
+import { bytesToMBFormatted } from '@/helpers/helpers';
 
-type DocumentListPanelProps = {
-    documents?: Document[];
+type DocumentListPanelProps<T> = {
+    items?: T[];
     title?: string;
+    getId: (item: T) => string | number;
+    getTitle: (item: T) => string;
+    getSize?: (item: T) => number | null | undefined;
+    getUrl?: (item: T) => string | null | undefined;
 };
 
-function formatFileSize(bytes?: number | null) {
-    if (!bytes || bytes <= 0) return '0 B';
-
-    const units = ['B', 'KB', 'MB', 'GB'];
-    let size = bytes;
-    let unitIndex = 0;
-
-    while (size >= 1024 && unitIndex < units.length - 1) {
-        size /= 1024;
-        unitIndex++;
-    }
-
-    return `${size.toFixed(unitIndex === 0 ? 0 : 2)} ${units[unitIndex]}`;
-}
-
-export const DocumentListPanel = ({
-    documents = [],
+export function DocumentListPanel<T>({
+    items = [],
     title,
-}: DocumentListPanelProps) => {
+    getId,
+    getTitle,
+    getSize,
+    getUrl,
+}: DocumentListPanelProps<T>) {
     return (
         <div className={styles["document-list-panel"]}>
             <section className={styles.heading}>
                 <h2 className={styles.title}>{title || "Documentos"}</h2>
             </section>
 
-            {documents.length === 0 ? (
-                <p>Aún no tienes documentos.</p>
+            {items.length === 0 ? (
+                <p>Aún no tienes elementos.</p>
             ) : (
                 <ul className={styles.list}>
-                    {documents.map((doc) => (
-                        <li key={doc.id} className={styles.li}>
-                            <div className={styles["li-left"]}>
-                                <div className={styles.icon}>
-                                    <i className="icon-FilePdf" />
-                                </div>
+                    {items.map((item) => {
+                        const id = getId(item);
+                        const itemTitle = getTitle(item);
+                        const size = bytesToMBFormatted(getSize?.(item));
+                        const url = getUrl?.(item);
 
-                                <div className={styles.content}>
-                                    <span className={styles.docTitle}>{doc.title}</span>
-                                    <div className={styles.metaRow}>
-                                        <span className={styles.meta}>
-                                            {formatFileSize(doc.filesize)}
-                                        </span>
+                        console.log("URL del documento:", url);
+
+                        return (
+                            <li key={id} className={styles.li}>
+                                <div className={styles["li-left"]}>
+                                    <div className={styles.icon}>
+                                        <i className="icon-FilePdf" />
+                                    </div>
+
+                                    <div className={styles.content}>
+                                        <span className={styles.docTitle}>{itemTitle}</span>
+
+                                        {size !== undefined && (
+                                            <div className={styles.metaRow}>
+                                                <span className={styles.meta}>{size}</span>
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
-                            </div>
 
-                            {doc.url && (
-                                <div className={styles.actions}>
-                                    <Link
-                                        href={doc.url}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={styles.viewLink}
-                                    >
-                                        <i className="icon-eye" />
-                                        VER
-                                    </Link>
+                                {url && (
+                                    <div className={styles.actions}>
+                                        <Link
+                                            href={url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className={styles.viewLink}
+                                        >
+                                            <i className="icon-eye" />
+                                            VER
+                                        </Link>
 
-                                    <Link
-                                        href={doc.url}
-                                        download
-                                        className={styles.downloadLink}
-                                    >
-                                        <i className="icon-DownloadSimple" />
-                                        BAJAR
-                                    </Link>
-                                </div>
-                            )}
-                        </li>
-                    ))}
+                                        <Link
+                                            href={url}
+                                            download
+                                            className={styles.downloadLink}
+                                        >
+                                            <i className="icon-DownloadSimple" />
+                                            BAJAR
+                                        </Link>
+                                    </div>
+                                )}
+                            </li>
+                        );
+                    })}
                 </ul>
             )}
         </div>
     );
-};
+}

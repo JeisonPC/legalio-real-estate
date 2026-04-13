@@ -43,9 +43,10 @@ export default async function DashboardLayout({ children }: { children: React.Re
         <div className={styles.container}>
             <section className={styles.heading}>
                 <div className={styles["heading-left"]}>
-                    <p>GESTIÓN DE ACTIVOS</p>
+                    <p>ÁREA DE ARRENDATARIOS</p>
 
-                    <h1>Expediente Digital de Arrendamiento
+                    <h1>
+                        Bienvenido, <strong>{user.fullName || user.email}</strong>
                     </h1>
                 </div>
                 <div className={styles["heading-right"]}>
@@ -54,9 +55,6 @@ export default async function DashboardLayout({ children }: { children: React.Re
                         en un solo entorno soberano.</p>
                 </div>
             </section>
-            <p>
-                Bienvenido, <strong>{user.fullName || user.email}</strong>
-            </p>
 
             <p>Rol: {roleLabel}</p>
 
@@ -66,10 +64,10 @@ export default async function DashboardLayout({ children }: { children: React.Re
                 <div className={styles["aside-container"]}>
                     <Aside
                         items={[
-                            { label: "Contrato", href: "/dashboard" },
-                            { label: "Documentos", href: "/dashboard/documents" },
+                            { label: "Todos los documentos", href: "/dashboard" },
+                            { label: "Contrato", href: "/dashboard/contract" },
                             { label: "Recibos", href: "/dashboard/receipts" },
-                            { label: "Inventario", href: "/dashboard/inventory" },
+                            { label: "Inventario y Acta de Entrega", href: "/dashboard/inventory" },
                         ]}
                     />
                     <div className={styles["card-security"]}>
@@ -80,6 +78,11 @@ export default async function DashboardLayout({ children }: { children: React.Re
                 </div>
                 <div className={styles["document-list-container"]}>
                     {children}
+                </div>
+                <div className={styles["card-security-mobile"]}>
+                    <h3>Seguridad Legalio</h3>
+                    <p>Encriptación de grado militar y firma
+                        digital certificada en cada documento.</p>
                 </div>
             </section>
         </div>

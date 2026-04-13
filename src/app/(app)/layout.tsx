@@ -23,6 +23,11 @@ export const metadata: Metadata = {
     title: "Legalio | Asesoría legal inmobiliaria en Colombia",
     description:
         "Compra, vende o arrienda con seguridad jurídica. En Legalio te acompañamos en todo el proceso inmobiliario con respaldo legal real. Evita fraudes y protege tu inversión.",
+    icons: {
+        icon: "/favicon.ico?v=2",
+        shortcut: "/favicon.ico?v=2",
+        apple: "/favicon.ico?v=2",
+    },
     keywords: [
         "asesoría inmobiliaria Colombia",
         "abogados inmobiliarios",
