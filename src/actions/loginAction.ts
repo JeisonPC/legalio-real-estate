@@ -3,12 +3,20 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
-type LoginState = {
+interface LoginState {
     error?: string;
-};
+}
+
+interface LoginResponse {
+    token?: string;
+    user?: unknown;
+    errors?: {
+        message: string;
+    }[];
+}
 
 export async function loginAction(
-    prevState: LoginState,
+    _prevState: LoginState,
     formData: FormData
 ): Promise<LoginState> {
     const email = String(formData.get("email") || "").trim();
@@ -33,15 +41,19 @@ export async function loginAction(
             cache: "no-store",
         });
 
-        let data: any = {};
+        let data: LoginResponse = {};
         try {
             data = await res.json();
         } catch { }
 
         if (!res.ok) {
             return {
-                error: data?.errors?.[0]?.message || "Credenciales inválidas",
+                error: data.errors?.[0]?.message || "Credenciales inválidas",
             };
+        }
+
+        if (!data.token) {
+            return { error: "No se recibió un token válido al iniciar sesión" };
         }
 
         const cookieStore = await cookies();
