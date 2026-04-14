@@ -47,6 +47,7 @@ export const Documents: CollectionConfig = {
                 { label: "Inventario", value: "inventory" },
                 { label: "Solicitud de arrendamiento", value: "application" },
                 { label: "Recibo de pago", value: "payment_receipt" },
+                { label: "Otro", value: "other" },
             ],
         },
         {
