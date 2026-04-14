@@ -4,14 +4,14 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import styles from "./dashboard.module.css";
 import { DocumentListPanel } from "@/components/documentListPanel/documentListPanel";
-import { isPopulatedDoc } from "@/helpers/helpers";
 
-type DashboardDocumentItem = {
+interface DashboardDocumentItem {
     id: string;
     title: string;
     size: number | null;
     url: string | null;
-};
+    documentType?: string | null;
+}
 
 export default async function DashboardPage() {
     const cookieStore = await cookies();
@@ -26,10 +26,7 @@ export default async function DashboardPage() {
     const headers = new Headers();
     headers.set("authorization", `JWT ${token}`);
 
-    const { user } = await payload.auth({
-        headers,
-    });
-
+    const { user } = await payload.auth({ headers });
 
     if (!user) {
         redirect("/login");
@@ -37,7 +34,7 @@ export default async function DashboardPage() {
 
     const { docs: leases } = await payload.find({
         collection: "leases",
-        depth: 1,
+        depth: 0,
         limit: 50,
         where: {
             tenant: {
@@ -46,45 +43,35 @@ export default async function DashboardPage() {
         },
     });
 
-    console.log("Leases encontrados:", leases);
+    const leaseIds = leases.map((lease) => lease.id);
 
-    const documents: DashboardDocumentItem[] = leases.flatMap((lease) => {
-        const result: DashboardDocumentItem[] = [];
-
-        if (isPopulatedDoc(lease.contractDocument)) {
-            result.push({
-                id: `contract-${lease.id}-${lease.contractDocument.id}`,
-                title: lease.contractDocument.title || `Contrato ${lease.leaseCode}`,
-                size: lease.contractDocument.filesize || null,
-                url: lease.contractDocument.url || null,
-            });
-        }
-
-        if (isPopulatedDoc(lease.inventoryDocument)) {
-            result.push({
-                id: `inventory-${lease.id}-${lease.inventoryDocument.id}`,
-                title:
-                    lease.inventoryDocument.title ||
-                    `Inventario y acta de entrega ${lease.leaseCode}`,
-                size: lease.inventoryDocument.filesize || null,
-                url: lease.inventoryDocument.url || null,
-            });
-        }
-
-        const otherDocuments =
-            lease.otherDocuments?.filter(isPopulatedDoc) ?? [];
-
-        for (const doc of otherDocuments) {
-            result.push({
-                id: `other-${lease.id}-${doc.id}`,
-                title: doc.title || `Documento ${doc.id}`,
-                size: doc.filesize || null,
-                url: doc.url || null,
-            });
-        }
-
-        return result;
+    const { docs: relatedDocuments } = await payload.find({
+        collection: "documents",
+        depth: 0,
+        limit: 200,
+        where: {
+            and: [
+                {
+                    tenant: {
+                        equals: user.id,
+                    },
+                },
+                {
+                    lease: {
+                        in: leaseIds,
+                    },
+                },
+            ],
+        },
     });
+
+    const documents: DashboardDocumentItem[] = relatedDocuments.map((doc) => ({
+        id: String(doc.id),
+        title: doc.title,
+        size: doc.filesize || null,
+        url: doc.url || null,
+        documentType: doc.documentType || null,
+    }));
 
     return (
         <div>
@@ -95,7 +82,9 @@ export default async function DashboardPage() {
                     getId={(doc) => doc.id}
                     getTitle={(doc) => doc.title}
                     getSize={(doc) => doc.size}
-                    getUrl={(doc) => doc.url} />
+                    getUrl={(doc) => doc.url}
+                    getDocumentType={(doc) => doc.documentType}
+                />
             </section>
         </div>
     );

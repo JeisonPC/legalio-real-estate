@@ -287,7 +287,7 @@ export interface Lease {
 export interface Document {
   id: number;
   title: string;
-  documentType: 'contract' | 'inventory' | 'application' | 'payment_receipt';
+  documentType: 'contract' | 'inventory' | 'application' | 'payment_receipt' | 'other';
   tenant: number | User;
   lease?: (number | null) | Lease;
   month?: string | null;

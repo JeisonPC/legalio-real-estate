@@ -33,7 +33,10 @@ export async function loginAction(
             cache: "no-store",
         });
 
-        const data = await res.json();
+        let data: any = {};
+        try {
+            data = await res.json();
+        } catch { }
 
         if (!res.ok) {
             return {

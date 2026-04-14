@@ -9,6 +9,7 @@ type DocumentListPanelProps<T> = {
     getTitle: (item: T) => string;
     getSize?: (item: T) => number | null | undefined;
     getUrl?: (item: T) => string | null | undefined;
+    getDocumentType?: (item: T) => string | null | undefined;
 };
 
 export function DocumentListPanel<T>({
