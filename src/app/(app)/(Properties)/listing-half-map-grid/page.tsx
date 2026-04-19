@@ -6,9 +6,9 @@ export const dynamic = "force-dynamic";
 
 export default function page() {
   return (
-    <>
-      <Header />
-      <Properties5Section />
-    </>
+    <div style={{marginTop: '140px'}}>
+      {/* <Header /> */}
+        <Properties5Section />
+    </div>
   );
 }

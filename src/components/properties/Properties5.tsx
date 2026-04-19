@@ -87,8 +87,6 @@ export default function Properties5({
     itemPerPage,
   } = state;
 
-  console.log("Properties5 render with sorted state:", sorted);
-
   // Additional state for form elements
   const [searchKeyword, setSearchKeyword] = useState<string>("");
 
