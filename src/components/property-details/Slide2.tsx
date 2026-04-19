@@ -104,7 +104,9 @@ export default function Slide2({ property }: { property: Property }) {
                         <div className="wrap-btn d-flex gap_10">
                           <div className="widget-video">
                             <Link
-                              onClick={() => setIsOpen(true)}
+                              onClick={() => {
+                                if (embedUrl) setIsOpen(true);
+                              }}
                               data-fancybox="gallery2"
                               className="tf-btn tf-btn btn-bg-1 popup-youtube"
                               href={""}
