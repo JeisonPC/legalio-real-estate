@@ -29,6 +29,7 @@ export default function PropertiesClient({
   const items = properties.slice(0, 6);
 
   const renderCard = (property: Property) => {
+    console.log("Rendering card for property:", property);
     const firstImage =
       Array.isArray(property.images) && property.images.length > 0
         ? property.images[0]
@@ -64,7 +65,7 @@ export default function PropertiesClient({
             >
               {businessLabel}
             </div>
-            <div className="tag property-type text-button-small fw-6 text_primary-color">
+            <div className="tag property-type text-button-small fw-6 text_primary-color" style={{backgroundColor: 'red'}}>
               {property.propertyType}
             </div>
           </div>

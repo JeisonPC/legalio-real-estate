@@ -9,12 +9,12 @@ export default function page() {
         <Layout>
             <div className="page-title style-default">
                 <div className="thumbs">
-                    <Image
+                    {/* <Image
                         src="/assets/images/page-title/page-title-16.jpg"
                         width={1920}
                         height={300}
                         alt=""
-                    />
+                    /> */}
                 </div>
                 <div className="content text-center">
                     <div className="tf-container">

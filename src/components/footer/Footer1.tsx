@@ -277,13 +277,12 @@ export default function Footer1() {
                             className="text_white hover-underline-link"
                         >
                             Legalio.
-                        </Link>{" "}
-                        {"  "}
-                        All Rights Reserved.
+                        </Link>
+                        Todos los derechos reservados.
                     </p>
                     <ul className="social d-flex gap_24">
                         <li>
-                            <Link href="#" className="icon-FacebookLogo"></Link>
+                            <Link href="https://www.facebook.com/LegalioColombia" className="icon-FacebookLogo"></Link>
                         </li>
                         <li>
                             <Link href="#" className="icon-XLogo"></Link>
@@ -298,7 +297,7 @@ export default function Footer1() {
                             ></Link>
                         </li>
                         <li>
-                            <Link href="#" className="icon-YoutubeLogo"></Link>
+                            <Link href="https://www.youtube.com/@LegalioColombia" className="icon-YoutubeLogo"></Link>
                         </li>
                     </ul>
                 </div>

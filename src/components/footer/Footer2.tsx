@@ -23,7 +23,7 @@ export default function Footer2() {
         <div className="footer-bottom d-flex align-items-center justify-content-between">
           <p className="text_muted-color">
             ©2025 <a href="#" className="text_white hover-underline-link">Legalio </a>
-            All Rights Reserved.
+            Todos los derechos reservados.
           </p>
           <ul className="social d-flex gap_24">
             <li><a href="https://www.facebook.com/LegalioColombia" className="icon-FacebookLogo"></a></li>

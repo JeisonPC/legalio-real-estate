@@ -92,7 +92,7 @@ export default function Footer3() {
           <a href="#" className="text_white hover-underline-link">
             Legalio.
           </a>
-          All Rights Reserved.
+          Todos los derechos reservados.
         </p>
         <ul className="social d-flex gap_24">
           <li>

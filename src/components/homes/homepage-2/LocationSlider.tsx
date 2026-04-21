@@ -79,7 +79,7 @@ export default function LocationSlider({ cities }: { cities: CityCard[] }) {
                       />
                     </Link>
                     <div className="content">
-                      <Link href="#" className="mb_8 h5 text_primary-color">
+                      <Link href="#" className="mb_8 h5">
                         {city.name}
                       </Link>
                       <p className="text-caption-1">

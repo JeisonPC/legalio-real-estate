@@ -14,7 +14,7 @@
         &.style-1 {
             .nav-link-item {
                 position: relative;
-                background: #00000066;
+                background: var(--Primary);
                 &.active,
                 &:hover {
                     background-color: var(--White);

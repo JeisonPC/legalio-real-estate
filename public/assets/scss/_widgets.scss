@@ -873,6 +873,10 @@
         &:hover {
             .content {
                 background-color: var(--Primary);
+                color: white !important;
+                a {
+                    color: var(--White);
+                }
             }
         }
     }
