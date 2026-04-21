@@ -1,6 +1,5 @@
 import FormLogin from "@/components/common/FormLogin";
 import Layout from "@/components/layouts/Layout-defaul";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
