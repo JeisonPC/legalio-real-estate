@@ -12,6 +12,8 @@
   },
   "type": "module",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1033.0",
+    "@aws-sdk/s3-request-presigner": "^3.1033.0",
     "@gsap/react": "^2.1.2",
     "@headlessui/react": "^2.2.4",
     "@payloadcms/db-postgres": "^3.80.0",

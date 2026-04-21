@@ -105,31 +105,31 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                 </a>
               </li>
 
-              <li className="text-button nav-tab-item text_primary-color">
+              {/* <li className="text-button nav-tab-item text_primary-color">
                 <a href="#loan-calculator" className="nav_link">
                   Calculadora de Préstamos
                 </a>
-              </li>
-              <li className="text-button nav-tab-item text_primary-color">
+              </li> */}
+              {/* <li className="text-button nav-tab-item text_primary-color">
                 <a href="#floor-plans" className="nav_link">
                   Planos de Piso
                 </a>
-              </li>
+              </li> */}
               <li className="text-button nav-tab-item text_primary-color">
                 <a href="#location" className="nav_link">
                   Ubicación
                 </a>
               </li>
-              <li className="text-button nav-tab-item text_primary-color">
+              {/* <li className="text-button nav-tab-item text_primary-color">
                 <a href="#nearby" className="nav_link">
                   ¿Qué hay cerca?
                 </a>
-              </li>
-              <li className="text-button nav-tab-item text_primary-color">
+              </li> */}
+              {/* <li className="text-button nav-tab-item text_primary-color">
                 <a href="#customer-reviews" className="nav_link">
                   Reseñas de clientes
                 </a>
-              </li>
+              </li> */}
               <li className="text-button nav-tab-item text_primary-color">
                 <a href="#reviews" className="nav_link">
                   Reseñas

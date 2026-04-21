@@ -65,6 +65,11 @@ export default buildConfig({
       collections: {
         media: {
           prefix: "media",
+          disablePayloadAccessControl: true,
+          generateFileURL: ({ filename, prefix }) => {
+            const key = prefix ? `${prefix}/${filename}` : filename;
+            return `https://${process.env.AWS_BUCKET_NAME}.s3.${process.env.AWS_REGION}.amazonaws.com/${key}`;
+          },
         },
         documents: {
           prefix: "documents",
@@ -83,17 +88,17 @@ export default buildConfig({
 
   email: process.env.SMTP_HOST
     ? nodemailerAdapter({
-      defaultFromAddress: "contacto@legalio.com.co",
-      defaultFromName: "Legalio",
-      transportOptions: {
-        host: process.env.SMTP_HOST,
-        port: Number(process.env.SMTP_PORT),
-        secure: Number(process.env.SMTP_PORT) === 465,
-        auth: {
-          user: process.env.SMTP_USER,
-          pass: process.env.SMTP_PASS,
+        defaultFromAddress: "contacto@legalio.com.co",
+        defaultFromName: "Legalio",
+        transportOptions: {
+          host: process.env.SMTP_HOST,
+          port: Number(process.env.SMTP_PORT),
+          secure: Number(process.env.SMTP_PORT) === 465,
+          auth: {
+            user: process.env.SMTP_USER,
+            pass: process.env.SMTP_PASS,
+          },
         },
-      },
-    })
+      })
     : undefined,
 });

@@ -185,8 +185,6 @@ export interface Property {
   title: string;
   address: string;
   city: number | City;
-  imgWidth: number;
-  imgHeight: number;
   price: number;
   propertyType: 'casa' | 'apartamento' | 'oficina' | 'local';
   businessType: 'venta' | 'arriendo';
@@ -455,8 +453,6 @@ export interface PropertiesSelect<T extends boolean = true> {
   title?: T;
   address?: T;
   city?: T;
-  imgWidth?: T;
-  imgHeight?: T;
   price?: T;
   propertyType?: T;
   businessType?: T;

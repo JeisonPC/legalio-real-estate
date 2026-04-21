@@ -116,8 +116,6 @@ const seed = async () => {
             area: 220,
             garages: 2,
             estrato: '6',
-            imgWidth: 800,
-            imgHeight: 600,
             description:
                 'Hermosa casa en exclusivo sector de Ciudad Jardín con amplios espacios y jardín privado.',
             features: [
@@ -140,8 +138,6 @@ const seed = async () => {
             area: 110,
             garages: 1,
             estrato: '6',
-            imgWidth: 800,
-            imgHeight: 600,
             description:
                 'Moderno apartamento en el corazón de El Poblado con vista panorámica a la ciudad.',
             features: [
@@ -163,8 +159,6 @@ const seed = async () => {
             area: 65,
             garages: 1,
             estrato: '4',
-            imgWidth: 800,
-            imgHeight: 600,
             description:
                 'Cómodo apartamento en arriendo en el sector financiero de Chapinero.',
             features: [{ value: 'Portería' }, { value: 'Lavandería' }],
@@ -182,8 +176,6 @@ const seed = async () => {
             area: 140,
             garages: 1,
             estrato: '3',
-            imgWidth: 800,
-            imgHeight: 600,
             description: 'Amplia casa en arriendo con patio interior y zona de ropas.',
             features: [{ value: 'Patio' }, { value: 'Zona de ropas' }],
         },
@@ -200,8 +192,6 @@ const seed = async () => {
             area: 90,
             garages: 2,
             estrato: '6',
-            imgWidth: 800,
-            imgHeight: 600,
             description:
                 'Oficina ejecutiva en edificio AAA con todas las amenidades corporativas.',
             features: [
@@ -223,8 +213,6 @@ const seed = async () => {
             area: 55,
             garages: 0,
             estrato: '3',
-            imgWidth: 800,
-            imgHeight: 600,
             description:
                 'Local en esquina con gran flujo peatonal, ideal para comercio al detal.',
             features: [{ value: 'Vitrina' }, { value: 'Bodega' }],

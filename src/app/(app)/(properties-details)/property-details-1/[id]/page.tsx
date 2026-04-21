@@ -26,6 +26,8 @@ export default async function Page({ params }: PageProps) {
 
   const property = result as Property;
 
+  console.log('property.images:', property.images);
+
   return (
     <Layout>
       <PropertyDetails3 property={property} />

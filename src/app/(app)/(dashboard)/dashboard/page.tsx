@@ -6,86 +6,86 @@ import styles from "./dashboard.module.css";
 import { DocumentListPanel } from "@/components/documentListPanel/documentListPanel";
 
 interface DashboardDocumentItem {
-    id: string;
-    title: string;
-    size: number | null;
-    url: string | null;
-    documentType?: string | null;
+  id: string;
+  title: string;
+  size: number | null;
+  url: string | null;
+  documentType?: string | null;
 }
 
 export default async function DashboardPage() {
-    const cookieStore = await cookies();
-    const token = cookieStore.get("legalio_token")?.value;
+  const cookieStore = await cookies();
+  const token = cookieStore.get("legalio_token")?.value;
 
-    if (!token) {
-        redirect("/login");
-    }
+  if (!token) {
+    redirect("/login");
+  }
 
-    const payload = await getPayload({ config });
+  const payload = await getPayload({ config });
 
-    const headers = new Headers();
-    headers.set("authorization", `JWT ${token}`);
+  const headers = new Headers();
+  headers.set("authorization", `JWT ${token}`);
 
-    const { user } = await payload.auth({ headers });
+  const { user } = await payload.auth({ headers });
 
-    if (!user) {
-        redirect("/login");
-    }
+  if (!user) {
+    redirect("/login");
+  }
 
-    const { docs: leases } = await payload.find({
-        collection: "leases",
-        depth: 0,
-        limit: 50,
-        where: {
-            tenant: {
-                equals: user.id,
-            },
+  const { docs: leases } = await payload.find({
+    collection: "leases",
+    depth: 0,
+    limit: 50,
+    where: {
+      tenant: {
+        equals: user.id,
+      },
+    },
+  });
+
+  const leaseIds = leases.map((lease) => lease.id);
+
+  const { docs: relatedDocuments } = await payload.find({
+    collection: "documents",
+    depth: 0,
+    limit: 200,
+    where: {
+      and: [
+        {
+          tenant: {
+            equals: user.id,
+          },
         },
-    });
-
-    const leaseIds = leases.map((lease) => lease.id);
-
-    const { docs: relatedDocuments } = await payload.find({
-        collection: "documents",
-        depth: 0,
-        limit: 200,
-        where: {
-            and: [
-                {
-                    tenant: {
-                        equals: user.id,
-                    },
-                },
-                {
-                    lease: {
-                        in: leaseIds,
-                    },
-                },
-            ],
+        {
+          lease: {
+            in: leaseIds,
+          },
         },
-    });
+      ],
+    },
+  });
 
-    const documents: DashboardDocumentItem[] = relatedDocuments.map((doc) => ({
-        id: String(doc.id),
-        title: doc.title,
-        size: doc.filesize || null,
-        url: doc.url || null,
-        documentType: doc.documentType || null,
-    }));
+  const documents: DashboardDocumentItem[] = relatedDocuments.map((doc) => ({
+    id: String(doc.id),
+    title: doc.title,
+    size: doc.filesize || null,
+    url: doc.url || null,
+    documentType: doc.documentType || null,
+  }));
 
-    return (
-        <div>
-            <section className={styles["aside-section"]}>
-                <DocumentListPanel<DashboardDocumentItem>
-                    items={documents}
-                    title="Todos los documentos"
-                    getId={(doc) => doc.id}
-                    getTitle={(doc) => doc.title}
-                    getSize={(doc) => doc.size}
-                    getUrl={(doc) => doc.url}
-                    getDocumentType={(doc) => doc.documentType}
-                />
-            </section>
-        </div>
-    );
+  return (
+    <div>
+      <section className={styles["aside-section"]}>
+        <DocumentListPanel
+          items={documents.map((doc) => ({
+            id: doc.id,
+            title: doc.title,
+            size: doc.size,
+            hasFile: true,
+          }))}
+          title="Todos los documentos"
+        />
+      </section>
+    </div>
+  );
 }

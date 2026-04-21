@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "img.youtube.com",
       },
+      {
+        protocol: "https",
+        hostname: "legalio-media.s3.us-east-1.amazonaws.com",
+        pathname: "/**",
+      },
     ],
   },
 };

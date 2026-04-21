@@ -33,18 +33,6 @@ export const Properties: CollectionConfig = {
       required: true,
     },
     {
-      name: "imgWidth",
-      label: "Ancho de imagen",
-      type: "number",
-      required: true,
-    },
-    {
-      name: "imgHeight",
-      label: "Alto de imagen",
-      type: "number",
-      required: true,
-    },
-    {
       name: "price",
       label: "Precio",
       type: "number",

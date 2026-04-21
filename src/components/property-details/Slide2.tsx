@@ -48,6 +48,10 @@ export default function Slide2({ property }: { property: Property }) {
     },
   };
 
+  console.log("images in Slide2", images);
+  console.log("first image", images[0]);
+  console.log("first image width/height", images[0]?.width, images[0]?.height);
+
   function getYouTubeVideoId(url?: string | null): string | undefined {
     if (!url) return undefined;
 
@@ -86,8 +90,8 @@ export default function Slide2({ property }: { property: Property }) {
                   <Item
                     original={getImageUrl(image)}
                     thumbnail={getImageUrl(image)}
-                    width={1200}
-                    height={675}
+                    width={image.width || 1200}
+                    height={image.height || 675}
                   >
                     {({ ref, open }) => (
                       <div className="thumb-main">
@@ -96,9 +100,13 @@ export default function Slide2({ property }: { property: Property }) {
                             alt={image.alt}
                             src={getImageUrl(image)}
                             ref={ref}
-                            width={1200}
-                            height={675}
+                            width={image.width || 1200}
+                            height={image.height || 675}
                             priority
+                            style={{
+                              objectFit: "cover",
+                              objectPosition: "center",
+                            }}
                           />
                         </Link>
                         <div className="wrap-btn d-flex gap_10">
