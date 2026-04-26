@@ -169,7 +169,7 @@ export default function Properties() {
                                             >
                                                 For {property.type}
                                             </div>
-                                            <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                                            <div className="tag categories text-button-small fw-6 text_primary-color">
                                                 {property.propertyType}
                                             </div>
                                         </div>

@@ -137,7 +137,7 @@ export default function BoxFilter() {
                                 </div>
                                 <div className="box-select">
                                     <div className="text-button text_primary-color mb_8">
-                                        Bathrooms
+                                        Baños
                                     </div>
                                     <DropdownSelect2
                                         options={bathroomOptions}
@@ -169,7 +169,7 @@ export default function BoxFilter() {
                                 </div>
                                 <div className="box-select">
                                     <div className="text-button text_primary-color mb_8">
-                                        Garages
+                                        Garajes
                                     </div>
                                     <DropdownSelect2 options={garageOptions} />
                                 </div>
@@ -178,7 +178,7 @@ export default function BoxFilter() {
                                     onClick={handleShowAdvanced}
                                 >
                                     <i className="icon-Faders"></i>
-                                    Show Advanced
+                                    Mostrar avanzado
                                 </div>
                                 <div className="form-style">
                                     <button

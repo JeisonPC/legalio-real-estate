@@ -36,7 +36,7 @@ export default function Overview({ property }: { property: Property }) {
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Shower"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Bathrooms:</span>
+                        <span className="text-body-default">Baños:</span>
                         <span className="text-title fw-6 text_primary-color">
                             {property.bathrooms} Baños
                         </span>

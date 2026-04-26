@@ -182,7 +182,7 @@ export default function SidebarFilter2({
                   </div>
                   <div className="box-select">
                     <div className="text-button text_primary-color mb_8">
-                      Bathrooms
+                      Baños
                     </div>
                     <DropdownSelect
                       options={bathroomOptions}
@@ -224,7 +224,7 @@ export default function SidebarFilter2({
                   </div>
                   <div className="box-select">
                     <div className="text-button text_primary-color mb_8">
-                      Garages
+                      Garajes
                     </div>
                     <DropdownSelect
                       options={garageOptions}
@@ -237,7 +237,7 @@ export default function SidebarFilter2({
                     onClick={handleShowAdvanced}
                   >
                     <i className="icon-Faders"></i>
-                    Show Advanced
+                    Mostrar Avanzado
                   </div>
                   <div className="form-style">
                     <button type="submit" className="tf-btn w-full">

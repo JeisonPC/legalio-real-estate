@@ -4,7 +4,7 @@ import {
     garageOptions,
     minSizeOptions,
     maxSizeOptions,
-    amenitiesList,
+    // amenitiesList,
 } from "@/data/optionfilter";
 import DropdownSelect2 from "./DropdownSelect2";
 
@@ -24,7 +24,7 @@ export default function AdvanceSearchDefault({
                 <div className="tf-grid-layout sm-col-2">
                     <div className="box-select">
                         <div className="text-button text_primary-color mb_8">
-                            Bathrooms
+                            Baños
                         </div>
                         <DropdownSelect2
                             options={bathroomOptions}
@@ -32,7 +32,7 @@ export default function AdvanceSearchDefault({
                     </div>
                     <div className="box-select">
                         <div className="text-button text_primary-color mb_8">
-                            Garages
+                            Garajes
                         </div>
                         <DropdownSelect2
                             options={garageOptions}
@@ -42,7 +42,7 @@ export default function AdvanceSearchDefault({
                 <div className="tf-grid-layout sm-col-2">
                     <div className="box-select">
                         <div className="text-button text_primary-color mb_8">
-                            Min size
+                            Tamaño mínimo
                         </div>
                         <DropdownSelect2
                             options={minSizeOptions}
@@ -50,7 +50,7 @@ export default function AdvanceSearchDefault({
                     </div>
                     <div className="box-select">
                         <div className="text-button text_primary-color mb_8">
-                            Max size
+                            Tamaño máximo
                         </div>
                         <DropdownSelect2
                             options={maxSizeOptions}
@@ -58,9 +58,9 @@ export default function AdvanceSearchDefault({
                     </div>
                 </div>
             </div>
-            <div className="group-checkbox">
+            {/* <div className="group-checkbox">
                 <div className="text-title text_primary-color mb_12 fw-6">
-                    Amenities:
+                    Comodidades:
                 </div>
                 <div className="group-amenities">
                     {amenitiesList.map((amenity) => (
@@ -80,7 +80,7 @@ export default function AdvanceSearchDefault({
                         </fieldset>
                     ))}
                 </div>
-            </div>
+            </div> */}
         </div>
     );
 }

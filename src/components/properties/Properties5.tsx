@@ -477,7 +477,7 @@ export default function Properties5({
                                     ? "Venta"
                                     : "Alquiler"}
                                 </div>
-                                <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                                <div className="tag categories text-button-small fw-6 text_primary-color">
                                   {property.propertyType}
                                 </div>
                               </div>
@@ -625,7 +625,7 @@ export default function Properties5({
                                     ? "A la venta"
                                     : "Alquiler"}
                                 </div>
-                                <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                                <div className="tag categories text-button-small fw-6 text_primary-color">
                                   {property.propertyType}
                                 </div>
                               </div>

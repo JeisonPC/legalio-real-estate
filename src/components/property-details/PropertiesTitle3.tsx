@@ -17,7 +17,7 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                     >
                         For {property.businessType}
                     </div>
-                    <div className="tag categoreis text-title fw-6 text_primary-color">
+                    <div className="tag categories text-title fw-6 text_primary-color">
                         {property.propertyType}
                     </div>
                 </div>

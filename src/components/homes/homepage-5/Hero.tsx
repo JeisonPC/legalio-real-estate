@@ -105,7 +105,7 @@ export default function Hero({ cities }: HeroProps) {
                                                         >
                                                             For {slide.type}
                                                         </div>
-                                                        <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                                                        <div className="tag categories text-button-small fw-6 text_primary-color">
                                                             {slide.category}
                                                         </div>
                                                     </div>

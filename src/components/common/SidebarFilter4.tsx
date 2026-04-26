@@ -182,7 +182,7 @@ export default function SidebarFilter4({
                   </div>
                   <div className="box-select">
                     <div className="text-button text_primary-color mb_8">
-                      Bathrooms
+                      Baños
                     </div>
                     <DropdownSelect
                       options={bathroomOptions}
@@ -203,7 +203,7 @@ export default function SidebarFilter4({
                   <div className="tf-grid-layout sm-col-2 gap_20">
                     <div className="box-select">
                       <div className="text-button text_primary-color mb_8">
-                        Min Size
+                        Tamaño mínimo
                       </div>
                       <DropdownSelect
                         options={minSizeOptions}
@@ -213,7 +213,7 @@ export default function SidebarFilter4({
                     </div>
                     <div className="box-select">
                       <div className="text-button text_primary-color mb_8">
-                        Max Size
+                        Tamaño máximo
                       </div>
                       <DropdownSelect
                         options={maxSizeOptions}
@@ -224,7 +224,7 @@ export default function SidebarFilter4({
                   </div>
                   <div className="box-select">
                     <div className="text-button text_primary-color mb_8">
-                      Garages
+                      Garajes
                     </div>
                     <DropdownSelect
                       options={garageOptions}
@@ -237,7 +237,7 @@ export default function SidebarFilter4({
                     onClick={handleShowAdvanced}
                   >
                     <i className="icon-Faders"></i>
-                    Show Advanced
+                    Mostrar avanzado
                   </div>
                   <div className="form-style">
                     <button type="submit" className="tf-btn w-full">

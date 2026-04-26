@@ -124,7 +124,7 @@ export default function Properties1({
       }
     }
 
-    if (bathrooms && bathrooms !== "Any Bathrooms") {
+    if (bathrooms && bathrooms !== "Cualquiera") {
       if (bathrooms === "4+") {
         filteredList = filteredList.filter((p) => Number(p.bathrooms) >= 4);
       } else {
@@ -388,7 +388,7 @@ export default function Properties1({
                               {getBusinessLabel(property)}
                             </div>
 
-                            <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                            <div className="tag categories text-button-small fw-6 text_primary-color">
                               {property.propertyType}
                             </div>
                           </div>
@@ -507,7 +507,7 @@ export default function Properties1({
                                 {getBusinessLabel(property)}
                               </div>
 
-                              <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                              <div className="tag categories text-button-small fw-6 text_primary-color">
                                 {property.propertyType}
                               </div>
                             </div>

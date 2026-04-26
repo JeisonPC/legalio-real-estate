@@ -44,7 +44,7 @@ export default function PropertiesClient({
       property.businessType === "venta" ? "Venta" : "Arriendo";
 
     const businessClass = property.businessType === "venta" ? "sale" : "rent";
-
+    console.log("businessClass:", businessClass);
     return (
       <div
         key={property.id}
@@ -65,8 +65,9 @@ export default function PropertiesClient({
             >
               {businessLabel}
             </div>
-            <div className="tag property-type text-button-small fw-6 text_primary-color" style={{backgroundColor: 'red'}}>
-              {property.propertyType}
+            <div className="tag categories text-button-small fw-6 text_primary-color">
+              {property.propertyType?.charAt(0).toUpperCase() +
+                property.propertyType?.slice(1)}
             </div>
           </div>
 

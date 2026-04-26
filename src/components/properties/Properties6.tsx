@@ -88,7 +88,7 @@ export default function Properties6({
     }
 
     // Bathrooms filter - FIXED
-    if (bathrooms && bathrooms !== "Any Bathrooms") {
+    if (bathrooms && bathrooms !== "Cualquiera") {
       if (bathrooms === "4+") {
         filteredList = filteredList.filter((p) => Number(p.bathrooms) >= 4);
       } else {
@@ -347,7 +347,7 @@ export default function Properties6({
                               >
                                 For {property.businessType}
                               </div>
-                              <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                              <div className="tag categories text-button-small fw-6 text_primary-color">
                                 {property.propertyType}
                               </div>
                             </div>
@@ -474,7 +474,7 @@ export default function Properties6({
                                     ? "A la venta"
                                     : "Arriendo"}
                                 </div>
-                                <div className="tag categoreis text-button-small fw-6 text_primary-color">
+                                <div className="tag categories text-button-small fw-6 text_primary-color">
                                   {property.propertyType}
                                 </div>
                               </div>

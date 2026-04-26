@@ -264,13 +264,13 @@
         padding: 0 12px;
         border-radius: 4px;
         &.rent {
-          background-color: var(--Secondary-2);
+          background-color: var(--rent-blue);
         }
-        &.categoreis {
+        &.categories {
           background-color: var(--Bg-light);
         }
         &.sale {
-          background-color: var(--Secondary);
+          background-color: var(--sale-green);
           color: var(--White);
         }
       }

@@ -1,5 +1,5 @@
 export const bedroomOptions: string[] = ["Cualquiera", "1", "2", "3", "4+"];
-export const bathroomOptions: string[] = ["Any Bathrooms", "1", "2", "3", "4+"];
+export const bathroomOptions: string[] = ["Cualquiera", "1", "2", "3", "4+"];
 export const garageOptions: string[] = ["Any Garages", "1", "2", "3+"];
 export const cityOptions: string[] = [
     "Todas las Ciudades",

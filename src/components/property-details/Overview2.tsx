@@ -29,16 +29,16 @@ export default function Overview2({ property }: { property: Property }) {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Habitaciones:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            {property.bedrooms} Rooms
+                            {property.bedrooms} Habitaciones
                         </span>
                     </div>
                 </div>
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Shower"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Bathrooms:</span>
+                        <span className="text-body-default">Baños:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            {property.bathrooms} Bathrooms
+                            {property.bathrooms} Baños
                         </span>
                     </div>
                 </div>
