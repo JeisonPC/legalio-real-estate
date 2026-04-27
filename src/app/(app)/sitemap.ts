@@ -21,7 +21,7 @@ const STATIC_ROUTES: StaticRoute[] = [
     priority: 1,
   },
   {
-    path: "/listing-half-map-grid",
+    path: "/propiedades",
     changeFrequency: "daily",
     priority: 0.9,
   },
@@ -31,7 +31,7 @@ const STATIC_ROUTES: StaticRoute[] = [
     priority: 0.8,
   },
   {
-    path: "/contacts",
+    path: "/contacto",
     changeFrequency: "monthly",
     priority: 0.7,
   },

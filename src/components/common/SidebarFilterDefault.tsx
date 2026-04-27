@@ -38,7 +38,7 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
     if (bedrooms) params.set("bedrooms", bedrooms);
     if (price) params.set("price", price);
 
-    router.push(`/listing-half-map-grid?${params.toString()}`);
+    router.push(`/propiedades?${params.toString()}`);
   };
 
   useEffect(() => {
@@ -72,7 +72,7 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
     if (bedrooms) params.set("bedrooms", bedrooms);
     if (price) params.set("price", price);
 
-    router.push(`/listing-half-map-grid?${params.toString()}`);
+    router.push(`/propiedades?${params.toString()}`);
   };
 
   return (

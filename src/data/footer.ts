@@ -26,7 +26,7 @@ export const footerSections: FooterSection[] = [
         heading: "Acceso Rápido",
         links: [
             { href: "/about-us", label: "Acerca de" },
-            { href: "/contacts", label: "Contactanos" },
+            { href: "/contacto", label: "Contactanos" },
             { href: "#", label: "Our Team" },
             { href: "/blog-standard", label: "Latest News" },
             { href: "/our-pricing", label: "Our Pricing" },

@@ -35,13 +35,13 @@ export const menuItems: MenuItem[] = [
   //       },
   //       { href: "/listing-left-sidebar", label: "Listing Left Sidebar" },
   //       { href: "/listing-right-sidebar", label: "Listing Right Sidebar" },
-  //       { href: "/listing-half-map-grid", label: "Listing Half Map Grid" },
+  //       { href: "/propiedades", label: "Listing Half Map Grid" },
   //       { href: "/listing-half-map-list", label: "Listing Half Map List" },
   //     ],
   //   },
   {
     title: "Propiedades",
-    href: "/listing-half-map-grid",
+    href: "/propiedades",
     links: [],
   },
   //   {
@@ -67,7 +67,7 @@ export const menuItems: MenuItem[] = [
   },
   {
     title: "Contacto",
-    href: "/contacts",
+    href: "/contacto",
     links: [],
   },
 ];

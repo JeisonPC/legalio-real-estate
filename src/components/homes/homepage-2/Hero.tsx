@@ -24,7 +24,7 @@ const heroSlides = [
                 label: "View Properties",
             },
             {
-                href: "/contacts",
+                href: "/contacto",
                 className: "tf-btn btn-bg-white btn-px-32",
                 label: "Contactanos",
             },
@@ -42,7 +42,7 @@ const heroSlides = [
                 label: "View Properties",
             },
             {
-                href: "/contacts",
+                href: "/contacto",
                 className: "tf-btn btn-bg-white btn-px-32",
                 label: "Contactanos",
             },

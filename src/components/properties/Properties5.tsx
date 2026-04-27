@@ -289,7 +289,7 @@ export default function Properties5({
       params.set("sort", sortingOption);
     }
 
-    router.replace(`/listing-half-map-grid?${params.toString()}`, {
+    router.replace(`/propiedades?${params.toString()}`, {
       scroll: false,
     });
   }, [

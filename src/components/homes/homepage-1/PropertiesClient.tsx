@@ -163,7 +163,7 @@ export default function PropertiesClient({
         )}
 
         <Link
-          href="/listing-half-map-grid"
+          href="/propiedades"
           className="tf-btn btn-bg-1 mx-auto btn-px-32 scrolling-effect effectBottom"
         >
           <span>Ver todas las propiedades</span>
