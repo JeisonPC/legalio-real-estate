@@ -1,0 +1,154 @@
+.panel {
+  width: 100%;
+  padding: 24px;
+  background-color: var(--white);
+  border-radius: 8px;
+}
+
+.heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.kicker {
+  color: #5c4300;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 500;
+  color: #031756;
+}
+
+.description {
+  max-width: 360px;
+  color: #454650;
+  font-size: 14px;
+}
+
+.message {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  background-color: var(--gray-100);
+  border-radius: 6px;
+  color: #031756;
+  font-size: 14px;
+}
+
+.empty {
+  color: #454650;
+  font-size: 14px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background-color: #ffdcd1;
+  color: #031756;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.name {
+  color: #031756;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.email {
+  color: #454650;
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.metaRow {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.role,
+.statusSent,
+.statusPending {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.role {
+  background-color: var(--gray-100);
+  color: #454650;
+}
+
+.statusSent {
+  background-color: #dff6dd;
+  color: #1f6f2a;
+}
+
+.statusPending {
+  background-color: #fff2cc;
+  color: #5c4300;
+}
+
+.button {
+  padding: 10px 16px;
+  border-radius: 4px;
+  background-color: var(--Primary);
+  color: var(--White);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media screen and (max-width: 768px) {
+  .heading {
+    flex-direction: column;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .button {
+    width: 100%;
+  }
+}

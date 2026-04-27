@@ -12,6 +12,9 @@ import * as migration_20260414_053449 from './20260414_053449';
 import * as migration_20260421_011404 from './20260421_011404';
 import * as migration_20260426_234919 from './20260426_234919';
 import * as migration_20260427_034010_avatar_add from './20260427_034010_avatar_add';
+import * as migration_20260427_052619_add_email_create_account_user from './20260427_052619_add_email_create_account_user';
+import * as migration_20260427_052940_add_avatar_user from './20260427_052940_add_avatar_user';
+import * as migration_20260427_061651_field_send_user_invitation from './20260427_061651_field_send_user_invitation';
 
 export const migrations = [
   {
@@ -82,6 +85,21 @@ export const migrations = [
   {
     up: migration_20260427_034010_avatar_add.up,
     down: migration_20260427_034010_avatar_add.down,
-    name: '20260427_034010_avatar_add'
+    name: '20260427_034010_avatar_add',
+  },
+  {
+    up: migration_20260427_052619_add_email_create_account_user.up,
+    down: migration_20260427_052619_add_email_create_account_user.down,
+    name: '20260427_052619_add_email_create_account_user',
+  },
+  {
+    up: migration_20260427_052940_add_avatar_user.up,
+    down: migration_20260427_052940_add_avatar_user.down,
+    name: '20260427_052940_add_avatar_user',
+  },
+  {
+    up: migration_20260427_061651_field_send_user_invitation.up,
+    down: migration_20260427_061651_field_send_user_invitation.down,
+    name: '20260427_061651_field_send_user_invitation'
   },
 ];

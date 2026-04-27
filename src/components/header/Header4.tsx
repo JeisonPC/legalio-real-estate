@@ -20,7 +20,7 @@ export default function Header4({ isLoggedIn }: Header4Props) {
                 method: "POST",
             });
 
-            window.location.href = "/login";
+            window.location.href = "/inicio-sesion";
         } catch (error) {
             console.error("Error cerrando sesión:", error);
         }
@@ -62,7 +62,7 @@ export default function Header4({ isLoggedIn }: Header4Props) {
                                         </button>
                                     ) : (
                                         <Link
-                                            href="/login"
+                                            href="/inicio-sesion"
                                             className="link text-button text_primary-color"
                                         >
                                             Inicio de sesión/Registro
@@ -138,7 +138,7 @@ export default function Header4({ isLoggedIn }: Header4Props) {
                                         Cerrar sesión
                                     </button>
                                 ) : (
-                                    <Link href="/login" className="text-need">
+                                    <Link href="/inicio-sesion" className="text-need">
                                         Inicio de sesión
                                     </Link>
                                 )}

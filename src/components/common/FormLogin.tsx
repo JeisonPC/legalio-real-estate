@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import React, { useActionState, useState } from "react";
-import { loginAction } from "@/actions/loginAction";
 import Image from "next/image";
+import { loginAction } from "@/actions/loginAction";
 
 const initialState = {
     error: "",

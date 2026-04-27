@@ -10,7 +10,7 @@ export default async function DashboardReceiptsPage() {
   const token = cookieStore.get("legalio_token")?.value;
 
   if (!token) {
-    redirect("/login");
+    redirect("/inicio-sesion");
   }
 
   const payload = await getPayload({ config });
@@ -23,7 +23,7 @@ export default async function DashboardReceiptsPage() {
   });
 
   if (!user) {
-    redirect("/login");
+    redirect("/inicio-sesion");
   }
 
   const { docs: receipts } = await payload.find({

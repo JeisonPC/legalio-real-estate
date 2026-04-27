@@ -11,7 +11,7 @@ export default async function DashboardPage() {
   const token = cookieStore.get("legalio_token")?.value;
 
   if (!token) {
-    redirect("/login");
+    redirect("/inicio-sesion");
   }
 
   const payload = await getPayload({ config });
@@ -24,7 +24,7 @@ export default async function DashboardPage() {
   });
 
   if (!user) {
-    redirect("/login");
+    redirect("/inicio-sesion");
   }
 
   const { docs: leases } = await payload.find({

@@ -137,12 +137,13 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
-  role: 'admin' | 'tenant' | 'owner';
   fullName?: string | null;
+  role: 'admin' | 'tenant' | 'owner';
   /**
    * Imagen del usuario o autor del blog.
    */
   avatar?: (number | null) | Media;
+  invitationSent?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -454,9 +455,10 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
-  role?: T;
   fullName?: T;
+  role?: T;
   avatar?: T;
+  invitationSent?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

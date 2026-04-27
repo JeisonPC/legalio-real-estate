@@ -28,7 +28,7 @@ export default function Header3() {
                                 <Nav />
                                 <div className="header-right d-flex align-items-center gap_20">
                                     <Link
-                                        href="/login"
+                                        href="/inicio-sesion"
                                         className="link text-button text_primary-color"
                                     >
                                         Inicio de Sesión/Registro
