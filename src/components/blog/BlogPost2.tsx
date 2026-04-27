@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import FormComments from "../common/FormComments";
-import NewsInsight from "./NewsInsight";
+import NewsInsightServer from "./NewsInsight.server";
 import Comment from "../common/Comment";
 
 type BlogItem = {
@@ -344,7 +344,7 @@ export default function BlogPost2({ blogItem }: { blogItem: BlogItem }) {
                         </div>
                     </div>
                 </div>
-                <NewsInsight />
+                <NewsInsightServer />
             </div>
         </>
     );

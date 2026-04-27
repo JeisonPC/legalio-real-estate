@@ -1,5 +1,5 @@
-import BlogGrid from "@/components/blogs/BlogGrid";
-import PageTitle from "@/components/blogs/PageTitle";
+import BlogGrid from "@/components/blog/BlogGrid";
+import PageTitle from "@/components/blog/PageTitle";
 import Layout from "@/components/layouts/Layout-defaul";
 import React from "react";
 

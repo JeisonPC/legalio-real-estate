@@ -44,26 +44,27 @@ export const menuItems: MenuItem[] = [
     href: "/listing-half-map-grid",
     links: [],
   },
-//   {
-//     title: "Pages",
-//     links: [
-//       { href: "/about-us", label: "Acerca de" },
-//       { href: "/our-pricing", label: "Our Pricing" },
-//       { href: "/FAQs", label: "FAQs" },
-//       { href: "/privacy-policy", label: "Privacy Policy" },
-//       { href: "/login", label: "Inicio de Sesión/Registro" },
-//     ],
-//   },
-//   {
-//     title: "Blog",
-//     links: [
-//       { href: "/blog-standard", label: "Blog Standard" },
-//       { href: "/blog-grid", label: "Blog Grid" },
-//       { href: "/blog-list", label: "Blog List" },
-//       { href: "/blog-post-1/1", label: "Blog Post 1" },
-//       { href: "/blog-post-2/1", label: "Blog Post 2" },
-//     ],
-//   },
+  //   {
+  //     title: "Pages",
+  //     links: [
+  //       { href: "/about-us", label: "Acerca de" },
+  //       { href: "/our-pricing", label: "Our Pricing" },
+  //       { href: "/FAQs", label: "FAQs" },
+  //       { href: "/privacy-policy", label: "Privacy Policy" },
+  //       { href: "/login", label: "Inicio de Sesión/Registro" },
+  //     ],
+  //   },
+  {
+    title: "Blog",
+    href: "/blog",
+    links: [
+      // { href: "/blog-standard", label: "Blog Standard" },
+      // { href: "/blog-grid", label: "Blog Grid" },
+      // { href: "/blog-list", label: "Blog List" },
+      // { href: "/blog-post-1/1", label: "Blog Post 1" },
+      // { href: "/blog-post-2/1", label: "Blog Post 2" },
+    ],
+  },
   {
     title: "Contacto",
     href: "/contacts",

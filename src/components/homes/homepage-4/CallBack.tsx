@@ -32,7 +32,7 @@ export default function CallBack() {
                                         <div className="text-title fw-6 text_primary-color mb_4">
                                             Contactanos
                                         </div>
-                                        <p>1-555-678-8888</p>
+                                        <p>3046035418</p>
                                     </div>
                                 </div>
                                 <div

@@ -158,7 +158,7 @@ export default function Footer1() {
                                         Support 24/7:
                                     </span>
                                     <span className="text_white ms_4">
-                                        1-555-678-8888
+                                        3046035418
                                     </span>
                                 </div>
                                 <div className="text-body-default text_secondary-color">

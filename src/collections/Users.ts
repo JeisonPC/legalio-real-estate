@@ -38,5 +38,14 @@ export const Users: CollectionConfig = {
       label: "Nombre completo",
       type: "text",
     },
+    {
+      name: "avatar",
+      label: "Foto de perfil",
+      type: "upload",
+      relationTo: "media",
+      admin: {
+        description: "Imagen del usuario o autor del blog.",
+      },
+    },
   ],
 };

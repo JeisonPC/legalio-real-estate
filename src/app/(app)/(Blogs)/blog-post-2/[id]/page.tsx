@@ -1,7 +1,7 @@
 import Layout from "@/components/layouts/Layout-defaul";
 import React from "react";
 import { allBlogs } from "@/data/blog";
-import BlogPost2 from "@/components/blogs/BlogPost2";
+import BlogPost2 from "@/components/blog/BlogPost2";
 
 type PageProps = {
     params: Promise<{

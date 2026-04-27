@@ -5,8 +5,8 @@ export default function FormComments() {
     return (
         <div className="leave-comment">
             <div className="heading-title mb_20">
-                <h5 className="mb_8">Add A Review</h5>
-                <p>Your email address will not be published</p>
+                <h5 className="mb_8">Agregar una reseña</h5>
+                <p>Tu dirección de correo electrónico no será publicada</p>
             </div>
             <form
                 id="leaveComment"
@@ -20,12 +20,12 @@ export default function FormComments() {
                                 htmlFor="name"
                                 className="text-button text_primary-color fw-7 mb_8"
                             >
-                                Name
+                                Nombre
                             </label>
                             <input
                                 id="name"
                                 type="text"
-                                placeholder="Your Name*"
+                                placeholder="Tu Nombre*"
                                 name="name"
                                 required
                             />
@@ -35,12 +35,12 @@ export default function FormComments() {
                                 htmlFor="email"
                                 className="text-button text_primary-color fw-7 mb_8"
                             >
-                                Email
+                                Correo electrónico
                             </label>
                             <input
                                 id="email"
                                 type="email"
-                                placeholder="Your Email*"
+                                placeholder="Tu Correo Electrónico*"
                                 name="email"
                                 required
                             />
@@ -51,27 +51,27 @@ export default function FormComments() {
                             htmlFor="comment"
                             className="text-button text_primary-color fw-7 mb_8"
                         >
-                            Review
+                            Reseña
                         </label>
                         <textarea
                             id="comment"
                             rows={4}
-                            placeholder="Write comment"
+                            placeholder="Escribe tu reseña"
                             name="comment"
                             required
                         ></textarea>
                     </fieldset>
                 </div>
-                <div className="box-fieldset-item d-flex mb_20">
+                {/* <div className="box-fieldset-item d-flex mb_20">
                     <fieldset>
                         <input type="checkbox" className="tf-check" id="note" />
                     </fieldset>
                     <p className="text-body-default">
                         Save your name, email for the next time review
                     </p>
-                </div>
+                </div> */}
                 <button className="tf-btn btn-bg-1 btn-px-28" type="submit">
-                    <span>Submit Review</span>
+                    <span>Enviar Reseña</span>
                     <span className="bg-effect"></span>
                 </button>
             </form>

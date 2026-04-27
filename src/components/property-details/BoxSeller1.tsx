@@ -17,7 +17,7 @@ export default function BoxSeller1() {
                 </div>
                 <div className="author-info d-flex flex-column">
                     <h6 className="mb_8">Jorge R.</h6>
-                    <span className="text-body-default">1-555-678-8888</span>
+                    <span className="text-body-default">3046035418</span>
                     <Link
                         href="#"
                         className="text_secondary-color text-body-default link"
@@ -45,8 +45,8 @@ export default function BoxSeller1() {
                 <li className="item d-flex gap_12 align-items-center">
                     <i className="icon icon-PhoneCall"></i>
                     <div>
-                        <p className="text_primary-color">1-555-678-8888</p>
-                        <p className="text_primary-color ">1-555-678-8888</p>
+                        <p className="text_primary-color">3046035418</p>
+                        <p className="text_primary-color ">3046035418</p>
                     </div>
                 </li>
             </ul>

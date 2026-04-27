@@ -16,6 +16,7 @@ import { Departments } from "./collections/Departments";
 import { Documents } from "./collections/Documents";
 import { Leases } from "./collections/Leases";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import { Blogs } from "./collections/Blogs";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -42,6 +43,7 @@ export default buildConfig({
     Cities,
     Leases,
     Documents,
+    Blogs,
   ],
 
   editor: lexicalEditor(),

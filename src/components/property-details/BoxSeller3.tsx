@@ -19,7 +19,7 @@ export default function BoxSeller3() {
                         <div className="author-info d-flex flex-column">
                             <h6 className="mb_8">Jorge R.</h6>
                             <span className="text-body-default">
-                                1-555-678-8888
+                                3046035418
                             </span>
                             <a
                                 href="#"
@@ -49,10 +49,10 @@ export default function BoxSeller3() {
                             <i className="icon icon-PhoneCall"></i>
                             <div>
                                 <p className="text_primary-color">
-                                    1-555-678-8888
+                                    3046035418
                                 </p>
                                 <p className="text_primary-color">
-                                    1-555-678-8888
+                                    3046035418
                                 </p>
                             </div>
                         </li>

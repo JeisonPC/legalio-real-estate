@@ -16,7 +16,7 @@
     .tag {
         position: absolute;
         padding: 4px 8px;
-        background-color: var(--Primary);
+        background-color: var(--White);
         border-radius: 4px;
         top: 12px;
         left: 12px;
@@ -288,6 +288,7 @@
         background-color: var(--Primary);
         border-radius: 8px;
         max-width: max-content;
+        color: var(--White);
     }
     .details-post {
         margin-bottom: 60px;

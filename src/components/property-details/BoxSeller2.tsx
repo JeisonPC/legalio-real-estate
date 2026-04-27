@@ -45,9 +45,9 @@ export default function BoxSeller2() {
                     <li className="item d-flex gap_12 align-items-center">
                         <i className="icon icon-PhoneCall"></i>
                         <div>
-                            <p className="text_primary-color">1-555-678-8888</p>
+                            <p className="text_primary-color">3046035418</p>
                             <p className="text_primary-color ">
-                                1-555-678-8888
+                                3046035418
                             </p>
                         </div>
                     </li>

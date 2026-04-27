@@ -27,7 +27,7 @@ export const blogPostsLarge: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -43,7 +43,7 @@ export const blogPostsLarge: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -59,7 +59,7 @@ export const blogPostsLarge: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -75,7 +75,7 @@ export const blogPostsLarge: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -91,7 +91,7 @@ export const blogPostsLarge: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -107,7 +107,7 @@ export const blogPostsLarge: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
 ];
@@ -126,7 +126,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -142,7 +142,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -158,7 +158,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -174,7 +174,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -190,7 +190,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -206,7 +206,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -222,7 +222,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -238,7 +238,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -254,7 +254,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -270,7 +270,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -286,7 +286,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -302,7 +302,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -318,7 +318,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -334,7 +334,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -350,7 +350,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -366,7 +366,7 @@ export const blogPostsGrid: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
 ];
@@ -385,7 +385,7 @@ export const blogPostsList: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -401,7 +401,7 @@ export const blogPostsList: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -417,7 +417,7 @@ export const blogPostsList: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -433,7 +433,7 @@ export const blogPostsList: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -449,7 +449,7 @@ export const blogPostsList: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -465,7 +465,7 @@ export const blogPostsList: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -481,7 +481,7 @@ export const blogPostsList: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
 ];
@@ -500,7 +500,7 @@ export const recentPost: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -516,7 +516,7 @@ export const recentPost: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -532,7 +532,7 @@ export const recentPost: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
 ];
@@ -567,7 +567,7 @@ export const recentPost2: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -610,7 +610,7 @@ export const latestNews: BlogPost[] = [
         imgSrc: "/assets/images/blog/blog-item-3.jpg",
         alt: "img-blog",
         date: "May 06, 2025",
-        author: "Mike Hanley",
+        author: "Paola Andrea Narvaez Loaiza",
         category: "Housing",
         title: "Top 5 Cities to Invest in Real Estate This Year",
         description:
@@ -618,7 +618,7 @@ export const latestNews: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -634,7 +634,7 @@ export const latestNews: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
     {
@@ -650,7 +650,7 @@ export const latestNews: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
 ];
@@ -661,7 +661,7 @@ export const mainArticle: BlogPost[] = [
         imgSrc: "/assets/images/blog/blog-item-large-7.jpg",
         alt: "img-blog",
         date: "June 02, 2025",
-        author: "Mike Hanley",
+        author: "Paola Andrea Narvaez Loaiza",
         category: "Furniture",
         title: "The Future Of Real Estate: Trends to Watch in 2025.",
         description:
@@ -669,7 +669,7 @@ export const mainArticle: BlogPost[] = [
         authorAvatar: "/assets/images/avatar/avatar-1.jpg",
         authorDesc:
             "Shara Miller is a passionate technology writer and industry analyst with a deep interest in emerging innovations shaping the future.",
-        authorName: "Mike Hanley",
+        authorName: "Paola Andrea Narvaez Loaiza",
         authorFlow: 200,
     },
 ];
