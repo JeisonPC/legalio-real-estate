@@ -3,6 +3,8 @@ import BlogPost1 from "@/components/blog/BlogPost1";
 import { notFound } from "next/navigation";
 import { BlogsQuery, getBlogBySlug } from "@/lib/queries/blog.query";
 
+export const dynamic = "force-dynamic";
+
 type PageProps = {
   params: Promise<{
     slug: string;
@@ -26,14 +28,19 @@ export default async function Page({ params }: PageProps) {
 }
 
 export async function generateStaticParams() {
-  const blogs = await BlogsQuery({
-    page: 1,
-    limit: 100,
-  });
+  try {
+    const blogs = await BlogsQuery({
+      page: 1,
+      limit: 100,
+    });
 
-  return blogs.docs
-    .filter((blog) => blog.slug)
-    .map((blog) => ({
-      slug: blog.slug,
-    }));
+    return blogs.docs
+      .filter((blog) => blog.slug)
+      .map((blog) => ({
+        slug: blog.slug,
+      }));
+  } catch (error) {
+    console.error("generateStaticParams blogs error:", error);
+    return [];
+  }
 }
