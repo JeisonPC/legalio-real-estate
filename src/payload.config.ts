@@ -17,9 +17,36 @@ import { Documents } from "./collections/Documents";
 import { Leases } from "./collections/Leases";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { Blogs } from "./collections/Blogs";
+import { resendEmailAdapter } from "./lib/email/resendEmailAdapter";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+const defaultFromAddress =
+  process.env.EMAIL_FROM_ADDRESS || "contacto@legalio.com.co";
+const defaultFromName = process.env.EMAIL_FROM_NAME || "Legalio";
+
+const emailAdapter =
+  process.env.RESEND_API_KEY
+    ? resendEmailAdapter({
+        apiKey: process.env.RESEND_API_KEY,
+        defaultFromAddress,
+        defaultFromName,
+      })
+    : process.env.SMTP_HOST
+      ? nodemailerAdapter({
+          defaultFromAddress,
+          defaultFromName,
+          transportOptions: {
+            host: process.env.SMTP_HOST,
+            port: Number(process.env.SMTP_PORT),
+            secure: Number(process.env.SMTP_PORT) === 465,
+            auth: {
+              user: process.env.SMTP_USER,
+              pass: process.env.SMTP_PASS,
+            },
+          },
+        })
+      : undefined;
 
 export default buildConfig({
   serverURL:
@@ -92,19 +119,5 @@ export default buildConfig({
     }),
   ],
 
-  email: process.env.SMTP_HOST
-    ? nodemailerAdapter({
-        defaultFromAddress: "contacto@legalio.com.co",
-        defaultFromName: "Legalio",
-        transportOptions: {
-          host: process.env.SMTP_HOST,
-          port: Number(process.env.SMTP_PORT),
-          secure: Number(process.env.SMTP_PORT) === 465,
-          auth: {
-            user: process.env.SMTP_USER,
-            pass: process.env.SMTP_PASS,
-          },
-        },
-      })
-    : undefined,
+  email: emailAdapter,
 });

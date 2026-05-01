@@ -47,15 +47,15 @@ export default function CreateAccountForm({ token }: Props) {
       return;
     }
 
-    setMessage("Tu cuenta fue creada correctamente. Ya puedes iniciar sesión.");
+    setMessage("Tu contraseña fue actualizada correctamente. Ya puedes iniciar sesión.");
     setIsSubmitting(false);
   }
 
   return (
     <main style={{ maxWidth: 420, margin: "80px auto", padding: 24 }}>
-      <h1>Crear cuenta</h1>
+      <h1>Crear o restablecer contraseña</h1>
 
-      <p>Define una contraseña para activar tu cuenta en Legalio.</p>
+      <p>Define una contraseña nueva para tu cuenta en Legalio.</p>
 
       <form onSubmit={handleSubmit}>
         <div>
@@ -81,7 +81,7 @@ export default function CreateAccountForm({ token }: Props) {
         </div>
 
         <button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Creando cuenta..." : "Crear cuenta"}
+          {isSubmitting ? "Guardando..." : "Guardar contraseña"}
         </button>
       </form>
 

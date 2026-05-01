@@ -9,7 +9,7 @@ export const Users: CollectionConfig = {
       expiration: 1000 * 60 * 60 * 24, // 24 horas
 
       generateEmailSubject: () => {
-        return "Crea tu cuenta en Legalio";
+        return "Crea o restablece tu contraseña en Legalio";
       },
 
       generateEmailHTML: (args) => {
@@ -29,17 +29,16 @@ export const Users: CollectionConfig = {
 
         return `
     <div style="font-family: Arial, sans-serif; color: #1f2937; line-height: 1.5;">
-      <h2>Crea tu cuenta en Legalio</h2>
+      <h2>Crea o restablece tu contraseña en Legalio</h2>
 
       <p>Hola${user?.fullName ? ` ${user.fullName}` : ""},</p>
 
       <p>
-        Te hemos creado un acceso a Legalio para que puedas consultar tus documentos,
-        contratos y recibos de arrendamiento.
+        Recibimos una solicitud para crear o cambiar la contraseña de tu cuenta.
       </p>
 
       <p>
-        Para activar tu cuenta, haz clic en el siguiente botón y crea tu contraseña:
+        Haz clic en el siguiente botón para definir una nueva contraseña:
       </p>
 
       <p>
@@ -55,7 +54,7 @@ export const Users: CollectionConfig = {
             font-weight: bold;
           "
         >
-          Crear mi cuenta
+          Crear o cambiar contraseña
         </a>
       </p>
 
