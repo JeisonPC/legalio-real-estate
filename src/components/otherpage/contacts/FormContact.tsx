@@ -3,6 +3,7 @@
 import React from "react";
 import { useFormStatus } from "react-dom";
 import { sendContact } from "./sendContact";
+import Link from "next/link";
 
 export default function FormContact() {
   const { pending } = useFormStatus();
@@ -43,12 +44,12 @@ export default function FormContact() {
                 <div className="text-title fw-6 text_primary-color mb_4">
                   Email Address:
                 </div>
-                <a
+                <Link
                   href="mailto:contacto@legalio.com.co"
                   className="link text_secondary-color text-body-default"
                 >
                   contacto@legalio.com.co
-                </a>
+                </Link>
               </div>
             </li>
           </ul>
@@ -56,20 +57,52 @@ export default function FormContact() {
             <h5 className="mb_12">Síguenos:</h5>
             <ul className="tf-social d-flex gap_24">
               <li>
-                <a href="#" className="icon-FacebookLogo"></a>
+                <Link
+                  href="https://www.facebook.com/LegalioColombia/"
+                  className="icon-FacebookLogo"
+                ></Link>
               </li>
               <li>
-                <a href="#" className="icon-XLogo"></a>
+                <Link
+                  href="https://twitter.com/LegalioColombia"
+                  className="icon-XLogo"
+                ></Link>
               </li>
               <li>
-                <a href="#" className="icon-TiktokLogo"></a>
+                <Link
+                  href="https://www.tiktok.com/@legalio_colombia"
+                  className="icon-TiktokLogo"
+                ></Link>
               </li>
               <li>
-                <a href="#" className="icon-InstagramLogo"></a>
+                <Link
+                  href="https://www.instagram.com/legalio_colombia/"
+                  className="icon-InstagramLogo"
+                ></Link>
               </li>
               <li>
-                <a href="#" className="icon-YoutubeLogo"></a>
+                <Link
+                  href="https://www.youtube.com/@legalio_colombia"
+                  className="icon-YoutubeLogo"
+                ></Link>
               </li>
+              <Link
+                href="https://www.linkedin.com/company/legalio-abogados/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Compartir en LinkedIn"
+                className="social-svg-link"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7.5 0h3.8v2.05h.05c.53-1 1.82-2.05 3.75-2.05 4.01 0 4.75 2.64 4.75 6.07V23h-4v-7.9c0-1.88-.03-4.3-2.62-4.3-2.63 0-3.03 2.05-3.03 4.16V23h-4V8z" />
+                </svg>
+              </Link>
             </ul>
           </div>
         </div>
@@ -80,8 +113,8 @@ export default function FormContact() {
           <div className="heading mb_24">
             <h4 className="mb_8">Contáctanos en un email</h4>
             <p>
-              ¡Nos encantaría saber de ti! Si tienes alguna pregunta dejanos en
-              el espacio.
+              ¡Nos encantaría saber de ti! Si tienes alguna pregunta, déjanos un
+              mensaje en el espacio a continuación.
             </p>
           </div>
 

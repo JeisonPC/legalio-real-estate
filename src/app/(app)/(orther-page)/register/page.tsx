@@ -21,7 +21,7 @@ export default function page() {
                         <h2 className="title text_white mb_12">Register</h2>
                         <ul className="breadcrumb justify-content-center text-button fw-4">
                             <li>
-                                <Link href="/">Home</Link>
+                                <Link href="/">inicio</Link>
                             </li>
                             <li>Register</li>
                         </ul>
