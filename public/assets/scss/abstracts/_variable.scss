@@ -1,6 +1,6 @@
 // settings
-$font-main: "Marcellus SC", serif;
-$font-body: "Inter", sans-serif;
+$font-main: var(--legalio-serif), "Source Serif 4", serif;
+$font-body: var(--legalio-sans), "Manrope", sans-serif;
 $fontIcon: "icomoon";
 
 :root {

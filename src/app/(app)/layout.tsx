@@ -1,4 +1,4 @@
-import { Manrope } from "next/font/google";
+import { Manrope, Source_Serif_4 } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "photoswipe/dist/photoswipe.css";
 import "swiper/css";
@@ -15,8 +15,14 @@ import styles from "./layout.module.css";
 
 
 const manrope = Manrope({
-    variable: "--font-manrope",
+    variable: "--legalio-sans",
     subsets: ["latin"],
+});
+
+const sourceSerif = Source_Serif_4({
+    variable: "--legalio-serif",
+    subsets: ["latin"],
+    weight: "variable",
 });
 
 export const metadata: Metadata = {
@@ -51,7 +57,7 @@ export default async function RootLayout({
 
     return (
         <html lang="es">
-            <body className={manrope.variable}>
+            <body className={`${manrope.variable} ${sourceSerif.variable}`}>
                 <div
                     id="wrapper"
                     className={`clearfix bg-light-color ${styles["content-global"]}`}

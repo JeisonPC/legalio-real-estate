@@ -129,8 +129,8 @@ export default function MapComponent({ sorted }: MapComponentProps) {
       map.current = new mapboxgl.Map({
         container: mapContainer.current,
         style: "mapbox://styles/mapbox/light-v10",
-        center: [-122.4194, 37.7749],
-        zoom: 13,
+        center: [-76.300892, 3.498241],
+        zoom: 12,
         cooperativeGestures: true,
       });
 
