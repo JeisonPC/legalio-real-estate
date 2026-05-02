@@ -397,7 +397,7 @@ export default async function PropietariosPage({
                             <div className="lp-contact-items">
                                 <a href="tel:+573000000000">
                                     <span className="icon-PhoneCall" />
-                                    +57 300 000 0000
+                                    +57 304 6035418
                                 </a>
                                 <a href="mailto:contacto@legalio.com.co">
                                     <span className="icon-EnvelopeSimple" />
