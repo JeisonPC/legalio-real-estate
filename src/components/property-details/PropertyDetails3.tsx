@@ -15,6 +15,11 @@ import Hero from "./Hero";
 // import Comment from "../common/Comment";
 import { Property } from "@/payload-types";
 import Link from "next/link";
+import {
+  propertyToAnalyticsItem,
+  pushAnalyticsEvent,
+  readAttribution,
+} from "@/lib/analytics/events";
 
 function useOneNavOnePage() {
   useEffect(() => {
@@ -80,7 +85,19 @@ function useOneNavOnePage() {
 }
 export default function PropertyDetails3({ property }: { property: Property }) {
   useOneNavOnePage();
-  console.log("Detalles de la propiedad:", property);
+
+  useEffect(() => {
+    pushAnalyticsEvent("view_item", {
+      currency: "COP",
+      value: property.price,
+      items: [propertyToAnalyticsItem(property)],
+      property_id: String(property.id),
+      business_type: property.businessType,
+      property_type: property.propertyType,
+      attribution: readAttribution(),
+    });
+  }, [property]);
+
   return (
     <div className="section-onepage">
       <div className="properties-details">

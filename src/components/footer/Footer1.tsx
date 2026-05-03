@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
 import { subscribeNewsletter } from "@/actions/newsletterAction";
+import { pushAnalyticsEvent, readAttribution } from "@/lib/analytics/events";
 
 // Accordion logic unchanged
 const handleFooter = (): void => {
@@ -127,6 +128,14 @@ export default function Footer1() {
         const formData = new FormData(form);
         // Call the server action
         await subscribeNewsletter(formData);
+
+        pushAnalyticsEvent("newsletter_signup", {
+            form_name: "footer_newsletter",
+            conversion_source: "footer",
+            value: 1,
+            currency: "COP",
+            attribution: readAttribution(),
+        });
     };
 
     return (
@@ -219,6 +228,7 @@ export default function Footer1() {
                                 <form
                                     id="subscribe-form"
                                     acceptCharset="utf-8"
+                                    data-analytics-form="footer_newsletter"
                                     data-mailchimp="true"
                                     className="form-newsletter style-1 mb_20"
                                     onSubmit={handleNewsletterSubmit}
@@ -227,9 +237,21 @@ export default function Footer1() {
                                         id="subscribe-content"
                                         className="position-relative"
                                     >
-                                        <fieldset className="fieldset-item">
+                                        <fieldset className="fieldset-item mb_20">
+                                            <input
+                                                type="text"
+                                                autoComplete="given-name"
+                                                placeholder="Nombre"
+                                                id="subscribe-name"
+                                                name="name"
+                                                aria-required="true"
+                                                required
+                                            />
+                                        </fieldset>
+                                        <fieldset className="fieldset-item mt_8">
                                             <input
                                                 type="email"
+                                                autoComplete="email"
                                                 placeholder="E-mail"
                                                 id="subscribe-email"
                                                 name="email"

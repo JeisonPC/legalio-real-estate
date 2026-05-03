@@ -66,6 +66,9 @@ function CtaLink({
     return (
       <a
         className={className}
+        data-analytics-event="cta_click"
+        data-analytics-location="local_market_hero"
+        data-analytics-name={cta.label}
         href={cta.href}
         rel="noopener noreferrer"
         target="_blank"
@@ -76,7 +79,13 @@ function CtaLink({
   }
 
   return (
-    <Link className={className} href={cta.href}>
+    <Link
+      className={className}
+      data-analytics-event="cta_click"
+      data-analytics-location="local_market_hero"
+      data-analytics-name={cta.label}
+      href={cta.href}
+    >
       {cta.label}
     </Link>
   );

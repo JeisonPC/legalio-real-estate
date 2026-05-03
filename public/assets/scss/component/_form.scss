@@ -76,12 +76,12 @@ form {
             border: unset;
         }
         .button-submit {
-            height: 40px;
-            width: 40px;
+            height: 64px;
+            width: 64px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: var(--Text-primary);
+            background-color: var(--Secondary);
             color: var(--White);
             border-radius: 50%;
             font-size: 20px;

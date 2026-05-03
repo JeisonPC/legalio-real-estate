@@ -10,6 +10,7 @@ type SendMetaLeadParams = {
   eventId?: string;
   eventSourceUrl: string;
   firstName?: string;
+  email?: string;
   phone?: string;
   city?: string;
   contentName?: string;
@@ -42,6 +43,7 @@ export async function sendMetaLeadEvent({
   eventId,
   eventSourceUrl,
   firstName,
+  email,
   phone,
   city,
   contentName = "Formulario propietarios Legalio",
@@ -80,6 +82,7 @@ export async function sendMetaLeadEvent({
         action_source: "website",
         event_source_url: eventSourceUrl,
         user_data: {
+          ...(email ? { em: [sha256(email)] } : {}),
           ...(firstName ? { fn: [sha256(firstName)] } : {}),
           ...(normalizedPhone ? { ph: [sha256(normalizedPhone)] } : {}),
           ...(city ? { ct: [sha256(city)] } : {}),

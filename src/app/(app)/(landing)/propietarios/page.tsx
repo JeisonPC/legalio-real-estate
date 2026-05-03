@@ -135,7 +135,13 @@ export default async function PropietariosPage({
                                 Convertimos la complejidad de los
                                 arrendamientos en rentabilidad pasiva y segura.
                             </p>
-                            <Link className="lp-primary-button" href="#contacto">
+                            <Link
+                                className="lp-primary-button"
+                                data-analytics-event="cta_click"
+                                data-analytics-location="propietarios_hero"
+                                data-analytics-name="Quiero que administren mi propiedad"
+                                href="#contacto"
+                            >
                                 Quiero que administren mi propiedad
                                 <span className="icon-CaretRight" />
                             </Link>
@@ -400,7 +406,7 @@ export default async function PropietariosPage({
                                 una valoración inicial gratuita.
                             </p>
                             <div className="lp-contact-items">
-                                <Link href="tel:+573000000000">
+                                <Link href="tel:+573046035418">
                                     <span className="icon-PhoneCall" />
                                     +57 304 6035418
                                 </Link>
@@ -411,7 +417,11 @@ export default async function PropietariosPage({
                             </div>
                         </div>
 
-                        <form className="lp-form" action={sendOwnerLead}>
+                        <form
+                            action={sendOwnerLead}
+                            className="lp-form"
+                            data-analytics-form="owner_lead"
+                        >
                             {wasSent ? (
                                 <div className="lp-form-alert" role="status">
                                     Recibimos tu solicitud. Nuestro equipo te
@@ -422,6 +432,7 @@ export default async function PropietariosPage({
                                 <label>
                                     <span>Nombre Completo</span>
                                     <input
+                                        autoComplete="name"
                                         name="nombre"
                                         placeholder="Ej: Maria Perez"
                                         required
@@ -429,19 +440,31 @@ export default async function PropietariosPage({
                                     />
                                 </label>
                                 <label>
+                                    <span>Email</span>
+                                    <input
+                                        autoComplete="email"
+                                        name="email"
+                                        placeholder="correo@ejemplo.com"
+                                        required
+                                        type="email"
+                                    />
+                                </label>
+                            </div>
+                            <div className="lp-form-row">
+                                <label>
                                     <span>WhatsApp</span>
                                     <input
+                                        autoComplete="tel"
                                         name="whatsapp"
                                         placeholder="+57 300 000 0000"
                                         required
                                         type="tel"
                                     />
                                 </label>
-                            </div>
-                            <div className="lp-form-row">
                                 <label>
                                     <span>Ciudad</span>
                                     <input
+                                        autoComplete="address-level2"
                                         name="ciudad"
                                         placeholder="Bogotá, Medellín..."
                                         required
@@ -488,7 +511,12 @@ export default async function PropietariosPage({
                         <h2>
                             Convierte tu inmueble en un activo bien administrado
                         </h2>
-                        <Link href="#contacto">
+                        <Link
+                            data-analytics-event="cta_click"
+                            data-analytics-location="propietarios_final"
+                            data-analytics-name="Empezar ahora"
+                            href="#contacto"
+                        >
                             Empezar ahora
                             <span className="icon-CaretRight" />
                         </Link>

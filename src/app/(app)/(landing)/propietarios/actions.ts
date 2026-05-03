@@ -16,16 +16,57 @@ const escapeHtml = (value: string) =>
 const getField = (formData: FormData, name: string) =>
   String(formData.get(name) ?? "").trim();
 
+const attributionFields = [
+  "utm_source",
+  "utm_medium",
+  "utm_campaign",
+  "utm_term",
+  "utm_content",
+  "gclid",
+  "gbraid",
+  "wbraid",
+  "fbclid",
+  "landing_page",
+  "referrer",
+  "captured_at",
+];
+
+const getAttributionHtml = (formData: FormData) => {
+  const rows = attributionFields
+    .map((field) => {
+      const value = getField(formData, field);
+      if (!value) return "";
+
+      return `<p><strong>${escapeHtml(field)}:</strong> ${escapeHtml(value)}</p>`;
+    })
+    .filter(Boolean)
+    .join("");
+
+  if (!rows) return "";
+
+  return `
+                <hr />
+                <h3>Atribución de marketing</h3>
+                ${rows}
+  `;
+};
+
 export async function sendOwnerLead(formData: FormData) {
   const nombre = getField(formData, "nombre");
+  const email = getField(formData, "email");
   const whatsapp = getField(formData, "whatsapp");
   const ciudad = getField(formData, "ciudad");
   const barrio = getField(formData, "barrio");
   const tipoPropiedad = getField(formData, "tipoPropiedad");
   const mensaje = getField(formData, "mensaje");
+  const attributionHtml = getAttributionHtml(formData);
 
-  if (!nombre || !whatsapp || !ciudad || !tipoPropiedad) {
+  if (!nombre || !email || !whatsapp || !ciudad || !tipoPropiedad) {
     throw new Error("Faltan campos obligatorios.");
+  }
+
+  if (!email.includes("@")) {
+    throw new Error("El email no es válido.");
   }
 
   const payload = await getPayload({ config });
@@ -38,6 +79,7 @@ export async function sendOwnerLead(formData: FormData) {
                 <h2>Nuevo lead desde la landing de propietarios</h2>
 
                 <p><strong>Nombre:</strong> ${escapeHtml(nombre)}</p>
+                <p><strong>Email:</strong> ${escapeHtml(email)}</p>
                 <p><strong>WhatsApp:</strong> ${escapeHtml(whatsapp)}</p>
                 <p><strong>Ciudad:</strong> ${escapeHtml(ciudad)}</p>
                 <p><strong>Barrio:</strong> ${escapeHtml(barrio || "No indicado")}</p>
@@ -47,6 +89,8 @@ export async function sendOwnerLead(formData: FormData) {
 
                 <p><strong>Mensaje:</strong></p>
                 <p>${escapeHtml(mensaje || "No indicado").replace(/\n/g, "<br />")}</p>
+
+                ${attributionHtml}
             </div>
         `,
   });
@@ -55,6 +99,7 @@ export async function sendOwnerLead(formData: FormData) {
     await sendMetaLeadEvent({
       eventSourceUrl: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.legalio.com.co"}/propietarios`,
       firstName: nombre,
+      email,
       phone: whatsapp,
       city: ciudad,
       contentName: `Lead propietarios - ${tipoPropiedad}`,

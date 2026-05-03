@@ -9,6 +9,11 @@ import SidebarFilter3 from "../common/SidebarFilter3";
 import Link from "next/link";
 import MapComponent from "../common/Map";
 import { useRouter, useSearchParams } from "next/navigation";
+import {
+  propertyToAnalyticsItem,
+  pushAnalyticsEvent,
+  readAttribution,
+} from "@/lib/analytics/events";
 
 function parseSizeValue(val: string) {
   if (val === "Min (Mts/2)" || val === "Max (Mts/2)") return val;
@@ -355,6 +360,22 @@ export default function Properties5({
 
   const handleSearch = (e?: React.FormEvent) => {
     e?.preventDefault();
+
+    pushAnalyticsEvent("search", {
+      search_term: searchKeyword.trim(),
+      filters: {
+        city,
+        business_type: businessType,
+        bedrooms,
+        bathrooms,
+        garages,
+        price,
+        min_size: minSize,
+        max_size: maxSize,
+      },
+      results_count: sorted.length,
+      attribution: readAttribution(),
+    });
   };
 
   const toggleAdvancedFilter = () => {
@@ -396,6 +417,61 @@ export default function Properties5({
         : [...features, newFeature];
       dispatch({ type: "SET_FEATURES", payload: updated });
     },
+  };
+
+  useEffect(() => {
+    if (!hydratedFromUrl) return;
+
+    const timeout = window.setTimeout(() => {
+      pushAnalyticsEvent("view_item_list", {
+        item_list_id: basePath,
+        item_list_name: "Propiedades",
+        results_count: sorted.length,
+        filters: {
+          city,
+          business_type: businessType,
+          bedrooms,
+          bathrooms,
+          garages,
+          price,
+          min_size: minSize,
+          max_size: maxSize,
+          features: features.join(","),
+          sort: sortingOption,
+          search_term: searchKeyword.trim(),
+        },
+        items: sorted.slice(0, 12).map((property, index) =>
+          propertyToAnalyticsItem(property, index + 1),
+        ),
+        attribution: readAttribution(),
+      });
+    }, 700);
+
+    return () => window.clearTimeout(timeout);
+  }, [
+    hydratedFromUrl,
+    sorted,
+    basePath,
+    city,
+    businessType,
+    bedrooms,
+    bathrooms,
+    garages,
+    price,
+    minSize,
+    maxSize,
+    features,
+    sortingOption,
+    searchKeyword,
+  ]);
+
+  const handlePropertySelect = (property: Property, index: number) => {
+    pushAnalyticsEvent("select_item", {
+      item_list_id: basePath,
+      item_list_name: "Propiedades",
+      items: [propertyToAnalyticsItem(property, index + 1)],
+      attribution: readAttribution(),
+    });
   };
 
   return (
@@ -477,7 +553,7 @@ export default function Properties5({
                   <div className="tf-grid-layout md-col-2">
                     {sorted
                       .slice((currentPage - 1) * 8, currentPage * 8)
-                      .map((property) => {
+                      .map((property, index) => {
                         const firstImage = property.images?.[0];
 
                         const imageUrl =
@@ -531,6 +607,7 @@ export default function Properties5({
                               <Link
                                 href={`/detalle-propiedad/${property.id}`}
                                 className="overlay-link"
+                                onClick={() => handlePropertySelect(property, index)}
                               ></Link>
                               <div className="wishlist">
                                 <div className="hover-tooltip tooltip-left box-icon">
@@ -556,6 +633,7 @@ export default function Properties5({
                               <Link
                                 href={`/detalle-propiedad/${property.id}`}
                                 className="title mb_8 h5 link text_primary-color"
+                                onClick={() => handlePropertySelect(property, index)}
                               >
                                 {property.title}
                               </Link>
@@ -593,7 +671,7 @@ export default function Properties5({
                         (currentPage - 1) * itemPerPage,
                         currentPage * itemPerPage,
                       )
-                      .map((property) => (
+                      .map((property, index) => (
                         <div
                           className="card-house style-list v3"
                           data-id={property.id}
@@ -604,6 +682,7 @@ export default function Properties5({
                               key={property.id}
                               href={`/detalle-propiedad/${property.id}`}
                               className="img-style"
+                              onClick={() => handlePropertySelect(property, index)}
                             >
                               <Image
                                 src={
@@ -628,6 +707,7 @@ export default function Properties5({
                             <Link
                               href={`/detalle-propiedad/${property.id}`}
                               className="img-style"
+                              onClick={() => handlePropertySelect(property, index)}
                             >
                               <Image
                                 src={
@@ -679,6 +759,7 @@ export default function Properties5({
                             <Link
                               href={`/detalle-propiedad/${property.id}`}
                               className="title mb_8 h5 link text_primary-color"
+                              onClick={() => handlePropertySelect(property, index)}
                             >
                               {property.title}
                             </Link>
