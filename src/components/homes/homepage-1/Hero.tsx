@@ -2,8 +2,6 @@
 import React from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
 // import { Navigation, Autoplay } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
 // import Image from "next/image";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
 import type { City } from "@/payload-types";

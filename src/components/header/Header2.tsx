@@ -13,17 +13,18 @@ export default function Header2() {
             <header className="header style-1 header-fixed">
                 <div className="tf-container w-lg">
                     <div className="header-inner">
-                        <div
+                        <button
+                            type="button"
                             className="mobile-button d-xl-none"
                             onClick={() => setIsMenuOpen(true)}
-                            aria-label="Open menu"
+                            aria-label="Abrir menú"
                         >
                             <div className="burger">
                                 <span></span>
                                 <span></span>
                                 <span></span>
                             </div>
-                        </div>
+                        </button>
                         <Nav />
                         <div className="header-right d-flex align-items-center gap_20">
                             {/* <Link

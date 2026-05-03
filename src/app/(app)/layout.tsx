@@ -1,8 +1,5 @@
 import { Manrope, Source_Serif_4 } from "next/font/google";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "photoswipe/dist/photoswipe.css";
-import "swiper/css";
-import "swiper/css/pagination";
 import "../../../public/assets/icons/icomoon/style.css";
 import "../../../public/assets/scss/app.scss";
 import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";

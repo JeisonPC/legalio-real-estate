@@ -299,7 +299,11 @@
 }
 
 .mobile-button {
+    appearance: none;
+    background: transparent;
+    border: 0;
     cursor: pointer;
+    line-height: 1;
     padding: 24px 0;
     .burger {
         position: relative;

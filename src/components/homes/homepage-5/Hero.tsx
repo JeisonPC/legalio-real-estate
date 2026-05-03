@@ -1,11 +1,8 @@
 "use client";
 import React from "react";
 // import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
 // import Image from "next/image";
 // import { Autoplay, EffectFade, Navigation } from "swiper/modules";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
 import type { City } from "@/payload-types";
 

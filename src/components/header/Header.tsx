@@ -36,17 +36,18 @@ export default function Header() {
                                         <span>Publicar Propiedad</span>
                                         <span className="bg-effect"></span>
                                     </Link>
-                                    <div
+                                    <button
+                                        type="button"
                                         className="mobile-button d-xl-none"
                                         onClick={() => setIsMenuOpen(true)}
-                                        aria-label="Open menu"
+                                        aria-label="Abrir menú"
                                     >
                                         <div className="burger">
                                             <span></span>
                                             <span></span>
                                             <span></span>
                                         </div>
-                                    </div>
+                                    </button>
                                 </div>
                             </div>
                         </div>

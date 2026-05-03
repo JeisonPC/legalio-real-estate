@@ -2,6 +2,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import { Gallery as PhotoSwipeGallery, Item } from "react-photoswipe-gallery";
+import "photoswipe/dist/photoswipe.css";
 import ModalVideo from "../common/ModalVideo";
 
 export default function GallerySection() {

@@ -2,6 +2,10 @@
 import React from "react";
 import { SwiperClass, Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Thumbs, Controller } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/thumbs";
 import Image from "next/image";
 
 type Testimonial = {

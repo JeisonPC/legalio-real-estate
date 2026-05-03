@@ -80,20 +80,22 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
       <div className="tf-container">
         <ul
           className="nav-tab-form style-1 justify-content-center"
-          role="tablist"
+          aria-label="Tipo de negocio"
         >
-          <li className="nav-tab-item text-title fw-6" role="presentation">
+          <li className="nav-tab-item text-title fw-6">
             <button
               type="button"
+              aria-pressed={businessType === "arriendo"}
               className={`nav-link-item ${businessType === "arriendo" ? "active" : ""}`}
               onClick={() => handleBusinessTypeChange("arriendo")}
             >
               Arriendo
             </button>
           </li>
-          <li className="nav-tab-item text-title fw-6" role="presentation">
+          <li className="nav-tab-item text-title fw-6">
             <button
               type="button"
+              aria-pressed={businessType === "venta"}
               className={`nav-link-item ${businessType === "venta" ? "active" : ""}`}
               onClick={() => handleBusinessTypeChange("venta")}
             >
