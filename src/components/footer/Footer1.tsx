@@ -211,10 +211,10 @@ export default function Footer1() {
                         <div className="col-lg-4">
                             <div className="footer-newsletter footer-item">
                                 <div className="footer-heading text-title fw-6 text_white mb_16">
-                                    Join Our Newsletter
+                                    Regístrate en nuestro Newsletter
                                 </div>
                                 <p className="text_color-1 mb_20">
-                                    Sign up for updates on our latest news.
+                                    Recibe actualizaciones sobre nuestras últimas noticias.
                                 </p>
                                 <form
                                     id="subscribe-form"
@@ -248,15 +248,15 @@ export default function Footer1() {
                                     <div id="subscribe-msg"></div>
                                 </form>
                                 <p className="text_color-1">
-                                    By clicking subscribe, you agree to the
+                                    Al hacer clic en suscribirse, acepta nuestros
                                     <Link
                                         href="#"
                                         className="hover-underline-link link"
                                     >
-                                        Terms of Service
+                                        Términos de Servicio
                                     </Link>{" "}
                                     {"  "}
-                                    and
+                                    y
                                     {"  "}
                                     <Link
                                         href={"/politicas-de-privacidad"}
