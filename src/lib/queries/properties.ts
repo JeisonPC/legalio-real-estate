@@ -1,4 +1,3 @@
-// src/lib/queries/cities.ts
 import { getPayloadClient } from "@/lib/payload";
 
 export async function getProperties() {
@@ -10,8 +9,6 @@ export async function getProperties() {
     sort: "name",
     depth: 1,
   });
-
-  console.log("Fetched properties:", result.docs);
 
   return result.docs;
 }

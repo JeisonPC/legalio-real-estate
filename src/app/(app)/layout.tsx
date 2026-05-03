@@ -29,9 +29,10 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
-    title: "Legalio | Asesoría legal inmobiliaria en Colombia",
+    metadataBase: new URL("https://legalio.com.co"),
+    title: "Legalio | Inmobiliaria en Palmira con respaldo legal",
     description:
-        "Compra, vende o arrienda con seguridad jurídica. En Legalio te acompañamos en todo el proceso inmobiliario con respaldo legal real. Evita fraudes y protege tu inversión.",
+        "Inmobiliaria en Palmira, Valle del Cauca. Compra, vende o arrienda casas, apartamentos y propiedades con asesoría legal inmobiliaria.",
     icons: {
         icon: "/favicon.ico?v=2",
         shortcut: "/favicon.ico?v=2",
@@ -43,6 +44,11 @@ export const metadata: Metadata = {
         "contrato de arrendamiento Colombia",
         "compra de vivienda legal",
         "venta de propiedades Colombia",
+        "inmobiliaria en Palmira",
+        "arriendos en Palmira",
+        "casas en arriendo Palmira",
+        "apartamentos en arriendo Palmira",
+        "propiedades en venta Palmira",
         "Legalio",
         "bienes raíces seguros",
         "arrendamiento seguro",

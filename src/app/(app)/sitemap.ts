@@ -26,6 +26,16 @@ const STATIC_ROUTES: StaticRoute[] = [
     priority: 0.9,
   },
   {
+    path: "/arriendos-palmira",
+    changeFrequency: "daily",
+    priority: 0.95,
+  },
+  {
+    path: "/propiedades-en-venta-palmira",
+    changeFrequency: "daily",
+    priority: 0.95,
+  },
+  {
     path: "/propietarios",
     changeFrequency: "weekly",
     priority: 0.9,
@@ -53,16 +63,24 @@ const STATIC_ROUTES: StaticRoute[] = [
 ];
 
 function getSiteUrl() {
+  const productionUrl = "https://legalio.com.co";
   const configuredUrl =
     process.env.NEXT_PUBLIC_SITE_URL ??
     process.env.SITE_URL ??
     process.env.VERCEL_PROJECT_PRODUCTION_URL ??
     process.env.VERCEL_URL ??
-    "https://legalio.com.co";
+    productionUrl;
 
   const siteUrl = configuredUrl.startsWith("http")
     ? configuredUrl
     : `https://${configuredUrl}`;
+
+  if (
+    process.env.NODE_ENV === "production" &&
+    /localhost|127\.0\.0\.1/.test(siteUrl)
+  ) {
+    return productionUrl;
+  }
 
   return siteUrl.replace(/\/+$/, "");
 }

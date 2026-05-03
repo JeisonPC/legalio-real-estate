@@ -15,11 +15,11 @@ export const footerSections: FooterSection[] = [
     heading: "Nuestra Compañía",
     links: [
       {
-        href: "/propiedades?businessType=Venta",
+        href: "/propiedades-en-venta-palmira",
         label: "Propiedades a la Venta",
       },
       {
-        href: "/propiedades?businessType=Arriendo",
+        href: "/arriendos-palmira",
         label: "Propiedades en Arriendo",
       },
       { href: "/propiedades", label: "Todas las Propiedades" },

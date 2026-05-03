@@ -15,12 +15,36 @@ function parseSizeValue(val: string) {
   return val.replace(/[^0-9]/g, "");
 }
 
+function normalizeBusinessType(value: string) {
+  const normalized = value.trim().toLowerCase();
+
+  if (normalized === "arriendo" || normalized === "alquiler") {
+    return "arriendo";
+  }
+
+  if (normalized === "venta") {
+    return "venta";
+  }
+
+  return "";
+}
+
+function isAllCitiesValue(value: string) {
+  return value === "Todas" || value === "Todas las Ciudades";
+}
+
 export default function Properties5({
   cities,
   properties,
+  initialCity = "Todas las Ciudades",
+  initialBusinessType = "Ambos",
+  basePath = "/propiedades",
 }: {
   cities: City[];
   properties: Property[];
+  initialCity?: string;
+  initialBusinessType?: string;
+  basePath?: string;
 }) {
   const router = useRouter();
   const ddContainer = useRef<HTMLDivElement>(null);
@@ -43,7 +67,11 @@ export default function Properties5({
     };
   }, []);
 
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    city: initialCity,
+    businessType: initialBusinessType,
+  });
 
   const searchParams = useSearchParams();
   const [hydratedFromUrl, setHydratedFromUrl] = useState(false);
@@ -95,21 +123,25 @@ export default function Properties5({
     let filteredList: Property[] = properties;
 
     // City filter
-    if (city && city !== "Todas las Ciudades") {
+    if (city && !isAllCitiesValue(city)) {
       filteredList = filteredList.filter((p) => {
         const cityName =
           typeof p.city === "object"
             ? String(p.city?.name ?? "")
             : String(p.city ?? "");
 
-        return cityName === city;
+        return cityName.toLowerCase() === city.toLowerCase();
       });
     }
 
     // Type filter
     if (businessType && businessType !== "Ambos") {
+      const normalizedBusinessType = normalizeBusinessType(businessType);
+
       filteredList = filteredList.filter(
-        (p) => p.businessType && p.businessType === businessType,
+        (p) =>
+          p.businessType &&
+          normalizeBusinessType(p.businessType) === normalizedBusinessType,
       );
     }
 
@@ -249,12 +281,21 @@ export default function Properties5({
       params.set("q", searchKeyword.trim());
     }
 
-    if (city && city !== "Todas las Ciudades") {
+    if (
+      city &&
+      !isAllCitiesValue(city) &&
+      city.toLowerCase() !== initialCity.toLowerCase()
+    ) {
       params.set("city", city);
     }
 
-    if (businessType && businessType !== "Ambos") {
-      params.set("businessType", businessType);
+    if (
+      businessType &&
+      businessType !== "Ambos" &&
+      normalizeBusinessType(businessType) !==
+        normalizeBusinessType(initialBusinessType)
+    ) {
+      params.set("businessType", normalizeBusinessType(businessType));
     }
 
     if (bedrooms && bedrooms !== "Todas las Habitaciones") {
@@ -289,7 +330,9 @@ export default function Properties5({
       params.set("sort", sortingOption);
     }
 
-    router.replace(`/propiedades?${params.toString()}`, {
+    const queryString = params.toString();
+
+    router.replace(queryString ? `${basePath}?${queryString}` : basePath, {
       scroll: false,
     });
   }, [
@@ -305,6 +348,9 @@ export default function Properties5({
     maxSize,
     features,
     sortingOption,
+    basePath,
+    initialCity,
+    initialBusinessType,
   ]);
 
   const handleSearch = (e?: React.FormEvent) => {
