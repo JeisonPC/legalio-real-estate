@@ -33,7 +33,7 @@ export const footerSections: FooterSection[] = [
     links: [
       { href: "/sobre-nosotros", label: "Acerca de" },
       { href: "/contacto", label: "Contáctanos" },
-      { href: "#", label: "Nuestro Equipo" },
+      { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
       { href: "/blog", label: "Últimas Noticias" },
       { href: "/propietarios", label: "Administren mi propiedad" },
     ],
