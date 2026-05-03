@@ -2,6 +2,7 @@ import DropdownSelect2 from "@/components/common/DropdownSelect2";
 import Image from "next/image";
 import React from "react";
 import { submitCallback } from "@/actions/callbackAction";
+import Link from "next/link";
 
 export default function CallBack() {
     return (
@@ -46,12 +47,12 @@ export default function CallBack() {
                                         <div className="text-title fw-6 text_primary-color mb_4">
                                             Email Address:
                                         </div>
-                                        <a
+                                        <Link
                                             href="#"
                                             className="link text_secondary-color text-body-default"
                                         >
                                             contacto@legalio.com.co
-                                        </a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

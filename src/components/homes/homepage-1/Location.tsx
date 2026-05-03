@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Location() {
@@ -23,21 +24,21 @@ export default function Location() {
                                 className="location-item hover-image scrolling-effect effectFade"
                                 data-delay="0.2"
                             >
-                                <a href="#" className="img-style mb_18">
+                                <Link href="#" className="img-style mb_18">
                                     <Image
                                         width={300}
                                         height={300}
                                         src="/assets/images/section/location-1.jpg"
                                         alt="location"
                                     />
-                                </a>
+                                </Link>
                                 <div className="content">
-                                    <a
+                                    <Link
                                         href="#"
                                         className="mb_4 link h5 text_primary-color"
                                     >
                                         Los Angeles, CA
-                                    </a>
+                                    </Link>
                                     <p>221 Property</p>
                                 </div>
                             </div>
@@ -45,21 +46,21 @@ export default function Location() {
                                 className="location-item hover-image scrolling-effect effectFade"
                                 data-delay="0.3"
                             >
-                                <a href="#" className="img-style mb_18">
+                                <Link href="#" className="img-style mb_18">
                                     <Image
                                         width={300}
                                         height={300}
                                         src="/assets/images/section/location-2.jpg"
                                         alt="location"
                                     />
-                                </a>
+                                </Link>
                                 <div className="content">
-                                    <a
+                                    <Link
                                         href="#"
                                         className="mb_4 link h5 text_primary-color"
                                     >
                                         New York City, NY
-                                    </a>
+                                    </Link>
                                     <p>128 Property</p>
                                 </div>
                             </div>
@@ -68,21 +69,21 @@ export default function Location() {
                             className="location-item hover-image scrolling-effect effectFade"
                             data-delay="0.4"
                         >
-                            <a href="#" className="img-style mb_18">
+                            <Link href="#" className="img-style mb_18">
                                 <Image
                                     width={630}
                                     height={300}
                                     src="/assets/images/section/location-3.jpg"
                                     alt="location"
                                 />
-                            </a>
+                            </Link>
                             <div className="content">
-                                <a
+                                <Link
                                     href="#"
                                     className="mb_4 link h5 text_primary-color"
                                 >
                                     Miami, FL
-                                </a>
+                                </Link>
                                 <p>234 Property</p>
                             </div>
                         </div>
@@ -92,21 +93,21 @@ export default function Location() {
                             className="location-item hover-image scrolling-effect effectFade"
                             data-delay="0.4"
                         >
-                            <a href="#" className="img-style mb_18">
+                            <Link href="#" className="img-style mb_18">
                                 <Image
                                     width={630}
                                     height={300}
                                     src="/assets/images/section/location-4.jpg"
                                     alt="location"
                                 />
-                            </a>
+                            </Link>
                             <div className="content">
-                                <a
+                                <Link
                                     href="#"
                                     className="mb_4 link h5 text_primary-color"
                                 >
                                     Chicago, IL
-                                </a>
+                                </Link>
                                 <p>231 Property</p>
                             </div>
                         </div>
@@ -115,21 +116,21 @@ export default function Location() {
                                 className="location-item hover-image scrolling-effect effectFade"
                                 data-delay="0.3"
                             >
-                                <a href="#" className="img-style mb_18">
+                                <Link href="#" className="img-style mb_18">
                                     <Image
                                         width={300}
                                         height={300}
                                         src="/assets/images/section/location-5.jpg"
                                         alt="location"
                                     />
-                                </a>
+                                </Link>
                                 <div className="content">
-                                    <a
+                                    <Link
                                         href="#"
                                         className="mb_4 link h5 text_primary-color"
                                     >
                                         San Francisco, CA
-                                    </a>
+                                    </Link>
                                     <p>221 Property</p>
                                 </div>
                             </div>
@@ -137,21 +138,21 @@ export default function Location() {
                                 className="location-item hover-image scrolling-effect effectFade"
                                 data-delay="0.2"
                             >
-                                <a href="#" className="img-style mb_18">
+                                <Link href="#" className="img-style mb_18">
                                     <Image
                                         width={300}
                                         height={300}
                                         src="/assets/images/section/location-6.jpg"
                                         alt="location"
                                     />
-                                </a>
+                                </Link>
                                 <div className="content">
-                                    <a
+                                    <Link
                                         href="#"
                                         className="mb_4 link h5 text_primary-color"
                                     >
                                         Boston, MA
-                                    </a>
+                                    </Link>
                                     <p>128 Property</p>
                                 </div>
                             </div>

@@ -5,6 +5,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 const locations = [
   {
@@ -95,7 +96,7 @@ export default function Location() {
           {locations.map((loc, idx) => (
             <SwiperSlide key={idx}>
               <div className="location-item hover-image">
-                <a href={loc.link} className="img-style mb_18">
+                <Link href={loc.link} className="img-style mb_18">
                   <Image
                     loading="lazy"
                     decoding="async"
@@ -104,14 +105,15 @@ export default function Location() {
                     src={loc.image}
                     alt="location"
                   />
-                </a>
+                </Link>
                 <div className="content">
-                  <a
+                  <Link
+
                     href={loc.link}
                     className={`${loc.nameClass} link h5 text_white`}
                   >
                     {loc.name}
-                  </a>
+                  </Link>
                   <p className="text_secondary-color-2 text-caption-1">
                     {loc.count} Property
                   </p>

@@ -120,12 +120,12 @@ export default function TopProperties() {
                                                 : "/month"}
                                         </span>
                                     </h4>
-                                    <a
+                                    <Link
                                         href={`/detalle-propiedad/${property.id}`}
                                         className="title mb_8 h5 link text_primary-color"
                                     >
                                         {property.title}
-                                    </a>
+                                    </Link>
                                     <p>{property.address}</p>
                                     <ul className="info d-flex">
                                         <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">

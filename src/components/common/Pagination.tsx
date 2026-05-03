@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React, { useCallback } from "react";
 
 type PaginationProps = {
@@ -72,26 +73,26 @@ export default function Pagination({
         <ul className="wg-pagination">
             {/* Previous button */}
             <li onClick={handlePreviousClick}>
-                <a className="nav-item">
+                <Link href="#" className="nav-item">
                     <i className="icon-CaretLeft" />
-                </a>
+                </Link>
             </li>
             {/* First page and leading ellipsis */}
             {totalPages > 5 && currentPage > 3 && (
                 <>
                     <li>
-                        <a
+                        <Link href="#"
                             className={`nav-item ${
                                 currentPage === 1 ? "active" : ""
                             }`}
                             onClick={handleFirstPageClick}
                         >
                             1
-                        </a>
+                        </Link>
                     </li>
                     {currentPage > 4 && (
                         <li>
-                            <a className="nav-item">...</a>
+                            <Link href="#" className="nav-item">...</Link>
                         </li>
                     )}
                 </>
@@ -99,14 +100,15 @@ export default function Pagination({
             {/* Page numbers */}
             {pageNumbers.map((page) => (
                 <li key={page}>
-                    <a
+                    <Link
+                        href="#"
                         className={`nav-item ${
                             currentPage === page ? "active" : ""
                         }`}
                         onClick={() => handlePageClick(page)}
                     >
                         {page}
-                    </a>
+                    </Link>
                 </li>
             ))}
             {/* Trailing ellipsis and last page */}
@@ -114,26 +116,26 @@ export default function Pagination({
                 <>
                     {currentPage < totalPages - 3 && (
                         <li>
-                            <a className="nav-item">...</a>
+                            <Link href="#" className="nav-item">...</Link>
                         </li>
                     )}
                     <li>
-                        <a
+                        <Link href="#"
                             className={`nav-item ${
                                 currentPage === totalPages ? "active" : ""
                             }`}
                             onClick={handleLastPageClick}
                         >
                             {totalPages}
-                        </a>
+                        </Link>
                     </li>
                 </>
             )}
             {/* Next button */}
             <li onClick={handleNextClick}>
-                <a className="nav-item">
+                <Link href="#" className="nav-item">
                     <i className="icon-CaretRight" />
-                </a>
+                </Link>
             </li>
         </ul>
     );

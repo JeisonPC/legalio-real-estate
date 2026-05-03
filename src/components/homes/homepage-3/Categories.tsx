@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type Category = {
@@ -75,12 +76,12 @@ export default function Categories() {
                             Properties By Type
                         </h3>
                     </div>
-                    <a
+                    <Link
                         href="#"
                         className="hover-underline-link text-button fw-7 text_primary-color split-text split-lines-transform"
                     >
                         View All Type
-                    </a>
+                    </Link>
                 </div>
                 <div className="tf-grid-layout md-col-3 gap_30 mb_30">
                     {grid3.map((cat, idx) => (
@@ -89,21 +90,21 @@ export default function Categories() {
                             data-delay={cat.delay}
                             key={idx}
                         >
-                            <a href="#" className="img-style">
+                            <Link href="#" className="img-style">
                                 <Image
                                     src={cat.image}
                                     width={cat.width}
                                     height={cat.height}
                                     alt="category"
                                 />
-                            </a>
+                            </Link>
                             <div className="content">
-                                <a
+                                <Link
                                     href="#"
                                     className="mb_8 h5 text_primary-color"
                                 >
                                     {cat.name}
-                                </a>
+                                </Link>
                                 <p>{cat.properties} properties</p>
                             </div>
                         </div>
@@ -116,21 +117,21 @@ export default function Categories() {
                             data-delay={cat.delay}
                             key={idx}
                         >
-                            <a href="#" className="img-style">
+                            <Link href="#" className="img-style">
                                 <Image
                                     src={cat.image}
                                     width={cat.width}
                                     height={cat.height}
                                     alt="category"
                                 />
-                            </a>
+                            </Link>
                             <div className="content">
-                                <a
+                                <Link
                                     href="#"
                                     className="mb_8 h5 text_primary-color"
                                 >
                                     {cat.name}
-                                </a>
+                                </Link>
                                 <p>{cat.properties} properties</p>
                             </div>
                         </div>

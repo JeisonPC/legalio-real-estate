@@ -1,5 +1,6 @@
 import React from "react";
 import OdometerCounter from "@/components/common/Odometer";
+import Link from "next/link";
 
 export default function About() {
     return (
@@ -22,13 +23,13 @@ export default function About() {
                                 milestones with heart, expertise, and unwavering
                                 commitment.
                             </p>
-                            <a
+                            <Link
                                 href="listing-topmap-grid.html"
                                 className="tf-btn btn-bg-1 btn-px-32"
                             >
                                 <span>View Properties</span>
                                 <span className="bg-effect"></span>
-                            </a>
+                            </Link>
                         </div>
                         <div className="col-lg-6 offset-lg-1">
                             <ul className="list">

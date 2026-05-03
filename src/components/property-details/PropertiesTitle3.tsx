@@ -1,4 +1,5 @@
 import { Property } from "@/payload-types";
+import Link from "next/link";
 import React from "react";
 
 export default function PropertiesTitle3({ property }: { property: Property }) {
@@ -24,20 +25,20 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
                 <h2>{property.title}</h2>
                 <ul className="list-action d-flex gap_16">
                     {/* <li className="compare">
-                        <a href="#" className="gap_8">
+                        <Link href="#" className="gap_8">
                             <i className="icon-ArrowsLeftRight"></i>
                             <span className="text-button">Compare</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link href="#">
                             <span className="icon icon-Heart"></span>
-                        </a>
+                        </Link>
                     </li> */}
                     <li>
-                        <a href="#" className="">
+                        <Link href="#" className="">
                             <i className="icon-ShareNetwork"></i>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

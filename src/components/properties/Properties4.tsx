@@ -261,22 +261,22 @@ export default function Properties4({
                   role="tablist"
                 >
                   <li className="nav-tab-item" role="presentation">
-                    <a
+                    <Link
                       href="#gridLayout"
                       className=" btn-layout grid nav-link-item "
                       data-bs-toggle="tab"
                     >
                       <i className="icon-SquaresFour"></i>
-                    </a>
+                    </Link>
                   </li>
                   <li className="nav-tab-item" role="presentation">
-                    <a
+                    <Link
                       href="#listLayout"
                       className="nav-link-item btn-layout list active"
                       data-bs-toggle="tab"
                     >
                       <i className="icon-Rows"></i>
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <DropdownSelect2

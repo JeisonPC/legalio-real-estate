@@ -66,20 +66,20 @@ export default function Relatest() {
                                         </div>
                                     </div>
                                     <div className="wrap-btn">
-                                        <a
+                                        <Link
                                             href="#"
                                             className="tf-btn w-full btn-bg-white quick-view"
                                         >
                                             <span>Quick View</span>
                                             <span className="bg-effect"></span>
-                                        </a>
-                                        <a
+                                        </Link>
+                                        <Link
                                             href="#"
                                             className="tf-btn btn-bg-white w-full compare"
                                         >
                                             <span>Compare</span>
                                             <span className="bg-effect"></span>
-                                        </a>
+                                        </Link>
                                     </div>
                                     <Link
                                         href={`/detalle-propiedad/${property.id}`}

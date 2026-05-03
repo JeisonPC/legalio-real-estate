@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 export default function Description2() {
@@ -17,12 +18,12 @@ export default function Description2() {
                 for families or anyone seeking a serene and connected lifestyle
                 just minutes from Rancagua.
             </p>
-            <a
+            <Link
                 href="#"
                 className="hover-underline-link text_primary-color text-button"
             >
                 Ver más
-            </a>
+            </Link>
         </div>
     );
 }

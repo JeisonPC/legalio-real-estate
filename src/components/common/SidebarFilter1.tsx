@@ -6,6 +6,7 @@ import {
   priceOptions,
 } from "@/data/optionfilter";
 import { City } from "@/payload-types";
+import Link from "next/link";
 
 interface SidebarFilter1Props {
   cities: City[];
@@ -58,18 +59,18 @@ export default function SidebarFilter1({
         role="tablist"
       >
         <li className="nav-tab-item text-title fw-6" role="presentation">
-          <a
+          <Link
             href="#forRent"
             className="nav-link-item active"
             data-bs-toggle="tab"
           >
             Alquiler
-          </a>
+          </Link>
         </li>
         <li className="nav-tab-item text-title fw-6" role="presentation">
-          <a href="#forSale" className="nav-link-item" data-bs-toggle="tab">
+          <Link href="#forSale" className="nav-link-item" data-bs-toggle="tab">
             Venta
-          </a>
+          </Link>
         </li>
       </ul>
 

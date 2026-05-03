@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react'
 
 const faqsData = [
@@ -57,10 +58,10 @@ export default function FAQs1() {
             <p className="text_white text-body-2 mb_20">
               Reach out today for expert real estate advice, personalized support, and a dedicated team ready to guide you every step of the way.
             </p>
-            <a href="#" className="tf-btn btn-bg-1 btn-px-28">
+            <Link href="#" className="tf-btn btn-bg-1 btn-px-28">
               <span>Schedule a Consultation</span>
               <span className="bg-effect"></span>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="wrap-accordion">
@@ -71,7 +72,7 @@ export default function FAQs1() {
           <ul className="accordion-wrap" id="accordion-faq">
             {faqsData.map((faq) => (
               <li className="accordion-item" key={faq.id}>
-                <a
+                <Link
                   href={`#${faq.id}`}
                   className={`accordion-title${faq.expanded ? " " : " collapsed"}`}
                   data-bs-toggle="collapse"
@@ -82,7 +83,7 @@ export default function FAQs1() {
                     <h6 className="title">{faq.question}</h6>
                     <span className="icon icon-CaretDown"></span>
                   </div>
-                </a>
+                </Link>
                 <div
                   id={faq.id}
                   className={`collapse${faq.expanded ? " show" : ""}`}

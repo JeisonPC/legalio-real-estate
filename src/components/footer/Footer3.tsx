@@ -24,12 +24,12 @@ export default function Footer3() {
               </div>
               <div>
                 <p className="mb_4 text_color-1">Contactanos:</p>
-                <a href="#" className="h5 link text_white mb_4">
+                <Link href="mailto:hi.avitex@gmail.com" className="h5 link text_white mb_4">
                   hi.avitex@gmail.com
-                </a>
-                <a href="#" className="h5 link text_white">
+                </Link>
+                <Link href="tel:315-666-6688" className="h5 link text_white">
                   315-666-6688
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -89,26 +89,26 @@ export default function Footer3() {
       <div className="footer-bottom d-flex align-items-center justify-content-between">
         <p className="text_muted-color">
           ©2025{" "}
-          <a href="#" className="text_white hover-underline-link">
+          <Link href="#" className="text_white hover-underline-link">
             Legalio.
-          </a>
+          </Link>
           Todos los derechos reservados.
         </p>
         <ul className="social d-flex gap_24">
           <li>
-            <a href="#" className="icon-FacebookLogo"></a>
+            <Link href="#" className="icon-FacebookLogo"></Link>
           </li>
           <li>
-            <a href="#" className="icon-XLogo"></a>
+            <Link href="#" className="icon-XLogo"></Link>
           </li>
           <li>
-            <a href="#" className="icon-TiktokLogo"></a>
+            <Link href="#" className="icon-TiktokLogo"></Link>
           </li>
           <li>
-            <a href="#" className="icon-InstagramLogo"></a>
+            <Link href="#" className="icon-InstagramLogo"></Link>
           </li>
           <li>
-            <a href="#" className="icon-YoutubeLogo"></a>
+            <Link href="#" className="icon-YoutubeLogo"></Link>
           </li>
         </ul>
       </div>

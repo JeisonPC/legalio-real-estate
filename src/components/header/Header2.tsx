@@ -33,13 +33,13 @@ export default function Header2() {
                             >
                                 Inicio de sesión/Registro
                             </Link> */}
-                            <a
+                            <Link
                                 href="#"
                                 className="tf-btn btn-bg-primary-2 sm-hide"
                             >
                                 <span>Publicar Propiedad</span>
                                 <span className="bg-effect"></span>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -74,14 +74,14 @@ export default function Header2() {
                         <div className="mb-body">
                             <MobileMenu />
                             <div className="support">
-                                <a href="#" className="tf-btn ">
+                                <Link href="#" className="tf-btn ">
                                     <span>Publicar Propiedad</span>
                                     <span className="bg-effect"></span>
-                                </a>
-                                <a href="#" className="text-need">
+                                </Link>
+                                <Link href="#" className="text-need">
                                     {" "}
                                     Need help?
-                                </a>
+                                </Link>
                                 <ul className="mb-info">
                                     <li>
                                         Call Us Now:{" "}
@@ -91,43 +91,43 @@ export default function Header2() {
                                     </li>
                                     <li>
                                         Support 24/7:{" "}
-                                        <a href="#" className="link">
+                                        <Link href="#" className="link">
                                             contacto@legalio.com.co
-                                        </a>
+                                        </Link>
                                     </li>
                                     <li>
                                         <div className="wrap-social">
                                             <p>Follow us:</p>
                                             <ul className="social align-items-center d-flex gap_24">
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-FacebookLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-XLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-TiktokLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-InstagramLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                                 <li>
-                                                    <a
+                                                    <Link
                                                         href="#"
                                                         className="icon-YoutubeLogo"
-                                                    ></a>
+                                                    ></Link>
                                                 </li>
                                             </ul>
                                         </div>

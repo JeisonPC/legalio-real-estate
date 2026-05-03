@@ -1,5 +1,6 @@
 import React from "react";
 import { Property } from "@/payload-types";
+import Link from "next/link";
 
 export default function Description({ property }: { property: Property }) {
   const description = property.description ?? "";
@@ -13,12 +14,12 @@ export default function Description({ property }: { property: Property }) {
       </p>
 
       {description && description.length > 150 && (
-        <a
+        <Link
           href="#"
           className="hover-underline-link text_primary-color text-button"
         >
           Ver más
-        </a>
+        </Link>
       )}
     </div>
   );

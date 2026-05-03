@@ -3,6 +3,7 @@
 import DropdownSelect2 from "@/components/common/DropdownSelect2";
 import React, { useState } from "react";
 import { submitFAQQuestion } from "@/actions/faqAction";
+import Link from "next/link";
 
 const faqGroups = [
     {
@@ -195,7 +196,7 @@ export default function Faqs() {
                                 >
                                     {group.items.map((item) => (
                                         <li className="accordion-item" key={item.id}>
-                                            <a
+                                            <Link
                                                 href={`#${item.id}`}
                                                 className={`accordion-title ${
                                                     openItems[group.id] === item.id
@@ -217,7 +218,7 @@ export default function Faqs() {
                                                     </div>
                                                     <span className="icon icon-CaretDown"></span>
                                                 </div>
-                                            </a>
+                                            </Link>
                                             <div
                                                 id={item.id}
                                                 className={`collapse ${

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 export default function Footer2() {
@@ -16,21 +17,21 @@ export default function Footer2() {
             </div>
             <div className="item">
               <span className="d-block text_color-1 text-title mb_8">Correo Electrónico:</span>
-              <a href="#" className="link text_white text-body-3">contacto@legalio.com.co</a>
+              <Link href="mailto:contacto@legalio.com.co" className="link text_white text-body-3">contacto@legalio.com.co</Link>
             </div>
           </div>
         </div>
         <div className="footer-bottom d-flex align-items-center justify-content-between">
           <p className="text_muted-color">
-            ©2025 <a href="#" className="text_white hover-underline-link">Legalio </a>
+            ©2025 <Link href="#" className="text_white hover-underline-link">Legalio </Link>
             Todos los derechos reservados.
           </p>
           <ul className="social d-flex gap_24">
-            <li><a href="https://www.facebook.com/LegalioColombia" className="icon-FacebookLogo"></a></li>
-            {/* <li><a href="#" className="icon-XLogo"></a></li> */}
-            {/* <li><a href="#" className="icon-TiktokLogo"></a></li> */}
-            <li><a href="https://www.instagram.com/legalio_sas/" className="icon-InstagramLogo"></a></li>
-            <li><a href="https://www.youtube.com/channel/UCpWnbhiYJH-XDX8nu88fypw" className="icon-YoutubeLogo"></a></li>
+            <li><Link href="https://www.facebook.com/LegalioColombia" className="icon-FacebookLogo"></Link></li>
+            {/* <li><Link href="#" className="icon-XLogo"></Link></li> */}
+            {/* <li><Link href="#" className="icon-TiktokLogo"></Link></li> */}
+            <li><Link href="https://www.instagram.com/legalio_sas/" className="icon-InstagramLogo"></Link></li>
+            <li><Link href="https://www.youtube.com/channel/UCpWnbhiYJH-XDX8nu88fypw" className="icon-YoutubeLogo"></Link></li>
           </ul>
         </div>
       </div>

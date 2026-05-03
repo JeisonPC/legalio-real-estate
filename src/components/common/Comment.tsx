@@ -148,12 +148,12 @@ export default function Comment() {
                     </div>
                 </div>
             </div>
-            <a
+            <Link
                 href="#"
                 className="all-review hover-underline-link text_primary-color text-button"
             >
                 See All Review (98)
-            </a>
+            </Link>
         </div>
     );
 }

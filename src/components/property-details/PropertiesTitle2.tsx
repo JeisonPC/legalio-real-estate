@@ -1,4 +1,5 @@
 import { Property } from "@/payload-types";
+import Link from "next/link";
 import React from "react";
 
 
@@ -59,20 +60,20 @@ export default function PropertiesTitle2({ property }: { property: Property }) {
                 </div>
                 <ul className="list-action d-flex gap_16">
                     <li>
-                        <a href="#" className="">
+                        <Link href="#" className="">
                             <i className="icon-ArrowsLeftRight"></i>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link href="#">
                             <span className="icon icon-Heart"></span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
                         {" "}
-                        <a href="#" className="">
+                        <Link href="#" className="">
                             <i className="icon-ShareNetwork"></i>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

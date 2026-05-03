@@ -19,7 +19,7 @@ export default function GallerySection() {
                     >
                         {({ ref, open }) => (
                             <div className="img-style position-relative">
-                                <a onClick={open} data-fancybox="gallery">
+                                <button onClick={open} data-fancybox="gallery">
                                     <Image
                                         src="/assets/images/section/properties-gallery-1.jpg"
                                         width={635}
@@ -27,10 +27,10 @@ export default function GallerySection() {
                                         height={635}
                                         alt="gallery"
                                     />
-                                </a>
+                                </button>
                                 <div className="wrap-btn d-flex gap_10">
                                     <div className="widget-video">
-                                        <a
+                                        <button
                                            onClick={() => setIsOpen(true)}
                                             data-fancybox="gallery2"
                                             className="tf-btn tf-btn btn-bg-1 popup-youtube"
@@ -40,9 +40,9 @@ export default function GallerySection() {
                                                 Reproducir Video
                                             </span>
                                             <span className="bg-effect"></span>
-                                        </a>
+                                        </button>
                                     </div>
-                                    <a
+                                    <button
                                         onClick={open}
                                         data-fancybox="gallery"
                                         className="tf-btn btn-bg-1"
@@ -52,7 +52,7 @@ export default function GallerySection() {
                                             View All Photo
                                         </span>
                                         <span className="bg-effect"></span>
-                                    </a>
+                                    </button>
                                 </div>
                             </div>
                         )}
@@ -68,7 +68,7 @@ export default function GallerySection() {
                             >
                                 {({ ref, open }) => (
                                     <div className="img-style position-relative">
-                                        <a
+                                        <button
                                             onClick={open}
                                             data-fancybox="gallery"
                                         >
@@ -79,7 +79,7 @@ export default function GallerySection() {
                                                 height={308}
                                                 alt="gallery"
                                             />
-                                        </a>
+                                        </button>
                                     </div>
                                 )}
                             </Item>
@@ -92,7 +92,7 @@ export default function GallerySection() {
                             >
                                 {({ ref, open }) => (
                                     <div className="img-style position-relative">
-                                        <a
+                                        <button
                                             onClick={open}
                                             data-fancybox="gallery"
                                         >
@@ -103,7 +103,7 @@ export default function GallerySection() {
                                                 height={308}
                                                 alt="gallery"
                                             />
-                                        </a>
+                                        </button>
                                     </div>
                                 )}
                             </Item>
@@ -117,7 +117,7 @@ export default function GallerySection() {
                             >
                                 {({ ref, open }) => (
                                     <div className="img-style position-relative">
-                                        <a
+                                        <button
                                             onClick={open}
                                             data-fancybox="gallery"
                                         >
@@ -128,7 +128,7 @@ export default function GallerySection() {
                                                 height={308}
                                                 alt="gallery"
                                             />
-                                        </a>
+                                        </button>
                                     </div>
                                 )}
                             </Item>
@@ -140,7 +140,7 @@ export default function GallerySection() {
                             >
                                 {({ ref, open }) => (
                                     <div className="img-style position-relative">
-                                        <a
+                                        <button
                                             onClick={open}
                                             data-fancybox="gallery"
                                         >
@@ -151,7 +151,7 @@ export default function GallerySection() {
                                                 height={308}
                                                 alt="gallery"
                                             />
-                                        </a>
+                                        </button>
                                     </div>
                                 )}
                             </Item>

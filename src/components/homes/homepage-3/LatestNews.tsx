@@ -24,12 +24,12 @@ export default function LatestNew() {
                                 height={400}
                                 alt={mainArticle[0].alt}
                             />
-                            <a
+                            <Link
                                 href={`#`}
                                 className="tag text-label text text_primary-color text-uppercase"
                             >
                                 {mainArticle[0].category}
-                            </a>
+                            </Link>
                             <Link
                                 href={`/blog-post-1/${mainArticle[0].id}`}
                                 className="overlay-link"
@@ -39,24 +39,24 @@ export default function LatestNew() {
                             <div className="meta-post d-flex align-items-center mb_12">
                                 <div className="item text_secondary-color text-body-default ">
                                     Post By{" "}
-                                    <a
+                                    <Link
                                         href={"#"}
                                         className="link text_primary-color"
                                     >
                                         {mainArticle[0].author}
-                                    </a>
+                                    </Link>
                                 </div>
                                 <div className="item text_secondary-color text-body-default ">
                                     {mainArticle[0].date}
                                 </div>
                             </div>
                             <h4 className="title mb_12">
-                                <a
+                                <Link
                                     href={`/blog-post-1/${mainArticle[0].id}`}
                                     className="link hover-line-text line-clamp-3"
                                 >
                                     {mainArticle[0].title}
-                                </a>
+                                </Link>
                             </h4>
                             <p className="description line-clamp-1">
                                 {mainArticle[0].description}

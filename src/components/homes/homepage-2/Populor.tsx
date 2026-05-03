@@ -1,5 +1,6 @@
 import { populor } from "@/data/properties";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Populor() {
@@ -43,10 +44,10 @@ export default function Populor() {
                                         {property.propertyType}
                                     </div>
                                 </div>
-                                <a
+                                <Link
                                     href={`/detalle-propiedad/${property.id}`}
                                     className="overlay-link"
-                                ></a>
+                                ></Link>
                                 <div className="wishlist">
                                     <div className="hover-tooltip tooltip-left box-icon">
                                         <span className="icon icon-Heart"></span>
@@ -65,12 +66,12 @@ export default function Populor() {
                                             : "/month"}
                                     </span>
                                 </h4>
-                                <a
+                                <Link
                                     href={`/detalle-propiedad/${property.id}`}
                                     className="title mb_8 h5 link text_primary-color"
                                 >
                                     {property.title}
-                                </a>
+                                </Link>
                                 <p>{property.address}</p>
                                 <ul className="info d-flex">
                                     <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">
@@ -90,13 +91,13 @@ export default function Populor() {
                         </div>
                     ))}
                 </div>
-                <a
+                <Link
                     href="listing-topmap-grid.html"
                     className="tf-btn btn-bg-1 mx-auto btn-px-32 scrolling-effect effectBottom"
                 >
                     <span>View All Properties</span>
                     <span className="bg-effect"></span>
-                </a>
+                </Link>
             </div>
         </div>
     );

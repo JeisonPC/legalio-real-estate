@@ -37,9 +37,9 @@ export default function TopBar() {
                             <div className="content">
                                 <p className="text-caption-2 mb_4">Email Us:</p>
                                 <span className="text-title fw-6 text_primary-color">
-                                    <a href="#" className="link">
+                                    <Link href="mailto:contacto@legalio.com.co" className="link">
                                         contacto@legalio.com.co
-                                    </a>
+                                    </Link>
                                 </span>
                             </div>
                         </div>
@@ -58,19 +58,19 @@ export default function TopBar() {
                         </div>
                         <ul className="social d-flex align-items-center gap_24 text_primary-color">
                             <li>
-                                <a href="#" className="icon-FacebookLogo"></a>
+                                <Link href="#" className="icon-FacebookLogo"></Link>
                             </li>
                             <li>
-                                <a href="#" className="icon-XLogo"></a>
+                                <Link href="#" className="icon-XLogo"></Link>
                             </li>
                             <li>
-                                <a href="#" className="icon-TiktokLogo"></a>
+                                <Link href="#" className="icon-TiktokLogo"></Link>
                             </li>
                             <li>
-                                <a href="#" className="icon-InstagramLogo"></a>
+                                <Link href="#" className="icon-InstagramLogo"></Link>
                             </li>
                             <li>
-                                <a href="#" className="icon-YoutubeLogo"></a>
+                                <Link href="#" className="icon-YoutubeLogo"></Link>
                             </li>
                         </ul>
                     </div>

@@ -6,6 +6,7 @@ import Floor2 from "./Floor2";
 import GallerySection from "./Gallery";
 import { Property } from "@/payload-types";
 import Link from "next/link";
+
 function updateTabSlideEffect() {
     const tabSlide = document.querySelector(".tab-slide");
     if (!tabSlide) return;

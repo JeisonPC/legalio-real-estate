@@ -112,12 +112,12 @@ export default function Testimonial1() {
                                         />
                                     </div>
                                     <div className="info">
-                                        <a
+                                        <Link
                                             href="#"
                                             className="h6 text_primary-color name link mb_4"
                                         >
                                             {tes.name}
-                                        </a>
+                                        </Link>
                                         <p>{tes.position}</p>
                                     </div>
                                 </div>

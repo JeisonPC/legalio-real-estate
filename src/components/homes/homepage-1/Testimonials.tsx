@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/thumbs";
 import Image from "next/image";
+import Link from "next/link";
 
 type Testimonial = {
     name: string;
@@ -72,12 +73,12 @@ export default function Testimonials() {
                                                 <span className="sub text-label text_secondary-color-2 text-uppercase">
                                                     Testimonials
                                                 </span>
-                                                <a
+                                                <Link
                                                     href="#"
                                                     className="h3 link text_primary-color"
                                                 >
                                                     {testimonial.name}
-                                                </a>
+                                                </Link>
                                                 <p>{testimonial.title}</p>
                                             </div>
                                             <ul className="ratings d-flex mb_28">

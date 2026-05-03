@@ -164,13 +164,13 @@ export default function Properties() {
                     ))}
                 </div>
 
-                <a
+                <Link
                     href="listing-topmap-grid.html"
                     className="tf-btn btn-bg-1 mx-auto btn-px-32"
                 >
                     <span>View All Properties</span>
                     <span className="bg-effect"></span>
-                </a>
+                </Link>
             </div>
         </div>
     );

@@ -12,6 +12,7 @@ import {
 import AdvanceSearch2 from "./AdvanceSearch2";
 import { Modal } from "react-bootstrap";
 import { City } from "@/payload-types";
+import Link from "next/link";
 
 // Helper to update the tab slide effect
 function updateTabSlideEffect() {
@@ -119,22 +120,22 @@ export default function SidebarFilter2({
           <ul className="menu-tab tf-grid-layout tf-col-2 gap_8" role="tablist">
             <li className="item-slide-effect"></li>
             <li className="nav-tab-item active" role="presentation">
-              <a
+              <Link
                 href="#standard-plan"
                 className="text-title tab-link fw-6 active"
                 data-bs-toggle="tab"
               >
                 Alquiler
-              </a>
+              </Link>
             </li>
             <li className="nav-tab-item" role="presentation">
-              <a
+              <Link
                 href="#premium-plan"
                 className="text-title tab-link fw-6"
                 data-bs-toggle="tab"
               >
                 A la venta
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
