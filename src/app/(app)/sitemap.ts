@@ -99,7 +99,7 @@ async function getPropertyEntries(): Promise<MetadataRoute.Sitemap> {
 
       entries.push(
         ...result.docs.map((property) => ({
-          url: createUrl(`/property-details-1/${property.id}`),
+          url: createUrl(`/detalle-propiedad/${property.id}`),
           lastModified: getValidDate(property.updatedAt, property.createdAt),
           changeFrequency: "weekly" as const,
           priority: 0.85,

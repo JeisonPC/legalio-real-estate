@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/effect-fade";
 import Image from "next/image";
+import Link from "next/link";
 
 const slides = [
     {
@@ -108,13 +109,13 @@ export default function Hero() {
                             /month
                         </span>
                     </h3>
-                    <a
-                        href="property-details-1.html"
+                    <Link
+                        href="/detalle-propiedad/1"
                         className="tf-btn btn-bg-1 btn-px-32"
                     >
                         <span>View Properties</span>
                         <span className="bg-effect"></span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>

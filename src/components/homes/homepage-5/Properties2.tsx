@@ -23,7 +23,7 @@ export default function Properties2() {
                         >
                             <div className="wrap-img">
                                 <Link
-                                    href={`/properties-details-1/${property.id}`}
+                                    href={`/detalle-propiedad/${property.id}`}
                                     className="img-style"
                                 >
                                     <Image
@@ -34,7 +34,7 @@ export default function Properties2() {
                                     />
                                 </Link>
                                 <Link
-                                    href={`/properties-details-1/${property.id}`}
+                                    href={`/detalle-propiedad/${property.id}`}
                                     className="img-style"
                                 >
                                     <Image
@@ -45,7 +45,7 @@ export default function Properties2() {
                                     />
                                 </Link>
                                 <Link
-                                    href={`/properties-details-1/${property.id}`}
+                                    href={`/detalle-propiedad/${property.id}`}
                                     className="img-style"
                                 >
                                     <Image
@@ -83,12 +83,12 @@ export default function Properties2() {
                                         </div>
                                     </div>
                                 </div>
-                                <a
-                                    href="property-details-1.html"
+                                <Link
+                                    href={`/detalle-propiedad/${property.id}`}
                                     className="title mb_8 h5 link text_primary-color"
                                 >
                                     {property.title}
-                                </a>
+                                </Link>
                                 <p>{property.address}</p>
                                 <ul className="info d-flex">
                                     <li className="d-flex align-items-center gap_8 text-title text_primary-color fw-6">

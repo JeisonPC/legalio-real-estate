@@ -61,7 +61,7 @@ export default function Properties() {
                                 <SwiperSlide key={property.id}>
                                     <div className="content">
                                         <Link
-                                            href={`/property-details-1/${property.id}`}
+                                            href={`/detalle-propiedad/${property.id}`}
                                             className="title mb_12 h4 link text_primary-color"
                                         >
                                             {property.title}
@@ -174,7 +174,7 @@ export default function Properties() {
                                             </div>
                                         </div>
                                         <Link
-                                            href={`/property-details-1/${property.id}`}
+                                            href={`/detalle-propiedad/${property.id}`}
                                             className="overlay-link"
                                         ></Link>
                                         <div className="wishlist">

@@ -353,7 +353,7 @@ export default function Properties6({
                             </div>
 
                             <Link
-                              href={`/property-details-1/${property.id}`}
+                              href={`/detalle-propiedad/${property.id}`}
                               className="overlay-link"
                             ></Link>
                             <div className="wishlist">
@@ -376,7 +376,7 @@ export default function Properties6({
                               </span>
                             </h4>
                             <Link
-                              href={`/property-details-1/${property.id}`}
+                              href={`/detalle-propiedad/${property.id}`}
                               className="title mb_8 h5 link text_primary-color"
                             >
                               {property.title}
@@ -426,7 +426,7 @@ export default function Properties6({
                         >
                           <div className="wrap-img">
                             <Link
-                              href={`/property-details-1/${property.id}`}
+                              href={`/detalle-propiedad/${property.id}`}
                               className="img-style"
                             >
                               <Image
@@ -480,7 +480,7 @@ export default function Properties6({
                               </div>
                             </div>
                             <Link
-                              href={`/property-details-1/${property.id}`}
+                              href={`/detalle-propiedad/${property.id}`}
                               className="title mb_8 h5 link text_primary-color"
                             >
                               {property.title}
