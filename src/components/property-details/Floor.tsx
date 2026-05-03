@@ -1,5 +1,6 @@
 import { Property } from "@/payload-types";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Floor({ property }: { property: Property }) {
@@ -91,7 +92,7 @@ export default function Floor({ property }: { property: Property }) {
                 </li>
             </ul>
             <div className="wrap-download">
-                <a
+                <Link
                     href="#"
                     target="_blank"
                     className="attachments-item d-flex align-items-center gap_12 text-button fw-7 text_primary-color effect-icon"
@@ -101,8 +102,8 @@ export default function Floor({ property }: { property: Property }) {
                     </div>
                     <span>Villa-Document.Pdf</span>
                     <i className="icon-DownloadSimple"></i>
-                </a>
-                <a
+                </Link>
+                <Link
                     href="#"
                     target="_blank"
                     className="attachments-item d-flex align-items-center gap_12 text-button fw-7 text_primary-color effect-icon"
@@ -112,7 +113,7 @@ export default function Floor({ property }: { property: Property }) {
                     </div>
                     <span>Villa-Document.Pdf</span>
                     <i className="icon-DownloadSimple"></i>
-                </a>
+                </Link>
             </div>
         </>
     );

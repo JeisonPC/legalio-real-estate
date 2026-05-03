@@ -13,23 +13,23 @@ type Tab = {
 const tabs: Tab[] = [
     {
         id: "tab1",
-        title: "Step 1: Discover Your Dream Home",
+        title: "Paso 1: Descubre la casa de tus sueños",
         content:
-            "Browse through a curated selection of properties tailored to your lifestyle and budget.",
+            "Explora una selección curada de propiedades adaptadas a tu estilo de vida y presupuesto.",
         image: "/assets/images/section/process-1.jpg",
     },
     {
         id: "tab2",
-        title: "Step 2: Schedule A Viewing",
+        title: "Paso 2: Programa una visita",
         content:
-            "Book a tour at your convenience and explore the space in person or virtually.",
+            "Reserva una visita a tu conveniencia y explora el espacio en persona o de manera virtual.",
         image: "/assets/images/section/process-2.jpg",
     },
     {
         id: "tab3",
-        title: "Step 3: Seal The Deal",
+        title: "Paso 3: Cierra el trato",
         content:
-            "Get expert guidance to finalize paperwork and move into your new home with confidence.",
+            "Obtén orientación experta para finalizar el papeleo y mudarte a tu nuevo hogar con confianza.",
         image: "/assets/images/section/process-3.jpg",
     },
 ];
@@ -106,14 +106,14 @@ export default function Process1() {
 
                 <div>
                     <h3 className="split-text effect-blur-fade">
-                        Trusted By Thousands
+                        Con la confianza de miles de personas
                     </h3>
                     <div className="wrap-counter">
                         {[
-                            { number: 112, label: "Awards Received" },
-                            { number: 85, label: "Satisfied Clients" },
-                            { number: 66, label: "Monthly Traffic" },
-                            { number: 143, label: "Properties Sold" },
+                            // { number: 112, label: "Premios Recibidos" },
+                            { number: 85, label: "Clientes Satisfechos" },
+                            { number: 66, label: "Tráfico Mensual" },
+                            { number: 143, label: "Propiedades Vendidas" },
                         ].map((item, idx) => (
                             <div
                                 className="counter-item style-default"

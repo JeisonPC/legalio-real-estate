@@ -13,6 +13,7 @@ import {
 } from "@/data/optionfilter";
 import DropdownSelect2 from "../common/DropdownSelect2";
 import AdvanceSearch3 from "../common/AdvanceSearch3";
+import Link from "next/link";
 
 
 function updateTabSlideEffect() {
@@ -84,22 +85,22 @@ export default function BoxFilter() {
                 >
                     <li className="item-slide-effect"></li>
                     <li className="nav-tab-item active" role="presentation">
-                        <a
+                        <Link
                             href="#standard-plan"
                             className="text-title tab-link fw-6 active"
                             data-bs-toggle="tab"
                         >
                             Alquiler
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav-tab-item" role="presentation">
-                        <a
+                        <Link
                             href="#premium-plan"
                             className="text-title tab-link fw-6"
                             data-bs-toggle="tab"
                         >
                             A la venta
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </div>

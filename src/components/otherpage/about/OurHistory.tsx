@@ -9,28 +9,28 @@ type TimeLine = {
 const history: TimeLine[] = [
     {
         year: "2009",
-        title: "Humble Beginnings",
-        text: "We started as a small, local agency with a clear mission: helping people find homes with honesty and care.",
+        title: "Comienzos Humildes",
+        text: "Comenzamos como una pequeña agencia local con una misión clara: ayudar a las personas a encontrar hogares con honestidad y cuidado.",
     },
     {
         year: "2015",
-        title: "A Trusted Name",
-        text: "Gained recognition for reliable service and built long-term relationships with clients and partners.",
+        title: "Un Nombre Confiable",
+        text: "Ganamos reconocimiento por nuestro servicio confiable y construimos relaciones a largo plazo con clientes y socios.",
     },
     {
         year: "2018",
-        title: "Embracing Innovation",
-        text: "Adopted new technologies to streamline the property search and improve customer experience.",
+        title: "Adoptando la Innovación",
+        text: "Adoptamos nuevas tecnologías para agilizar la búsqueda de propiedades y mejorar la experiencia del cliente.",
     },
     {
         year: "2021",
-        title: "Over 1,000 Homes Sold",
-        text: "Reached a major milestone with over a thousand successful property transactions completed.",
+        title: "Más de 1,000 Hogares Vendidos",
+        text: "Alcanzamos un hito importante con más de mil transacciones inmobiliarias exitosas completadas.",
     },
     {
         year: "2024",
-        title: "Moving Forward Together",
-        text: "Continuing to grow with a dedicated team, modern tools, and a renewed vision for the future.",
+        title: "Avanzando Juntos",
+        text: "Continuamos creciendo con un equipo dedicado, herramientas modernas y una visión renovada para el futuro.",
     },
 ];
 
@@ -40,9 +40,9 @@ export default function OurHistory() {
             <div className=" t-container">
                 <div className="heading-section justify-content-center text-center mb_48">
                     <span className="sub text-uppercase fw-6 text_secondary-color-2">
-                        Our History
+                        Nuestra Historia
                     </span>
-                    <h3 className="split-text effect-blur-fade">Milestones That Define Us</h3>
+                    <h3 className="split-text effect-blur-fade">Hitos que nos definen</h3>
                 </div>
             </div>
             <div className="content">

@@ -5,6 +5,7 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
+import Link from "next/link";
 
 type Agent = {
   id: number;
@@ -82,10 +83,10 @@ export default function Agents() {
                 knowledge.
               </p>
             </div>
-            <a href="#" className="tf-btn btn-bg-1 btn-px-24">
+            <Link href="#" className="tf-btn btn-bg-1 btn-px-24">
               <span>View Agent</span>
               <span className="bg-effect"></span>
-            </a>
+            </Link>
           </div>
         </div>
         <div className="col-lg-7 offset-xl-1 sw-layout">
@@ -120,7 +121,7 @@ export default function Agents() {
             {agents.map((agent) => (
               <SwiperSlide key={agent.id}>
                 <div className="agent-item">
-                  <a href="#" className="img-style">
+                  <Link href="#" className="img-style">
                     <Image
                       loading="lazy"
                       decoding="async"
@@ -129,11 +130,11 @@ export default function Agents() {
                       height={360}
                       alt="agent"
                     />
-                  </a>
+                  </Link>
                   <ul className="social">
                     {agent.socials.map((social, idx) => (
                       <li key={idx}>
-                        <a href={social.href} className={social.icon}></a>
+                        <Link href={social.href} className={social.icon}></Link>
                       </li>
                     ))}
                   </ul>

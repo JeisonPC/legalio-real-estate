@@ -14,6 +14,7 @@ import Location from "./Location";
 import Hero from "./Hero";
 // import Comment from "../common/Comment";
 import { Property } from "@/payload-types";
+import Link from "next/link";
 
 function useOneNavOnePage() {
   useEffect(() => {
@@ -90,50 +91,50 @@ export default function PropertyDetails3({ property }: { property: Property }) {
           <div className="tf-container">
             <ul className="tab-slide overflow-x-auto" id="navbar">
               <li className="text-button nav-tab-item text_primary-color active">
-                <a href="#overview" className="nav_link">
+                <Link href="#overview" className="nav_link">
                   Descripción General
-                </a>
+                </Link>
               </li>
               <li className="text-button nav-tab-item text_primary-color">
-                <a href="#property-utility" className="nav_link">
+                <Link href="#property-utility" className="nav_link">
                   Propiedad y Servicios Públicos
-                </a>
+                </Link>
               </li>
               <li className="text-button nav-tab-item text_primary-color">
-                <a href="#video" className="nav_link">
+                <Link href="#video" className="nav_link">
                   Video
-                </a>
+                </Link>
               </li>
 
               {/* <li className="text-button nav-tab-item text_primary-color">
-                <a href="#loan-calculator" className="nav_link">
+                <Link href="#loan-calculator" className="nav_link">
                   Calculadora de Préstamos
-                </a>
+                </Link>
               </li> */}
               {/* <li className="text-button nav-tab-item text_primary-color">
-                <a href="#floor-plans" className="nav_link">
+                <Link href="#floor-plans" className="nav_link">
                   Planos de Piso
-                </a>
+                </Link>
               </li> */}
               <li className="text-button nav-tab-item text_primary-color">
-                <a href="#location" className="nav_link">
+                <Link href="#location" className="nav_link">
                   Ubicación
-                </a>
+                </Link>
               </li>
               {/* <li className="text-button nav-tab-item text_primary-color">
-                <a href="#nearby" className="nav_link">
+                <Link href="#nearby" className="nav_link">
                   ¿Qué hay cerca?
-                </a>
+                </Link>
               </li> */}
               {/* <li className="text-button nav-tab-item text_primary-color">
-                <a href="#customer-reviews" className="nav_link">
+                <Link href="#customer-reviews" className="nav_link">
                   Reseñas de clientes
-                </a>
+                </Link>
               </li> */}
               <li className="text-button nav-tab-item text_primary-color">
-                <a href="#reviews" className="nav_link">
+                <Link href="#reviews" className="nav_link">
                   Reseñas
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

@@ -16,7 +16,7 @@
   line-height: 26px;
   font-weight: 700;
   span {
-    color: var(--white);
+    color: var(--Text-primary);
     @include transition3();
     white-space: nowrap;
     display: flex;
@@ -61,11 +61,13 @@
   }
   &.btn-bg-white {
     background-color: var(--White);
+    color: var(--Text-primary);
     .bg-effect {
       background-color: var(--Primary);
     }
     &:hover {
       background-color: var(--Primary);
+      color: var(--white)
       span {
         color: var(--Text-primary) !important;
       }

@@ -83,7 +83,7 @@ export default function WhyChoose() {
                                 </div>
                             </div>
                             <Link
-                                href={"/about-us"}
+                                href={"/sobre-nosotros"}
                                 className="tf-btn btn-bg-1 btn-px-32 scrolling-effect effectBottom"
                             >
                                 <span>Acerca de</span>

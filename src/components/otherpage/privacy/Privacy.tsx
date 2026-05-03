@@ -115,33 +115,33 @@ export default function Privacy() {
                                     className="nav_link text-title fw-6 "
                                     data-target="terms"
                                 >
-                                    <a href="#">1. Terms</a>
+                                    <a href="#">1. Términos</a>
                                 </li>
                                 <li
                                     className="nav_link text-title fw-6"
                                     data-target="limitations"
                                 >
-                                    <a href="#">2. Limitations</a>
+                                    <a href="#">2. Limitaciones</a>
                                 </li>
                                 <li
                                     className="nav_link text-title fw-6"
                                     data-target="revisions"
                                 >
-                                    <a href="#">3. Revisions And Errata</a>
+                                    <a href="#">3. Revisiones y Erratas</a>
                                 </li>
                                 <li
                                     className="nav_link text-title fw-6"
                                     data-target="modifications"
                                 >
                                     <a href="#">
-                                        4. Site Terms Of Use Modifications
+                                        4. Modificaciones de los Términos de Uso del Sitio
                                     </a>
                                 </li>
                                 <li
                                     className="nav_link text-title fw-6"
                                     data-target="risks"
                                 >
-                                    <a href="#">5. Risks</a>
+                                    <a href="#">5. Riesgos</a>
                                 </li>
                                 <li className="highlight-bar"></li>
                             </ul>
@@ -149,11 +149,11 @@ export default function Privacy() {
                         <div className="col-lg-8">
                             <div className="content">
                                 <h4 className="mb_32 heading-title">
-                                    Terms Of Use
+                                    Términos de uso
                                 </h4>
                                 <div id="terms">
                                     <h5 className="title mb_12 text-capitalize">
-                                        1. Terms{" "}
+                                        1. Términos
                                     </h5>
                                     <p className="mb_12">
                                         Lorem ipsum dolor sit amet, consectetur

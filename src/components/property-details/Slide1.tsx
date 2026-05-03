@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "photoswipe/dist/photoswipe.css";
 import "swiper/css/navigation";
 import ModalVideo from "../common/ModalVideo";
+import Link from "next/link";
 
 type PropertyImage = {
     src: string;
@@ -101,7 +102,7 @@ export default function Slide1() {
                                 >
                                     {({ ref, open }) => (
                                         <>
-                                            <a
+                                            <Link
                                                 onClick={open}
                                                 data-fancybox="gallery"
                                                 className="box-img-detail d-block"
@@ -110,6 +111,7 @@ export default function Slide1() {
                                                 aria-label={`Open image ${
                                                     index + 1
                                                 } in gallery`}
+                                                href="#"
                                             >
                                                 <div ref={ref}>
                                                     <Image
@@ -123,34 +125,39 @@ export default function Slide1() {
                                                         }}
                                                     />
                                                 </div>
-                                            </a>
+                                            </Link>
                                             <div className="wrap-btn d-flex gap_10">
                                                 <div className="widget-video">
-                                                    <a
+                                                    <Link
                                                         onClick={() =>
                                                             setIsOpen(true)
                                                         }
                                                         data-fancybox="gallery2"
                                                         className="tf-btn tf-btn btn-bg-1 popup-youtube"
+                                                        tabIndex={0}
+                                                        role="button"
+                                                        aria-label="Play video in gallery"
+                                                        href="#"
                                                     >
                                                         <span className="d-flex align-items-center gap_8">
                                                             <i className="icon-PlayCircle"></i>
                                                             Reproducir Video
                                                         </span>
                                                         <span className="bg-effect"></span>
-                                                    </a>
+                                                    </Link>
                                                 </div>
-                                                <a
+                                                <Link
                                                     onClick={open}
                                                     data-fancybox="gallery"
                                                     className="tf-btn btn-bg-1"
+                                                    href="#"
                                                 >
                                                     <span className="d-flex align-items-center gap_8">
                                                         <i className="icon-Image"></i>
                                                         View All Photo
                                                     </span>
                                                     <span className="bg-effect"></span>
-                                                </a>
+                                                </Link>
                                             </div>
                                         </>
                                     )}

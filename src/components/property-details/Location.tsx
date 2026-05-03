@@ -1,6 +1,7 @@
 import React from "react";
 import MapComponent from "../common/Map2";
 import { Property } from "@/payload-types";
+import Link from "next/link";
 
 export default function Location({ property }: { property: Property }) {
   const lng = property.coordinates?.[0] ?? 0;
@@ -12,12 +13,12 @@ export default function Location({ property }: { property: Property }) {
         <div className=" d-flex align-items-center gap_4 text-button fw-7 text_primary-color flex-wrap">
           <i className="icon-MapPin"></i>{property.address}
         </div>
-        <a
+        <Link
           href="#"
           className="hover-underline-link text-button fw-7 text_primary-color"
         >
-          Get Directions
-        </a>
+          Obtener Ubicaciones
+        </Link>
       </div>
       <div className="wrap-map">
         <MapComponent

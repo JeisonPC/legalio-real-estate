@@ -5,6 +5,7 @@ import { Pagination } from "swiper/modules";
 import { Gallery as PhotoSwipeGallery, Item } from "react-photoswipe-gallery";
 import Image from "next/image";
 import ModalVideo from "../common/ModalVideo";
+import Link from "next/link";
 
 const hoverActive = (): void => {
     const containers = document.querySelectorAll<HTMLElement>(
@@ -169,7 +170,7 @@ const GalleryItem = ({
     <Item original={image.src} thumbnail={image.src} width={620} height={465}>
         {({ ref, open }) => (
             <div>
-                <a onClick={open} data-fancybox="gallery" className="img-style">
+                <Link href="#" onClick={open} data-fancybox="gallery" className="img-style">
                     <Image
                         alt={image.alt}
                         src={image.src}
@@ -178,10 +179,10 @@ const GalleryItem = ({
                         height={image.height}
                         priority
                     />
-                </a>
+                </Link>
                 <div className="wrap-btn d-flex gap_10">
                     <div className="widget-video">
-                        <a
+                        <Link href="#"
                             onClick={() => setOpen(true)}
                             data-fancybox="gallery2"
                             className="tf-btn tf-btn btn-bg-1 popup-youtube"
@@ -191,9 +192,9 @@ const GalleryItem = ({
                                 Reproducir Video
                             </span>
                             <span className="bg-effect"></span>
-                        </a>
+                        </Link>
                     </div>
-                    <a
+                    <Link href="#"
                         onClick={open}
                         data-fancybox="gallery"
                         className="tf-btn btn-bg-1"
@@ -203,7 +204,7 @@ const GalleryItem = ({
                             View All Photo
                         </span>
                         <span className="bg-effect"></span>
-                    </a>
+                    </Link>
                 </div>
             </div>
         )}

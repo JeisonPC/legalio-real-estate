@@ -1,10 +1,10 @@
 "use client";
-// import { footerSections } from "@/data/footer";
-// import Image from "next/image";
+import { footerSections } from "@/data/footer";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect } from "react";
-// import { subscribeNewsletter } from "@/actions/newsletterAction";
+import { subscribeNewsletter } from "@/actions/newsletterAction";
 
 // Accordion logic unchanged
 const handleFooter = (): void => {
@@ -121,18 +121,18 @@ export default function Footer1() {
         };
     }, [pathname]);
 
-    // const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    //     event.preventDefault();
-    //     const form = event.currentTarget;
-    //     const formData = new FormData(form);
-    //     // Call the server action
-    //     await subscribeNewsletter(formData);
-    // };
+    const handleNewsletterSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const formData = new FormData(form);
+        // Call the server action
+        await subscribeNewsletter(formData);
+    };
 
     return (
-        <footer className="footer" style={{paddingTop: 0}}>
+        <footer className="footer">
             <div className="tf-container ">
-                {/* <div className="footer-body">
+                <div className="footer-body">
                     <div className="row">
                         <div className="col-lg-4 col-md-6">
                             <div className="footer-about footer-item">
@@ -155,7 +155,7 @@ export default function Footer1() {
                                 </div>
                                 <div className="text-body-default text_secondary-color mb_16">
                                     <span className="text_color-1">
-                                        Support 24/7:
+                                        Teléfono y WhatsApp:
                                     </span>
                                     <span className="text_white ms_4">
                                         3046035418
@@ -259,16 +259,16 @@ export default function Footer1() {
                                     and
                                     {"  "}
                                     <Link
-                                        href={"/privacy-policy"}
+                                        href={"/politicas-de-privacidad"}
                                         className="hover-underline-link link"
                                     >
-                                        Privacy Policy.
+                                        Políticas de Privacidad.
                                     </Link>
                                 </p>
                             </div>
                         </div>
                     </div>
-                </div> */}
+                </div>
                 <div className="footer-bottom d-flex align-items-center justify-content-between">
                     <p className="text_muted-color">
                         ©2025 {"  "}

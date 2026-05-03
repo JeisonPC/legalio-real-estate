@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function About() {
@@ -30,12 +31,12 @@ export default function About() {
                 Find your perfect rental. Browse listings tailored to fit your
                 lifestyle with ease, comfort, and total peace of mind.
               </p>
-              <a
+              <Link
                 href="#"
                 className="hover-underline-link text_white text-button fw-7"
               >
                 View Property
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -56,12 +57,12 @@ export default function About() {
                 Sell with confidence using expert guidance and strategies to
                 highlight your property and attract serious buyers.
               </p>
-              <a
-                href="about-us.html"
+              <Link
+                href="/sobre-nosotros"
                 className="hover-underline-link text_primary-color text-button fw-7"
               >
                 Acerca de
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -74,12 +75,12 @@ export default function About() {
                 Discover your dream home. Explore with expert guidance for a
                 smooth experience, from start to finish confidently.
               </p>
-              <a
-                href="constacts.html"
+              <Link
+                href="/contacto"
                 className="hover-underline-link text_white text-button fw-7"
               >
-                Contactanos
-              </a>
+                Contáctanos
+              </Link>
             </div>
           </div>
         </div>

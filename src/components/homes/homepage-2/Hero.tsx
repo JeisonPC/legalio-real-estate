@@ -9,6 +9,7 @@ import "swiper/css/effect-fade";
 import Image from "next/image";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
 import type { City } from "@/payload-types";
+import Link from "next/link";
 
 
 const heroSlides = [
@@ -97,14 +98,14 @@ export default function Hero({ cities }: HeroProps) {
                                             </p>
                                             <div className="wrap-btn d-flex effect-item effect-3 effect-right">
                                                 {slide.buttons.map((btn, bidx) => (
-                                                    <a
+                                                    <Link
                                                         key={bidx}
                                                         href={btn.href}
                                                         className={btn.className}
                                                     >
                                                         <span>{btn.label}</span>
                                                         <span className="bg-effect"></span>
-                                                    </a>
+                                                    </Link>
                                                 ))}
                                             </div>
                                         </div>

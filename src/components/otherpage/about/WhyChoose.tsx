@@ -1,23 +1,24 @@
+import Link from "next/link";
 import React from "react";
 
 const features = [
     {
         icon: "icon-Lifebuoy",
-        title: "Personalized Support",
+        title: "Soporte Personalizado",
         description:
-            "Receive tailored assistance from our experienced team to ensure every step fits your specific needs and goals.",
+            "Recibe asistencia personalizada de nuestro equipo experimentado para asegurar que cada paso se ajuste a tus necesidades y objetivos específicos.",
     },
     {
         icon: "icon-ClockCountdown",
-        title: "Time-Saving Process",
+        title: "Proceso que Ahorra Tiempo",
         description:
-            "From quick callbacks to streamlined procedures, we value your time and help you move forward without delays.",
+            "Desde respuestas rápidas hasta procedimientos optimizados, valoramos tu tiempo y te ayudamos a avanzar sin demoras.",
     },
     {
         icon: "icon-SketchLogo",
-        title: "Trusted Expertise",
+        title: "Experiencia Confiable",
         description:
-            "Work with professionals who bring deep industry knowledge and proven strategies to guide your decisions confidently.",
+            "Trabaja con profesionales que aportan un profundo conocimiento del sector y estrategias comprobadas para guiar tus decisiones con confianza.",
     },
 ];
 
@@ -27,17 +28,17 @@ export default function WhyChoose() {
             <div className="wrap-heading-section d-flex justify-content-between align-items-center mb_48">
                 <div className="heading-section">
                     <span className="sub text-uppercase fw-6 text_secondary-color-2">
-                        Why Choose Us
+                        ¿Por qué elegirnos?
                     </span>
                     <h3 className="text_white split-text effect-blur-fade">
-                        Experience The Difference <br />
-                        With Our Solutions
+                        Experimenta la diferencia <br />
+                        con nuestras soluciones
                     </h3>
                 </div>
-                <a href="#" className="tf-btn btn-bg-white btn-px-32">
-                    <span>Contactanos</span>
+                <Link href="/contacto" className="tf-btn btn-bg-white btn-px-32">
+                    <span>Contáctanos</span>
                     <span className="bg-effect"></span>
-                </a>
+                </Link>
             </div>
             <div className="tf-grid-layout md-col-3">
                 {features.map((item, index) => (

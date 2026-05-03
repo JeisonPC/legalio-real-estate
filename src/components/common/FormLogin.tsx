@@ -85,12 +85,12 @@ export default function FormLogin() {
                                 </label>
                             </fieldset>
 
-                            <a
+                            <Link
                                 href="#"
                                 className="hover-line-text forgot text-body-default"
                             >
                                 ¿Perdiste la contraseña?
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="or">
@@ -98,7 +98,7 @@ export default function FormLogin() {
                         </div>
 
                         <div className="signin-with d-grid gap_9 mb_24">
-                            <a href="#" className="tf-btn btn-border w-full">
+                            <Link href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
                                     <Image
                                         width={50}
@@ -109,9 +109,9 @@ export default function FormLogin() {
                                     Continue With Facebook
                                 </span>
                                 <span className="bg-effect"></span>
-                            </a>
+                            </Link>
 
-                            <a href="#" className="tf-btn btn-border w-full">
+                            <Link href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
                                     <Image
                                         width={50}
@@ -122,9 +122,9 @@ export default function FormLogin() {
                                     Continue With Google
                                 </span>
                                 <span className="bg-effect"></span>
-                            </a>
+                            </Link>
 
-                            <a href="#" className="tf-btn btn-border w-full">
+                            <Link href="#" className="tf-btn btn-border w-full">
                                 <span className="d-flex align-items-center gap_12">
                                     <Image
                                         width={50}
@@ -135,7 +135,7 @@ export default function FormLogin() {
                                     Continue With Twitter
                                 </span>
                                 <span className="bg-effect"></span>
-                            </a>
+                            </Link>
                         </div>
 
                         <button

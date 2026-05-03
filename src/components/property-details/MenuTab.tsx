@@ -5,6 +5,7 @@ import Location from "./Location";
 import Floor2 from "./Floor2";
 import GallerySection from "./Gallery";
 import { Property } from "@/payload-types";
+import Link from "next/link";
 function updateTabSlideEffect() {
     const tabSlide = document.querySelector(".tab-slide");
     if (!tabSlide) return;
@@ -71,31 +72,31 @@ export default function MenuTab({ property }: { property: Property }) {
                 >
                     <li className="item-slide-effect"></li>
                     <li className="nav-tab-item " role="presentation">
-                        <a
+                        <Link
                             href="#gallery"
                             className="h5 tab-link active"
                             data-bs-toggle="tab"
                         >
-                            Gallery
-                        </a>
+                            Galería
+                        </Link>
                     </li>
                     <li className="nav-tab-item" role="presentation">
-                        <a
+                        <Link
                             href="#floor-plans"
                             className="h5 tab-link "
                             data-bs-toggle="tab"
                         >
                             Planos de Piso
-                        </a>
+                        </Link>
                     </li>
                     <li className="nav-tab-item active" role="presentation">
-                        <a
+                        <Link
                             href="#location"
                             className="h5 tab-link "
                             data-bs-toggle="tab"
                         >
-                            Location
-                        </a>
+                            Locación
+                        </Link>
                     </li>
                 </ul>
             </div>

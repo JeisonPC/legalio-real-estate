@@ -6,7 +6,7 @@ export default function AboutUs() {
             <div className="heading-section justify-content-center text-center mb_48">
                 <span className="sub text-uppercase fw-6">Acerca de</span>
                 <h3 className="split-text split-lines-rotation-x">
-                    Your Reliable Partner In Real <br /> Estate Success
+                    Su socio confiable para el <br /> Éxito Inmobiliario.
                 </h3>
             </div>
             <div
@@ -18,7 +18,7 @@ export default function AboutUs() {
             >
                 <div className="content">
                     <div className="wrap d-flex flex-column">
-                        <div className="tf-box-icon style-1">
+                        {/* <div className="tf-box-icon style-1">
                             <div className="heading d-flex justify-content-between mb_19">
                                 <div className="counter-item style-default h2">
                                     <OdometerCounter value={112} />
@@ -30,7 +30,7 @@ export default function AboutUs() {
                             <h6 className="text_secondary-color sub">
                                 Awards Received
                             </h6>
-                        </div>
+                        </div> */}
                         <div className="d-flex gap_12 bot">
                             <div className="tf-box-icon style-1">
                                 <div className="heading d-flex justify-content-between mb_19">
@@ -42,7 +42,7 @@ export default function AboutUs() {
                                     </div>
                                 </div>
                                 <h6 className="text_secondary-color sub">
-                                    Satisfied Clients
+                                    Clientes Satisfechos
                                 </h6>
                             </div>
                             <div className="tf-box-icon style-1">
@@ -55,7 +55,7 @@ export default function AboutUs() {
                                     </div>
                                 </div>
                                 <h6 className="text_secondary-color sub">
-                                    Monthly Traffic
+                                    Tráfico Mensual
                                 </h6>
                             </div>
                         </div>
@@ -66,35 +66,35 @@ export default function AboutUs() {
                 <div className="box">
                     <h4 className="title d-flex gap_12 align-items-center mb_20">
                         <i className="icon-Crown"></i>
-                        Our Mission
+                        Nuestra Misión
                     </h4>
                     <p className="mb_8">
-                        To simplify the real estate journey by connecting people
-                        with the right properties through trust, transparency,
-                        and technology.
+                        Simplificar el viaje inmobiliario conectando a las personas
+                        con las propiedades adecuadas a través de la confianza, la transparencia
+                        y la tecnología.
                     </p>
                     <p>
-                        We are committed to delivering personalized experiences,
-                        whether you&#39;re buying, selling, or renting. We
-                        embrace new technologies and market trends to deliver
-                        smarter, faster, and more efficient property solutions.
+                        Estamos comprometidos a ofrecer experiencias personalizadas,
+                        ya sea que esté comprando, vendiendo o alquilando. Nos
+                        adaptamos a nuevas tecnologías y tendencias del mercado para ofrecer
+                        soluciones inmobiliarias más inteligentes, rápidas y eficientes.
                     </p>
                 </div>
                 <div className="box">
                     <h4 className="title d-flex gap_12 align-items-center mb_20">
                         <i className="icon-Target"></i>
-                        Our Vision
+                        Nuestra Visión
                     </h4>
                     <p className="mb_8">
-                        To become the most trusted real estate partner by
-                        redefining how people discover, evaluate, and engage
-                        with properties.
+                        Convertirse en el socio inmobiliario más confiable al
+                        redefinir cómo las personas descubren, evalúan y se relacionan
+                        con las propiedades.
                     </p>
                     <p>
-                        We envision a future where every individual can find
-                        their ideal home or investment with confidence,
-                        supported by innovation, integrity, and a deep
-                        understanding of market needs.
+                        Visualizamos un futuro donde cada individuo pueda encontrar
+                        su hogar o inversión ideal con confianza,
+                        respaldado por la innovación, la integridad y un profundo
+                        entendimiento de las necesidades del mercado.
                     </p>
                 </div>
             </div>

@@ -47,10 +47,10 @@ export const menuItems: MenuItem[] = [
   //   {
   //     title: "Pages",
   //     links: [
-  //       { href: "/about-us", label: "Acerca de" },
+  //       { href: "/sobre-nosotros", label: "Acerca de" },
   //       { href: "/our-pricing", label: "Our Pricing" },
   //       { href: "/FAQs", label: "FAQs" },
-  //       { href: "/privacy-policy", label: "Privacy Policy" },
+  //       { href: "/politicas-de-privacidad", label: "Políticas de Privacidad" },
   //       { href: "/inicio-sesion", label: "Inicio de Sesión/Registro" },
   //     ],
   //   },

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { sendOwnerLead } from "./actions";
+import Image from "next/image";
+import Link from "next/link";
 // import { Manrope, Noto_Serif } from "next/font/google";
 
 // const manrope = Manrope({
@@ -98,11 +100,9 @@ const benefits = [
 
 const serviceBadges = ["Mantenimiento", "Cobros"];
 
-const solutionImage =
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuAhIUXhIlDX0vGf8o6nJ-LQTKueUFE9b7cHZFLyK7hC_b3EjvKEfarHMqVn8hp5-wJasS0dHX2UGYXW8-x4zkAO0Ek2kxd_9tW1E7teTc_r3IYiMrMfFUJrQECH8m3zktRWBI9-9u4z7lOzIhG70yVdGcCXAyVtQHKnd11zcVkCJrbkXJgKl7BBy0dhU0mmS1iYgDYGUAqYNYRW0sFHiimgBQtBEiDivOgLvf-Oa7OCabbH-2mXMNBTBcTPD_Zk4lBDSj8uVSmMZzA";
+const solutionImage = "/assets/images/propietarios/solutionImage.png";
 
-const benefitsImage =
-    "https://lh3.googleusercontent.com/aida-public/AB6AXuDNBvSXWDNv8xW5BNhHINx4OGzIVmT6sYePBZWJQlH6GBwZ-nw7af0J32NHjOjlCzBQDXzlrhGl3H-SP0MMIw8-7YkWseNh9Kux6VIHITSJJTYth-QGSk4oDBujAg8kiVtBPg6w0zkOPyJKu6wAomIQqVoQhHFLoYmnoZLXnG3aw-t_ogcAnZdILok1cyZtjLIfma1l1J2c2mj6uPwqClTsGYw-W-ILvIx-8V30Oq8oqeYQ1B0I583ExjBP1ahZxVeuqEeC53uKSTE";
+const benefitsImage = "/assets/images/propietarios/benefitsImage.png";
 
 type PropietariosPageProps = {
     searchParams?: Promise<{
@@ -135,10 +135,10 @@ export default async function PropietariosPage({
                                 Convertimos la complejidad de los
                                 arrendamientos en rentabilidad pasiva y segura.
                             </p>
-                            <a className="lp-primary-button" href="#contacto">
+                            <Link className="lp-primary-button" href="#contacto">
                                 Quiero que administren mi propiedad
                                 <span className="icon-CaretRight" />
-                            </a>
+                            </Link>
                         </div>
 
                         <div className="lp-dashboard-wrap" aria-hidden="true">
@@ -221,9 +221,11 @@ export default async function PropietariosPage({
                 </section>
 
                 <section className="lp-section lp-solution">
-                    <img
+                    <Image
                         alt="Apartamento de lujo administrado por Legalio"
                         className="lp-solution-image"
+                        fill
+                        sizes="100vw"
                         src={solutionImage}
                     />
                     <div className="lp-container lp-solution-content">
@@ -237,10 +239,10 @@ export default async function PropietariosPage({
                                     de tu inmueble
                                 </h2>
                             </div>
-                            <a href="#servicios">
+                            {/* <Link href="#servicios">
                                 Ver todos los servicios
                                 <span className="icon-CaretRight" />
-                            </a>
+                            </Link> */}
                         </div>
                         <div className="lp-solution-grid">
                             {solutionItems.map((item) => (
@@ -281,8 +283,11 @@ export default async function PropietariosPage({
                 <section className="lp-section lp-benefits">
                     <div className="lp-container lp-benefits-grid">
                         <div className="lp-benefits-media">
-                            <img
+                            <Image
                                 alt="Inmueble moderno administrado por Legalio"
+                                className="lp-benefits-image"
+                                fill
+                                sizes="(max-width: 1100px) calc(100vw - 32px), 610px"
                                 src={benefitsImage}
                             />
                             <div className="lp-media-stat">
@@ -395,14 +400,14 @@ export default async function PropietariosPage({
                                 una valoración inicial gratuita.
                             </p>
                             <div className="lp-contact-items">
-                                <a href="tel:+573000000000">
+                                <Link href="tel:+573000000000">
                                     <span className="icon-PhoneCall" />
                                     +57 304 6035418
-                                </a>
-                                <a href="mailto:contacto@legalio.com.co">
+                                </Link>
+                                <Link href="mailto:contacto@legalio.com.co">
                                     <span className="icon-EnvelopeSimple" />
                                     contacto@legalio.com.co
-                                </a>
+                                </Link>
                             </div>
                         </div>
 
@@ -483,10 +488,10 @@ export default async function PropietariosPage({
                         <h2>
                             Convierte tu inmueble en un activo bien administrado
                         </h2>
-                        <a href="#contacto">
+                        <Link href="#contacto">
                             Empezar ahora
                             <span className="icon-CaretRight" />
-                        </a>
+                        </Link>
                     </div>
                 </section>
             </main>

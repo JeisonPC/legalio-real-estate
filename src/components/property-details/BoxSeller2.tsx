@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function BoxSeller2() {
@@ -34,12 +35,12 @@ export default function BoxSeller2() {
                                 6205 Peachtree Dunwoody Rd, <br />
                                 Atlanta, GA 30328
                             </p>
-                            <a
+                            <Link
                                 href="#"
                                 className="hover-underline-link text-button fw-7 text_primary-color"
                             >
                                 Get Directions
-                            </a>
+                            </Link>
                         </div>
                     </li>
                     <li className="item d-flex gap_12 align-items-center">
@@ -53,18 +54,18 @@ export default function BoxSeller2() {
                     </li>
                 </ul>
             </div>
-            <a href="#" className="tf-btn btn-bg-1 w-full mb_12">
+            <Link href="#" className="tf-btn btn-bg-1 w-full mb_12">
                 <span className="d-flex align-items-center gap_8">
                     <i className="icon-PhoneCall"></i>Call To Dealer
                 </span>
                 <span className="bg-effect"></span>
-            </a>
-            <a href="#" className="tf-btn w-full">
+            </Link>
+            <Link href="#" className="tf-btn w-full">
                 <span className="d-flex align-items-center gap_8">
                     <i className="icon-ChatCircleDots"></i>Chat via WhatsApp
                 </span>
                 <span className="bg-effect"></span>
-            </a>
+            </Link>
         </>
     );
 }

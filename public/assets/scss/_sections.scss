@@ -7,11 +7,13 @@
     img {
       width: 100%;
       object-fit: cover;
+      opacity: .5;
+      min-height: 300px;
     }
   }
   &.style-default {
     .thumbs {
-      background-color: var(--Primary);
+      background-color: var(--Text-primary);
       height: 260px;
     }
     .title {
