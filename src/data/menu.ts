@@ -47,7 +47,7 @@ export const menuItems: MenuItem[] = [
   //   {
   //     title: "Pages",
   //     links: [
-  //       { href: "/sobre-nosotros", label: "Acerca de" },
+  //       { href: "/sobre-nosotros", label: "Sobre nosotros" },
   //       { href: "/our-pricing", label: "Our Pricing" },
   //       { href: "/FAQs", label: "FAQs" },
   //       { href: "/politicas-de-privacidad", label: "Políticas de Privacidad" },

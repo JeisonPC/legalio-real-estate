@@ -9,7 +9,7 @@ export default function BoxSeller2() {
             <div className="author  mb_28">
                 <div className="avatar  mb_28">
                     <Image
-                        src="/assets/images/section/agent-3.jpg"
+                        src="/assets/images/section/agent-3.png"
                         width={354}
                         height={354}
                         alt="avatar"

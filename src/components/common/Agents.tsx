@@ -18,7 +18,7 @@ const agents: Agent[] = [
   {
     id: 1,
     name: "Jessica Lane",
-    img: "/assets/images/section/agent-1.jpg",
+    img: "/assets/images/section/agent-1.png",
     socials: [
       { icon: "icon-FacebookLogo", href: "#" },
       { icon: "icon-XLogo", href: "#" },
@@ -29,7 +29,7 @@ const agents: Agent[] = [
   {
     id: 2,
     name: "Michael Smith",
-    img: "/assets/images/section/agent-2.jpg",
+    img: "/assets/images/section/agent-1.png",
     socials: [
       { icon: "icon-FacebookLogo", href: "#" },
       { icon: "icon-XLogo", href: "#" },
@@ -40,7 +40,7 @@ const agents: Agent[] = [
   {
     id: 3,
     name: "Jessica Lane",
-    img: "/assets/images/section/agent-1.jpg",
+    img: "/assets/images/section/agent-1.png",
     socials: [
       { icon: "icon-FacebookLogo", href: "#" },
       { icon: "icon-XLogo", href: "#" },
@@ -51,7 +51,7 @@ const agents: Agent[] = [
   {
     id: 4,
     name: "Michael Smith",
-    img: "/assets/images/section/agent-2.jpg",
+    img: "/assets/images/section/agent-1.png",
     socials: [
       { icon: "icon-FacebookLogo", href: "#" },
       { icon: "icon-XLogo", href: "#" },

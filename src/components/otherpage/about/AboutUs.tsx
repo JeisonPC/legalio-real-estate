@@ -4,7 +4,7 @@ export default function AboutUs() {
     return (
         <div className="tf-container section-about">
             <div className="heading-section justify-content-center text-center mb_48">
-                <span className="sub text-uppercase fw-6">Acerca de</span>
+                <span className="sub text-uppercase fw-6">Sobre nosotros</span>
                 <h3 className="split-text split-lines-rotation-x">
                     Su socio confiable para el <br /> Éxito Inmobiliario.
                 </h3>

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 const BackToTop = () => {
   const pathname = usePathname();
-  const progressWrapRef = useRef<HTMLDivElement>(null);
+  const progressWrapRef = useRef<HTMLButtonElement>(null);
   const progressPathRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const BackToTop = () => {
   }, [pathname]);
 
   return (
-    <div className="progress-wrap" ref={progressWrapRef}>
+    <button className="progress-wrap" ref={progressWrapRef}>
       <svg
         className="progress-circle svg-content"
         width="100%"
@@ -74,7 +74,7 @@ const BackToTop = () => {
           d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
         />
       </svg>
-    </div>
+    </button>
   );
 };
 

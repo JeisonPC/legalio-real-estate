@@ -23,7 +23,7 @@ export const footerSections: FooterSection[] = [
         label: "Propiedades en Arriendo",
       },
       { href: "/propiedades", label: "Todas las Propiedades" },
-      { href: "#", label: "Nuestros Agentes" },
+      { href: "/nuestro-equipo", label: "Nuestro Equipo" },
       { href: "/politicas-de-privacidad", label: "Políticas de Privacidad" },
     ],
   },
@@ -31,7 +31,7 @@ export const footerSections: FooterSection[] = [
     className: "quick-link",
     heading: "Acceso Rápido",
     links: [
-      { href: "/sobre-nosotros", label: "Acerca de" },
+      { href: "/sobre-nosotros", label: "Sobre nosotros" },
       { href: "/contacto", label: "Contáctanos" },
       { href: "/preguntas-frecuentes", label: "Preguntas frecuentes" },
       { href: "/blog", label: "Últimas Noticias" },
