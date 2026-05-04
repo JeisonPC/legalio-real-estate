@@ -1,4 +1,4 @@
-import Agents from "@/components/common/Agents";
+// import Agents from "@/components/common/Agents";
 import Banner1 from "@/components/common/Banner1";
 import Process1 from "@/components/common/Process1";
 import Layout from "@/components/layouts/Layout-defaul";
