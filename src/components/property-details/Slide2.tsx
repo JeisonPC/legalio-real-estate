@@ -12,6 +12,7 @@ import "swiper/css/thumbs";
 import ModalVideo from "../common/ModalVideo";
 import { Media, Property } from "@/payload-types";
 import Link from "next/link";
+import { getMediaUrl } from "@/lib/media/getMediaUrl";
 
 export default function Slide2({ property }: { property: Property }) {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
@@ -21,8 +22,6 @@ export default function Slide2({ property }: { property: Property }) {
     (image): image is Media =>
       typeof image === "object" && image !== null && "url" in image,
   );
-
-  const getImageUrl = (img: Media) => img.url || "/images/placeholder.jpg";
 
   const thumbProps = {
     spaceBetween: 14,
@@ -52,10 +51,6 @@ export default function Slide2({ property }: { property: Property }) {
       crossFade: true,
     },
   };
-
-  console.log("images in Slide2", images);
-  console.log("first image", images[0]);
-  console.log("first image width/height", images[0]?.width, images[0]?.height);
 
   function getYouTubeVideoId(url?: string | null): string | undefined {
     if (!url) return undefined;
@@ -93,20 +88,20 @@ export default function Slide2({ property }: { property: Property }) {
               <SwiperSlide key={index}>
                 <div className="thumb-main">
                   <Item
-                    original={getImageUrl(image)}
-                    thumbnail={getImageUrl(image)}
-                    width={image.width || 1200}
-                    height={image.height || 675}
+                    original={getMediaUrl(image, "detail")}
+                    thumbnail={getMediaUrl(image, "thumbnail")}
+                    width={image.sizes?.detail?.width || image.width || 1200}
+                    height={image.sizes?.detail?.height || image.height || 675}
                   >
                     {({ ref, open }) => (
                       <div className="thumb-main">
                         <Link onClick={open} data-fancybox="gallery" href={""}>
                           <Image
                             alt={image.alt}
-                            src={getImageUrl(image)}
+                            src={getMediaUrl(image, "detail")}
                             ref={ref}
-                            width={image.width || 1200}
-                            height={image.height || 675}
+                            width={image.sizes?.detail?.width || image.width || 1200}
+                            height={image.sizes?.detail?.height || image.height || 675}
                             priority
                             style={{
                               objectFit: "cover",
@@ -170,7 +165,7 @@ export default function Slide2({ property }: { property: Property }) {
                 <div className="image-detail">
                   <Image
                     alt={thumb.alt}
-                    src={getImageUrl(thumb)}
+                    src={getMediaUrl(thumb, "thumbnail")}
                     width={100}
                     height={100}
                   />

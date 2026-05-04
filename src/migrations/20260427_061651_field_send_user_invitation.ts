@@ -3,10 +3,10 @@ import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
 export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
-   ALTER TABLE "users" ADD COLUMN "invitation_sent" boolean DEFAULT false;`)
+   ALTER TABLE "users" ADD COLUMN IF NOT EXISTS "invitation_sent" boolean DEFAULT false;`)
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
   await db.execute(sql`
-   ALTER TABLE "users" DROP COLUMN "invitation_sent";`)
+   ALTER TABLE "users" DROP COLUMN IF EXISTS "invitation_sent";`)
 }

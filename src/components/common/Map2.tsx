@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Media, Property } from "@/payload-types";
+import { getMediaUrl } from "@/lib/media/getMediaUrl";
 
 type MapProperty = Property & {
   lat: number;
@@ -22,7 +23,7 @@ export default function MapComponent({ property }: { property: MapProperty }) {
         typeof image === "object" && image !== null && "url" in image,
     );
 
-    return firstImage?.url ?? "/assets/images/section/popup-property.jpg";
+    return getMediaUrl(firstImage, "thumbnail", "/assets/images/section/popup-property.jpg");
   }, []);
 
   const createPopupHTML = useCallback(

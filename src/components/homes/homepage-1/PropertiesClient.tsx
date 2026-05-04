@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import Image from "next/image";
 import Link from "next/link";
+import { getMediaUrl } from "@/lib/media/getMediaUrl";
 
 export default function PropertiesClient({
   properties,
@@ -35,10 +36,11 @@ export default function PropertiesClient({
         ? property.images[0]
         : null;
 
-    const imageUrl =
-      typeof firstImage === "object" && firstImage !== null
-        ? firstImage.url || "/assets/images/placeholder.jpg"
-        : "/assets/images/placeholder.jpg";
+    const imageUrl = getMediaUrl(
+      firstImage,
+      "card",
+      "/assets/images/placeholder.jpg",
+    );
 
     const businessLabel =
       property.businessType === "venta" ? "Venta" : "Arriendo";

@@ -14,6 +14,7 @@ import {
   pushAnalyticsEvent,
   readAttribution,
 } from "@/lib/analytics/events";
+import { getMediaUrl } from "@/lib/media/getMediaUrl";
 
 function parseSizeValue(val: string) {
   if (val === "Min (Mts/2)" || val === "Max (Mts/2)") return val;
@@ -556,13 +557,7 @@ export default function Properties5({
                       .map((property, index) => {
                         const firstImage = property.images?.[0];
 
-                        const imageUrl =
-                          typeof firstImage === "object" &&
-                          firstImage !== null &&
-                          "url" in firstImage &&
-                          firstImage.url
-                            ? firstImage.url
-                            : "/images/placeholder.jpg";
+                        const imageUrl = getMediaUrl(firstImage, "card");
 
                         return (
                           <div
@@ -685,12 +680,7 @@ export default function Properties5({
                               onClick={() => handlePropertySelect(property, index)}
                             >
                               <Image
-                                src={
-                                  typeof property.images?.[0] === "object"
-                                    ? property.images[0].url ||
-                                      "/images/placeholder.jpg"
-                                    : "/images/placeholder.jpg"
-                                }
+                                src={getMediaUrl(property.images?.[0], "card")}
                                 height={258}
                                 width={410}
                                 alt={
@@ -710,12 +700,7 @@ export default function Properties5({
                               onClick={() => handlePropertySelect(property, index)}
                             >
                               <Image
-                                src={
-                                  typeof property.images?.[0] === "object"
-                                    ? property.images[0].url ||
-                                      "/images/placeholder.jpg"
-                                    : "/images/placeholder.jpg"
-                                }
+                                src={getMediaUrl(property.images?.[0], "card")}
                                 layout="responsive"
                                 width={392}
                                 height={260}

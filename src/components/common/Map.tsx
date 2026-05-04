@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { Property } from "@/payload-types";
+import { getMediaUrl } from "@/lib/media/getMediaUrl";
 
 interface ProcessedProperty {
   id: string;
@@ -151,10 +152,7 @@ export default function MapComponent({ sorted }: MapComponentProps) {
           bathrooms: p.bathrooms,
           area: p.area,
           coordinates: [p.coordinates[0], p.coordinates[1]],
-          image:
-            typeof p.images?.[0] === "object" && p.images[0]?.url
-              ? p.images[0].url
-              : "/images/placeholder.jpg",
+          image: getMediaUrl(p.images?.[0], "thumbnail"),
         }));
 
       // Add markers
@@ -251,10 +249,7 @@ export default function MapComponent({ sorted }: MapComponentProps) {
         bathrooms: p.bathrooms,
         area: p.area,
         coordinates: [p.coordinates[0], p.coordinates[1]],
-        image:
-          typeof p.images?.[0] === "object" && p.images[0]?.url
-            ? p.images[0].url
-            : "/images/placeholder.jpg",
+        image: getMediaUrl(p.images?.[0], "thumbnail"),
       }));
 
     // Add markers

@@ -5,15 +5,15 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    ALTER TABLE "documents" ALTER COLUMN "document_type" SET DATA TYPE text;
   DROP TYPE "public"."enum_documents_document_type";
-  CREATE TYPE "public"."enum_documents_document_type" AS ENUM('contract', 'inventory', 'application', 'payment_receipt');
+  CREATE TYPE "public"."enum_documents_document_type" AS ENUM('contract', 'inventory', 'application', 'payment_receipt', 'other');
   ALTER TABLE "documents" ALTER COLUMN "document_type" SET DATA TYPE "public"."enum_documents_document_type" USING "document_type"::"public"."enum_documents_document_type";
-  ALTER TABLE "media" ADD COLUMN "prefix" varchar DEFAULT 'media';
-  ALTER TABLE "documents" ADD COLUMN "prefix" varchar DEFAULT 'documents';
-  ALTER TABLE "media" DROP COLUMN "cloudinary_public_id";
-  ALTER TABLE "media" DROP COLUMN "cloudinary_url";
-  ALTER TABLE "media" DROP COLUMN "cloudinary_secure_url";
-  ALTER TABLE "media" DROP COLUMN "bytes";
-  ALTER TABLE "media" DROP COLUMN "format";`)
+  ALTER TABLE "media" ADD COLUMN IF NOT EXISTS "prefix" varchar DEFAULT 'media';
+  ALTER TABLE "documents" ADD COLUMN IF NOT EXISTS "prefix" varchar DEFAULT 'documents';
+  ALTER TABLE "media" DROP COLUMN IF EXISTS "cloudinary_public_id";
+  ALTER TABLE "media" DROP COLUMN IF EXISTS "cloudinary_url";
+  ALTER TABLE "media" DROP COLUMN IF EXISTS "cloudinary_secure_url";
+  ALTER TABLE "media" DROP COLUMN IF EXISTS "bytes";
+  ALTER TABLE "media" DROP COLUMN IF EXISTS "format";`)
 }
 
 export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
