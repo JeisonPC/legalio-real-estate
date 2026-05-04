@@ -1292,7 +1292,8 @@
     }
   }
   .list-action {
-    a {
+    a,
+    button {
       height: 52px;
       width: 52px;
       border: 2px solid var(--Line);
@@ -1302,9 +1303,24 @@
       align-items: center;
       font-size: 28px;
       color: var(--Text-primary);
+      background: transparent;
+      position: relative;
       &:hover {
         border-color: var(--Text-primary);
       }
+    }
+    button {
+      cursor: pointer;
+    }
+    .share-property-status {
+      bottom: -24px;
+      font-size: 12px;
+      font-weight: 600;
+      left: 50%;
+      line-height: 1;
+      position: absolute;
+      transform: translateX(-50%);
+      white-space: nowrap;
     }
   }
   .location {
@@ -1320,7 +1336,8 @@
   }
   @include res(md) {
     .list-action {
-      a {
+      a,
+      button {
         height: 46px;
         width: 46px;
         font-size: 24px;

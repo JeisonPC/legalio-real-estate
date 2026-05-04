@@ -1,6 +1,6 @@
 import { Property } from "@/payload-types";
-import Link from "next/link";
 import React from "react";
+import SharePropertyButton from "./SharePropertyButton";
 
 export default function PropertiesTitle3({ property }: { property: Property }) {
   const capitalizeFirst = (value?: string | null) => {
@@ -28,13 +28,11 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
               {capitalizeFirst(property.propertyType)}
             </div>
           </div>
-          <div className="list-action d-flex gap_16">
+          <ul className="list-action d-flex gap_16">
             <li>
-              <Link href="#" className="">
-                <i className="icon-ShareNetwork"></i>
-              </Link>
+              <SharePropertyButton title={property.title} />
             </li>
-          </div>
+          </ul>
         </div>
         <h2>{property.title}</h2>
         {/* <ul className="list-action d-flex gap_16">
