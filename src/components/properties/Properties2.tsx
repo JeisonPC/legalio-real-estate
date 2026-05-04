@@ -361,7 +361,6 @@ export default function Properties2({
                                     : property.businessType
                               } text-button-small fw-6 text_primary-color`}
                             >
-                              For{" "}
                               {property.businessType === "venta"
                                 ? "Venta"
                                 : "Arriendo"}

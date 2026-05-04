@@ -100,7 +100,7 @@ export default function Hero({ cities }: HeroProps) {
                                                                     : "rent"
                                                             } text-button-small fw-6 text_primary-color`}
                                                         >
-                                                            For {slide.type}
+                                                            {slide.type}
                                                         </div>
                                                         <div className="tag categories text-button-small fw-6 text_primary-color">
                                                             {slide.category}

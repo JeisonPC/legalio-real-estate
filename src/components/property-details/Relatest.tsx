@@ -59,7 +59,7 @@ export default function Relatest() {
                                                     : property.type
                                             }  text-button-small fw-6 text_primary-color`}
                                         >
-                                            For {property.type}
+                                            {property.type}
                                         </div>
                                         <div className="tag categories text-button-small fw-6 text_primary-color">
                                             {property.propertyType}

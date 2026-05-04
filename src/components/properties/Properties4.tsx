@@ -333,7 +333,7 @@ export default function Properties4({
                                           : property.businessType
                                     } text-button-small fw-6 text_primary-color`}
                                   >
-                                    For {property.businessType}
+                                    {property.businessType}
                                   </div>
                                   <div className="tag categories text-button-small fw-6 text_primary-color">
                                     {property.propertyType}
