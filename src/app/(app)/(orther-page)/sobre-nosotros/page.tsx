@@ -28,9 +28,9 @@ export default function Page() {
                 <Testimonial1 />
             </div> */}
             <Banner1 />
-            <div className="section-agents tf-spacing-1">
+            {/* <div className="section-agents tf-spacing-1">
                 <Agents />
-            </div>
+            </div> */}
         </Layout>
     );
 }

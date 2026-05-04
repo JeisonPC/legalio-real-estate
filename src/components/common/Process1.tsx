@@ -16,7 +16,7 @@ const tabs: Tab[] = [
         title: "Paso 1: Descubre la casa de tus sueños",
         content:
             "Explora una selección curada de propiedades adaptadas a tu estilo de vida y presupuesto.",
-        image: "/assets/images/section/process-1.jpg",
+        image: "/assets/images/section/process-1.webp",
     },
     {
         id: "tab2",

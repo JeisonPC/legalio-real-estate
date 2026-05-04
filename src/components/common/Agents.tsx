@@ -69,7 +69,7 @@ export default function Agents() {
           <div className="box">
             <div className="heading-section mb_32">
               <span className="sub text-uppercase fw-6 text_secondary-color-2">
-                Top Agents
+                Nuestro Equipo
               </span>
               <h3>Jessica Lane</h3>
             </div>
