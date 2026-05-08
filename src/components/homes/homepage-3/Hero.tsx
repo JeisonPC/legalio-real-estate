@@ -1,13 +1,14 @@
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
 import Image from "next/image";
 import React from "react";
-import type { City } from "@/payload-types";
+import type { City, Property } from "@/payload-types";
 
 interface HeroProps {
     cities: City[];
+    properties?: Property[];
 }
 
-export default function Hero({ cities }: HeroProps) {
+export default function Hero({ cities, properties = [] }: HeroProps) {
     return (
         <div className="page-title style-3">
             <div className="thumbs">
@@ -32,7 +33,7 @@ export default function Hero({ cities }: HeroProps) {
                     </p>
                 </div>
             </div>
-            <SidebarFilterDefault cities={cities} />
+            <SidebarFilterDefault cities={cities} properties={properties} />
         </div>
     );
 }

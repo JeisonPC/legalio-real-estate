@@ -1,7 +1,8 @@
 // import Header from "@/components/header/Header";
 import Properties5Section from "@/components/properties/Properties5Section";
+import PropertiesPageSkeleton from "./PropertiesPageSkeleton";
 import type { Metadata } from "next";
-import React from "react";
+import React, { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
@@ -16,9 +17,11 @@ export const metadata: Metadata = {
 
 export default function page() {
   return (
-    <div style={{marginTop: '140px'}}>
+    <div style={{ marginTop: "140px" }}>
       {/* <Header /> */}
+      <Suspense fallback={<PropertiesPageSkeleton />}>
         <Properties5Section />
+      </Suspense>
     </div>
   );
 }

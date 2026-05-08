@@ -1,7 +1,8 @@
 // src/lib/queries/cities.ts
 import { getPayloadClient } from "@/lib/payload";
+import { unstable_cache } from "next/cache";
 
-export async function getCities() {
+async function fetchCities() {
   const payload = await getPayloadClient();
 
   const result = await payload.find({
@@ -16,3 +17,8 @@ export async function getCities() {
 
   return result.docs;
 }
+
+export const getCities = unstable_cache(fetchCities, ["cities"], {
+  revalidate: 300,
+  tags: ["cities"],
+});

@@ -1,7 +1,8 @@
 // src/lib/queries/cities.ts
 import { getPayloadClient } from "@/lib/payload";
+import { unstable_cache } from "next/cache";
 
-export async function getCitiesForSection() {
+async function fetchCitiesForSection() {
   const payload = await getPayloadClient();
 
   const result = await payload.find({
@@ -38,3 +39,12 @@ export async function getCitiesForSection() {
 
   return cities;
 }
+
+export const getCitiesForSection = unstable_cache(
+  fetchCitiesForSection,
+  ["cities-for-section"],
+  {
+    revalidate: 300,
+    tags: ["cities", "properties", "cities-for-section"],
+  },
+);

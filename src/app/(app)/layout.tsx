@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "../../../public/assets/icons/icomoon/style.css";
 import "../../../public/assets/scss/app.scss";
 import AnalyticsTracker from "@/components/analytics/AnalyticsTracker";
+import { AnalyticsSkeleton } from "@/components/common/AppSkeletons";
 import BackToTop from "@/components/common/BackToTop";
 import ClientScripts from "@/components/common/ClientScripts";
 import Footer1 from "@/components/footer/Footer1";
@@ -100,7 +101,7 @@ export default async function RootLayout({
                     <Footer1 />
                 </div>
                 <ClientScripts />
-                <Suspense fallback={null}>
+                <Suspense fallback={<AnalyticsSkeleton />}>
                     <AnalyticsTracker />
                 </Suspense>
                 <BackToTop />

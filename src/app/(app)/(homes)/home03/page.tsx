@@ -8,15 +8,19 @@ import LatestNew from "@/components/homes/homepage-3/LatestNews";
 import Properties from "@/components/homes/homepage-3/Properties";
 import TopProperties from "@/components/homes/TopProperties";
 import { getCities } from "@/lib/queries/cities";
+import { getProperties } from "@/lib/queries/properties";
 import React from "react";
 
 export default async function page() {
-    const cities = await getCities();
+    const [cities, properties] = await Promise.all([
+        getCities(),
+        getProperties(),
+    ]);
 
     return (
         <>
             <Header3 />
-            <Hero cities={cities} />
+            <Hero cities={cities} properties={properties} />
             <Properties />
             <Categories />
             <Process1 />

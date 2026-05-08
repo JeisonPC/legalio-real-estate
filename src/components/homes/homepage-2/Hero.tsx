@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/effect-fade";
 import Image from "next/image";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
-import type { City } from "@/payload-types";
+import type { City, Property } from "@/payload-types";
 import Link from "next/link";
 
 
@@ -53,9 +53,10 @@ const heroSlides = [
 
 interface HeroProps {
     cities: City[];
+    properties?: Property[];
 }
 
-export default function Hero({ cities }: HeroProps) {
+export default function Hero({ cities, properties = [] }: HeroProps) {
     return (
         <div className="page-title style-2 sw-layout">
             <Swiper
@@ -123,7 +124,7 @@ export default function Hero({ cities }: HeroProps) {
                 </div>
                 <div className="sw-dots sw-pagination-layout justify-content-center d-flex"></div>
             </Swiper>
-            <SidebarFilterDefault cities={cities} />
+            <SidebarFilterDefault cities={cities} properties={properties} />
         </div>
     );
 }

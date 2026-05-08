@@ -2,9 +2,8 @@ import Layout from "@/components/layouts/Layout-defaul";
 import PropertyDetails3 from "@/components/property-details/PropertyDetails3";
 import Relatest from "@/components/property-details/Relatest";
 import React from "react";
-import { Property } from "@/payload-types";
-import { getPayload } from "payload";
-import config from "@payload-config";
+import { getPropertyById } from "@/lib/queries/properties";
+import { notFound } from "next/navigation";
 
 type PageProps = {
   params: Promise<{
@@ -15,15 +14,9 @@ type PageProps = {
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
 
-  const payload = await getPayload({ config });
+  const property = await getPropertyById(id);
 
-  const result = await payload.findByID({
-    collection: "properties",
-    id,
-    depth: 2,
-  });
-
-  const property = result as Property;
+  if (!property) notFound();
 
   return (
     <div className="bg-light-color">

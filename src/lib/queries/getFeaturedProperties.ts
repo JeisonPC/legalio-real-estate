@@ -1,7 +1,8 @@
 // src/lib/queries/properties.ts
 import { getPayloadClient } from "@/lib/payload";
+import { unstable_cache } from "next/cache";
 
-export async function getFeaturedProperties() {
+async function fetchFeaturedProperties() {
   const payload = await getPayloadClient();
 
   const result = await payload.find({
@@ -16,3 +17,12 @@ export async function getFeaturedProperties() {
 
   return result.docs;
 }
+
+export const getFeaturedProperties = unstable_cache(
+  fetchFeaturedProperties,
+  ["featured-properties"],
+  {
+    revalidate: 300,
+    tags: ["properties", "featured-properties"],
+  },
+);

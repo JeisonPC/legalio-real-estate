@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { revalidatePropertyData } from "@/lib/cache/revalidatePublicData";
 
 export const Properties: CollectionConfig = {
   slug: "properties",
@@ -10,6 +11,10 @@ export const Properties: CollectionConfig = {
 
   admin: {
     useAsTitle: "title",
+  },
+  hooks: {
+    afterChange: [() => revalidatePropertyData()],
+    afterDelete: [() => revalidatePropertyData()],
   },
 
   fields: [

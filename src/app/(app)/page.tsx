@@ -9,17 +9,31 @@ import Properties from "@/components/homes/homepage-1/Properties";
 // import LatestNews from "@/components/homes/LatestNews";
 import Layout from "@/components/layouts/Layout-defaul";
 import { getCities } from "@/lib/queries/cities";
+import { getProperties } from "@/lib/queries/properties";
+import {
+  HomeHeroSkeleton,
+  HomePropertiesSkeleton,
+} from "@/components/common/AppSkeletons";
+import { Suspense } from "react";
 
 export const dynamic = "force-dynamic";
 
-export default async function Home() {
-  const cities = await getCities();
+async function HomeHero() {
+  const [cities, properties] = await Promise.all([getCities(), getProperties()]);
 
+  return <Hero cities={cities} properties={properties} />;
+}
+
+export default function Home() {
   return (
     <Layout>
-      <Hero cities={cities} />
+      <Suspense fallback={<HomeHeroSkeleton />}>
+        <HomeHero />
+      </Suspense>
       {/* <About /> */}
-      <Properties />
+      <Suspense fallback={<HomePropertiesSkeleton />}>
+        <Properties />
+      </Suspense>
       {/* <Banner /> */}
       {/* <Properties2 /> */}
       <Location />

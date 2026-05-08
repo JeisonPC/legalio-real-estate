@@ -4,7 +4,7 @@ import React from "react";
 // import Image from "next/image";
 // import { Autoplay, EffectFade, Navigation } from "swiper/modules";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
-import type { City } from "@/payload-types";
+import type { City, Property } from "@/payload-types";
 
 type HeroSlide = {
     id: number;
@@ -51,9 +51,10 @@ const heroSlides: HeroSlide[] = [
 
 interface HeroProps {
     cities: City[];
+    properties?: Property[];
 }
 
-export default function Hero({ cities }: HeroProps) {
+export default function Hero({ cities, properties = [] }: HeroProps) {
     // Check if there are slides to display
     if (!heroSlides || heroSlides.length === 0) {
         return null;
@@ -148,7 +149,7 @@ export default function Hero({ cities }: HeroProps) {
                     <i className="icon-CaretRight"></i>
                 </div>
             </div> */}
-            <SidebarFilterDefault cities={cities} />
+            <SidebarFilterDefault cities={cities} properties={properties} />
         </div>
     );
 }

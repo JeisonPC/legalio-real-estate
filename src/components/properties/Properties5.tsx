@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useEffect, useRef, useState, useReducer } from "react";
+import React, { useEffect, useMemo, useRef, useState, useReducer } from "react";
 import { initialState, reducer } from "@/context/propertiesFilterReduce";
 import Pagination from "@/components/common/Pagination";
 import type { City, Property } from "@/payload-types";
@@ -15,10 +15,30 @@ import {
   readAttribution,
 } from "@/lib/analytics/events";
 import { getMediaUrl } from "@/lib/media/getMediaUrl";
+import {
+  ALL_BATHROOMS_OPTION,
+  ALL_BEDROOMS_OPTION,
+  ALL_GARAGES_OPTION,
+  MAX_PRICE_OPTION,
+  MAX_SIZE_OPTION,
+  MIN_SIZE_OPTION,
+  buildPropertyFilterOptions,
+} from "@/lib/properties/filterOptions";
 
-function parseSizeValue(val: string) {
-  if (val === "Min (Mts/2)" || val === "Max (Mts/2)") return val;
-  return val.replace(/[^0-9]/g, "");
+function parseSizeValue(value: string) {
+  const match = value.match(/\d[\d.,]*/);
+
+  if (!match) return null;
+
+  const parsed = Number.parseInt(match[0].replace(/[,.]/g, ""), 10);
+
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function getPropertyArea(property: Property) {
+  const area = Number(property.area);
+
+  return Number.isFinite(area) ? area : null;
 }
 
 function normalizeBusinessType(value: string) {
@@ -37,6 +57,15 @@ function normalizeBusinessType(value: string) {
 
 function isAllCitiesValue(value: string) {
   return value === "Todas" || value === "Todas las Ciudades";
+}
+
+function formatBusinessTypeForDisplay(value: string) {
+  const normalizedBusinessType = normalizeBusinessType(value);
+
+  if (normalizedBusinessType === "venta") return "Venta";
+  if (normalizedBusinessType === "arriendo") return "Arriendo";
+
+  return "Ambos";
 }
 
 export default function Properties5({
@@ -76,8 +105,13 @@ export default function Properties5({
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     city: initialCity,
-    businessType: initialBusinessType,
+    businessType: formatBusinessTypeForDisplay(initialBusinessType),
   });
+
+  const filterOptions = useMemo(
+    () => buildPropertyFilterOptions(properties, cities),
+    [properties, cities],
+  );
 
   const searchParams = useSearchParams();
   const [hydratedFromUrl, setHydratedFromUrl] = useState(false);
@@ -88,18 +122,41 @@ export default function Properties5({
     const q = searchParams.get("q") || "";
     const cityParam = searchParams.get("city") || "";
     const bedroomsParam = searchParams.get("bedrooms") || "";
+    const bathroomsParam = searchParams.get("bathrooms") || "";
+    const garagesParam = searchParams.get("garages") || "";
     const businessTypeParam = searchParams.get("businessType") || "";
     const priceParam = searchParams.get("price") || "";
+    const minSizeParam = searchParams.get("minSize") || "";
+    const maxSizeParam = searchParams.get("maxSize") || "";
+    const featuresParam = searchParams.get("features") || "";
+    const sortParam = searchParams.get("sort") || "";
 
     setSearchKeyword(q);
 
     if (cityParam) dispatch({ type: "SET_CITY", payload: cityParam });
     if (bedroomsParam)
       dispatch({ type: "SET_BEDROOMS", payload: bedroomsParam });
+    if (bathroomsParam)
+      dispatch({ type: "SET_BATHROOMS", payload: bathroomsParam });
+    if (garagesParam) dispatch({ type: "SET_GARAGES", payload: garagesParam });
     if (businessTypeParam) {
-      dispatch({ type: "SET_BUSINESS_TYPE", payload: businessTypeParam });
+      dispatch({
+        type: "SET_BUSINESS_TYPE",
+        payload: formatBusinessTypeForDisplay(businessTypeParam),
+      });
     }
     if (priceParam) dispatch({ type: "SET_PRICE", payload: priceParam });
+    if (minSizeParam) dispatch({ type: "SET_MINSIZE", payload: minSizeParam });
+    if (maxSizeParam) dispatch({ type: "SET_MAXSIZE", payload: maxSizeParam });
+    if (featuresParam) {
+      dispatch({
+        type: "SET_FEATURES",
+        payload: featuresParam.split(",").filter(Boolean),
+      });
+    }
+    if (sortParam) {
+      dispatch({ type: "SET_SORTING_OPTION", payload: sortParam });
+    }
 
     setHydratedFromUrl(true);
   }, [searchParams, hydratedFromUrl]);
@@ -152,7 +209,7 @@ export default function Properties5({
     }
 
     // Habitaciones filter
-    if (bedrooms && bedrooms !== "Todas las Habitaciones") {
+    if (bedrooms && bedrooms !== ALL_BEDROOMS_OPTION) {
       if (bedrooms === "4+") {
         filteredList = filteredList.filter((p) => Number(p.bedrooms) >= 4);
       } else {
@@ -162,7 +219,7 @@ export default function Properties5({
     }
 
     // Bathrooms filter
-    if (bathrooms && bathrooms !== "Todos los Baños") {
+    if (bathrooms && bathrooms !== ALL_BATHROOMS_OPTION) {
       if (bathrooms === "4+") {
         filteredList = filteredList.filter((p) => Number(p.bathrooms) >= 4);
       } else {
@@ -172,7 +229,7 @@ export default function Properties5({
     }
 
     // Garages filter
-    if (garages && garages !== "Todos los Garajes") {
+    if (garages && garages !== ALL_GARAGES_OPTION) {
       if (garages === "3+") {
         filteredList = filteredList.filter((p) => Number(p.garages) >= 3);
       } else {
@@ -182,7 +239,7 @@ export default function Properties5({
     }
 
     // Price filter
-    if (price && price !== "Precio Max.") {
+    if (price && price !== MAX_PRICE_OPTION) {
       let maxPrice = 0;
       if (price.startsWith("Menos de $")) {
         maxPrice = parseInt(
@@ -203,21 +260,29 @@ export default function Properties5({
     }
 
     // Min size filter
-    if (minSize && minSize !== "Min (Mts/2)") {
-      const min = parseInt(parseSizeValue(minSize), 10);
-      if (!isNaN(min)) {
+    if (minSize && minSize !== MIN_SIZE_OPTION) {
+      const min = parseSizeValue(minSize);
+      if (min !== null) {
         filteredList = filteredList.filter(
-          (p) => p.area !== undefined && Number(p.area) >= min,
+          (p) => {
+            const area = getPropertyArea(p);
+
+            return area !== null && area >= min;
+          },
         );
       }
     }
 
     // Max size filter
-    if (maxSize && maxSize !== "Max (Mts/2)") {
-      const max = parseInt(parseSizeValue(maxSize), 10);
-      if (!isNaN(max)) {
+    if (maxSize && maxSize !== MAX_SIZE_OPTION) {
+      const max = parseSizeValue(maxSize);
+      if (max !== null) {
         filteredList = filteredList.filter(
-          (p) => p.area !== undefined && Number(p.area) <= max,
+          (p) => {
+            const area = getPropertyArea(p);
+
+            return area !== null && area <= max;
+          },
         );
       }
     }
@@ -281,6 +346,8 @@ export default function Properties5({
   };
 
   useEffect(() => {
+    if (!hydratedFromUrl) return;
+
     const params = new URLSearchParams();
 
     if (searchKeyword.trim()) {
@@ -304,27 +371,27 @@ export default function Properties5({
       params.set("businessType", normalizeBusinessType(businessType));
     }
 
-    if (bedrooms && bedrooms !== "Todas las Habitaciones") {
+    if (bedrooms && bedrooms !== ALL_BEDROOMS_OPTION) {
       params.set("bedrooms", bedrooms);
     }
 
-    if (bathrooms && bathrooms !== "Todos los Baños") {
+    if (bathrooms && bathrooms !== ALL_BATHROOMS_OPTION) {
       params.set("bathrooms", bathrooms);
     }
 
-    if (garages && garages !== "Todos los Garajes") {
+    if (garages && garages !== ALL_GARAGES_OPTION) {
       params.set("garages", garages);
     }
 
-    if (price && price !== "Precio Max.") {
+    if (price && price !== MAX_PRICE_OPTION) {
       params.set("price", price);
     }
 
-    if (minSize && minSize !== "Min (Mts/2)") {
+    if (minSize && minSize !== MIN_SIZE_OPTION) {
       params.set("minSize", minSize);
     }
 
-    if (maxSize && maxSize !== "Max (Mts/2)") {
+    if (maxSize && maxSize !== MAX_SIZE_OPTION) {
       params.set("maxSize", maxSize);
     }
 
@@ -337,12 +404,17 @@ export default function Properties5({
     }
 
     const queryString = params.toString();
+    const targetUrl = queryString ? `${basePath}?${queryString}` : basePath;
+    const currentUrl = `${window.location.pathname}${window.location.search}`;
 
-    router.replace(queryString ? `${basePath}?${queryString}` : basePath, {
+    if (currentUrl === targetUrl) return;
+
+    router.replace(targetUrl, {
       scroll: false,
     });
   }, [
     router,
+    hydratedFromUrl,
     searchKeyword,
     city,
     businessType,
@@ -373,6 +445,8 @@ export default function Properties5({
         price,
         min_size: minSize,
         max_size: maxSize,
+        features: features.join(","),
+        sort: sortingOption,
       },
       results_count: sorted.length,
       attribution: readAttribution(),
@@ -479,12 +553,12 @@ export default function Properties5({
     <>
       <div className="main-content">
         <SidebarFilter3
-          cities={cities}
           allProps={allProps}
           searchKeyword={searchKeyword}
           setSearchKeyword={setSearchKeyword}
           handleSearch={handleSearch}
           handleFeatureChange={handleFeatureChange}
+          filterOptions={filterOptions}
           ddContainer={ddContainer as React.RefObject<HTMLDivElement>}
           advanceBtnRef={advanceBtnRef as React.RefObject<HTMLDivElement>}
           toggleAdvancedFilter={toggleAdvancedFilter}
@@ -493,16 +567,16 @@ export default function Properties5({
         <div className="wrapper-layout">
           <div className="wrap-left">
             <div className="box-title mb_30">
-              <div>
+              <div className="breadcrumbs">
                 <ul className="breadcrumb style-1 text-button fw-4 mb_4">
                   <li>
                     <Link className="" href={"/"}>
                       Inicio
                     </Link>
                   </li>
-                  <li>With Half Map</li>
+                  <li>Buscador de Propiedades</li>
                 </ul>
-                {/* <h4>With Half Map</h4> */}
+                {/* <h4>Buscador de Propiedades</h4> */}
               </div>
               <div className="right d-flex gap_12">
                 <ul
@@ -541,6 +615,7 @@ export default function Properties5({
                     "Precio Ascendiente",
                     "Precio Descendiente",
                   ]}
+                  defaultOption={sortingOption}
                 />
               </div>
             </div>

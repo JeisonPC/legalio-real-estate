@@ -1,8 +1,15 @@
-import React from "react";
+"use client";
+
+import React, { useRef } from "react";
+import { useScopedAnimations } from "@/components/common/useScopedAnimations";
 
 export default function Process() {
+    const rootRef = useRef<HTMLDivElement>(null);
+
+    useScopedAnimations(rootRef, []);
+
     return (
-        <div className="section-process-1">
+        <div ref={rootRef} className="section-process-1">
             <div
                 className="parallaxie"
                 style={{

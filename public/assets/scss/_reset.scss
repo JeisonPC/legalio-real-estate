@@ -1990,12 +1990,16 @@ a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
     gap: 30px;
+    flex-direction: row;
+
+    .breadcrumbs {
+        flex: 5;
+    }
 
     .right {
-        max-width: 344px;
         width: 100%;
+        flex: 7;
     }
 
     .nav-tab-filter {
@@ -2013,9 +2017,7 @@ a {
     }
 
     .nice-select {
-        max-width: 240px;
         width: 100%;
-        flex-shrink: 0;
     }
 }
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import type { Media } from "@/payload-types";
 import Link from "next/link";
+import { useScopedAnimations } from "@/components/common/useScopedAnimations";
 
 type CityCard = {
   id: number;
@@ -23,8 +24,12 @@ function isMedia(value: number | Media | null | undefined): value is Media {
 }
 
 export default function LocationSlider({ cities }: { cities: CityCard[] }) {
+  const rootRef = useRef<HTMLDivElement>(null);
+
+  useScopedAnimations(rootRef, [cities.length]);
+
   return (
-    <div className="section-location tf-spacing-1 pt-0">
+    <div ref={rootRef} className="section-location tf-spacing-1 pt-0">
       <div className="tf-container w-1830">
         <div className="heading-section justify-content-center text-center mb_46">
           <span

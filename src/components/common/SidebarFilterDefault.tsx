@@ -1,17 +1,34 @@
 "use client";
 
-import React, { useRef, useEffect, useState } from "react";
+import React, { useMemo, useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { bedroomOptions, priceOptions } from "@/data/optionfilter";
-import type { City } from "@/payload-types";
+import type { City, Property } from "@/payload-types";
 import DropdownSelect2 from "./DropdownSelect2";
 import AdvanceSearchDefault from "./AdvanceSearchDefault";
+import {
+  ALL_BATHROOMS_OPTION,
+  ALL_BEDROOMS_OPTION,
+  ALL_CITIES_OPTION,
+  ALL_GARAGES_OPTION,
+  MAX_PRICE_OPTION,
+  MAX_SIZE_OPTION,
+  MIN_SIZE_OPTION,
+  buildPropertyFilterOptions,
+} from "@/lib/properties/filterOptions";
 
 interface SidebarFilterDefaultProps {
   cities: City[];
+  properties?: Property[];
 }
 
-export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultProps) {
+function isAllCitiesValue(value: string) {
+  return value === "Todas" || value === ALL_CITIES_OPTION;
+}
+
+export default function SidebarFilterDefault({
+  cities,
+  properties = [],
+}: SidebarFilterDefaultProps) {
   const router = useRouter();
   const ddContainer = useRef<HTMLDivElement>(null);
   const advanceBtnRef = useRef<HTMLDivElement>(null);
@@ -19,26 +36,53 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
   const [businessType, setBusinessType] = useState<"arriendo" | "venta">(
     "arriendo",
   );
-  const cityOptions = ["Todas", ...cities.map((c) => c.name)];
-
   const [keyword, setKeyword] = useState("");
   const [city, setCity] = useState("");
   const [bedrooms, setBedrooms] = useState("");
   const [price, setPrice] = useState("");
+  const [bathrooms, setBathrooms] = useState("");
+  const [garages, setGarages] = useState("");
+  const [minSize, setMinSize] = useState("");
+  const [maxSize, setMaxSize] = useState("");
+  const [features, setFeatures] = useState<string[]>([]);
 
-  const handleBusinessTypeChange = (type: "arriendo" | "venta") => {
-    setBusinessType(type);
+  const filterOptions = useMemo(
+    () => buildPropertyFilterOptions(properties, cities),
+    [properties, cities],
+  );
 
+  const buildSearchParams = (type = businessType) => {
     const params = new URLSearchParams();
 
     params.set("businessType", type);
 
     if (keyword.trim()) params.set("q", keyword.trim());
-    if (city) params.set("city", city);
-    if (bedrooms) params.set("bedrooms", bedrooms);
-    if (price) params.set("price", price);
+    if (city && !isAllCitiesValue(city)) params.set("city", city);
+    if (bedrooms && bedrooms !== ALL_BEDROOMS_OPTION) {
+      params.set("bedrooms", bedrooms);
+    }
+    if (bathrooms && bathrooms !== ALL_BATHROOMS_OPTION) {
+      params.set("bathrooms", bathrooms);
+    }
+    if (garages && garages !== ALL_GARAGES_OPTION) {
+      params.set("garages", garages);
+    }
+    if (price && price !== MAX_PRICE_OPTION) params.set("price", price);
+    if (minSize && minSize !== MIN_SIZE_OPTION) params.set("minSize", minSize);
+    if (maxSize && maxSize !== MAX_SIZE_OPTION) params.set("maxSize", maxSize);
+    if (features.length > 0) params.set("features", features.join(","));
 
+    return params;
+  };
+
+  const goToProperties = (type = businessType) => {
+    const params = buildSearchParams(type);
     router.push(`/propiedades?${params.toString()}`);
+  };
+
+  const handleBusinessTypeChange = (type: "arriendo" | "venta") => {
+    setBusinessType(type);
+    goToProperties(type);
   };
 
   useEffect(() => {
@@ -62,17 +106,15 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
 
   const handleSubmit = (e?: React.FormEvent) => {
     e?.preventDefault();
+    goToProperties();
+  };
 
-    const params = new URLSearchParams();
-
-    params.set("businessType", businessType);
-
-    if (keyword.trim()) params.set("q", keyword.trim());
-    if (city) params.set("city", city);
-    if (bedrooms) params.set("bedrooms", bedrooms);
-    if (price) params.set("price", price);
-
-    router.push(`/propiedades?${params.toString()}`);
+  const handleFeatureChange = (feature: string) => {
+    setFeatures((currentFeatures) =>
+      currentFeatures.includes(feature)
+        ? currentFeatures.filter((item) => item !== feature)
+        : [...currentFeatures, feature],
+    );
   };
 
   return (
@@ -113,7 +155,7 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
                     htmlFor="lookingFor"
                     className="text-button text_primary-color mb_8"
                   >
-                    Búsqueda
+                    Busqueda
                   </label>
                   <fieldset>
                     <input
@@ -121,7 +163,7 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
                       placeholder="Buscar por nombre"
                       id="lookingFor"
                       value={keyword}
-                      onChange={(e) => setKeyword(e.target.value)}
+                      onChange={(event) => setKeyword(event.target.value)}
                     />
                   </fieldset>
                 </form>
@@ -131,9 +173,9 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
                     Ciudad
                   </div>
                   <DropdownSelect2
-                    options={cityOptions}
+                    options={filterOptions.cityOptions}
                     defaultOption="Ciudad"
-                    onChange={(value) => setCity(value)}
+                    onChange={setCity}
                   />
                 </div>
 
@@ -142,9 +184,9 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
                     Habitaciones
                   </div>
                   <DropdownSelect2
-                    options={bedroomOptions}
+                    options={filterOptions.bedroomOptions}
                     defaultOption="Habitaciones"
-                    onChange={(value) => setBedrooms(value)}
+                    onChange={setBedrooms}
                   />
                 </div>
 
@@ -153,9 +195,9 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
                     Precio
                   </div>
                   <DropdownSelect2
-                    options={priceOptions}
+                    options={filterOptions.priceOptions}
                     defaultOption="Precio"
-                    onChange={(value) => setPrice(value)}
+                    onChange={setPrice}
                   />
                 </div>
               </div>
@@ -185,6 +227,13 @@ export default function SidebarFilterDefault({ cities }: SidebarFilterDefaultPro
 
           <AdvanceSearchDefault
             ddContainer={ddContainer as React.RefObject<HTMLDivElement>}
+            filterOptions={filterOptions}
+            features={features}
+            onBathroomsChange={setBathrooms}
+            onGaragesChange={setGarages}
+            onMinSizeChange={setMinSize}
+            onMaxSizeChange={setMaxSize}
+            onFeatureChange={handleFeatureChange}
           />
         </div>
       </div>

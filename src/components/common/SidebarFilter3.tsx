@@ -1,8 +1,7 @@
 import React from "react";
 import DropdownSelect from "./DropdownSelect";
 import AdvanceSearch from "./AdvanceSearch1";
-import { bedroomOptions, priceOptions } from "@/data/optionfilter";
-import type { City } from "@/payload-types";
+import type { PropertyFilterOptions } from "@/lib/properties/filterOptions";
 
 interface SidebarFilter1Props {
   allProps: {
@@ -25,7 +24,7 @@ interface SidebarFilter1Props {
     features: string[];
     setFeatures: (feature: string) => void;
   };
-  cities: City[];
+  filterOptions: PropertyFilterOptions;
   searchKeyword: string;
   setSearchKeyword: (val: string) => void;
   handleSearch: (e: React.FormEvent) => void;
@@ -37,7 +36,7 @@ interface SidebarFilter1Props {
 
 export default function SidebarFilter3({
   allProps,
-  cities,
+  filterOptions,
   searchKeyword,
   setSearchKeyword,
   handleSearch,
@@ -46,7 +45,6 @@ export default function SidebarFilter3({
   advanceBtnRef,
   toggleAdvancedFilter,
 }: SidebarFilter1Props) {
-  const cityOptions = ["Todas", ...(cities?.map((c) => c.name) || [])];
   const { city, bedrooms, price, businessType } = allProps;
 
   return (
@@ -78,7 +76,7 @@ export default function SidebarFilter3({
                     Venta / Arriendo
                   </div>
                   <DropdownSelect
-                    options={["Ambos", "Arriendo", "Venta"]}
+                    options={filterOptions.businessTypeOptions}
                     selected={businessType}
                     setSelected={allProps.setBusinessType}
                   />
@@ -88,7 +86,7 @@ export default function SidebarFilter3({
                     Ciudad
                   </div>
                   <DropdownSelect
-                    options={cityOptions}
+                    options={filterOptions.cityOptions}
                     selected={city}
                     setSelected={allProps.setCity}
                   />
@@ -98,7 +96,7 @@ export default function SidebarFilter3({
                     Habitaciones
                   </div>
                   <DropdownSelect
-                    options={bedroomOptions}
+                    options={filterOptions.bedroomOptions}
                     selected={bedrooms}
                     setSelected={allProps.setBedrooms}
                   />
@@ -108,7 +106,7 @@ export default function SidebarFilter3({
                     Precio
                   </div>
                   <DropdownSelect
-                    options={priceOptions}
+                    options={filterOptions.priceOptions}
                     selected={price}
                     setSelected={allProps.setPrice}
                   />
@@ -139,6 +137,7 @@ export default function SidebarFilter3({
             allProps={allProps}
             ddContainer={ddContainer}
             handleFeatureChange={handleFeatureChange}
+            filterOptions={filterOptions}
           />
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import type { Property } from "@/payload-types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -9,12 +9,14 @@ import "swiper/css/pagination";
 import Image from "next/image";
 import Link from "next/link";
 import { getMediaUrl } from "@/lib/media/getMediaUrl";
+import { useScopedAnimations } from "@/components/common/useScopedAnimations";
 
 export default function PropertiesClient({
   properties,
 }: {
   properties: Property[];
 }) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -29,8 +31,9 @@ export default function PropertiesClient({
 
   const items = properties.slice(0, 6);
 
+  useScopedAnimations(rootRef, [isMobile, items.length]);
+
   const renderCard = (property: Property) => {
-    console.log("Rendering card for property:", property);
     const firstImage =
       Array.isArray(property.images) && property.images.length > 0
         ? property.images[0]
@@ -46,7 +49,6 @@ export default function PropertiesClient({
       property.businessType === "venta" ? "Venta" : "Arriendo";
 
     const businessClass = property.businessType === "venta" ? "sale" : "rent";
-    console.log("businessClass:", businessClass);
     return (
       <div
         key={property.id}
@@ -126,7 +128,10 @@ export default function PropertiesClient({
   };
 
   return (
-    <div className="section-features-property-4 tf-spacing-1 pt-0">
+    <div
+      ref={rootRef}
+      className="section-features-property-4 tf-spacing-1 pt-0"
+    >
       <div className="tf-container">
         <div className="heading-section justify-content-center text-center mb_46 mt_24">
           <span

@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { revalidateCityData } from "@/lib/cache/revalidatePublicData";
 
 export const Cities: CollectionConfig = {
   slug: "cities",
@@ -12,6 +13,10 @@ export const Cities: CollectionConfig = {
   },
   access: {
     read: () => true,
+  },
+  hooks: {
+    afterChange: [() => revalidateCityData()],
+    afterDelete: [() => revalidateCityData()],
   },
   fields: [
     {

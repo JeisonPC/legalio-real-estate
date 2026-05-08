@@ -1,12 +1,22 @@
 import React from "react";
 import DropdownSelect from "./DropdownSelect";
+import type { PropertyFilterOptions } from "@/lib/properties/filterOptions";
 import {
   bathroomOptions,
   garageOptions,
-  minSizeOptions,
   maxSizeOptions,
-  // amenitiesList,
+  minSizeOptions,
+  amenitiesList,
 } from "@/data/optionfilter";
+
+type AdvanceSearchFilterOptions = Pick<
+  PropertyFilterOptions,
+  | "bathroomOptions"
+  | "garageOptions"
+  | "minSizeOptions"
+  | "maxSizeOptions"
+  | "featureOptions"
+>;
 
 interface AdvanceSearchProps {
   allProps: {
@@ -23,19 +33,28 @@ interface AdvanceSearchProps {
   };
   handleFeatureChange: (feature: string) => void;
   ddContainer: React.RefObject<HTMLDivElement>;
+  filterOptions?: AdvanceSearchFilterOptions;
 }
 
 export default function AdvanceSearch({
   allProps,
-  // handleFeatureChange,
+  handleFeatureChange,
   ddContainer,
+  filterOptions,
 }: AdvanceSearchProps) {
+  const resolvedFilterOptions = filterOptions ?? {
+    bathroomOptions,
+    garageOptions,
+    minSizeOptions,
+    maxSizeOptions,
+    featureOptions: amenitiesList,
+  };
   const {
     bathrooms,
     garages,
     minSize,
     maxSize,
-    // features
+    features,
   } = allProps;
 
   return (
@@ -45,7 +64,7 @@ export default function AdvanceSearch({
           <div className="box-select">
             <div className="text-button text_primary-color mb_8">Baños</div>
             <DropdownSelect
-              options={bathroomOptions}
+              options={resolvedFilterOptions.bathroomOptions}
               selected={bathrooms}
               setSelected={allProps.setBathrooms}
             />
@@ -53,7 +72,7 @@ export default function AdvanceSearch({
           <div className="box-select">
             <div className="text-button text_primary-color mb_8">Garajes</div>
             <DropdownSelect
-              options={garageOptions}
+              options={resolvedFilterOptions.garageOptions}
               selected={garages}
               setSelected={allProps.setGarages}
             />
@@ -65,7 +84,7 @@ export default function AdvanceSearch({
               Tamaño mínimo
             </div>
             <DropdownSelect
-              options={minSizeOptions}
+              options={resolvedFilterOptions.minSizeOptions}
               selected={minSize}
               setSelected={allProps.setMinSize}
             />
@@ -75,40 +94,35 @@ export default function AdvanceSearch({
               Tamaño máximo
             </div>
             <DropdownSelect
-              options={maxSizeOptions}
+              options={resolvedFilterOptions.maxSizeOptions}
               selected={maxSize}
               setSelected={allProps.setMaxSize}
             />
           </div>
         </div>
       </div>
-      {/* <div className="group-checkbox">
-                <div className="text-title text_primary-color mb_12 fw-6">
-                    Comodidades:
-                </div>
-                <div className="group-amenities">
-                    {amenitiesList.map((amenity) => (
-                        <fieldset
-                            key={amenity}
-                            className="checkbox-item style-1"
-                        >
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    checked={features.includes(amenity)}
-                                    onChange={() =>
-                                        handleFeatureChange(amenity)
-                                    }
-                                />
-                                <span className="btn-checkbox"></span>
-                                <span className="text-body-default">
-                                    {amenity}
-                                </span>
-                            </label>
-                        </fieldset>
-                    ))}
-                </div>
-            </div> */}
+      {resolvedFilterOptions.featureOptions.length > 0 && (
+        <div className="group-checkbox">
+          <div className="text-title text_primary-color mb_12 fw-6">
+            Características:
+          </div>
+          <div className="group-amenities">
+            {resolvedFilterOptions.featureOptions.map((feature) => (
+              <fieldset key={feature} className="checkbox-item style-1">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={features.includes(feature)}
+                    onChange={() => handleFeatureChange(feature)}
+                  />
+                  <span className="btn-checkbox"></span>
+                  <span className="text-body-default">{feature}</span>
+                </label>
+              </fieldset>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

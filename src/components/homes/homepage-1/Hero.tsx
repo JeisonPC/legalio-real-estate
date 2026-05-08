@@ -4,13 +4,14 @@ import React from "react";
 // import { Navigation, Autoplay } from "swiper/modules";
 // import Image from "next/image";
 import SidebarFilterDefault from "@/components/common/SidebarFilterDefault";
-import type { City } from "@/payload-types";
+import type { City, Property } from "@/payload-types";
 
 interface HeroProps {
   cities: City[];
+  properties?: Property[];
 }
 
-export default function Hero({ cities }: HeroProps) {
+export default function Hero({ cities, properties = [] }: HeroProps) {
   return (
     <div className="page-title style-1 sw-layout">
       <div className="thumbs effect-content-slide">
@@ -59,7 +60,7 @@ export default function Hero({ cities }: HeroProps) {
       </div>
 
       <div className="searching-home">
-        <SidebarFilterDefault cities={cities} />
+        <SidebarFilterDefault cities={cities} properties={properties} />
       </div>
     </div>
   );

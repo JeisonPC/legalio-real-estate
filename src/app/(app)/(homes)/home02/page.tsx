@@ -8,18 +8,19 @@ import Properties from "@/components/homes/homepage-2/Properties";
 import TopBar from "@/components/homes/homepage-2/TopBar";
 import TopProperties from "@/components/homes/TopProperties";
 import { getCities } from "@/lib/queries/cities";
+import { getProperties } from "@/lib/queries/properties";
 import React from "react";
 
 export const dynamic = "force-dynamic";
 
 export default async function page() {
-  const cities = await getCities();
+  const [cities, properties] = await Promise.all([getCities(), getProperties()]);
 
   return (
     <>
       <TopBar />
       <Header2 />
-      <Hero cities={cities} />
+      <Hero cities={cities} properties={properties} />
       <Populor />
       <TopProperties />
       <Properties />

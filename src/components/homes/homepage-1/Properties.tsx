@@ -1,21 +1,8 @@
-import { getPayload } from "payload";
-import config from "@payload-config";
 import PropertiesClient from "./PropertiesClient";
+import { getFeaturedProperties } from "@/lib/queries/getFeaturedProperties";
 
 export default async function Properties() {
-  const payload = await getPayload({ config });
+  const properties = await getFeaturedProperties();
 
-  const result = await payload.find({
-    collection: "properties",
-    where: {
-      featured: {
-        equals: true,
-      },
-    },
-    limit: 6,
-    depth: 2,
-    sort: "-createdAt",
-  });
-
-  return <PropertiesClient properties={result.docs}/>;
+  return <PropertiesClient properties={properties} />;
 }

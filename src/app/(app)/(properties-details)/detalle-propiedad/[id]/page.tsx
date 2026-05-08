@@ -1,11 +1,10 @@
 import React from "react";
-import { getPayload } from "payload";
-import config from "@payload-config";
-import type { Property } from "@/payload-types";
 
 import Layout from "@/components/layouts/Layout-defaul";
 // import Relatest from "@/components/property-details/Relatest";
 import PropertyDetails3 from "@/components/property-details/PropertyDetails3";
+import { getPropertyById } from "@/lib/queries/properties";
+import { notFound } from "next/navigation";
 
 type PageProps = {
   params: Promise<{
@@ -16,17 +15,9 @@ type PageProps = {
 export default async function Page({ params }: PageProps) {
   const { id } = await params;
 
-  const payload = await getPayload({ config });
+  const property = await getPropertyById(id);
 
-  const result = await payload.findByID({
-    collection: "properties",
-    id,
-    depth: 2,
-  });
-
-  const property = result as Property;
-
-  console.log('property.images:', property.images);
+  if (!property) notFound();
 
   return (
     <Layout>
