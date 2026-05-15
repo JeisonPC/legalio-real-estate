@@ -56,10 +56,10 @@ export default function PropertiesTitle3({ property }: { property: Property }) {
       </div>
       <div>
         <h5 className="mb_16">Precio:</h5>
-        <h2 className="price">
-          {property.price}
+        <h2 className="price" suppressHydrationWarning>
+          ${property.price.toLocaleString("es-CO")}
           <span className="text_secondary-color text-body-1">
-            {property.businessType === "arriendo" && "/mes"}
+            {property.businessType === "arriendo" && " /mes"}
           </span>
         </h2>
       </div>

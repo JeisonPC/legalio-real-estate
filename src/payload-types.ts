@@ -227,6 +227,8 @@ export interface Property {
   bathrooms: number;
   area: number;
   garages?: number | null;
+  landArea?: number | null;
+  yearBuilt?: number | null;
   estrato: '1' | '2' | '3' | '4' | '5' | '6';
   /**
    * @minItems 2
@@ -572,6 +574,8 @@ export interface PropertiesSelect<T extends boolean = true> {
   bathrooms?: T;
   area?: T;
   garages?: T;
+  landArea?: T;
+  yearBuilt?: T;
   estrato?: T;
   coordinates?: T;
   features?:

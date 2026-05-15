@@ -108,6 +108,18 @@ export const Properties: CollectionConfig = {
       defaultValue: 0,
     },
     {
+      name: "landArea",
+      label: "Área del terreno (m²)",
+      type: "number",
+      min: 0,
+    },
+    {
+      name: "yearBuilt",
+      label: "Año de construcción",
+      type: "number",
+      min: 1800,
+    },
+    {
       name: "estrato",
       label: "Estrato",
       type: "select",

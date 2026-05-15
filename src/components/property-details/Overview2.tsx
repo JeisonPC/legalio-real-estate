@@ -4,7 +4,7 @@ import React from "react";
 export default function Overview2({ property }: { property: Property }) {
     return (
         <>
-            <h5 className="properties-title mb_20 ">Overview</h5>
+            <h5 className="properties-title mb_20 ">Descripción General</h5>
             <div className="wrap-overview">
                 <div className="item d-flex gap_16">
                     <i className="icon icon-HouseSimple"></i>
@@ -18,7 +18,7 @@ export default function Overview2({ property }: { property: Property }) {
                 <div className="item d-flex gap_16">
                     <i className="icon icon-SlidersHorizontal"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Type:</span>
+                        <span className="text-body-default">Tipo:</span>
                         <span className="text-title fw-6 text_primary-color">
                             {property.propertyType}
                         </span>
@@ -45,36 +45,36 @@ export default function Overview2({ property }: { property: Property }) {
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Warehouse"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Garages:</span>
+                        <span className="text-body-default">Parqueaderos:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            Yes
+                            {property.garages ?? 0}
                         </span>
                     </div>
                 </div>
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Ruler"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Size:</span>
+                        <span className="text-body-default">Área construida:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            3,200 SqFt
+                            {property.area} m²
                         </span>
                     </div>
                 </div>
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Crop"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Land area:</span>
+                        <span className="text-body-default">Área del terreno:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            4,200 SqFt
+                            {property.landArea ? `${property.landArea} m²` : "—"}
                         </span>
                     </div>
                 </div>
                 <div className="item d-flex gap_16">
                     <i className="icon icon-CalendarBlank"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Year Built:</span>
+                        <span className="text-body-default">Año de construcción:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            2024
+                            {property.yearBuilt ?? "—"}
                         </span>
                     </div>
                 </div>

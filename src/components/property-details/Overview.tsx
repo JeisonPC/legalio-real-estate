@@ -45,27 +45,27 @@ export default function Overview({ property }: { property: Property }) {
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Warehouse"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Garages:</span>
+                        <span className="text-body-default">Parqueaderos:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            Yes
+                            {property.garages ?? 0}
                         </span>
                     </div>
                 </div>
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Ruler"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Size:</span>
+                        <span className="text-body-default">Área construida:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            {property.area} área
+                            {property.area} m²
                         </span>
                     </div>
                 </div>
                 <div className="item d-flex gap_16">
                     <i className="icon icon-Crop"></i>
                     <div className="d-flex flex-column gap">
-                        <span className="text-body-default">Land area:</span>
+                        <span className="text-body-default">Área del terreno:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            4,200 SqFt
+                            {property.landArea ? `${property.landArea} m²` : "—"}
                         </span>
                     </div>
                 </div>
@@ -74,7 +74,7 @@ export default function Overview({ property }: { property: Property }) {
                     <div className="d-flex flex-column gap">
                         <span className="text-body-default">Año de construcción:</span>
                         <span className="text-title fw-6 text_primary-color">
-                            2024
+                            {property.yearBuilt ?? "—"}
                         </span>
                     </div>
                 </div>

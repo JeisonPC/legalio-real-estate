@@ -148,11 +148,11 @@ export default function PropertyDetails3({ property }: { property: Property }) {
                   Reseñas de clientes
                 </Link>
               </li> */}
-              <li className="text-button nav-tab-item text_primary-color">
+              {/* <li className="text-button nav-tab-item text_primary-color">
                 <Link href="#reviews" className="nav_link">
                   Reseñas
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
