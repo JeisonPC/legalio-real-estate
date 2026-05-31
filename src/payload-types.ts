@@ -321,11 +321,10 @@ export interface Document {
   id: number;
   title: string;
   documentType: 'contract' | 'inventory' | 'application' | 'payment_receipt' | 'other';
-  tenant: number | User;
+  users: (number | User)[];
   lease?: (number | null) | Lease;
   month?: string | null;
   year?: number | null;
-  isVisibleToTenant?: boolean | null;
   prefix?: string | null;
   updatedAt: string;
   createdAt: string;
@@ -655,11 +654,10 @@ export interface LeasesSelect<T extends boolean = true> {
 export interface DocumentsSelect<T extends boolean = true> {
   title?: T;
   documentType?: T;
-  tenant?: T;
+  users?: T;
   lease?: T;
   month?: T;
   year?: T;
-  isVisibleToTenant?: T;
   prefix?: T;
   updatedAt?: T;
   createdAt?: T;

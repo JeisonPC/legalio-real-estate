@@ -17,6 +17,7 @@ import * as migration_20260427_052940_add_avatar_user from './20260427_052940_ad
 import * as migration_20260427_061651_field_send_user_invitation from './20260427_061651_field_send_user_invitation';
 import * as migration_20260503_201600_optimize_media_images from './20260503_201600_optimize_media_images';
 import * as migration_20260515_060608 from './20260515_060608';
+import * as migration_20260531_192104 from './20260531_192104';
 
 export const migrations = [
   {
@@ -112,6 +113,11 @@ export const migrations = [
   {
     up: migration_20260515_060608.up,
     down: migration_20260515_060608.down,
-    name: '20260515_060608'
+    name: '20260515_060608',
+  },
+  {
+    up: migration_20260531_192104.up,
+    down: migration_20260531_192104.down,
+    name: '20260531_192104'
   },
 ];
