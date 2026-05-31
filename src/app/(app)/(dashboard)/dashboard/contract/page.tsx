@@ -4,7 +4,6 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import styles from "../dashboard.module.css";
 import { DocumentListPanel } from "@/components/documentListPanel/documentListPanel";
-import { isPopulatedDoc } from "@/helpers/helpers";
 
 export default async function DashboardPage() {
   const cookieStore = await cookies();
@@ -27,36 +26,31 @@ export default async function DashboardPage() {
     redirect("/inicio-sesion");
   }
 
-  const { docs: leases } = await payload.find({
-    collection: "leases",
-    depth: 1,
+  const { docs: contractDocuments } = await payload.find({
+    collection: "documents",
+    depth: 0,
     limit: 50,
     where: {
-      tenant: {
-        equals: user.id,
-      },
+      and: [
+        {
+          users: {
+            equals: user.id,
+          },
+        },
+        {
+          documentType: {
+            equals: "contract",
+          },
+        },
+      ],
     },
   });
 
-  const leasesWithContract = leases.filter(
-    (lease) =>
-      isPopulatedDoc(lease.contractDocument) && !!lease.contractDocument.url,
-  );
-
-  const contractItems = leasesWithContract.map((lease) => ({
-    id:
-      isPopulatedDoc(lease.contractDocument) && lease.contractDocument.id
-        ? lease.contractDocument.id
-        : lease.id,
-    title: isPopulatedDoc(lease.contractDocument)
-      ? lease.contractDocument.title || `Contrato ${lease.leaseCode}`
-      : `Contrato ${lease.leaseCode}`,
-    size: isPopulatedDoc(lease.contractDocument)
-      ? lease.contractDocument.filesize || null
-      : null,
-    hasFile: !!(
-      isPopulatedDoc(lease.contractDocument) && lease.contractDocument.filename
-    ),
+  const contractItems = contractDocuments.map((doc) => ({
+    id: String(doc.id),
+    title: doc.title,
+    size: doc.filesize || null,
+    hasFile: Boolean(doc.filename || doc.url),
   }));
 
   return (

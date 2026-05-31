@@ -14,7 +14,7 @@ import { Cities } from "./collections/Cities";
 import { Countries } from "./collections/Countries";
 import { Departments } from "./collections/Departments";
 import { Documents } from "./collections/Documents";
-import { Leases } from "./collections/Leases";
+import { Contracts } from "./collections/Contracts";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { Blogs } from "./collections/Blogs";
 import { resendEmailAdapter } from "./lib/email/resendEmailAdapter";
@@ -72,7 +72,7 @@ export default buildConfig({
     Countries,
     Departments,
     Cities,
-    Leases,
+    Contracts,
     Documents,
     Blogs,
   ],

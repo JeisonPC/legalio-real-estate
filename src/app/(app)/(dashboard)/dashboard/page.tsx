@@ -32,36 +32,14 @@ export default async function DashboardPage() {
     redirect("/inicio-sesion");
   }
 
-  const { docs: leases } = await payload.find({
-    collection: "leases",
-    depth: 0,
-    limit: 50,
-    where: {
-      tenant: {
-        equals: user.id,
-      },
-    },
-  });
-
-  const leaseIds = leases.map((lease) => lease.id);
-
   const { docs: relatedDocuments } = await payload.find({
     collection: "documents",
     depth: 0,
     limit: 200,
     where: {
-      and: [
-        {
-          tenant: {
-            equals: user.id,
-          },
-        },
-        {
-          lease: {
-            in: leaseIds,
-          },
-        },
-      ],
+      users: {
+        equals: user.id,
+      },
     },
   });
 

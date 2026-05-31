@@ -11,7 +11,7 @@ export const Documents: CollectionConfig = {
   },
   admin: {
     useAsTitle: "title",
-    defaultColumns: ["title", "documentType", "users", "lease", "createdAt"],
+    defaultColumns: ["title", "documentType", "users", "contract", "createdAt"],
   },
   access: {
     read: ({ req }) => {
@@ -45,6 +45,7 @@ export const Documents: CollectionConfig = {
       options: [
         { label: "Contrato", value: "contract" },
         { label: "Inventario", value: "inventory" },
+        { label: "Acta de entrega", value: "handover_record" },
         { label: "Solicitud de arrendamiento", value: "application" },
         { label: "Recibo de pago", value: "payment_receipt" },
         { label: "Otro", value: "other" },
@@ -59,10 +60,11 @@ export const Documents: CollectionConfig = {
       required: true,
     },
     {
-      name: "lease",
+      name: "contract",
       label: "Contrato relacionado",
       type: "relationship",
-      relationTo: "leases",
+      relationTo: "contracts",
+      required: true,
     },
     {
       name: "month",

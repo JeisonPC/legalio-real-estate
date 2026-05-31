@@ -73,7 +73,7 @@ export interface Config {
     countries: Country;
     departments: Department;
     cities: City;
-    leases: Lease;
+    contracts: Contract;
     documents: Document;
     blogs: Blog;
     'payload-kv': PayloadKv;
@@ -89,7 +89,7 @@ export interface Config {
     countries: CountriesSelect<false> | CountriesSelect<true>;
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     cities: CitiesSelect<false> | CitiesSelect<true>;
-    leases: LeasesSelect<false> | LeasesSelect<true>;
+    contracts: ContractsSelect<false> | ContractsSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -293,11 +293,11 @@ export interface Country {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "leases".
+ * via the `definition` "contracts".
  */
-export interface Lease {
+export interface Contract {
   id: number;
-  leaseCode: string;
+  contractCode: string;
   property: number | Property;
   owner: number | User;
   tenant: number | User;
@@ -307,9 +307,6 @@ export interface Lease {
   depositValue?: number | null;
   status: 'active' | 'ended' | 'suspended' | 'late';
   notes?: string | null;
-  contractDocument?: (number | null) | Document;
-  inventoryDocument?: (number | null) | Document;
-  otherDocuments?: (number | Document)[] | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -320,9 +317,9 @@ export interface Lease {
 export interface Document {
   id: number;
   title: string;
-  documentType: 'contract' | 'inventory' | 'application' | 'payment_receipt' | 'other';
+  documentType: 'contract' | 'inventory' | 'handover_record' | 'application' | 'payment_receipt' | 'other';
   users: (number | User)[];
-  lease?: (number | null) | Lease;
+  contract: number | Contract;
   month?: string | null;
   year?: number | null;
   prefix?: string | null;
@@ -424,8 +421,8 @@ export interface PayloadLockedDocument {
         value: number | City;
       } | null)
     | ({
-        relationTo: 'leases';
-        value: number | Lease;
+        relationTo: 'contracts';
+        value: number | Contract;
       } | null)
     | ({
         relationTo: 'documents';
@@ -628,10 +625,10 @@ export interface CitiesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "leases_select".
+ * via the `definition` "contracts_select".
  */
-export interface LeasesSelect<T extends boolean = true> {
-  leaseCode?: T;
+export interface ContractsSelect<T extends boolean = true> {
+  contractCode?: T;
   property?: T;
   owner?: T;
   tenant?: T;
@@ -641,9 +638,6 @@ export interface LeasesSelect<T extends boolean = true> {
   depositValue?: T;
   status?: T;
   notes?: T;
-  contractDocument?: T;
-  inventoryDocument?: T;
-  otherDocuments?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -655,7 +649,7 @@ export interface DocumentsSelect<T extends boolean = true> {
   title?: T;
   documentType?: T;
   users?: T;
-  lease?: T;
+  contract?: T;
   month?: T;
   year?: T;
   prefix?: T;

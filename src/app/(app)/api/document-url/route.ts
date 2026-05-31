@@ -55,16 +55,30 @@ export async function GET(req: NextRequest) {
     }
 
     if (user.role !== "admin") {
-      const tenantId =
-        typeof doc.tenant === "object" && doc.tenant !== null
-          ? doc.tenant.id
-          : doc.tenant;
+      const allowedUserIds = Array.isArray(doc.users)
+        ? doc.users
+            .map((relatedUser) => {
+              if (
+                typeof relatedUser === "string" ||
+                typeof relatedUser === "number"
+              ) {
+                return String(relatedUser);
+              }
 
-      if (tenantId !== user.id) {
-        return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-      }
+              if (
+                typeof relatedUser === "object" &&
+                relatedUser !== null &&
+                "id" in relatedUser
+              ) {
+                return String(relatedUser.id);
+              }
 
-      if (doc.isVisibleToTenant !== true) {
+              return null;
+            })
+            .filter(Boolean)
+        : [];
+
+      if (!allowedUserIds.includes(String(user.id))) {
         return NextResponse.json({ error: "Forbidden" }, { status: 403 });
       }
     }
