@@ -33,18 +33,13 @@ export default async function DashboardReceiptsPage() {
     where: {
       and: [
         {
-          tenant: {
+          users: {
             equals: user.id,
           },
         },
         {
           documentType: {
             equals: "payment_receipt",
-          },
-        },
-        {
-          isVisibleToTenant: {
-            equals: true,
           },
         },
       ],
@@ -59,10 +54,10 @@ export default async function DashboardReceiptsPage() {
     const year = receipt.year ? ` ${receipt.year}` : "";
 
     return {
-      id: receipt.id,
+      id: String(receipt.id),
       title: receipt.title || `Recibo${month}${year}`,
       size: receipt.filesize || null,
-      hasFile: !!receipt.filename,
+      hasFile: Boolean(receipt.filename),
     };
   });
 
