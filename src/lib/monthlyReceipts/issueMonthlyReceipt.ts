@@ -1,0 +1,303 @@
+import type { Payload } from "payload";
+import type {
+  Contract,
+  Document,
+  MonthlyReceipt,
+  Property,
+  ReceiptSetting,
+  User,
+} from "@/payload-types";
+import { generateMonthlyReceiptPDF } from "./generateMonthlyReceiptPDF";
+import {
+  formatCOP,
+  formatDate,
+  formatReceiptPeriod,
+} from "./formatters";
+
+type PopulatedMonthlyReceipt = MonthlyReceipt & {
+  contract: Contract;
+  property: Property;
+  owner: User;
+  tenant: User;
+  pdfDocument?: (number | null) | Document;
+};
+
+const isPopulated = <T extends { id: number }>(
+  value: number | T | null | undefined,
+): value is T => typeof value === "object" && value !== null;
+
+const escapeHtml = (value: string) =>
+  value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+const getAppUrl = () =>
+  process.env.NEXT_PUBLIC_SITE_URL ||
+  process.env.PAYLOAD_PUBLIC_SERVER_URL ||
+  "http://localhost:3000";
+
+const assertPopulatedReceipt = (
+  receipt: MonthlyReceipt,
+): PopulatedMonthlyReceipt => {
+  if (
+    !isPopulated(receipt.contract) ||
+    !isPopulated(receipt.property) ||
+    !isPopulated(receipt.owner) ||
+    !isPopulated(receipt.tenant)
+  ) {
+    throw new Error(
+      "El recibo debe tener contrato, propiedad, propietario y arrendatario cargados.",
+    );
+  }
+
+  return receipt as PopulatedMonthlyReceipt;
+};
+
+const getReceiptSettings = async (payload: Payload) => {
+  try {
+    return await payload.findGlobal({
+      slug: "receipt-settings",
+      depth: 0,
+    });
+  } catch {
+    return {} as Partial<ReceiptSetting>;
+  }
+};
+
+const findExistingReceiptDocument = async ({
+  payload,
+  receiptNumber,
+}: {
+  payload: Payload;
+  receiptNumber: string;
+}) => {
+  const existingDocument = await payload.find({
+    collection: "documents",
+    depth: 0,
+    limit: 1,
+    where: {
+      or: [
+        {
+          filename: {
+            equals: `${receiptNumber}.pdf`,
+          },
+        },
+        {
+          title: {
+            equals: `Recibo ${receiptNumber}`,
+          },
+        },
+      ],
+    },
+    overrideAccess: true,
+  });
+
+  return existingDocument.docs[0] || null;
+};
+
+const buildEmailHTML = ({
+  receipt,
+  intro,
+}: {
+  receipt: PopulatedMonthlyReceipt;
+  intro?: string | null;
+}) => {
+  const dashboardUrl = `${getAppUrl()}/dashboard/receipts`;
+  const tenantName = receipt.tenant.fullName || receipt.tenant.email || "";
+
+  return `
+    <div style="font-family: Arial, sans-serif; color: #1f2937; line-height: 1.5;">
+      <h2>Recibo de arrendamiento disponible</h2>
+      <p>Hola ${escapeHtml(tenantName)},</p>
+      <p>${escapeHtml(
+        intro ||
+          "Ya está disponible tu recibo mensual de arrendamiento en el dashboard de Legalio.",
+      )}</p>
+      <p>
+        <strong>Periodo:</strong> ${escapeHtml(
+          formatReceiptPeriod(receipt.periodMonth, receipt.periodYear),
+        )}<br />
+        <strong>Valor:</strong> ${escapeHtml(formatCOP(receipt.totalAmount))}<br />
+        <strong>Fecha límite:</strong> ${escapeHtml(formatDate(receipt.dueDate))}
+      </p>
+      <p>
+        <a
+          href="${dashboardUrl}"
+          style="display: inline-block; background: #1f3b57; color: white; padding: 12px 18px; border-radius: 8px; text-decoration: none; font-weight: bold;"
+        >
+          Ver recibo
+        </a>
+      </p>
+      <p style="font-size: 12px; color: #6b7280;">
+        Legalio
+      </p>
+    </div>
+  `;
+};
+
+export async function ensureMonthlyReceiptPDF({
+  payload,
+  receiptId,
+  generatedBy,
+}: {
+  payload: Payload;
+  receiptId: string | number;
+  generatedBy?: number;
+}) {
+  const rawReceipt = await payload.findByID({
+    collection: "monthly-receipts",
+    id: receiptId,
+    depth: 2,
+    overrideAccess: true,
+  });
+
+  const receipt = assertPopulatedReceipt(rawReceipt);
+
+  if (receipt.status === "cancelled") {
+    throw new Error("No se puede generar PDF para un recibo anulado.");
+  }
+
+  const settings = await getReceiptSettings(payload);
+
+  let pdfDocumentId = isPopulated(receipt.pdfDocument)
+    ? receipt.pdfDocument.id
+    : typeof receipt.pdfDocument === "number"
+      ? receipt.pdfDocument
+      : null;
+
+  if (!pdfDocumentId) {
+    const existingDocument = await findExistingReceiptDocument({
+      payload,
+      receiptNumber: receipt.receiptNumber,
+    });
+
+    if (existingDocument) {
+      pdfDocumentId = existingDocument.id;
+    } else {
+      const pdfBuffer = await generateMonthlyReceiptPDF({
+        receipt,
+        settings,
+      });
+
+      const createdDocument = await payload.create({
+        collection: "documents",
+        data: {
+          title: `Recibo ${receipt.receiptNumber}`,
+          documentType: "payment_receipt",
+          users: [receipt.tenant.id, receipt.owner.id],
+          contract: receipt.contract.id,
+          month: String(receipt.periodMonth),
+          year: Number(receipt.periodYear),
+        },
+        file: {
+          data: pdfBuffer,
+          mimetype: "application/pdf",
+          name: `${receipt.receiptNumber}.pdf`,
+          size: pdfBuffer.length,
+        },
+        overrideAccess: true,
+      });
+
+      pdfDocumentId = createdDocument.id;
+    }
+
+    await payload.update({
+      collection: "monthly-receipts",
+      id: receipt.id,
+      data: {
+        pdfDocument: pdfDocumentId,
+        ...(generatedBy ? { generatedBy } : {}),
+        issueRequested: false,
+      },
+      overrideAccess: true,
+    });
+  }
+
+  return {
+    receipt,
+    pdfDocumentId,
+  };
+}
+
+export async function issueMonthlyReceipt({
+  payload,
+  receiptId,
+  generatedBy,
+}: {
+  payload: Payload;
+  receiptId: string | number;
+  generatedBy: number;
+}) {
+  const { receipt, pdfDocumentId } = await ensureMonthlyReceiptPDF({
+    payload,
+    receiptId,
+    generatedBy,
+  });
+
+  if (receipt.status !== "issued") {
+    throw new Error(
+      "Solo se puede enviar un recibo en estado emitido.",
+    );
+  }
+
+  if (!receipt.tenant.email) {
+    throw new Error("El arrendatario no tiene correo electrónico.");
+  }
+
+  const settings = await getReceiptSettings(payload);
+
+  let emailResult: unknown;
+
+  try {
+    emailResult = await payload.sendEmail({
+      to: receipt.tenant.email,
+      subject:
+        settings.emailSubject ||
+        `Recibo de arrendamiento ${formatReceiptPeriod(
+          receipt.periodMonth,
+          receipt.periodYear,
+        )}`,
+      html: buildEmailHTML({
+        receipt,
+        intro: settings.emailIntro,
+      }),
+    });
+  } catch (error) {
+    await payload.update({
+      collection: "monthly-receipts",
+      id: receipt.id,
+      data: {
+        issueRequested: false,
+        emailLastError:
+          error instanceof Error ? error.message : "Error enviando correo",
+      },
+      overrideAccess: true,
+    });
+
+    throw error;
+  }
+
+  const emailMessageId =
+    typeof emailResult === "object" && emailResult !== null && "id" in emailResult
+      ? String(emailResult.id)
+      : undefined;
+
+  return payload.update({
+    collection: "monthly-receipts",
+    id: receipt.id,
+    data: {
+      status: "sent",
+      issueRequested: false,
+      sentAt: new Date().toISOString(),
+      pdfDocument: pdfDocumentId,
+      generatedBy,
+      emailLastError: null,
+      ...(emailMessageId ? { emailMessageId } : {}),
+    },
+    depth: 2,
+    overrideAccess: true,
+  });
+}

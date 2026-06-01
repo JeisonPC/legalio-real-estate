@@ -3,7 +3,9 @@ import { redirect } from "next/navigation";
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import styles from "../dashboard.module.css";
-import { DocumentListPanel } from "@/components/documentListPanel/documentListPanel";
+import { ReceiptListPanel } from "@/components/receiptListPanel/receiptListPanel";
+import { formatReceiptPeriod } from "@/lib/monthlyReceipts/formatters";
+import { isPopulatedDoc } from "@/helpers/helpers";
 
 export default async function DashboardReceiptsPage() {
   const cookieStore = await cookies();
@@ -27,44 +29,61 @@ export default async function DashboardReceiptsPage() {
   }
 
   const { docs: receipts } = await payload.find({
-    collection: "documents",
+    collection: "monthly-receipts",
     depth: 1,
     limit: 100,
-    where: {
-      and: [
-        {
-          users: {
-            equals: user.id,
+    where:
+      user.role === "admin"
+        ? undefined
+        : {
+            or: [
+              {
+                tenant: {
+                  equals: user.id,
+                },
+              },
+              {
+                owner: {
+                  equals: user.id,
+                },
+              },
+            ],
           },
-        },
-        {
-          documentType: {
-            equals: "payment_receipt",
-          },
-        },
-      ],
-    },
-    sort: "-year",
+    sort: "-createdAt",
   });
 
-  const receiptsWithFile = receipts.filter((receipt) => !!receipt.filename);
+  const receiptItems = receipts
+    .sort((a, b) => {
+      const yearDiff = Number(b.periodYear) - Number(a.periodYear);
+      if (yearDiff !== 0) return yearDiff;
 
-  const receiptItems = receiptsWithFile.map((receipt) => {
-    const month = receipt.month ? ` - ${receipt.month}` : "";
-    const year = receipt.year ? ` ${receipt.year}` : "";
+      return Number(b.periodMonth) - Number(a.periodMonth);
+    })
+    .map((receipt) => {
+      const pdfDocumentId = isPopulatedDoc(receipt.pdfDocument)
+        ? receipt.pdfDocument.id
+        : receipt.pdfDocument;
 
-    return {
-      id: String(receipt.id),
-      title: receipt.title || `Recibo${month}${year}`,
-      size: receipt.filesize || null,
-      hasFile: Boolean(receipt.filename),
-    };
-  });
+      return {
+        id: String(receipt.id),
+        title: `Recibo ${formatReceiptPeriod(
+          receipt.periodMonth,
+          receipt.periodYear,
+        )}`,
+        propertyTitle: isPopulatedDoc(receipt.property)
+          ? receipt.property.title
+          : null,
+        dueDate: receipt.dueDate,
+        totalAmount: receipt.totalAmount,
+        status: receipt.status,
+        documentId: pdfDocumentId ? String(pdfDocumentId) : null,
+      };
+    });
 
   return (
     <div>
       <section className={styles["aside-section"]}>
-        <DocumentListPanel items={receiptItems} title="Recibos de pago" />
+        <ReceiptListPanel items={receiptItems} title="Recibos de pago" />
       </section>
     </div>
   );

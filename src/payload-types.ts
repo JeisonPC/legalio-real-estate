@@ -74,6 +74,7 @@ export interface Config {
     departments: Department;
     cities: City;
     contracts: Contract;
+    'monthly-receipts': MonthlyReceipt;
     documents: Document;
     blogs: Blog;
     'payload-kv': PayloadKv;
@@ -90,6 +91,7 @@ export interface Config {
     departments: DepartmentsSelect<false> | DepartmentsSelect<true>;
     cities: CitiesSelect<false> | CitiesSelect<true>;
     contracts: ContractsSelect<false> | ContractsSelect<true>;
+    'monthly-receipts': MonthlyReceiptsSelect<false> | MonthlyReceiptsSelect<true>;
     documents: DocumentsSelect<false> | DocumentsSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -101,8 +103,12 @@ export interface Config {
     defaultIDType: number;
   };
   fallbackLocale: null;
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'receipt-settings': ReceiptSetting;
+  };
+  globalsSelect: {
+    'receipt-settings': ReceiptSettingsSelect<false> | ReceiptSettingsSelect<true>;
+  };
   locale: null;
   widgets: {
     collections: CollectionsWidget;
@@ -312,6 +318,65 @@ export interface Contract {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "monthly-receipts".
+ */
+export interface MonthlyReceipt {
+  id: number;
+  /**
+   * Se genera automáticamente si se deja vacío.
+   */
+  receiptNumber: string;
+  contract: number | Contract;
+  property: number | Property;
+  owner: number | User;
+  tenant: number | User;
+  periodMonth: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
+  periodYear: '2024' | '2025' | '2026' | '2027' | '2028' | '2029' | '2030' | '2031' | '2032' | '2033';
+  periodStartDate: string;
+  periodEndDate: string;
+  issueDate: string;
+  dueDate: string;
+  baseRent: number;
+  administrationFee?: number | null;
+  utilitiesAmount?: number | null;
+  otherChargesAmount?: number | null;
+  discountAmount?: number | null;
+  lateFeeAmount?: number | null;
+  lineItems?:
+    | {
+        label: string;
+        type: 'rent' | 'administration' | 'utilities' | 'other_charge' | 'discount' | 'late_fee';
+        amount: number;
+        id?: string | null;
+      }[]
+    | null;
+  totalAmount: number;
+  currency: string;
+  status: 'draft' | 'issued' | 'sent' | 'paid' | 'overdue' | 'cancelled';
+  /**
+   * Disponible cuando el recibo está en Emitido. Envía el correo al arrendatario y marca el recibo como Enviado.
+   */
+  issueRequested?: boolean | null;
+  paymentDate?: string | null;
+  paymentMethod?: string | null;
+  paymentReference?: string | null;
+  /**
+   * Documento PDF generado para que el arrendatario lo vea o descargue.
+   */
+  pdfDocument?: (number | null) | Document;
+  sentAt?: string | null;
+  generatedBy?: (number | null) | User;
+  /**
+   * Identificador devuelto por el proveedor de correo al aceptar el envío.
+   */
+  emailMessageId?: string | null;
+  emailLastError?: string | null;
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "documents".
  */
 export interface Document {
@@ -423,6 +488,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'contracts';
         value: number | Contract;
+      } | null)
+    | ({
+        relationTo: 'monthly-receipts';
+        value: number | MonthlyReceipt;
       } | null)
     | ({
         relationTo: 'documents';
@@ -643,6 +712,52 @@ export interface ContractsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "monthly-receipts_select".
+ */
+export interface MonthlyReceiptsSelect<T extends boolean = true> {
+  receiptNumber?: T;
+  contract?: T;
+  property?: T;
+  owner?: T;
+  tenant?: T;
+  periodMonth?: T;
+  periodYear?: T;
+  periodStartDate?: T;
+  periodEndDate?: T;
+  issueDate?: T;
+  dueDate?: T;
+  baseRent?: T;
+  administrationFee?: T;
+  utilitiesAmount?: T;
+  otherChargesAmount?: T;
+  discountAmount?: T;
+  lateFeeAmount?: T;
+  lineItems?:
+    | T
+    | {
+        label?: T;
+        type?: T;
+        amount?: T;
+        id?: T;
+      };
+  totalAmount?: T;
+  currency?: T;
+  status?: T;
+  issueRequested?: T;
+  paymentDate?: T;
+  paymentMethod?: T;
+  paymentReference?: T;
+  pdfDocument?: T;
+  sentAt?: T;
+  generatedBy?: T;
+  emailMessageId?: T;
+  emailLastError?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "documents_select".
  */
 export interface DocumentsSelect<T extends boolean = true> {
@@ -723,6 +838,50 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "receipt-settings".
+ */
+export interface ReceiptSetting {
+  id: number;
+  companyName: string;
+  companyNit?: string | null;
+  companyAddress?: string | null;
+  companyEmail?: string | null;
+  companyPhone?: string | null;
+  paymentInstructions?: string | null;
+  bankName?: string | null;
+  bankAccountType?: string | null;
+  bankAccountNumber?: string | null;
+  bankAccountHolder?: string | null;
+  footerText?: string | null;
+  emailSubject: string;
+  emailIntro?: string | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "receipt-settings_select".
+ */
+export interface ReceiptSettingsSelect<T extends boolean = true> {
+  companyName?: T;
+  companyNit?: T;
+  companyAddress?: T;
+  companyEmail?: T;
+  companyPhone?: T;
+  paymentInstructions?: T;
+  bankName?: T;
+  bankAccountType?: T;
+  bankAccountNumber?: T;
+  bankAccountHolder?: T;
+  footerText?: T;
+  emailSubject?: T;
+  emailIntro?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

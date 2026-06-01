@@ -21,6 +21,10 @@ import * as migration_20260531_192104 from './20260531_192104';
 import * as migration_20260531_194958 from './20260531_194958';
 import * as migration_20260531_203025 from './20260531_203025';
 import * as migration_20260531_204625 from './20260531_204625';
+import * as migration_20260531_234013_add_monthly_receipts from './20260531_234013_add_monthly_receipts';
+import * as migration_20260601_001701 from './20260601_001701';
+import * as migration_20260601_003302_add_receipt_issue_flow from './20260601_003302_add_receipt_issue_flow';
+import * as migration_20260601_031330_add_monthly_receipt_email_tracking from './20260601_031330_add_monthly_receipt_email_tracking';
 
 export const migrations = [
   {
@@ -136,6 +140,26 @@ export const migrations = [
   {
     up: migration_20260531_204625.up,
     down: migration_20260531_204625.down,
-    name: '20260531_204625'
+    name: '20260531_204625',
+  },
+  {
+    up: migration_20260531_234013_add_monthly_receipts.up,
+    down: migration_20260531_234013_add_monthly_receipts.down,
+    name: '20260531_234013_add_monthly_receipts',
+  },
+  {
+    up: migration_20260601_001701.up,
+    down: migration_20260601_001701.down,
+    name: '20260601_001701',
+  },
+  {
+    up: migration_20260601_003302_add_receipt_issue_flow.up,
+    down: migration_20260601_003302_add_receipt_issue_flow.down,
+    name: '20260601_003302_add_receipt_issue_flow',
+  },
+  {
+    up: migration_20260601_031330_add_monthly_receipt_email_tracking.up,
+    down: migration_20260601_031330_add_monthly_receipt_email_tracking.down,
+    name: '20260601_031330_add_monthly_receipt_email_tracking'
   },
 ];

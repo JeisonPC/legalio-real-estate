@@ -15,9 +15,11 @@ import { Countries } from "./collections/Countries";
 import { Departments } from "./collections/Departments";
 import { Documents } from "./collections/Documents";
 import { Contracts } from "./collections/Contracts";
+import { MonthlyReceipts } from "./collections/MonthlyReceipts";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { Blogs } from "./collections/Blogs";
 import { resendEmailAdapter } from "./lib/email/resendEmailAdapter";
+import { ReceiptSettings } from "./globals/ReceiptSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -73,9 +75,12 @@ export default buildConfig({
     Departments,
     Cities,
     Contracts,
+    MonthlyReceipts,
     Documents,
     Blogs,
   ],
+
+  globals: [ReceiptSettings],
 
   editor: lexicalEditor(),
 
