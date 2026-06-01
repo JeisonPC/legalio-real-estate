@@ -1,11 +1,13 @@
 import {
   Document as PDFDocument,
+  Image,
   Page,
   StyleSheet,
   Text,
   View,
   renderToBuffer,
 } from "@react-pdf/renderer";
+import React from "react";
 import type { Contract, MonthlyReceipt, Property, User } from "@/payload-types";
 import {
   formatCOP,
@@ -34,145 +36,186 @@ type PopulatedMonthlyReceipt = MonthlyReceipt & {
   tenant: User;
 };
 
+type ReceiptLineItem = {
+  label: string;
+  amount: number;
+};
+
+const LOGO_PATH = `${process.cwd()}/public/assets/images/logo/logo-2.png`;
+const BLUE = "#051957";
+const GRAY = "#F0F0F0";
+const STRIPE = "#E6DEDE";
+const TEXT = "#111827";
+
 const styles = StyleSheet.create({
   page: {
-    padding: 40,
-    color: "#162033",
+    backgroundColor: "#FFFFFF",
+    color: TEXT,
     fontFamily: "Helvetica",
-    fontSize: 10,
-    lineHeight: 1.45,
+    fontSize: 9,
+    lineHeight: 1.35,
+    paddingBottom: 28,
   },
   header: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#D8DEE8",
-    paddingBottom: 18,
+    height: 164,
+    position: "relative",
+  },
+  brandBlock: {
+    position: "absolute",
+    left: 0,
+    top: 0,
+    width: 254,
+    height: 141,
+    alignItems: "center",
+    backgroundColor: BLUE,
+    borderBottomRightRadius: 22,
+    justifyContent: "center",
+  },
+  logo: {
+    width: 174,
+    height: 41,
+  },
+  companyInfo: {
+    position: "absolute",
+    right: 32,
+    top: 34,
+    width: 220,
+  },
+  infoLine: {
+    flexDirection: "row",
+    gap: 4,
+    marginBottom: 2,
+  },
+  icon: {
+    color: BLUE,
+    fontSize: 7,
+    fontWeight: 700,
+    width: 10,
+  },
+  strong: {
+    fontWeight: 700,
+  },
+  content: {
+    paddingHorizontal: 40,
+  },
+  panel: {
+    backgroundColor: GRAY,
     marginBottom: 24,
+  },
+  panelHeader: {
+    backgroundColor: BLUE,
+    color: "#FFFFFF",
+    fontSize: 14,
+    fontWeight: 700,
+    paddingHorizontal: 16,
+    paddingVertical: 7,
+  },
+  panelBody: {
+    paddingHorizontal: 24,
+    paddingVertical: 14,
+  },
+  detailsGrid: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 24,
+    gap: 22,
   },
-  brand: {
-    fontSize: 24,
-    color: "#031756",
-    fontWeight: 700,
-  },
-  muted: {
-    color: "#667085",
-  },
-  title: {
-    color: "#031756",
-    fontSize: 18,
-    fontWeight: 700,
-    textAlign: "right",
-  },
-  receiptNumber: {
-    marginTop: 6,
-    color: "#344054",
-    textAlign: "right",
-  },
-  section: {
-    marginBottom: 18,
-  },
-  sectionTitle: {
-    color: "#031756",
-    fontSize: 12,
-    fontWeight: 700,
-    marginBottom: 8,
-    textTransform: "uppercase",
-  },
-  grid: {
-    flexDirection: "row",
-    gap: 14,
-  },
-  column: {
+  detailsColumn: {
     flex: 1,
   },
-  infoBox: {
-    borderWidth: 1,
-    borderColor: "#E4E7EC",
-    padding: 12,
-    borderRadius: 4,
-  },
-  row: {
+  detailRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    gap: 16,
-    marginBottom: 5,
+    marginBottom: 4,
   },
-  label: {
-    color: "#667085",
-  },
-  value: {
-    color: "#101828",
+  detailLabel: {
     fontWeight: 700,
-    textAlign: "right",
+    minWidth: 106,
+  },
+  detailValue: {
+    flex: 1,
   },
   table: {
-    borderWidth: 1,
-    borderColor: "#D8DEE8",
-    borderRadius: 4,
-    overflow: "hidden",
+    marginBottom: 24,
   },
   tableHeader: {
-    flexDirection: "row",
-    backgroundColor: "#031756",
+    backgroundColor: BLUE,
     color: "#FFFFFF",
-    paddingVertical: 8,
-    paddingHorizontal: 10,
+    flexDirection: "row",
+    fontSize: 10,
     fontWeight: 700,
+    paddingVertical: 8,
   },
   tableRow: {
     flexDirection: "row",
-    paddingVertical: 8,
-    paddingHorizontal: 10,
-    borderTopWidth: 1,
-    borderTopColor: "#EAECF0",
+    minHeight: 35,
+    paddingVertical: 9,
   },
-  conceptColumn: {
-    flex: 1,
+  tableRowEven: {
+    backgroundColor: GRAY,
   },
-  amountColumn: {
-    width: 130,
+  tableRowOdd: {
+    backgroundColor: STRIPE,
+  },
+  descriptionColumn: {
+    flex: 1.5,
+    paddingHorizontal: 14,
+  },
+  quantityColumn: {
+    flex: 0.65,
+    paddingHorizontal: 8,
+    textAlign: "center",
+  },
+  moneyColumn: {
+    flex: 0.85,
+    paddingHorizontal: 8,
     textAlign: "right",
   },
-  totalRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    backgroundColor: "#F2F4F7",
-    padding: 12,
-    marginTop: 0,
+  ivaColumn: {
+    flex: 0.5,
+    paddingHorizontal: 8,
+    textAlign: "center",
+  },
+  totalSummary: {
+    alignItems: "flex-end",
+    backgroundColor: GRAY,
+    borderTopWidth: 1,
+    borderTopColor: "#FFFFFF",
+    paddingHorizontal: 14,
+    paddingVertical: 9,
   },
   totalLabel: {
-    color: "#031756",
-    fontSize: 12,
+    color: BLUE,
+    fontSize: 10,
     fontWeight: 700,
   },
   totalValue: {
-    color: "#031756",
+    color: BLUE,
     fontSize: 16,
     fontWeight: 700,
+    marginTop: 2,
+  },
+  footerRule: {
+    borderTopWidth: 2,
+    borderTopColor: BLUE,
+    marginBottom: 18,
+    marginTop: 4,
   },
   footer: {
-    position: "absolute",
-    left: 40,
-    right: 40,
-    bottom: 28,
-    paddingTop: 10,
-    borderTopWidth: 1,
-    borderTopColor: "#E4E7EC",
-    color: "#667085",
-    fontSize: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  footerLinks: {
+    width: 230,
+  },
+  footerLine: {
+    color: TEXT,
+    fontSize: 9,
+    lineHeight: 1.45,
   },
 });
 
-const compact = (values: Array<string | null | undefined>) =>
-  values.filter(Boolean).join(" | ");
-
-const getLineItems = (receipt: PopulatedMonthlyReceipt) => {
+const getLineItems = (receipt: PopulatedMonthlyReceipt): ReceiptLineItem[] => {
   const items = [
     { label: "Canon de arrendamiento", amount: receipt.baseRent },
-    { label: "Administración", amount: receipt.administrationFee || 0 },
+    { label: "Administracion", amount: receipt.administrationFee || 0 },
     { label: "Servicios", amount: receipt.utilitiesAmount || 0 },
     { label: "Otros cobros", amount: receipt.otherChargesAmount || 0 },
     { label: "Descuentos", amount: -(receipt.discountAmount || 0) },
@@ -186,6 +229,62 @@ const getLineItems = (receipt: PopulatedMonthlyReceipt) => {
   return items.filter((item) => item.amount !== 0);
 };
 
+const formatDateTime = (value: string | Date | null | undefined) => {
+  if (!value) return "Sin fecha";
+
+  return new Intl.DateTimeFormat("es-CO", {
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+    month: "long",
+    year: "numeric",
+  }).format(new Date(value));
+};
+
+const getUserName = (user: User) => user.fullName || user.email || "Sin nombre";
+
+const getUserDocument = (user: User) => user.email || "No registra";
+
+const getPaymentMethod = (settings: ReceiptSettingsData) =>
+  settings.bankName ? `Transferencia bancaria - ${settings.bankName}` : "Transferencia bancaria";
+
+function InfoLine({
+  icon,
+  label,
+  value,
+}: {
+  icon?: string;
+  label: string;
+  value?: string | null;
+}) {
+  if (!value) return null;
+
+  return (
+    <View style={styles.infoLine}>
+      <Text style={styles.icon}>{icon}</Text>
+      <Text>
+        <Text style={styles.strong}>{label}: </Text>
+        {value}
+      </Text>
+    </View>
+  );
+}
+
+function DetailRow({
+  label,
+  value,
+}: {
+  label: string;
+  value?: string | number | null;
+}) {
+  return (
+    <View style={styles.detailRow}>
+      <Text style={styles.detailLabel}>{label}:</Text>
+      <Text style={styles.detailValue}>{value || "No registra"}</Text>
+    </View>
+  );
+}
+
 function MonthlyReceiptPDF({
   receipt,
   settings,
@@ -193,139 +292,140 @@ function MonthlyReceiptPDF({
   receipt: PopulatedMonthlyReceipt;
   settings: ReceiptSettingsData;
 }) {
-  const companyContact = compact([
-    settings.companyNit ? `NIT ${settings.companyNit}` : null,
-    settings.companyAddress,
-    settings.companyEmail,
-    settings.companyPhone,
-  ]);
-
-  const paymentDetails = [
-    ["Banco", settings.bankName],
-    ["Tipo de cuenta", settings.bankAccountType],
-    ["Número de cuenta", settings.bankAccountNumber],
-    ["Titular", settings.bankAccountHolder],
-    ["Referencia", receipt.receiptNumber],
-  ].filter(([, value]) => Boolean(value));
+  const companyName = settings.companyName || "Legalio S.A.S.";
+  const companyEmail = settings.companyEmail || "contacto@legalio.com.co";
+  const companyPhone = settings.companyPhone || "304 603 5418";
+  const companyAddress =
+    settings.companyAddress || "Calle 3 # 28-131, Palmira, Valle del Cauca";
+  const companyNit = settings.companyNit || "1113682359-5";
+  const lineItems = getLineItems(receipt);
+  const rows: Array<ReceiptLineItem | null> = [
+    ...lineItems,
+    ...Array.from<null>({ length: Math.max(0, 4 - lineItems.length) }).fill(
+      null,
+    ),
+  ];
+  const bankSummary = [
+    settings.bankName,
+    settings.bankAccountType,
+    settings.bankAccountNumber,
+  ].filter(Boolean).join(" - ");
+  const footerText = [
+    "legalio.com.co",
+    companyPhone,
+    companyEmail,
+  ].join("\n");
 
   return (
     <PDFDocument
-      author={settings.companyName || "Legalio"}
+      author={companyName}
       subject="Recibo mensual de arrendamiento"
       title={`Recibo ${receipt.receiptNumber}`}
     >
       <Page size="A4" style={styles.page}>
         <View style={styles.header}>
-          <View>
-            <Text style={styles.brand}>{settings.companyName || "Legalio"}</Text>
-            {companyContact && <Text style={styles.muted}>{companyContact}</Text>}
+          <View style={styles.brandBlock}>
+            <Image src={LOGO_PATH} style={styles.logo} />
           </View>
 
-          <View>
-            <Text style={styles.title}>Recibo mensual de arrendamiento</Text>
-            <Text style={styles.receiptNumber}>{receipt.receiptNumber}</Text>
+          <View style={styles.companyInfo}>
+            <InfoLine label="Nombre" value={companyName} />
+            <InfoLine label="NIT" value={companyNit} />
+            <InfoLine label="Direccion" value={companyAddress} />
+            <InfoLine label="Correo" value={companyEmail} />
+            <InfoLine label="Telefono" value={companyPhone} />
           </View>
         </View>
 
-        <View style={[styles.section, styles.grid]}>
-          <View style={[styles.infoBox, styles.column]}>
-            <Text style={styles.sectionTitle}>Recibo</Text>
-            <View style={styles.row}>
-              <Text style={styles.label}>Periodo</Text>
-              <Text style={styles.value}>
-                {formatReceiptPeriod(receipt.periodMonth, receipt.periodYear)}
-              </Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.label}>Emisión</Text>
-              <Text style={styles.value}>{formatDate(receipt.issueDate)}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.label}>Fecha límite</Text>
-              <Text style={styles.value}>{formatDate(receipt.dueDate)}</Text>
+        <View style={styles.content}>
+          <View style={styles.panel}>
+            <Text style={styles.panelHeader}>Cliente:</Text>
+            <View style={styles.panelBody}>
+              <InfoLine label="Nombre" value={getUserName(receipt.tenant)} />
+              <InfoLine
+                label="Documento"
+                value={getUserDocument(receipt.tenant)}
+              />
+              <InfoLine label="Direccion" value={receipt.property.address} />
+              <InfoLine label="Correo" value={receipt.tenant.email} />
             </View>
           </View>
 
-          <View style={[styles.infoBox, styles.column]}>
-            <Text style={styles.sectionTitle}>Contrato e inmueble</Text>
-            <View style={styles.row}>
-              <Text style={styles.label}>Contrato</Text>
-              <Text style={styles.value}>{receipt.contract.contractCode}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.label}>Inmueble</Text>
-              <Text style={styles.value}>{receipt.property.title}</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.label}>Dirección</Text>
-              <Text style={styles.value}>{receipt.property.address}</Text>
+          <View style={styles.panel}>
+            <Text style={styles.panelHeader}>Datos de la factura:</Text>
+            <View style={[styles.panelBody, styles.detailsGrid]}>
+              <View style={styles.detailsColumn}>
+                <DetailRow
+                  label="Tipo de documento"
+                  value="Recibo mensual de arrendamiento"
+                />
+                <DetailRow label="Numero de factura" value={receipt.receiptNumber} />
+                <DetailRow
+                  label="Fecha y hora de emision"
+                  value={formatDateTime(receipt.issueDate)}
+                />
+                <DetailRow label="Medio de pago" value={getPaymentMethod(settings)} />
+              </View>
+              <View style={styles.detailsColumn}>
+                <DetailRow
+                  label="Periodo"
+                  value={formatReceiptPeriod(receipt.periodMonth, receipt.periodYear)}
+                />
+                <DetailRow label="Fecha limite" value={formatDate(receipt.dueDate)} />
+                <DetailRow label="Contrato" value={receipt.contract.contractCode} />
+                <DetailRow label="Inmueble" value={receipt.property.title} />
+                {bankSummary && <DetailRow label="Cuenta" value={bankSummary} />}
+              </View>
             </View>
           </View>
-        </View>
 
-        <View style={[styles.section, styles.grid]}>
-          <View style={[styles.infoBox, styles.column]}>
-            <Text style={styles.sectionTitle}>Arrendatario</Text>
-            <Text>{receipt.tenant.fullName || receipt.tenant.email}</Text>
-            <Text style={styles.muted}>{receipt.tenant.email}</Text>
-          </View>
-          <View style={[styles.infoBox, styles.column]}>
-            <Text style={styles.sectionTitle}>Propietario</Text>
-            <Text>{receipt.owner.fullName || receipt.owner.email}</Text>
-            <Text style={styles.muted}>{receipt.owner.email}</Text>
-          </View>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Detalle del cobro</Text>
           <View style={styles.table}>
             <View style={styles.tableHeader}>
-              <Text style={styles.conceptColumn}>Concepto</Text>
-              <Text style={styles.amountColumn}>Valor</Text>
+              <Text style={styles.descriptionColumn}>Descripcion</Text>
+              <Text style={styles.quantityColumn}>Cantidad</Text>
+              <Text style={styles.moneyColumn}>Valor unitario</Text>
+              <Text style={styles.ivaColumn}>IVA</Text>
+              <Text style={styles.moneyColumn}>Total</Text>
             </View>
 
-            {getLineItems(receipt).map((item) => (
-              <View style={styles.tableRow} key={item.label}>
-                <Text style={styles.conceptColumn}>{item.label}</Text>
-                <Text style={styles.amountColumn}>{formatCOP(item.amount)}</Text>
-              </View>
-            ))}
+            {rows.map((item, index) => {
+              const hasItem = item !== null;
+              const amount = item?.amount || 0;
 
-            <View style={styles.totalRow}>
+              return (
+                <View
+                  key={item?.label || `empty-${index}`}
+                  style={[
+                    styles.tableRow,
+                    index % 2 === 0 ? styles.tableRowEven : styles.tableRowOdd,
+                  ]}
+                >
+                  <Text style={styles.descriptionColumn}>{item?.label || " "}</Text>
+                  <Text style={styles.quantityColumn}>{hasItem ? "1" : " "}</Text>
+                  <Text style={styles.moneyColumn}>
+                    {hasItem ? formatCOP(amount) : " "}
+                  </Text>
+                  <Text style={styles.ivaColumn}>{hasItem ? "0%" : " "}</Text>
+                  <Text style={styles.moneyColumn}>
+                    {hasItem ? formatCOP(amount) : " "}
+                  </Text>
+                </View>
+              );
+            })}
+
+            <View style={styles.totalSummary}>
               <Text style={styles.totalLabel}>Total a pagar</Text>
-              <Text style={styles.totalValue}>
-                {formatCOP(receipt.totalAmount)}
-              </Text>
+              <Text style={styles.totalValue}>{formatCOP(receipt.totalAmount)}</Text>
+            </View>
+          </View>
+
+          <View style={styles.footerRule} />
+          <View style={styles.footer}>
+            <View style={styles.footerLinks}>
+              <Text style={styles.footerLine}>{footerText}</Text>
             </View>
           </View>
         </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>Instrucciones de pago</Text>
-          <View style={styles.infoBox}>
-            {settings.paymentInstructions && (
-              <Text>{settings.paymentInstructions}</Text>
-            )}
-            {paymentDetails.map(([label, value]) => (
-              <View style={styles.row} key={label}>
-                <Text style={styles.label}>{label}</Text>
-                <Text style={styles.value}>{value}</Text>
-              </View>
-            ))}
-          </View>
-        </View>
-
-        {receipt.notes && (
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>Observaciones</Text>
-            <Text>{receipt.notes}</Text>
-          </View>
-        )}
-
-        <Text style={styles.footer}>
-          {settings.footerText ||
-            "Este documento fue generado automáticamente por Legalio."}
-        </Text>
       </Page>
     </PDFDocument>
   );

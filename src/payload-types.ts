@@ -353,10 +353,6 @@ export interface MonthlyReceipt {
   totalAmount: number;
   currency: string;
   status: 'draft' | 'issued' | 'sent' | 'paid' | 'overdue' | 'cancelled';
-  /**
-   * Disponible cuando el recibo está en Emitido. Envía el correo al arrendatario y marca el recibo como Enviado.
-   */
-  issueRequested?: boolean | null;
   paymentDate?: string | null;
   paymentMethod?: string | null;
   paymentReference?: string | null;
@@ -743,7 +739,6 @@ export interface MonthlyReceiptsSelect<T extends boolean = true> {
   totalAmount?: T;
   currency?: T;
   status?: T;
-  issueRequested?: T;
   paymentDate?: T;
   paymentMethod?: T;
   paymentReference?: T;

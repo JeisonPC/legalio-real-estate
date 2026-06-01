@@ -1,4 +1,4 @@
-import type { Payload } from "payload";
+import type { Payload, PayloadRequest } from "payload";
 import type {
   Contract,
   Document,
@@ -70,14 +70,17 @@ const getReceiptSettings = async (payload: Payload) => {
 const findExistingReceiptDocument = async ({
   payload,
   receiptNumber,
+  req,
 }: {
   payload: Payload;
   receiptNumber: string;
+  req?: Partial<PayloadRequest>;
 }) => {
   const existingDocument = await payload.find({
     collection: "documents",
     depth: 0,
     limit: 1,
+    req,
     where: {
       or: [
         {
@@ -97,6 +100,11 @@ const findExistingReceiptDocument = async ({
 
   return existingDocument.docs[0] || null;
 };
+
+const withSkipMonthlyReceiptAutoEmail = (req?: Partial<PayloadRequest>) => ({
+  ...(req?.context || {}),
+  skipMonthlyReceiptAutoEmail: true,
+});
 
 const buildEmailHTML = ({
   receipt,
@@ -142,16 +150,19 @@ export async function ensureMonthlyReceiptPDF({
   payload,
   receiptId,
   generatedBy,
+  req,
 }: {
   payload: Payload;
   receiptId: string | number;
   generatedBy?: number;
+  req?: Partial<PayloadRequest>;
 }) {
   const rawReceipt = await payload.findByID({
     collection: "monthly-receipts",
     id: receiptId,
     depth: 2,
     overrideAccess: true,
+    req,
   });
 
   const receipt = assertPopulatedReceipt(rawReceipt);
@@ -172,6 +183,7 @@ export async function ensureMonthlyReceiptPDF({
     const existingDocument = await findExistingReceiptDocument({
       payload,
       receiptNumber: receipt.receiptNumber,
+      req,
     });
 
     if (existingDocument) {
@@ -192,6 +204,7 @@ export async function ensureMonthlyReceiptPDF({
           month: String(receipt.periodMonth),
           year: Number(receipt.periodYear),
         },
+        req,
         file: {
           data: pdfBuffer,
           mimetype: "application/pdf",
@@ -210,9 +223,10 @@ export async function ensureMonthlyReceiptPDF({
       data: {
         pdfDocument: pdfDocumentId,
         ...(generatedBy ? { generatedBy } : {}),
-        issueRequested: false,
       },
+      context: withSkipMonthlyReceiptAutoEmail(req),
       overrideAccess: true,
+      req,
     });
   }
 
@@ -226,20 +240,23 @@ export async function issueMonthlyReceipt({
   payload,
   receiptId,
   generatedBy,
+  req,
 }: {
   payload: Payload;
   receiptId: string | number;
   generatedBy: number;
+  req?: Partial<PayloadRequest>;
 }) {
   const { receipt, pdfDocumentId } = await ensureMonthlyReceiptPDF({
     payload,
     receiptId,
     generatedBy,
+    req,
   });
 
-  if (receipt.status !== "issued") {
+  if (receipt.status === "draft") {
     throw new Error(
-      "Solo se puede enviar un recibo en estado emitido.",
+      "Solo se puede enviar un recibo que no esté en borrador.",
     );
   }
 
@@ -270,11 +287,12 @@ export async function issueMonthlyReceipt({
       collection: "monthly-receipts",
       id: receipt.id,
       data: {
-        issueRequested: false,
         emailLastError:
           error instanceof Error ? error.message : "Error enviando correo",
       },
+      context: withSkipMonthlyReceiptAutoEmail(req),
       overrideAccess: true,
+      req,
     });
 
     throw error;
@@ -290,14 +308,15 @@ export async function issueMonthlyReceipt({
     id: receipt.id,
     data: {
       status: "sent",
-      issueRequested: false,
       sentAt: new Date().toISOString(),
       pdfDocument: pdfDocumentId,
       generatedBy,
       emailLastError: null,
       ...(emailMessageId ? { emailMessageId } : {}),
     },
+    context: withSkipMonthlyReceiptAutoEmail(req),
     depth: 2,
     overrideAccess: true,
+    req,
   });
 }

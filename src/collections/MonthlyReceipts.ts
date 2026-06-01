@@ -103,12 +103,8 @@ const beforeValidateMonthlyReceipt: CollectionBeforeValidateHook = async ({
     data.receiptNumber = formatReceiptNumber(data.periodYear, data.periodMonth);
   }
 
-  const currentStatus = data.status || originalDoc?.status || "draft";
-
-  if (data.issueRequested && currentStatus !== "issued") {
-    throw new Error(
-      "Para enviar el recibo, primero cambia el estado a Emitido. El estado Enviado lo asigna el sistema después de confirmar el correo.",
-    );
+  if (data.lineItems && !Array.isArray(data.lineItems)) {
+    data.lineItems = [];
   }
 
   const lineItemsTotal = Array.isArray(data.lineItems)
@@ -205,33 +201,33 @@ const afterChangeMonthlyReceipt: CollectionAfterChangeHook = async ({
   operation,
   req,
 }) => {
-  if (operation === "create" && !doc.issueRequested) {
-    setTimeout(() => {
-      ensureMonthlyReceiptPDF({
-        payload: req.payload,
-        receiptId: doc.id,
-        generatedBy: req.user?.id,
-      }).catch((error) => {
-        console.error("monthly receipt pdf generation error:", error);
-      });
-    }, 0);
-  }
-
-  if (!doc.issueRequested || !req.user) {
+  if (req.context?.skipMonthlyReceiptAutoEmail) {
     return doc;
   }
 
-  const generatedBy = req.user.id;
-
-  setTimeout(() => {
-    issueMonthlyReceipt({
+  if (operation === "create") {
+    await ensureMonthlyReceiptPDF({
       payload: req.payload,
       receiptId: doc.id,
-      generatedBy,
-    }).catch((error) => {
-      console.error("monthly receipt issue error:", error);
+      generatedBy: req.user?.id,
+      req,
     });
-  }, 0);
+  }
+
+  const currentStatus = doc.status || "draft";
+
+  if (
+    currentStatus !== "draft" &&
+    !doc.sentAt &&
+    req.user
+  ) {
+    await issueMonthlyReceipt({
+      payload: req.payload,
+      receiptId: doc.id,
+      generatedBy: req.user.id,
+      req,
+    });
+  }
 
   return doc;
 };
@@ -538,19 +534,6 @@ export const MonthlyReceipts: CollectionConfig = {
         { label: "Vencido", value: "overdue" },
         { label: "Anulado", value: "cancelled" },
       ],
-    },
-
-    {
-      name: "issueRequested",
-      label: "Emitir y enviar al guardar",
-      type: "checkbox",
-      defaultValue: false,
-      admin: {
-        description:
-          "Disponible cuando el recibo está en Emitido. Envía el correo al arrendatario y marca el recibo como Enviado.",
-        condition: (_, siblingData) => siblingData?.status === "issued",
-        position: "sidebar",
-      },
     },
 
     {
