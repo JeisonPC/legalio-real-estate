@@ -312,9 +312,47 @@ export interface Contract {
   monthlyRent: number;
   depositValue?: number | null;
   status: 'active' | 'ended' | 'suspended' | 'late';
+  /**
+   * Selecciona un documento existente o sube el PDF. Al guardar, se asociará automáticamente a este contrato, propietario y arrendatario.
+   */
+  pdfDocument?: (number | null) | Document;
   notes?: string | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "documents".
+ */
+export interface Document {
+  id: number;
+  /**
+   * Si se deja vacío al subir un archivo, se usará el nombre del archivo.
+   */
+  title?: string | null;
+  documentType: 'contract' | 'inventory' | 'handover_record' | 'application' | 'payment_receipt' | 'other';
+  /**
+   * Si el documento se sube desde un contrato, se completan automáticamente propietario y arrendatario.
+   */
+  users?: (number | User)[] | null;
+  /**
+   * Puede quedar vacío temporalmente al subir un PDF desde la creación de un contrato.
+   */
+  contract?: (number | null) | Contract;
+  month?: string | null;
+  year?: number | null;
+  prefix?: string | null;
+  updatedAt: string;
+  createdAt: string;
+  url?: string | null;
+  thumbnailURL?: string | null;
+  filename?: string | null;
+  mimeType?: string | null;
+  filesize?: number | null;
+  width?: number | null;
+  height?: number | null;
+  focalX?: number | null;
+  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -370,31 +408,6 @@ export interface MonthlyReceipt {
   notes?: string | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "documents".
- */
-export interface Document {
-  id: number;
-  title: string;
-  documentType: 'contract' | 'inventory' | 'handover_record' | 'application' | 'payment_receipt' | 'other';
-  users: (number | User)[];
-  contract: number | Contract;
-  month?: string | null;
-  year?: number | null;
-  prefix?: string | null;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -702,6 +715,7 @@ export interface ContractsSelect<T extends boolean = true> {
   monthlyRent?: T;
   depositValue?: T;
   status?: T;
+  pdfDocument?: T;
   notes?: T;
   updatedAt?: T;
   createdAt?: T;

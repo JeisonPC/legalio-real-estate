@@ -25,6 +25,7 @@ import * as migration_20260531_234013_add_monthly_receipts from './20260531_2340
 import * as migration_20260601_001701 from './20260601_001701';
 import * as migration_20260601_003302_add_receipt_issue_flow from './20260601_003302_add_receipt_issue_flow';
 import * as migration_20260601_031330_add_monthly_receipt_email_tracking from './20260601_031330_add_monthly_receipt_email_tracking';
+import * as migration_20260607_000001_add_contract_pdf_document from './20260607_000001_add_contract_pdf_document';
 
 export const migrations = [
   {
@@ -161,5 +162,10 @@ export const migrations = [
     up: migration_20260601_031330_add_monthly_receipt_email_tracking.up,
     down: migration_20260601_031330_add_monthly_receipt_email_tracking.down,
     name: '20260601_031330_add_monthly_receipt_email_tracking'
+  },
+  {
+    up: migration_20260607_000001_add_contract_pdf_document.up,
+    down: migration_20260607_000001_add_contract_pdf_document.down,
+    name: '20260607_000001_add_contract_pdf_document'
   },
 ];

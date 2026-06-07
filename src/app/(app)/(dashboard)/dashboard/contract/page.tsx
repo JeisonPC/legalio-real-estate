@@ -48,7 +48,7 @@ export default async function DashboardPage() {
 
   const contractItems = contractDocuments.map((doc) => ({
     id: String(doc.id),
-    title: doc.title,
+    title: doc.title || "Documento",
     size: doc.filesize || null,
     hasFile: Boolean(doc.filename || doc.url),
   }));

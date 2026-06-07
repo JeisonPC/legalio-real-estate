@@ -45,7 +45,7 @@ export default async function DashboardPage() {
 
   const documents: DashboardDocumentItem[] = relatedDocuments.map((doc) => ({
     id: String(doc.id),
-    title: doc.title,
+    title: doc.title || "Documento",
     size: doc.filesize || null,
     url: doc.url || null,
     documentType: doc.documentType || null,
