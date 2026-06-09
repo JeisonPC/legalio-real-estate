@@ -3,16 +3,16 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Legalio | Propuesta de servicios jurídicos para Summar",
+    title: "Legalio | Servicios jurídicos empresariales",
     description:
-        "Propuesta de servicios jurídicos especializados para SUMMAR TEMPORALES S.A.S: tutelas, derechos de petición, impugnaciones, prevención de riesgos y gestión documental.",
+        "Servicios jurídicos especializados para empresas: tutelas, derechos de petición, impugnaciones, prevención de riesgos y gestión documental.",
     alternates: {
-        canonical: "/servicios-juridicos-summar",
+        canonical: "/servicios-juridicos",
     },
 };
 
 const whatsappUrl =
-    "https://wa.me/573046035418?text=Hola%20Legalio%2C%20quiero%20conocer%20la%20propuesta%20de%20servicios%20jur%C3%ADdicos%20para%20SUMMAR.";
+    "https://wa.me/573046035418?text=Hola%20Legalio%2C%20quiero%20conocer%20la%20propuesta%20de%20servicios%20jur%C3%ADdicos%20para%20empresas.";
 
 const differentiators = [
     {
@@ -142,17 +142,17 @@ const conditions = [
     "Los pagos podrán realizarse por documento entregado o mediante corte mensual.",
 ];
 
-export default function ServiciosJuridicosSummarPage() {
+export default function ServiciosJuridicosPage() {
     return (
         <>
-            <main className="legalio-summar">
+            <main className="legalio-legal-services">
                 <section className="ls-hero" id="inicio">
                     <div className="ls-container ls-hero-grid">
                         <div className="ls-hero-copy">
-                            <span className="ls-pill">Palmira, 09 de junio de 2026</span>
+                            <span className="ls-pill">Servicios jurídicos empresariales</span>
                             <h1>
-                                Propuesta de servicios jurídicos para{" "}
-                                <span>SUMMAR TEMPORALES S.A.S</span>
+                                Apoyo jurídico externo para{" "}
+                                <span>empresas y organizaciones</span>
                             </h1>
                             <p>
                                 Apoyo externo especializado para proyectar, estructurar y
@@ -175,7 +175,7 @@ export default function ServiciosJuridicosSummarPage() {
                             <div className="ls-panel-top">
                                 <div>
                                     <small>Gestión jurídica</small>
-                                    <strong>Perfil empresarial SUMMAR</strong>
+                                    <strong>Perfil empresarial Legalio</strong>
                                 </div>
                                 <span className="icon-Certificate" />
                             </div>
@@ -259,9 +259,9 @@ export default function ServiciosJuridicosSummarPage() {
                             <span className="ls-kicker">Plataforma y gestión documental</span>
                             <h2>Un perfil propio para controlar solicitudes, soportes y entregas</h2>
                             <p>
-                                SUMMAR no dependerá únicamente de correos, chats o archivos
-                                dispersos. La plataforma permite organizar la gestión
-                                jurídica y documental de múltiples casos de manera
+                                Tu empresa no dependerá únicamente de correos, chats o
+                                archivos dispersos. La plataforma permite organizar la
+                                gestión jurídica y documental de múltiples casos de manera
                                 transparente, verificable y útil.
                             </p>
                         </div>
@@ -414,7 +414,7 @@ export default function ServiciosJuridicosSummarPage() {
 
                 <section className="ls-final-cta">
                     <div className="ls-container">
-                        <h2>Legalio como aliado estratégico de SUMMAR TEMPORALES S.A.S</h2>
+                        <h2>Legalio como aliado estratégico de tu empresa</h2>
                         <p>
                             Estamos listos para apoyar decisiones jurídicas más ordenadas,
                             oportunas y preventivas.
@@ -430,7 +430,7 @@ export default function ServiciosJuridicosSummarPage() {
             <style
                 dangerouslySetInnerHTML={{
                     __html: `
-                    .legalio-summar {
+                    .legalio-legal-services {
                         --ls-surface: #fbf8fe;
                         --ls-surface-low: #f5f2f9;
                         --ls-surface-high: #e9e7ed;
@@ -454,13 +454,13 @@ export default function ServiciosJuridicosSummarPage() {
                         scroll-behavior: smooth;
                     }
 
-                    .legalio-summar *,
-                    .legalio-summar *::before,
-                    .legalio-summar *::after {
+                    .legalio-legal-services *,
+                    .legalio-legal-services *::before,
+                    .legalio-legal-services *::after {
                         box-sizing: border-box;
                     }
 
-                    .legalio-summar a {
+                    .legalio-legal-services a {
                         color: inherit;
                         text-decoration: none;
                     }
