@@ -564,6 +564,7 @@ export const MonthlyReceipts: CollectionConfig = {
       type: "relationship",
       relationTo: "documents",
       admin: {
+        hidden: true,
         description:
           "Documento PDF generado para que el arrendatario lo vea o descargue.",
       },
