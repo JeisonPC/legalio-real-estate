@@ -49,6 +49,10 @@ export default async function DashboardLayout({
       label: "Inventario y Acta de Entrega",
       href: "/dashboard/inventory",
     },
+    {
+      label: "Otros documentos",
+      href: "/dashboard/other-documents",
+    }
   ];
 
   if (user.role === "admin") {
