@@ -31,7 +31,7 @@ export const Users: CollectionConfig = {
     <div style="font-family: Arial, sans-serif; color: #1f2937; line-height: 1.5;">
       <h2>Crea o restablece tu contraseña en Legalio</h2>
 
-      <p>Hola${user?.fullName ? ` ${user.fullName}` : ""},</p>
+      <p>Hola${user?.name ? ` ${user.name}` : ""},</p>
 
       <p>
         Recibimos una solicitud para crear o cambiar la contraseña de tu cuenta.
@@ -78,8 +78,37 @@ export const Users: CollectionConfig = {
   },
   fields: [
     {
-      name: "fullName",
-      label: "Nombre completo",
+      name: "name",
+      label: "Nombre",
+      type: "text",
+    },
+    {
+      name: "lastname",
+      label: "Apellido",
+      type: "text",
+    },
+    {
+      name: "indentificationType",
+      label: "Tipo de identificación",
+      type: "select",
+      options: [
+        {
+          label: "Cédula de ciudadanía",
+          value: "CC",
+        },
+        {
+          label: "Cédula de extranjería",
+          value: "CE",
+        },
+        {
+          label: "Pasaporte",
+          value: "P",
+        },
+      ],
+    },
+    {
+      name: "identificationNumber",
+      label: "Número de identificación",
       type: "text",
     },
     {

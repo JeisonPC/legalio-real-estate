@@ -241,9 +241,20 @@ const formatDateTime = (value: string | Date | null | undefined) => {
   }).format(new Date(value));
 };
 
-const getUserName = (user: User) => user.fullName || user.email || "Sin nombre";
+const getUserName = (user: User) => `${user.name} ${user.lastname}` || "Sin nombre";
 
-const getUserDocument = (user: User) => user.email || "No registra";
+const getUserDocument = (user: User) => {
+  switch (user.indentificationType) {
+    case "CC":
+      return `Cédula de ciudadanía: ${user.identificationNumber}`;
+    case "CE":
+      return `Cédula de extranjería: ${user.identificationNumber}`;
+    case "P":
+      return `Pasaporte: ${user.identificationNumber}`;
+    default:
+      return user.email || "No registra";
+  }
+};
 
 const getPaymentMethod = (settings: ReceiptSettingsData) =>
   settings.bankName ? `Transferencia bancaria - ${settings.bankName}` : "Transferencia bancaria";
@@ -331,9 +342,9 @@ function MonthlyReceiptPDF({
           <View style={styles.companyInfo}>
             <InfoLine label="Nombre" value={companyName} />
             <InfoLine label="NIT" value={companyNit} />
-            <InfoLine label="Direccion" value={companyAddress} />
+            <InfoLine label="Dirección" value={companyAddress} />
             <InfoLine label="Correo" value={companyEmail} />
-            <InfoLine label="Telefono" value={companyPhone} />
+            <InfoLine label="Teléfono" value={companyPhone} />
           </View>
         </View>
 
