@@ -10,6 +10,7 @@ import type {
 } from "@/payload-types";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 import NewsInsightServer from "./NewsInsight.server";
+import { getUserDisplayName } from "@/helpers/helpers";
 
 type BlogPost1Props = {
   blogItem: Blog;
@@ -66,7 +67,7 @@ export default function BlogPost1({ blogItem }: BlogPost1Props) {
 
   //   const imageAlt = coverImage?.alt ?? blogItem.title ?? "Blog Legalio";
 
-  const authorName = author?.fullName || author?.email || "Legalio";
+  const authorName = getUserDisplayName(author, "Legalio");
 
   const category =
     blogItem.category && categoryLabels[blogItem.category]

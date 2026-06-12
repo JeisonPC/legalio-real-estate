@@ -6,6 +6,7 @@ import config from "@/payload.config";
 import styles from "./dashboard.module.css";
 // import CardDocuments from "@/components/cards/cards-documents";
 import Aside from "@/components/aside/Aside";
+import { getUserDisplayName } from "@/helpers/helpers";
 // import { DocumentListPanel } from "@/components/documentListPanel/documentListPanel";
 
 export default async function DashboardLayout({
@@ -69,7 +70,7 @@ export default async function DashboardLayout({
           <p>ÁREA DE ARRENDATARIOS</p>
 
           <h1>
-            Bienvenido, <strong>{user.fullName || user.email}</strong>
+            Bienvenido, <strong>{getUserDisplayName(user, user.email)}</strong>
           </h1>
         </div>
         <div className={styles["heading-right"]}>

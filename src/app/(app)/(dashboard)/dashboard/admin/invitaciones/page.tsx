@@ -4,6 +4,7 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import styles from "../../dashboard.module.css";
 import UserInvitationsPanel from "./UserInvitationsPanel";
+import { getUserDisplayName } from "@/helpers/helpers";
 
 export default async function AdminInvitationsPage() {
   const cookieStore = await cookies();
@@ -42,7 +43,7 @@ export default async function AdminInvitationsPage() {
 
   const items = users.map((item) => ({
     id: String(item.id),
-    fullName: item.fullName || "",
+    fullName: getUserDisplayName(item, ""),
     email: item.email,
     role: item.role,
     invitationSent: Boolean(item.invitationSent),

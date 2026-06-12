@@ -13,6 +13,7 @@ import {
   formatDate,
   formatReceiptPeriod,
 } from "./formatters";
+import { getUserDisplayName } from "@/helpers/helpers";
 
 type PopulatedMonthlyReceipt = MonthlyReceipt & {
   contract: Contract;
@@ -114,7 +115,7 @@ const buildEmailHTML = ({
   intro?: string | null;
 }) => {
   const dashboardUrl = `${getAppUrl()}/dashboard/receipts`;
-  const tenantName = receipt.tenant.fullName || receipt.tenant.email || "";
+  const tenantName = getUserDisplayName(receipt.tenant, "");
 
   return `
     <div style="font-family: Arial, sans-serif; color: #1f2937; line-height: 1.5;">

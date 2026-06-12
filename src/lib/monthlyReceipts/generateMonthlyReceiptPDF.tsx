@@ -14,6 +14,7 @@ import {
   formatDate,
   formatReceiptPeriod,
 } from "./formatters";
+import { getUserDisplayName } from "@/helpers/helpers";
 
 type ReceiptSettingsData = {
   companyName?: string | null;
@@ -241,7 +242,7 @@ const formatDateTime = (value: string | Date | null | undefined) => {
   }).format(new Date(value));
 };
 
-const getUserName = (user: User) => `${user.name} ${user.lastname}` || "Sin nombre";
+const getUserName = (user: User) => getUserDisplayName(user);
 
 const getUserDocument = (user: User) => {
   switch (user.indentificationType) {

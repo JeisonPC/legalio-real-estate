@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import type { Blog } from "@/payload-types";
+import { getUserDisplayName } from "@/helpers/helpers";
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -79,9 +80,10 @@ export default function NewsInsight({ blogs }: NewsInsightProps) {
               ? categoryLabels[item.category]
               : "Legal inmobiliario";
 
-            const author = item.author && typeof item.author === "object" && "id" in item.author
-              ? item.author as { fullName?: string; email?: string }
-              : { fullName: "Legalio" };
+          const authorName =
+            item.author && typeof item.author === "object" && "id" in item.author
+              ? getUserDisplayName(item.author, "Legalio")
+              : "Legalio";
 
           return (
             <SwiperSlide className="swiper-slide" key={item.id}>
@@ -109,7 +111,7 @@ export default function NewsInsight({ blogs }: NewsInsightProps) {
                   <div className="meta-post d-flex align-items-center mb_12">
                     <div className="item text_secondary-color text-caption-1">
                       Publicado por{" "}
-                      <span className="link text_primary-color">{author.fullName}</span>
+                      <span className="link text_primary-color">{authorName}</span>
                     </div>
 
                     <div className="item text_secondary-color text-caption-1">

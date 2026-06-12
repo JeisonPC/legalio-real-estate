@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 // import SideBar from "./SideBar";
 import Pagination from "../common/Pagination";
 import { Blog } from "@/payload-types";
+import { getUserDisplayName } from "@/helpers/helpers";
 
 interface BlogListProps {
   blogs: Blog[];
@@ -45,12 +46,12 @@ export default function BlogList({
                   ? item.coverImage.alt
                   : (item.title ?? "Blog Legalio");
 
-              const author =
+              const authorName =
                 item.author &&
                 typeof item.author === "object" &&
                 "id" in item.author
-                  ? (item.author as { fullName?: string; email?: string })
-                  : { fullName: "Legalio" };
+                  ? getUserDisplayName(item.author, "Legalio")
+                  : "Legalio";
 
               return (
                 <div
@@ -81,7 +82,7 @@ export default function BlogList({
                       <div className="item text_secondary-color text-caption-1">
                         Publicado por{" "}
                         <span className="link text_primary-color">
-                          {author.fullName}
+                          {authorName}
                         </span>
                       </div>
 

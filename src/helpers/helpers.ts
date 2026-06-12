@@ -11,3 +11,21 @@ export function isPopulatedDoc<T extends object>(
 ): value is T {
     return typeof value === "object" && value !== null;
 }
+
+type UserDisplayNameSource = {
+    name?: string | null;
+    lastname?: string | null;
+    email?: string | null;
+};
+
+export function getUserDisplayName(
+    user: UserDisplayNameSource | null | undefined,
+    fallback = "Sin nombre"
+) {
+    const name = [user?.name, user?.lastname]
+        .filter(Boolean)
+        .join(" ")
+        .trim();
+
+    return name || user?.email || fallback;
+}

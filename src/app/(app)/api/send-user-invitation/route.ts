@@ -2,6 +2,7 @@ import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import { getPayload } from "payload";
 import config from "@/payload.config";
+import { getUserDisplayName } from "@/helpers/helpers";
 
 export async function POST(req: NextRequest) {
   try {
@@ -76,7 +77,7 @@ export async function POST(req: NextRequest) {
       user: {
         id: targetUser.id,
         email: targetUser.email,
-        fullName: targetUser.fullName,
+        fullName: getUserDisplayName(targetUser, ""),
         role: targetUser.role,
       },
     });

@@ -3,6 +3,17 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import crypto from "crypto";
 import { cookies } from "next/headers";
+import { getUserDisplayName } from "@/helpers/helpers";
+
+const splitFullName = (fullName?: string | null) => {
+  const parts = fullName?.trim().split(/\s+/).filter(Boolean) || [];
+  const [name, ...lastnameParts] = parts;
+
+  return {
+    name: name || undefined,
+    lastname: lastnameParts.join(" ") || undefined,
+  };
+};
 
 export async function POST(req: NextRequest) {
   try {
@@ -32,7 +43,7 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
 
-    const { email, fullName, role = "tenant" } = body;
+    const { email, fullName, name, lastname, role = "tenant" } = body;
 
     if (!email) {
       return NextResponse.json(
@@ -55,13 +66,15 @@ export async function POST(req: NextRequest) {
 
     if (!invitedUser) {
       const temporaryPassword = crypto.randomBytes(32).toString("hex");
+      const fallbackNameParts = splitFullName(fullName);
 
       invitedUser = await payload.create({
         collection: "users",
         data: {
           email,
           password: temporaryPassword,
-          fullName,
+          name: name || fallbackNameParts.name,
+          lastname: lastname || fallbackNameParts.lastname,
           role,
         },
       });
@@ -80,7 +93,7 @@ export async function POST(req: NextRequest) {
       user: {
         id: invitedUser.id,
         email: invitedUser.email,
-        fullName: invitedUser.fullName,
+        fullName: getUserDisplayName(invitedUser, ""),
         role: invitedUser.role,
       },
     });
