@@ -51,6 +51,8 @@ export async function loginAction(
             maxAge: remember ? 60 * 60 * 24 * 30 : 60 * 60 * 2,
         });
     } catch (error) {
+        console.error("Error al iniciar sesión:", error);
+
         if (
             error instanceof Error &&
             ["AuthenticationError", "ValidationError"].includes(error.name)
