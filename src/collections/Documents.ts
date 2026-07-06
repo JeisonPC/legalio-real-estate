@@ -94,7 +94,7 @@ export const Documents: CollectionConfig = {
         condition: (_, siblingData, { operation }) =>
           operation === "update" || siblingData.documentType !== "contract",
         description:
-          "Si el documento se sube desde un contrato, se completan automáticamente propietario y arrendatario.",
+          "Si el documento se sube desde un contrato, se completan automáticamente los usuarios relacionados.",
       },
     },
     {

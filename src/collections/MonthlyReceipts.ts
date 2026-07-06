@@ -73,6 +73,18 @@ const getRelationshipId = (value: unknown): string | number | null => {
   return null;
 };
 
+const getRelationshipIds = (value: unknown): Array<string | number> => {
+  if (!Array.isArray(value)) {
+    const id = getRelationshipId(value);
+
+    return id ? [id] : [];
+  }
+
+  return value
+    .map((item) => getRelationshipId(item))
+    .filter((id): id is string | number => id !== null);
+};
+
 const formatReceiptNumber = (periodYear?: unknown, periodMonth?: unknown) => {
   const now = new Date();
 
@@ -131,6 +143,25 @@ const beforeValidateMonthlyReceipt: CollectionBeforeValidateHook = async ({
 
   const contractId = getRelationshipId(data.contract);
   const originalContractId = getRelationshipId(originalDoc?.contract);
+
+  if (
+    contractId &&
+    (!Array.isArray(data.users) || data.users.length === 0)
+  ) {
+    const contract = await req.payload.findByID({
+      collection: "contracts",
+      id: contractId,
+      depth: 0,
+      overrideAccess: true,
+      req,
+    });
+
+    const contractUsers = getRelationshipIds(contract.users);
+
+    if (contractUsers.length > 0) {
+      data.users = contractUsers;
+    }
+  }
 
   const periodMonth = toStringValue(data.periodMonth);
   const periodYear = toStringValue(data.periodYear);
@@ -196,11 +227,47 @@ const beforeValidateMonthlyReceipt: CollectionBeforeValidateHook = async ({
   return data;
 };
 
-const afterChangeMonthlyReceipt: CollectionAfterChangeHook = async ({
+const syncMonthlyReceiptDocumentUsers: CollectionAfterChangeHook = async ({
   doc,
-  operation,
   req,
 }) => {
+  const pdfDocumentId = getRelationshipId(doc.pdfDocument);
+
+  if (!pdfDocumentId) {
+    return doc;
+  }
+
+  const relatedUsers = getRelationshipIds(doc.users)
+    .map((id) => Number(id))
+    .filter((id) => Number.isFinite(id));
+  const contractId = toNumber(getRelationshipId(doc.contract));
+
+  if (relatedUsers.length === 0) {
+    return doc;
+  }
+
+  await req.payload.update({
+    collection: "documents",
+    id: pdfDocumentId,
+    data: {
+      documentType: "payment_receipt",
+      users: relatedUsers,
+      contract: contractId ?? null,
+      month: String(doc.periodMonth),
+      year: Number(doc.periodYear),
+    },
+    overrideAccess: true,
+    req,
+  });
+
+  return doc;
+};
+
+const afterChangeMonthlyReceipt: CollectionAfterChangeHook = async (args) => {
+  const { doc, operation, req } = args;
+
+  await syncMonthlyReceiptDocumentUsers(args);
+
   if (req.context?.skipMonthlyReceiptAutoEmail) {
     return doc;
   }
@@ -244,7 +311,7 @@ export const MonthlyReceipts: CollectionConfig = {
     useAsTitle: "receiptNumber",
     defaultColumns: [
       "receiptNumber",
-      "tenant",
+      "users",
       "contract",
       "periodMonth",
       "periodYear",
@@ -262,18 +329,9 @@ export const MonthlyReceipts: CollectionConfig = {
       if (user.role === "admin") return true;
 
       const monthlyReceiptAccessWhere: Where = {
-        or: [
-          {
-            tenant: {
-              equals: user.id,
-            },
-          },
-          {
-            owner: {
-              equals: user.id,
-            },
-          },
-        ],
+        users: {
+          equals: user.id,
+        },
       };
 
       return monthlyReceiptAccessWhere;
@@ -318,28 +376,15 @@ export const MonthlyReceipts: CollectionConfig = {
     },
 
     {
-      name: "owner",
-      label: "Propietario",
+      name: "users",
+      label: "Usuarios",
       type: "relationship",
       relationTo: "users",
+      hasMany: true,
       required: true,
-      filterOptions: {
-        role: {
-          equals: "owner",
-        },
-      },
-    },
-
-    {
-      name: "tenant",
-      label: "Arrendatario",
-      type: "relationship",
-      relationTo: "users",
-      required: true,
-      filterOptions: {
-        role: {
-          equals: "tenant",
-        },
+      admin: {
+        description:
+          "Puedes asociar este recibo a un usuario o a varios usuarios.",
       },
     },
 
@@ -566,7 +611,7 @@ export const MonthlyReceipts: CollectionConfig = {
       admin: {
         hidden: true,
         description:
-          "Documento PDF generado para que el arrendatario lo vea o descargue.",
+          "Documento PDF generado para que los usuarios relacionados lo vean o descarguen.",
       },
     },
 

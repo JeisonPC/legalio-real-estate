@@ -15,11 +15,13 @@ import {
 } from "./formatters";
 import { getUserDisplayName } from "@/helpers/helpers";
 
-type PopulatedMonthlyReceipt = MonthlyReceipt & {
+type PopulatedMonthlyReceipt = Omit<
+  MonthlyReceipt,
+  "contract" | "property" | "users" | "pdfDocument"
+> & {
   contract: Contract;
   property: Property;
-  owner: User;
-  tenant: User;
+  users: User[];
   pdfDocument?: (number | null) | Document;
 };
 
@@ -43,18 +45,24 @@ const getAppUrl = () =>
 const assertPopulatedReceipt = (
   receipt: MonthlyReceipt,
 ): PopulatedMonthlyReceipt => {
+  const populatedUsers = Array.isArray(receipt.users)
+    ? receipt.users.filter(isPopulated)
+    : [];
+
   if (
     !isPopulated(receipt.contract) ||
     !isPopulated(receipt.property) ||
-    !isPopulated(receipt.owner) ||
-    !isPopulated(receipt.tenant)
+    populatedUsers.length === 0
   ) {
     throw new Error(
-      "El recibo debe tener contrato, propiedad, propietario y arrendatario cargados.",
+      "El recibo debe tener contrato, propiedad y al menos un usuario cargado.",
     );
   }
 
-  return receipt as PopulatedMonthlyReceipt;
+  return {
+    ...receipt,
+    users: populatedUsers,
+  } as PopulatedMonthlyReceipt;
 };
 
 const getReceiptSettings = async (payload: Payload) => {
@@ -115,12 +123,13 @@ const buildEmailHTML = ({
   intro?: string | null;
 }) => {
   const dashboardUrl = `${getAppUrl()}/dashboard/receipts`;
-  const tenantName = getUserDisplayName(receipt.tenant, "");
+  const recipientName =
+    receipt.users.length === 1 ? getUserDisplayName(receipt.users[0], "") : "";
 
   return `
     <div style="font-family: Arial, sans-serif; color: #1f2937; line-height: 1.5;">
       <h2>Recibo de arrendamiento disponible</h2>
-      <p>Hola ${escapeHtml(tenantName)},</p>
+      <p>Hola${recipientName ? ` ${escapeHtml(recipientName)}` : ""},</p>
       <p>${escapeHtml(
         intro ||
           "Ya está disponible tu recibo mensual de arrendamiento en el dashboard de Legalio.",
@@ -200,7 +209,7 @@ export async function ensureMonthlyReceiptPDF({
         data: {
           title: `Recibo ${receipt.receiptNumber}`,
           documentType: "payment_receipt",
-          users: [receipt.tenant.id, receipt.owner.id],
+          users: receipt.users.map((user) => user.id),
           contract: receipt.contract.id,
           month: String(receipt.periodMonth),
           year: Number(receipt.periodYear),
@@ -261,8 +270,14 @@ export async function issueMonthlyReceipt({
     );
   }
 
-  if (!receipt.tenant.email) {
-    throw new Error("El arrendatario no tiene correo electrónico.");
+  const recipientEmails = receipt.users
+    .map((user) => user.email)
+    .filter((email): email is string => Boolean(email));
+
+  if (recipientEmails.length === 0) {
+    throw new Error(
+      "Ningún usuario relacionado con el recibo tiene correo electrónico.",
+    );
   }
 
   const settings = await getReceiptSettings(payload);
@@ -271,7 +286,7 @@ export async function issueMonthlyReceipt({
 
   try {
     emailResult = await payload.sendEmail({
-      to: receipt.tenant.email,
+      to: recipientEmails,
       subject:
         settings.emailSubject ||
         `Recibo de arrendamiento ${formatReceiptPeriod(

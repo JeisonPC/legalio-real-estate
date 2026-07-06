@@ -36,18 +36,9 @@ export default async function DashboardReceiptsPage() {
       user.role === "admin"
         ? undefined
         : {
-            or: [
-              {
-                tenant: {
-                  equals: user.id,
-                },
-              },
-              {
-                owner: {
-                  equals: user.id,
-                },
-              },
-            ],
+            users: {
+              equals: user.id,
+            },
           },
     sort: "-createdAt",
   });

@@ -16,6 +16,18 @@ const getRelationshipId = (value: unknown): string | number | null => {
   return null;
 };
 
+const getRelationshipIds = (value: unknown): Array<string | number> => {
+  if (!Array.isArray(value)) {
+    const id = getRelationshipId(value);
+
+    return id ? [id] : [];
+  }
+
+  return value
+    .map((item) => getRelationshipId(item))
+    .filter((id): id is string | number => id !== null);
+};
+
 const syncContractDocument: CollectionAfterChangeHook = async ({
   doc,
   previousDoc,
@@ -44,9 +56,7 @@ const syncContractDocument: CollectionAfterChangeHook = async ({
     return doc;
   }
 
-  const ownerId = getRelationshipId(doc.owner);
-  const tenantId = getRelationshipId(doc.tenant);
-  const relatedUsers = [ownerId, tenantId]
+  const relatedUsers = getRelationshipIds(doc.users)
     .map((id) => Number(id))
     .filter((id) => Number.isFinite(id));
 
@@ -75,8 +85,7 @@ export const Contracts: CollectionConfig = {
     useAsTitle: "contractCode",
     defaultColumns: [
       "contractCode",
-      "owner",
-      "tenant",
+      "users",
       "property",
       "pdfDocument",
       "status",
@@ -95,18 +104,9 @@ export const Contracts: CollectionConfig = {
       if (user.role === "admin") return true;
 
       const contractAccessWhere: Where = {
-        or: [
-          {
-            tenant: {
-              equals: user.id,
-            },
-          },
-          {
-            owner: {
-              equals: user.id,
-            },
-          },
-        ],
+        users: {
+          equals: user.id,
+        },
       };
 
       return contractAccessWhere;
@@ -128,28 +128,12 @@ export const Contracts: CollectionConfig = {
       required: true,
     },
     {
-      name: "owner",
-      label: "Propietario",
+      name: "users",
+      label: "Usuarios",
       type: "relationship",
       relationTo: "users",
+      hasMany: true,
       required: true,
-      filterOptions: {
-        role: {
-          equals: "owner",
-        },
-      },
-    },
-    {
-      name: "tenant",
-      label: "Arrendatario",
-      type: "relationship",
-      relationTo: "users",
-      required: true,
-      filterOptions: {
-        role: {
-          equals: "tenant",
-        },
-      },
     },
     {
       name: "startDate",
@@ -196,7 +180,7 @@ export const Contracts: CollectionConfig = {
       relationTo: "documents",
       admin: {
         description:
-          "Selecciona un documento existente o sube el PDF. Al guardar, se asociará automáticamente a este contrato, propietario y arrendatario.",
+          "Selecciona un documento existente o sube el PDF. Al guardar, se asociará automáticamente a este contrato y sus usuarios relacionados.",
       },
     },
     {

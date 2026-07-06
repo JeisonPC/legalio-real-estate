@@ -308,15 +308,14 @@ export interface Contract {
   id: number;
   contractCode: string;
   property: number | Property;
-  owner: number | User;
-  tenant: number | User;
+  users: (number | User)[];
   startDate: string;
   endDate: string;
   monthlyRent: number;
   depositValue?: number | null;
   status: 'active' | 'ended' | 'suspended' | 'late';
   /**
-   * Selecciona un documento existente o sube el PDF. Al guardar, se asociará automáticamente a este contrato, propietario y arrendatario.
+   * Selecciona un documento existente o sube el PDF. Al guardar, se asociará automáticamente a este contrato y sus usuarios relacionados.
    */
   pdfDocument?: (number | null) | Document;
   notes?: string | null;
@@ -335,7 +334,7 @@ export interface Document {
   title?: string | null;
   documentType: 'contract' | 'inventory' | 'handover_record' | 'application' | 'payment_receipt' | 'other';
   /**
-   * Si el documento se sube desde un contrato, se completan automáticamente propietario y arrendatario.
+   * Si el documento se sube desde un contrato, se completan automáticamente los usuarios relacionados.
    */
   users?: (number | User)[] | null;
   /**
@@ -369,8 +368,10 @@ export interface MonthlyReceipt {
   receiptNumber: string;
   contract: number | Contract;
   property: number | Property;
-  owner: number | User;
-  tenant: number | User;
+  /**
+   * Puedes asociar este recibo a un usuario o a varios usuarios.
+   */
+  users: (number | User)[];
   periodMonth: '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9' | '10' | '11' | '12';
   periodYear: '2024' | '2025' | '2026' | '2027' | '2028' | '2029' | '2030' | '2031' | '2032' | '2033';
   periodStartDate: string;
@@ -398,7 +399,7 @@ export interface MonthlyReceipt {
   paymentMethod?: string | null;
   paymentReference?: string | null;
   /**
-   * Documento PDF generado para que el arrendatario lo vea o descargue.
+   * Documento PDF generado para que los usuarios relacionados lo vean o descarguen.
    */
   pdfDocument?: (number | null) | Document;
   sentAt?: string | null;
@@ -714,8 +715,7 @@ export interface CitiesSelect<T extends boolean = true> {
 export interface ContractsSelect<T extends boolean = true> {
   contractCode?: T;
   property?: T;
-  owner?: T;
-  tenant?: T;
+  users?: T;
   startDate?: T;
   endDate?: T;
   monthlyRent?: T;
@@ -734,8 +734,7 @@ export interface MonthlyReceiptsSelect<T extends boolean = true> {
   receiptNumber?: T;
   contract?: T;
   property?: T;
-  owner?: T;
-  tenant?: T;
+  users?: T;
   periodMonth?: T;
   periodYear?: T;
   periodStartDate?: T;

@@ -30,11 +30,13 @@ type ReceiptSettingsData = {
   footerText?: string | null;
 };
 
-type PopulatedMonthlyReceipt = MonthlyReceipt & {
+type PopulatedMonthlyReceipt = Omit<
+  MonthlyReceipt,
+  "contract" | "property" | "users"
+> & {
   contract: Contract;
   property: Property;
-  owner: User;
-  tenant: User;
+  users: User[];
 };
 
 type ReceiptLineItem = {
@@ -260,6 +262,11 @@ const getUserDocument = (user: User) => {
 const getPaymentMethod = (settings: ReceiptSettingsData) =>
   settings.bankName ? `Transferencia bancaria - ${settings.bankName}` : "Transferencia bancaria";
 
+const joinUserValues = (
+  users: User[],
+  getValue: (user: User) => string | null | undefined,
+) => users.map(getValue).filter(Boolean).join(", ");
+
 function InfoLine({
   icon,
   label,
@@ -353,13 +360,19 @@ function MonthlyReceiptPDF({
           <View style={styles.panel}>
             <Text style={styles.panelHeader}>Cliente:</Text>
             <View style={styles.panelBody}>
-              <InfoLine label="Nombre" value={getUserName(receipt.tenant)} />
+              <InfoLine
+                label="Nombre"
+                value={joinUserValues(receipt.users, getUserName)}
+              />
               <InfoLine
                 label="Documento"
-                value={getUserDocument(receipt.tenant)}
+                value={joinUserValues(receipt.users, getUserDocument)}
               />
               <InfoLine label="Direccion" value={receipt.property.address} />
-              <InfoLine label="Correo" value={receipt.tenant.email} />
+              <InfoLine
+                label="Correo"
+                value={joinUserValues(receipt.users, (user) => user.email)}
+              />
             </View>
           </View>
 
