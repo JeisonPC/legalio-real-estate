@@ -5,6 +5,7 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { s3Storage } from "@payloadcms/storage-s3";
+import { resendAdapter } from "@payloadcms/email-resend";
 
 import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
@@ -16,45 +17,39 @@ import { Departments } from "./collections/Departments";
 import { Documents } from "./collections/Documents";
 import { Contracts } from "./collections/Contracts";
 import { MonthlyReceipts } from "./collections/MonthlyReceipts";
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { Blogs } from "./collections/Blogs";
-import { resendEmailAdapter } from "./lib/email/resendEmailAdapter";
 import { ReceiptSettings } from "./globals/ReceiptSettings";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+const requiredEnv = (name: string) => {
+  const value = process.env[name];
+
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
+  }
+
+  return value;
+};
+
 const defaultFromAddress =
   process.env.EMAIL_FROM_ADDRESS || "contacto@legalio.com.co";
+
 const defaultFromName = process.env.EMAIL_FROM_NAME || "Legalio";
 
-const emailAdapter =
-  process.env.RESEND_API_KEY
-    ? resendEmailAdapter({
-        apiKey: process.env.RESEND_API_KEY,
-        defaultFromAddress,
-        defaultFromName,
-      })
-    : process.env.SMTP_HOST
-      ? nodemailerAdapter({
-          defaultFromAddress,
-          defaultFromName,
-          transportOptions: {
-            host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT),
-            secure: Number(process.env.SMTP_PORT) === 465,
-            auth: {
-              user: process.env.SMTP_USER,
-              pass: process.env.SMTP_PASS,
-            },
-          },
-        })
-      : undefined;
+const emailAdapter = resendAdapter({
+  apiKey: requiredEnv("RESEND_API_KEY"),
+  defaultFromAddress,
+  defaultFromName,
+});
 
 export default buildConfig({
   serverURL:
     process.env.NEXT_PUBLIC_SITE_URL ||
     process.env.PAYLOAD_PUBLIC_SERVER_URL ||
     "http://localhost:3000",
+
   admin: {
     user: Users.slug,
     importMap: {
@@ -84,7 +79,7 @@ export default buildConfig({
 
   editor: lexicalEditor(),
 
-  secret: process.env.PAYLOAD_SECRET || "",
+  secret: requiredEnv("PAYLOAD_SECRET"),
 
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
@@ -92,7 +87,7 @@ export default buildConfig({
 
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URL || "",
+      connectionString: requiredEnv("DATABASE_URL"),
     },
   }),
 
@@ -113,13 +108,13 @@ export default buildConfig({
           prefix: "documents",
         },
       },
-      bucket: process.env.AWS_BUCKET_NAME!,
+      bucket: requiredEnv("AWS_BUCKET_NAME"),
       config: {
         credentials: {
-          accessKeyId: process.env.AWS_ACCESS_KEY_ID!,
-          secretAccessKey: process.env.AWS_ACCESS_KEY_SECRET!,
+          accessKeyId: requiredEnv("AWS_ACCESS_KEY_ID"),
+          secretAccessKey: requiredEnv("AWS_ACCESS_KEY_SECRET"),
         },
-        region: process.env.AWS_REGION!,
+        region: requiredEnv("AWS_REGION"),
       },
     }),
   ],

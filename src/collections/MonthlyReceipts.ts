@@ -622,12 +622,18 @@ export const MonthlyReceipts: CollectionConfig = {
           name: "sentAt",
           label: "Fecha de envío",
           type: "date",
+          admin: {
+            readOnly: true,
+          },
         },
         {
           name: "generatedBy",
           label: "Generado por",
           type: "relationship",
           relationTo: "users",
+          admin: {
+            readOnly: true,
+          },
         },
       ],
     },
