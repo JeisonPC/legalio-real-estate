@@ -61,6 +61,11 @@ const STATIC_ROUTES: StaticRoute[] = [
     priority: 0.7,
   },
   {
+    path: "/preguntas-frecuentes",
+    changeFrequency: "monthly",
+    priority: 0.65,
+  },
+  {
     path: "/politicas-de-privacidad",
     changeFrequency: "yearly",
     priority: 0.3,

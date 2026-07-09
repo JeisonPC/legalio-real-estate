@@ -9,14 +9,14 @@ function whatsappUrl(message: string) {
 }
 
 export const metadata: Metadata = {
-  title: "Propiedades en venta en Palmira | Casas y apartamentos | Legalio",
+  title: "Casas y apartamentos en venta en Palmira | Legalio",
   description:
     "Compra casas, apartamentos y propiedades en venta en Palmira, Valle del Cauca. Asesoría inmobiliaria con respaldo legal de Legalio.",
   alternates: {
     canonical: "/propiedades-en-venta-palmira",
   },
   openGraph: {
-    title: "Propiedades en venta en Palmira | Legalio",
+    title: "Casas y apartamentos en venta en Palmira | Legalio",
     description:
       "Casas, apartamentos y propiedades en venta en Palmira con asesoría inmobiliaria y respaldo legal.",
     url: "/propiedades-en-venta-palmira",

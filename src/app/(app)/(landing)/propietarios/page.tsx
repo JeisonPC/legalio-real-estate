@@ -17,9 +17,12 @@ import Link from "next/link";
 // });
 
 export const metadata: Metadata = {
-    title: "Legalio | Administración de inmuebles para propietarios",
+    title: "Administración de inmuebles en Palmira | Legalio",
     description:
-        "Administración comercial, operativa y legal para propietarios que quieren arrendar con respaldo jurídico y tranquilidad.",
+        "Administra tu inmueble en Palmira con respaldo legal, selección rigurosa de inquilinos y gestión comercial, operativa y jurídica.",
+    alternates: {
+        canonical: "/propietarios",
+    },
 };
 
 const painPoints = [
@@ -152,7 +155,7 @@ export default async function PropietariosPage({
                                 <div className="lp-dashboard-header">
                                     <div>
                                         <h3>Estado de Propiedad</h3>
-                                        <p>Calle 100 #15-32, Bogotá</p>
+                                        <p>Propiedad administrada en Palmira</p>
                                     </div>
                                     <span className="lp-dashboard-shield icon-Certificate" />
                                 </div>
@@ -466,7 +469,7 @@ export default async function PropietariosPage({
                                     <input
                                         autoComplete="address-level2"
                                         name="ciudad"
-                                        placeholder="Bogotá, Medellín..."
+                                        placeholder="Palmira, Pradera, Tuluá..."
                                         required
                                         type="text"
                                     />

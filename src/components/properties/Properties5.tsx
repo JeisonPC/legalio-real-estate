@@ -41,6 +41,12 @@ function getPropertyArea(property: Property) {
   return Number.isFinite(area) ? area : null;
 }
 
+function getPropertyCityName(property: Property) {
+  return typeof property.city === "object"
+    ? String(property.city?.name ?? "")
+    : String(property.city ?? "");
+}
+
 function normalizeBusinessType(value: string) {
   const normalized = value.trim().toLowerCase();
 
@@ -109,8 +115,36 @@ export default function Properties5({
   });
 
   const filterOptions = useMemo(
-    () => buildPropertyFilterOptions(properties, cities),
-    [properties, cities],
+    () => {
+      const scopedProperties = properties.filter((property) => {
+        const matchesCity =
+          !initialCity ||
+          isAllCitiesValue(initialCity) ||
+          getPropertyCityName(property).toLowerCase() ===
+            initialCity.toLowerCase();
+        const matchesBusinessType =
+          !initialBusinessType ||
+          initialBusinessType === "Ambos" ||
+          normalizeBusinessType(property.businessType) ===
+            normalizeBusinessType(initialBusinessType);
+
+        return matchesCity && matchesBusinessType;
+      });
+
+      const scopedCities =
+        initialCity && !isAllCitiesValue(initialCity)
+          ? cities.filter(
+              (cityOption) =>
+                cityOption.name.toLowerCase() === initialCity.toLowerCase(),
+            )
+          : cities;
+
+      return buildPropertyFilterOptions(
+        scopedProperties.length > 0 ? scopedProperties : properties,
+        scopedCities,
+      );
+    },
+    [properties, cities, initialCity, initialBusinessType],
   );
 
   const searchParams = useSearchParams();

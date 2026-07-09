@@ -6,7 +6,16 @@ import AboutUs from "@/components/otherpage/about/AboutUs";
 import OurHistory from "@/components/otherpage/about/OurHistory";
 import PageTitle from "@/components/otherpage/about/PageTitle";
 import WhyChoose from "@/components/otherpage/about/WhyChoose";
+import type { Metadata } from "next";
 
+export const metadata: Metadata = {
+    title: "Sobre Legalio | Inmobiliaria en Palmira con respaldo legal",
+    description:
+        "Conoce a Legalio, una inmobiliaria en Palmira que combina gestión comercial, tecnología y respaldo legal para operaciones inmobiliarias seguras.",
+    alternates: {
+        canonical: "/sobre-nosotros",
+    },
+};
 
 export default function Page() {
     return (

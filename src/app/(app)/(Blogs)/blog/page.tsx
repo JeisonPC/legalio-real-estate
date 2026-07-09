@@ -3,6 +3,16 @@ import PageTitle from "@/components/blog/PageTitle";
 import SideBar from "@/components/blog/SideBar";
 import Layout from "@/components/layouts/Layout-defaul";
 import { BlogsQuery } from "@/lib/queries/blog.query";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog inmobiliario y legal en Palmira | Legalio",
+  description:
+    "Guías sobre arriendos, compraventa, administración de inmuebles y respaldo legal inmobiliario para propietarios, arrendatarios y compradores.",
+  alternates: {
+    canonical: "/blog",
+  },
+};
 
 type BlogPageProps = {
   searchParams: Promise<{

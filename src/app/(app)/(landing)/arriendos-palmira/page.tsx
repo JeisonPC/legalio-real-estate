@@ -9,14 +9,14 @@ function whatsappUrl(message: string) {
 }
 
 export const metadata: Metadata = {
-  title: "Arriendos en Palmira | Casas y apartamentos | Legalio",
+  title: "Casas y apartamentos en arriendo en Palmira | Legalio",
   description:
     "Encuentra casas y apartamentos en arriendo en Palmira, Valle del Cauca. Legalio te acompaña con asesoría inmobiliaria y respaldo legal.",
   alternates: {
     canonical: "/arriendos-palmira",
   },
   openGraph: {
-    title: "Arriendos en Palmira | Legalio",
+    title: "Casas y apartamentos en arriendo en Palmira | Legalio",
     description:
       "Casas y apartamentos en arriendo en Palmira con acompañamiento inmobiliario y respaldo legal.",
     url: "/arriendos-palmira",

@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import Properties5Section from "@/components/properties/Properties5Section";
+import LocalBusinessSchema from "@/components/seo/LocalBusinessSchema";
 
 type Faq = {
   question: string;
@@ -26,29 +27,6 @@ type LocalMarketPageProps = {
   listingTitle: string;
   listingDescription: string;
   faqs: Faq[];
-};
-
-const localBusinessSchema = {
-  "@context": "https://schema.org",
-  "@type": "RealEstateAgent",
-  name: "Legalio",
-  url: "https://legalio.com.co",
-  telephone: "+573046035418",
-  email: "contacto@legalio.com.co",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Calle 3 28-131",
-    addressLocality: "Palmira",
-    addressRegion: "Valle del Cauca",
-    addressCountry: "CO",
-  },
-  areaServed: ["Palmira", "Valle del Cauca"],
-  knowsAbout: [
-    "arriendos en Palmira",
-    "venta de propiedades en Palmira",
-    "administracion de inmuebles",
-    "asesoria legal inmobiliaria",
-  ],
 };
 
 function isExternalHref(href: string) {
@@ -120,12 +98,7 @@ export default function LocalMarketPage({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(localBusinessSchema),
-        }}
-      />
+      <LocalBusinessSchema />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
