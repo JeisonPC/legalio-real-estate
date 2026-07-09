@@ -24,12 +24,9 @@ const BackToTop = () => {
 
     const updateProgress = () => {
       const scroll = window.scrollY || window.pageYOffset;
-      const height =
-        document.documentElement.scrollHeight - window.innerHeight;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
       const progress =
-        height > 0
-          ? pathLength - (scroll * pathLength) / height
-          : pathLength;
+        height > 0 ? pathLength - (scroll * pathLength) / height : pathLength;
       style.strokeDashoffset = `${progress}`;
     };
 
@@ -44,9 +41,20 @@ const BackToTop = () => {
 
     const handleClick = (e: MouseEvent) => {
       e.preventDefault();
+
+      window.dataLayer = window.dataLayer || [];
+
+      window.dataLayer.push({
+        event: "whatsapp_click",
+        event_category: "Contacto",
+        event_label: "Botón flotante WhatsApp",
+        whatsapp_url:
+          "https://wa.me/573046035418?text=Hola,%20quiero%20más%20información",
+      });
+
       window.open(
         "https://wa.me/573046035418?text=Hola,%20quiero%20más%20información",
-        "_blank"
+        "_blank",
       );
     };
 
