@@ -1,8 +1,17 @@
 import FormRegister from "@/components/common/FormRegister";
 import Layout from "@/components/layouts/Layout-defaul";
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+    title: "Registro | Legalio",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
 
 export default function page() {
     return (

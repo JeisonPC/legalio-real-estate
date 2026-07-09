@@ -3,7 +3,16 @@ import Testimonial1 from "@/components/common/Testimonial1";
 import Layout from "@/components/layouts/Layout-defaul";
 import OurPricing from "@/components/otherpage/pricing/OurPricing";
 import PageTitle from "@/components/otherpage/pricing/PageTitle";
+import type { Metadata } from "next";
 import React from "react";
+
+export const metadata: Metadata = {
+    title: "Planes | Legalio",
+    robots: {
+        index: false,
+        follow: true,
+    },
+};
 
 export default function page() {
     return (

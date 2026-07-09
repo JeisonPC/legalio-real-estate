@@ -1,7 +1,16 @@
 import FormLogin from "@/components/common/FormLogin";
 import Layout from "@/components/layouts/Layout-defaul";
+import type { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+    title: "Inicio de sesión | Legalio",
+    robots: {
+        index: false,
+        follow: false,
+    },
+};
 
 export default function page() {
     return (

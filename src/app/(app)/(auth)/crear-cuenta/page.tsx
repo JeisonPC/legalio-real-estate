@@ -1,4 +1,13 @@
 import CreateAccountForm from "./CreateAccountForm";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Crear cuenta | Legalio",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 type PageProps = {
   searchParams: Promise<{
