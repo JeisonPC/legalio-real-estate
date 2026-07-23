@@ -1,181 +1,260 @@
+"use client";
+
+import { getMediaUrl } from "@/lib/media/getMediaUrl";
+import type { Media, Property } from "@/payload-types";
 import Image from "next/image";
-import React, { useState } from "react";
-import { Autoplay, EffectFade, Navigation, Thumbs } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import type { Swiper as SwiperClass } from "swiper";
+import { useEffect, useRef, useState } from "react";
 import { Gallery as PhotoSwipeGallery, Item } from "react-photoswipe-gallery";
+import { A11y, Keyboard } from "swiper/modules";
+import type { Swiper as SwiperClass } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import "photoswipe/dist/photoswipe.css";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/effect-fade";
-import "swiper/css/thumbs";
-import ModalVideo from "../common/ModalVideo";
-import { Media, Property } from "@/payload-types";
-import Link from "next/link";
-import { getMediaUrl } from "@/lib/media/getMediaUrl";
+import styles from "./Slide2.module.css";
+
+function ArrowIcon({ direction }: { direction: "left" | "right" }) {
+  return (
+    <svg
+      aria-hidden="true"
+      className={styles.arrowIcon}
+      viewBox="0 0 24 24"
+    >
+      <path
+        d={direction === "left" ? "m15 18-6-6 6-6" : "m9 18 6-6-6-6"}
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
+
+function PhotosIcon() {
+  return (
+    <svg aria-hidden="true" className={styles.photosIcon} viewBox="0 0 24 24">
+      <rect
+        x="3"
+        y="5"
+        width="18"
+        height="14"
+        rx="2"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+      <circle cx="9" cy="10" r="1.5" fill="currentColor" />
+      <path
+        d="m5.5 17 4.2-4.2 3.1 3.1 2.1-2.1 3.6 3.2"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+      />
+    </svg>
+  );
+}
 
 export default function Slide2({ property }: { property: Property }) {
-  const [thumbsSwiper, setThumbsSwiper] = useState<SwiperClass | null>(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [mainSwiper, setMainSwiper] = useState<SwiperClass | null>(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const thumbnailRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
-  const images = (property?.images ?? []).filter(
+  const images = (property.images ?? []).filter(
     (image): image is Media =>
-      typeof image === "object" && image !== null && "url" in image,
+      typeof image === "object" && image !== null && Boolean(image.url),
   );
+  const photoCount = images.length;
 
-  const thumbProps = {
-    spaceBetween: 14,
-    slidesPerView: "auto" as const,
-    freeMode: true,
-    watchSlidesProgress: true,
-    direction: "vertical" as const,
-    breakpoints: {
-      375: {
-        slidesPerView: 3,
-        spaceBetween: 14,
-      },
-      500: {
-        slidesPerView: "auto" as const,
-      },
-    },
-  };
-  const props = {
-    spaceBetween: 16,
-    autoplay: {
-      delay: 3000,
-      disableOnInteraction: false,
-    },
-    speed: 500,
-    effect: "fade",
-    fadeEffect: {
-      crossFade: true,
-    },
-  };
+  useEffect(() => {
+    const selectedThumbnail = thumbnailRefs.current[activeIndex];
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
 
-  function getYouTubeVideoId(url?: string | null): string | undefined {
-    if (!url) return undefined;
+    selectedThumbnail?.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "nearest",
+      inline: "center",
+    });
+  }, [activeIndex]);
 
-    const regex =
-      /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
-
-    const match = url.match(regex);
-    return match?.[1];
+  if (photoCount === 0) {
+    return (
+      <section
+        aria-label={`Galería de fotos de ${property.title}`}
+        className={`${styles.gallery} ${styles.emptyGallery}`}
+      >
+        <PhotosIcon />
+        <p>Fotos disponibles próximamente</p>
+      </section>
+    );
   }
 
-  function getYouTubeEmbedUrl(url?: string | null): string | undefined {
-    const videoId = getYouTubeVideoId(url);
-    return videoId
-      ? `https://www.youtube.com/embed/${videoId}?autoplay=1`
-      : undefined;
-  }
+  const goToPhoto = (index: number) => {
+    mainSwiper?.slideTo(index);
+  };
 
-  const embedUrl = getYouTubeEmbedUrl(property.videoUrl);
   return (
-    <>
-      <PhotoSwipeGallery>
-        <div className="wrap-thumb">
+    <section
+      aria-label={`Galería de fotos de ${property.title}`}
+      className={styles.gallery}
+    >
+      <PhotoSwipeGallery
+        options={{
+          bgOpacity: 0.96,
+          showHideAnimationType: "fade",
+          zoomAnimationDuration: 200,
+        }}
+      >
+        <div className={styles.viewport}>
           <Swiper
-            modules={[Thumbs, Autoplay, EffectFade, Navigation]}
-            thumbs={{ swiper: thumbsSwiper }}
-            navigation={{
-              prevEl: ".sw-thumbs-prev",
-              nextEl: ".sw-thumbs-next",
+            a11y={{
+              enabled: true,
+              firstSlideMessage: "Esta es la primera foto",
+              lastSlideMessage: "Esta es la última foto",
+              nextSlideMessage: "Foto siguiente",
+              prevSlideMessage: "Foto anterior",
+              slideLabelMessage: "Foto {{index}} de {{slidesLength}}",
             }}
-            className="swiper sw-single"
-            {...props}
+            className={styles.mainSwiper}
+            keyboard={{ enabled: true, onlyInViewport: true }}
+            modules={[A11y, Keyboard]}
+            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            onSwiper={setMainSwiper}
+            slidesPerView={1}
+            speed={280}
           >
-            {images?.map((image, index) => (
-              <SwiperSlide key={index}>
-                <div className="thumb-main">
+            {images.map((image, index) => {
+              const detailUrl = getMediaUrl(image, "detail");
+              const imageAlt =
+                image.alt?.trim() ||
+                `${property.title}, foto ${index + 1} de ${photoCount}`;
+
+              return (
+                <SwiperSlide key={image.id || `${detailUrl}-${index}`}>
                   <Item
-                    original={getMediaUrl(image, "detail")}
+                    original={detailUrl}
                     thumbnail={getMediaUrl(image, "thumbnail")}
                     width={image.sizes?.detail?.width || image.width || 1200}
                     height={image.sizes?.detail?.height || image.height || 675}
                   >
                     {({ ref, open }) => (
-                      <div className="thumb-main">
-                        <Link onClick={open} data-fancybox="gallery" href={""}>
+                      <div className={styles.slideFrame}>
+                        <div
+                          aria-hidden="true"
+                          className={styles.imageBackdrop}
+                          style={{ backgroundImage: `url("${detailUrl}")` }}
+                        />
+                        <button
+                          aria-label={`Abrir ${imageAlt} en pantalla completa`}
+                          className={styles.photoButton}
+                          onClick={open}
+                          type="button"
+                        >
                           <Image
-                            alt={image.alt}
-                            src={getMediaUrl(image, "detail")}
                             ref={ref}
-                            width={image.sizes?.detail?.width || image.width || 1200}
-                            height={image.sizes?.detail?.height || image.height || 675}
-                            priority
-                            style={{
-                              objectFit: "cover",
-                              objectPosition: "center",
-                            }}
+                            alt={imageAlt}
+                            className={styles.mainImage}
+                            fill
+                            priority={index === 0}
+                            sizes="(max-width: 767px) 100vw, (max-width: 1199px) 100vw, 63vw"
+                            src={detailUrl}
                           />
-                        </Link>
-                        <div className="wrap-btn d-flex gap_10">
-                          <div className="widget-video">
-                            <Link
-                              onClick={() => {
-                                if (embedUrl) setIsOpen(true);
-                              }}
-                              data-fancybox="gallery2"
-                              className="tf-btn tf-btn btn-bg-1 popup-youtube"
-                              href={""}
-                            >
-                              <span className="d-flex align-items-center gap_8">
-                                <i className="icon-PlayCircle"></i>
-                                Reproducir Video
-                              </span>
-                              <span className="bg-effect"></span>
-                            </Link>
-                          </div>
-                          <Link
-                            onClick={open}
-                            data-fancybox="gallery"
-                            className="tf-btn btn-bg-1"
-                            href={""}
-                          >
-                            <span className="d-flex align-items-center gap_8">
-                              <i className="icon-Image"></i>
-                              Ver todas las fotos
-                            </span>
-                            <span className="bg-effect"></span>
-                          </Link>
-                        </div>
+                        </button>
+                        <button
+                          className={styles.viewAllButton}
+                          onClick={open}
+                          type="button"
+                        >
+                          <PhotosIcon />
+                          <span>
+                            Ver {photoCount} {photoCount === 1 ? "foto" : "fotos"}
+                          </span>
+                        </button>
                       </div>
                     )}
                   </Item>
-                </div>
-              </SwiperSlide>
-            ))}
+                </SwiperSlide>
+              );
+            })}
           </Swiper>
-        </div>
-        <div className="sw-button sw-thumbs-prev lg-hide">
-          <i className="icon-CaretLeft"></i>
-        </div>
-        <div className="sw-button sw-thumbs-next lg-hide">
-          <i className="icon-CaretRight"></i>
-        </div>
-        <div className="wrap-pagi">
-          <Swiper
-            {...thumbProps}
-            modules={[Thumbs]}
-            onSwiper={(swiper) => setThumbsSwiper(swiper)}
-            className="swiper thumbs-sw-pagi"
+
+          <p
+            aria-atomic="true"
+            aria-live="polite"
+            className={styles.counter}
           >
-            {images.map((thumb, index) => (
-              <SwiperSlide key={index}>
-                <div className="image-detail">
-                  <Image
-                    alt={thumb.alt}
-                    src={getMediaUrl(thumb, "thumbnail")}
-                    width={100}
-                    height={100}
-                  />
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            <span className={styles.srOnly}>Foto </span>
+            {activeIndex + 1} / {photoCount}
+          </p>
+
+          {photoCount > 1 && (
+            <>
+              <button
+                aria-label="Ver foto anterior"
+                className={`${styles.navigationButton} ${styles.previousButton}`}
+                disabled={activeIndex === 0}
+                onClick={() => mainSwiper?.slidePrev()}
+                type="button"
+              >
+                <ArrowIcon direction="left" />
+              </button>
+              <button
+                aria-label="Ver foto siguiente"
+                className={`${styles.navigationButton} ${styles.nextButton}`}
+                disabled={activeIndex === photoCount - 1}
+                onClick={() => mainSwiper?.slideNext()}
+                type="button"
+              >
+                <ArrowIcon direction="right" />
+              </button>
+            </>
+          )}
         </div>
+
+        {photoCount > 1 && (
+          <div
+            aria-label="Seleccionar una foto"
+            className={styles.thumbnailRail}
+            role="group"
+          >
+            {images.map((image, index) => {
+              const thumbnailAlt =
+                image.alt?.trim() ||
+                `${property.title}, foto ${index + 1} de ${photoCount}`;
+
+              return (
+                <button
+                  ref={(node) => {
+                    thumbnailRefs.current[index] = node;
+                  }}
+                  aria-label={`Mostrar ${thumbnailAlt}`}
+                  aria-pressed={activeIndex === index}
+                  className={styles.thumbnailButton}
+                  key={image.id || `${getMediaUrl(image, "thumbnail")}-${index}`}
+                  onClick={() => goToPhoto(index)}
+                  type="button"
+                >
+                  <Image
+                    alt=""
+                    className={styles.thumbnailImage}
+                    height={72}
+                    sizes="88px"
+                    src={getMediaUrl(image, "thumbnail")}
+                    width={96}
+                  />
+                  <span aria-hidden="true" className={styles.thumbnailNumber}>
+                    {index + 1}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+        )}
       </PhotoSwipeGallery>
-      <ModalVideo setIsOpen={setIsOpen} isOpen={isOpen} src={embedUrl} />
-    </>
+    </section>
   );
 }
