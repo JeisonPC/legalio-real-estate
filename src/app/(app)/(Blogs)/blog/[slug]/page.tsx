@@ -20,11 +20,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const blogItem = await getBlogBySlug(slug);
 
-  if (!blogItem) {
-    return {
-      title: "Artículo no encontrado | Legalio",
-    };
-  }
+  if (!blogItem) notFound();
 
   const coverImage =
     typeof blogItem.coverImage === "object" && blogItem.coverImage !== null

@@ -87,11 +87,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { id } = await params;
   const property = await getPropertyById(id);
 
-  if (!property) {
-    return {
-      title: "Propiedad no encontrada | Legalio",
-    };
-  }
+  if (!property) notFound();
 
   const firstImage = getFirstImage(property);
   const imageUrl = firstImage ? getMediaUrl(firstImage, "detail") : undefined;
