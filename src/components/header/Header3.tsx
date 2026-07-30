@@ -12,10 +12,10 @@ export default function Header3() {
     return (
         <>
             <header className="header style-2 header-fixed">
-                <div className="tf-container w-1830">
-                    <div className="row">
-                        <div className="col-12">
-                            <div className="header-inner">
+                {/* <div className="tf-container w-1830"> */}
+                    {/* <div className="row"> */}
+                        {/* <div className="col-12"> */}
+                            {/* <div className="header-inner">
                                 <Link href="/" className="site-logo">
                                     <Image
                                         className="logo_header"
@@ -50,10 +50,10 @@ export default function Header3() {
                                         </div>
                                     </button>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                            </div> */}
+                        {/* </div> */}
+                    {/* </div> */}
+                {/* </div> */}
             </header>
 
             {/* Offcanvas menu */}

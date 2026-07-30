@@ -29,9 +29,9 @@ export default function Header4({ isLoggedIn }: Header4Props) {
     return (
         <>
             <header className="header style-3 header-fixed">
-                <div className="tf-container w-xxl">
-                    <div className="row">
-                        <div className="col-12">
+                {/* <div className="tf-container w-xxl"> */}
+                    {/* <div className="row"> */}
+                        {/* <div className="col-12"> */}
                             <div className="header-inner">
                                 <Link href="/" className="site-logo">
                                     <Image
@@ -83,9 +83,9 @@ export default function Header4({ isLoggedIn }: Header4Props) {
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
+                        {/* </div> */}
+                    {/* </div> */}
+                {/* </div> */}
             </header>
 
             <div className="mobile-nav-wrap">

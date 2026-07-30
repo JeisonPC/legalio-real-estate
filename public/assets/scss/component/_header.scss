@@ -188,7 +188,15 @@
             &.style-3 {
                 background-color: var(--White);
                 .header-inner {
-                    margin-top: 0;
+                    // Keep the header's layout height stable while it becomes
+                    // sticky; only move the visual layer to the top.
+                    transform: translateY(-24px);
+                    margin-bottom: 0;
+                }
+                @include res(md) {
+                    .header-inner {
+                        transform: translateY(-20px);
+                    }
                 }
             }
             .navigation .has-child {

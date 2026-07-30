@@ -8,15 +8,26 @@ const headerFixed2 = () => {
     const header = document.querySelector<HTMLElement>(".header-fixed");
     if (!header) return;
 
+    const FIXED_AT = 80;
+    const RELEASE_AT = 20;
+    let isFixed = header.classList.contains("is-fixed");
+
     const onScroll = () => {
-        if (window.scrollY >= 10) {
+        const scrollY = window.scrollY;
+
+        // Use separate enter/exit thresholds so small layout or touch-scroll
+        // adjustments cannot continuously toggle the sticky header state.
+        if (!isFixed && scrollY >= FIXED_AT) {
             header.classList.add("is-fixed");
-        } else {
+            isFixed = true;
+        } else if (isFixed && scrollY <= RELEASE_AT) {
             header.classList.remove("is-fixed");
+            isFixed = false;
         }
     };
 
     window.addEventListener("scroll", onScroll);
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
 };
 
