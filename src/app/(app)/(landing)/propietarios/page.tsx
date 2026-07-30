@@ -2,103 +2,125 @@ import type { Metadata } from "next";
 import { sendOwnerLead } from "./actions";
 import Image from "next/image";
 import Link from "next/link";
-// import { Manrope, Noto_Serif } from "next/font/google";
 
-// const manrope = Manrope({
-//     subsets: ["latin"],
-//     weight: ["400", "500", "600", "700"],
-//     variable: "--legalio-sans",
-// });
 
-// const notoSerif = Noto_Serif({
-//     subsets: ["latin"],
-//     weight: ["700", "900"],
-//     variable: "--legalio-serif",
-// });
+const title = "Administración de inmuebles en Palmira | Legalio";
+
+const description =
+    "Administra tu inmueble en Palmira con respaldo legal, selección rigurosa de inquilinos y gestión comercial, operativa y jurídica.";
+
+const ogImage = "/assets/images/og-propietarios.png";
 
 export const metadata: Metadata = {
-    title: "Administración de inmuebles en Palmira | Legalio",
-    description:
-        "Administra tu inmueble en Palmira con respaldo legal, selección rigurosa de inquilinos y gestión comercial, operativa y jurídica.",
+    metadataBase: new URL("https://legalio.com.co"),
+
+    title,
+    description,
+
     alternates: {
         canonical: "/propietarios",
+    },
+
+    openGraph: {
+        title,
+        description,
+        url: "/propietarios",
+        siteName: "Legalio",
+        locale: "es_CO",
+        type: "website",
+        images: [
+            {
+                url: ogImage,
+                width: 1731,
+                height: 909,
+                type: "image/png",
+                alt: "Administración de inmuebles con respaldo legal de Legalio",
+            },
+        ],
+    },
+
+    twitter: {
+        card: "summary_large_image",
+        title,
+        description,
+        images: [ogImage],
     },
 };
 
 const painPoints = [
-    {
-        icon: "icon-ChartDonut",
-        title: "Inquilinos que no pagan",
-        text: "Protegemos tu flujo de caja con filtros rigurosos y pólizas de garantía.",
-    },
-    {
-        icon: "icon-FileDoc",
-        title: "Contratos mal redactados",
-        text: "Documentos actualizados a la ley de arrendamientos vigente (Ley 820 de 2003).",
-    },
-    {
-        icon: "icon-HouseLine",
-        title: "Daños al inmueble",
-        text: "Inventarios detallados con registro fotográfico y seguimiento periódico.",
-    },
-    {
-        icon: "icon-ClockCountdown",
-        title: "Procesos largos",
-        text: "Agilizamos trámites notariales y procesos de restitución si es necesario.",
-    },
+  {
+    icon: "icon-ChartDonut",
+    title: "Inquilinos que no pagan",
+    text: "Protegemos tu flujo de caja con filtros rigurosos y pólizas de garantía.",
+  },
+  {
+    icon: "icon-FileDoc",
+    title: "Contratos mal redactados",
+    text: "Documentos actualizados a la ley de arrendamientos vigente (Ley 820 de 2003).",
+  },
+  {
+    icon: "icon-HouseLine",
+    title: "Daños al inmueble",
+    text: "Inventarios detallados con registro fotográfico y seguimiento periódico.",
+  },
+  {
+    icon: "icon-ClockCountdown",
+    title: "Procesos largos",
+    text: "Agilizamos trámites notariales y procesos de restitución si es necesario.",
+  },
 ];
 
 const solutionItems = [
-    {
-        title: "Gestión comercial",
-        text: "Fotografía profesional, publicación en portales líderes y tours presenciales con ejecutivos especializados.",
-    },
-    {
-        title: "Filtro y documentación",
-        text: "Estudio minucioso de capacidad financiera y antecedentes. Solo arrendatarios de alta confiabilidad.",
-    },
-    {
-        title: "Contratos y respaldo legal",
-        text: "Elaboración y firma digital o notarial. Soporte jurídico permanente ante cualquier eventualidad.",
-    },
+  {
+    title: "Gestión comercial",
+    text: "Fotografía profesional, publicación en portales líderes y tours presenciales con ejecutivos especializados.",
+  },
+  {
+    title: "Filtro y documentación",
+    text: "Estudio minucioso de capacidad financiera y antecedentes. Solo arrendatarios de alta confiabilidad.",
+  },
+  {
+    title: "Contratos y respaldo legal",
+    text: "Elaboración y firma digital o notarial. Soporte jurídico permanente ante cualquier eventualidad.",
+  },
 ];
 
 const processSteps = [
-    {
-        number: "01",
-        title: "Registro",
-        text: "Ingresas los datos básicos de tu propiedad en nuestra plataforma.",
-    },
-    {
-        number: "02",
-        title: "Evaluación",
-        text: "Realizamos un peritaje técnico y análisis de mercado para el canon ideal.",
-    },
-    {
-        number: "03",
-        title: "Búsqueda",
-        text: "Filtramos prospectos hasta encontrar al inquilino con el perfil perfecto.",
-    },
-    {
-        number: "04",
-        title: "Administración",
-        text: "Tú solo recibes el dinero, nosotros nos encargamos del resto.",
-    },
+  {
+    number: "01",
+    title: "Registro",
+    text: "Ingresas los datos básicos de tu propiedad en nuestra plataforma.",
+  },
+  {
+    number: "02",
+    title: "Evaluación",
+    text: "Realizamos un peritaje técnico y análisis de mercado para el canon ideal.",
+  },
+  {
+    number: "03",
+    title: "Búsqueda",
+    text: "Filtramos prospectos hasta encontrar al inquilino con el perfil perfecto.",
+  },
+  {
+    number: "04",
+    title: "Administración",
+    text: "Tú solo recibes el dinero, nosotros nos encargamos del resto.",
+  },
 ];
 
 const benefits = [
-    {
-        title: "Seguridad Jurídica Total",
-        text: "Respaldo legal ilimitado en procesos de restitución y cobro jurídico.",
-    },
-    {
-        title: "Cero Trámites Operativos",
-        text: "Gestionamos mantenimientos, pagos de administración e impuestos.",
-    },
-    {
-        title: "Filtro de IA y Expertos",
-        text: "Tecnología avanzada para predecir el comportamiento del arrendatario.",
-    },
+  {
+    title: "Seguridad Jurídica Total",
+    text: "Respaldo legal ilimitado en procesos de restitución y cobro jurídico.",
+  },
+  {
+    title: "Cero Trámites Operativos",
+    text: "Gestionamos mantenimientos, pagos de administración e impuestos.",
+  },
+  {
+    title: "Filtro de IA y Expertos",
+    text: "Tecnología avanzada para predecir el comportamiento del arrendatario.",
+  },
 ];
 
 const serviceBadges = ["Mantenimiento", "Cobros"];
@@ -108,428 +130,396 @@ const solutionImage = "/assets/images/propietarios/solutionImage.png";
 const benefitsImage = "/assets/images/propietarios/benefitsImage.png";
 
 type PropietariosPageProps = {
-    searchParams?: Promise<{
-        sent?: string;
-    }>;
+  searchParams?: Promise<{
+    sent?: string;
+  }>;
 };
 
 export default async function PropietariosPage({
-    searchParams,
+  searchParams,
 }: PropietariosPageProps) {
-    const params = await searchParams;
-    const wasSent = params?.sent === "true";
+  const params = await searchParams;
+  const wasSent = params?.sent === "true";
 
-    return (
-        <>
-            <main className="legalio-propietarios">
-                <section className="lp-hero" id="inicio">
-                    <div className="lp-container lp-hero-grid">
-                        <div className="lp-hero-copy">
-                            <span className="lp-pill">
-                                Administración Integral
-                            </span>
-                            <h1>
-                                Arrienda tu propiedad con{" "}
-                                <span>respaldo legal</span> y sin dolores de
-                                cabeza
-                            </h1>
-                            <p>
-                                Gestión comercial, operativa y legal experta.
-                                Convertimos la complejidad de los
-                                arrendamientos en rentabilidad pasiva y segura.
-                            </p>
-                            <Link
-                                className="lp-primary-button"
-                                data-analytics-event="cta_click"
-                                data-analytics-location="propietarios_hero"
-                                data-analytics-name="Quiero que administren mi propiedad"
-                                href="#contacto"
-                            >
-                                Quiero que administren mi propiedad
-                                <span className="icon-CaretRight" />
-                            </Link>
-                        </div>
+  return (
+    <>
+      <main className="legalio-propietarios">
+        <section className="lp-hero" id="inicio">
+          <div className="lp-container lp-hero-grid">
+            <div className="lp-hero-copy">
+              <span className="lp-pill">Administración Integral</span>
+              <h1>
+                Arrienda tu propiedad con <span>respaldo legal</span> y sin
+                dolores de cabeza
+              </h1>
+              <p>
+                Gestión comercial, operativa y legal experta. Convertimos la
+                complejidad de los arrendamientos en rentabilidad pasiva y
+                segura.
+              </p>
+              <Link
+                className="lp-primary-button"
+                data-analytics-event="cta_click"
+                data-analytics-location="propietarios_hero"
+                data-analytics-name="Quiero que administren mi propiedad"
+                href="#contacto"
+              >
+                Quiero que administren mi propiedad
+                <span className="icon-CaretRight" />
+              </Link>
+            </div>
 
-                        <div className="lp-dashboard-wrap" aria-hidden="true">
-                            <div className="lp-dashboard">
-                                <div className="lp-dashboard-header">
-                                    <div>
-                                        <h3>Estado de Propiedad</h3>
-                                        <p>Propiedad administrada en Palmira</p>
-                                    </div>
-                                    <span className="lp-dashboard-shield icon-Certificate" />
-                                </div>
+            <div className="lp-dashboard-wrap" aria-hidden="true">
+              <div className="lp-dashboard">
+                <div className="lp-dashboard-header">
+                  <div>
+                    <h3>Estado de Propiedad</h3>
+                    <p>Propiedad administrada en Palmira</p>
+                  </div>
+                  <span className="lp-dashboard-shield icon-Certificate" />
+                </div>
 
-                                <div className="lp-status-list">
-                                    <div className="lp-status-card">
-                                        <div className="lp-status-meta">
-                                            <span className="lp-status-icon icon-FingerprintSimple" />
-                                            <div>
-                                                <strong>
-                                                    Verificación de Inquilino
-                                                </strong>
-                                                <small>
-                                                    Centrales de riesgo: OK
-                                                </small>
-                                            </div>
-                                        </div>
-                                        <span className="lp-status-badge lp-status-badge-green">
-                                            Aprobado
-                                        </span>
-                                    </div>
-                                    <div className="lp-status-card">
-                                        <div className="lp-status-meta">
-                                            <span className="lp-status-icon lp-status-icon-gold icon-FileDoc" />
-                                            <div>
-                                                <strong>Contrato Legal</strong>
-                                                <small>
-                                                    Última revisión: Hoy
-                                                </small>
-                                            </div>
-                                        </div>
-                                        <span className="lp-status-badge lp-status-badge-blue">
-                                            Activo
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="lp-dashboard-stats">
-                                    <div>
-                                        <strong>$4.5M</strong>
-                                        <span>Canon Recibido</span>
-                                    </div>
-                                    <div>
-                                        <strong>100%</strong>
-                                        <span>Seguridad</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                <div className="lp-status-list">
+                  <div className="lp-status-card">
+                    <div className="lp-status-meta">
+                      <span className="lp-status-icon icon-FingerprintSimple" />
+                      <div>
+                        <strong>Verificación de Inquilino</strong>
+                        <small>Centrales de riesgo: OK</small>
+                      </div>
                     </div>
-                </section>
-
-                <section className="lp-section lp-section-white">
-                    <div className="lp-container">
-                        <div className="lp-section-heading lp-centered">
-                            <span className="lp-kicker">Evita Riesgos</span>
-                            <h2>
-                                Arrendar no debería convertirse en un problema
-                                legal
-                            </h2>
-                        </div>
-                        <div className="lp-risk-grid">
-                            {painPoints.map((item) => (
-                                <article className="lp-risk-card" key={item.title}>
-                                    <span className={`lp-risk-icon ${item.icon}`} />
-                                    <h3>{item.title}</h3>
-                                    <p>{item.text}</p>
-                                </article>
-                            ))}
-                        </div>
+                    <span className="lp-status-badge lp-status-badge-green">
+                      Aprobado
+                    </span>
+                  </div>
+                  <div className="lp-status-card">
+                    <div className="lp-status-meta">
+                      <span className="lp-status-icon lp-status-icon-gold icon-FileDoc" />
+                      <div>
+                        <strong>Contrato Legal</strong>
+                        <small>Última revisión: Hoy</small>
+                      </div>
                     </div>
-                </section>
+                    <span className="lp-status-badge lp-status-badge-blue">
+                      Activo
+                    </span>
+                  </div>
+                </div>
 
-                <section className="lp-section lp-solution">
-                    <Image
-                        alt="Apartamento de lujo administrado por Legalio"
-                        className="lp-solution-image"
-                        fill
-                        sizes="100vw"
-                        src={solutionImage}
-                    />
-                    <div className="lp-container lp-solution-content">
-                        <div className="lp-solution-top">
-                            <div>
-                                <span className="lp-kicker lp-kicker-gold">
-                                    Nuestra Solución
-                                </span>
-                                <h2>
-                                    Nos encargamos de la administración completa
-                                    de tu inmueble
-                                </h2>
-                            </div>
-                            {/* <Link href="#servicios">
+                <div className="lp-dashboard-stats">
+                  <div>
+                    <strong>$4.5M</strong>
+                    <span>Canon Recibido</span>
+                  </div>
+                  <div>
+                    <strong>100%</strong>
+                    <span>Seguridad</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="lp-section lp-section-white">
+          <div className="lp-container">
+            <div className="lp-section-heading lp-centered">
+              <span className="lp-kicker">Evita Riesgos</span>
+              <h2>Arrendar no debería convertirse en un problema legal</h2>
+            </div>
+            <div className="lp-risk-grid">
+              {painPoints.map((item) => (
+                <article className="lp-risk-card" key={item.title}>
+                  <span className={`lp-risk-icon ${item.icon}`} />
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="lp-section lp-solution">
+          <Image
+            alt="Apartamento de lujo administrado por Legalio"
+            className="lp-solution-image"
+            fill
+            sizes="100vw"
+            src={solutionImage}
+          />
+          <div className="lp-container lp-solution-content">
+            <div className="lp-solution-top">
+              <div>
+                <span className="lp-kicker lp-kicker-gold">
+                  Nuestra Solución
+                </span>
+                <h2>
+                  Nos encargamos de la administración completa de tu inmueble
+                </h2>
+              </div>
+              {/* <Link href="#servicios">
                                 Ver todos los servicios
                                 <span className="icon-CaretRight" />
                             </Link> */}
-                        </div>
-                        <div className="lp-solution-grid">
-                            {solutionItems.map((item) => (
-                                <article key={item.title}>
-                                    <span />
-                                    <h3>{item.title}</h3>
-                                    <p>{item.text}</p>
-                                </article>
-                            ))}
-                        </div>
+            </div>
+            <div className="lp-solution-grid">
+              {solutionItems.map((item) => (
+                <article key={item.title}>
+                  <span />
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="lp-section lp-process" id="proceso">
+          <div className="lp-container">
+            <div className="lp-section-heading lp-centered">
+              <h2>Así funciona</h2>
+              <p>
+                Un proceso transparente diseñado para tu comodidad y seguridad.
+              </p>
+            </div>
+            <div className="lp-process-grid">
+              {processSteps.map((step) => (
+                <article className="lp-process-step" key={step.number}>
+                  <span>{step.number}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="lp-section lp-benefits">
+          <div className="lp-container lp-benefits-grid">
+            <div className="lp-benefits-media">
+              <Image
+                alt="Inmueble moderno administrado por Legalio"
+                className="lp-benefits-image"
+                fill
+                sizes="(max-width: 1100px) calc(100vw - 32px), 610px"
+                src={benefitsImage}
+              />
+              <div className="lp-media-stat">
+                <strong>+98%</strong>
+                <span>Fidelidad de Pago</span>
+              </div>
+            </div>
+            <div className="lp-benefits-copy">
+              <h2>Por qué los propietarios eligen Legalio</h2>
+              <ul>
+                {benefits.map((benefit) => (
+                  <li key={benefit.title}>
+                    <span className="icon-CheckCircle" />
+                    <div>
+                      <h3>{benefit.title}</h3>
+                      <p>{benefit.text}</p>
                     </div>
-                </section>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
 
-                <section className="lp-section lp-process" id="proceso">
-                    <div className="lp-container">
-                        <div className="lp-section-heading lp-centered">
-                            <h2>Así funciona</h2>
-                            <p>
-                                Un proceso transparente diseñado para tu
-                                comodidad y seguridad.
-                            </p>
-                        </div>
-                        <div className="lp-process-grid">
-                            {processSteps.map((step) => (
-                                <article
-                                    className="lp-process-step"
-                                    key={step.number}
-                                >
-                                    <span>{step.number}</span>
-                                    <h3>{step.title}</h3>
-                                    <p>{step.text}</p>
-                                </article>
-                            ))}
-                        </div>
-                    </div>
-                </section>
+        <section className="lp-section lp-section-white" id="servicios">
+          <div className="lp-container">
+            <div className="lp-section-heading lp-centered">
+              <h2>Nuestros Servicios</h2>
+            </div>
+            <div className="lp-services-grid">
+              <article className="lp-service-card lp-service-main">
+                <div>
+                  <span className="lp-service-icon icon-HouseSimple" />
+                  <h3>Administración Delegada</h3>
+                  <p>
+                    La solución llave en mano donde nos haces responsables de
+                    absolutamente todo lo relacionado con tu propiedad.
+                  </p>
+                </div>
+                <div className="lp-service-tags">
+                  {serviceBadges.map((badge) => (
+                    <span key={badge}>{badge}</span>
+                  ))}
+                </div>
+              </article>
 
-                <section className="lp-section lp-benefits">
-                    <div className="lp-container lp-benefits-grid">
-                        <div className="lp-benefits-media">
-                            <Image
-                                alt="Inmueble moderno administrado por Legalio"
-                                className="lp-benefits-image"
-                                fill
-                                sizes="(max-width: 1100px) calc(100vw - 32px), 610px"
-                                src={benefitsImage}
-                            />
-                            <div className="lp-media-stat">
-                                <strong>+98%</strong>
-                                <span>Fidelidad de Pago</span>
-                            </div>
-                        </div>
-                        <div className="lp-benefits-copy">
-                            <h2>Por qué los propietarios eligen Legalio</h2>
-                            <ul>
-                                {benefits.map((benefit) => (
-                                    <li key={benefit.title}>
-                                        <span className="icon-CheckCircle" />
-                                        <div>
-                                            <h3>{benefit.title}</h3>
-                                            <p>{benefit.text}</p>
-                                        </div>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    </div>
-                </section>
+              <article className="lp-service-card">
+                <span className="lp-service-icon icon-CheckCircle" />
+                <h3>Estudio de Arrendatario</h3>
+                <p>
+                  Análisis profundo de solvencia, estabilidad laboral y
+                  referencias con tecnología de Big Data.
+                </p>
+              </article>
 
-                <section className="lp-section lp-section-white" id="servicios">
-                    <div className="lp-container">
-                        <div className="lp-section-heading lp-centered">
-                            <h2>Nuestros Servicios</h2>
-                        </div>
-                        <div className="lp-services-grid">
-                            <article className="lp-service-card lp-service-main">
-                                <div>
-                                    <span className="lp-service-icon icon-HouseSimple" />
-                                    <h3>Administración Delegada</h3>
-                                    <p>
-                                        La solución llave en mano donde nos
-                                        haces responsables de absolutamente todo
-                                        lo relacionado con tu propiedad.
-                                    </p>
-                                </div>
-                                <div className="lp-service-tags">
-                                    {serviceBadges.map((badge) => (
-                                        <span key={badge}>{badge}</span>
-                                    ))}
-                                </div>
-                            </article>
+              <article className="lp-service-card">
+                <span className="lp-service-icon icon-FileDoc" />
+                <h3>Inventarios Digitales</h3>
+                <p>
+                  Registro HD de cada rincón para evitar disputas al finalizar
+                  el contrato.
+                </p>
+              </article>
 
-                            <article className="lp-service-card">
-                                <span className="lp-service-icon icon-CheckCircle" />
-                                <h3>Estudio de Arrendatario</h3>
-                                <p>
-                                    Análisis profundo de solvencia, estabilidad
-                                    laboral y referencias con tecnología de Big
-                                    Data.
-                                </p>
-                            </article>
+              <article className="lp-service-card lp-service-legal">
+                <div>
+                  <span className="lp-service-icon icon-Certificate" />
+                  <h3>Asesoría Jurídica Vitalicia</h3>
+                  <p>
+                    Mientras tu inmueble esté con nosotros, nuestro bufete de
+                    abogados es tu bufete personal para cualquier tema
+                    inmobiliario.
+                  </p>
+                </div>
+                <div className="lp-shield-box">
+                  <span className="icon-Lifebuoy" />
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
 
-                            <article className="lp-service-card">
-                                <span className="lp-service-icon icon-FileDoc" />
-                                <h3>Inventarios Digitales</h3>
-                                <p>
-                                    Registro HD de cada rincón para evitar
-                                    disputas al finalizar el contrato.
-                                </p>
-                            </article>
+        <section className="lp-quote-section">
+          <div className="lp-container lp-quote-wrap">
+            <span className="lp-quote-mark icon-quote-line" />
+            <blockquote>
+              No somos solo una inmobiliaria que publica avisos; somos abogados
+              que administran activos. Nuestra visión legal previene el problema
+              antes de que ocurra.
+            </blockquote>
+            <p>Equipo Legalio - Expertos en Derecho Inmobiliario</p>
+          </div>
+        </section>
 
-                            <article className="lp-service-card lp-service-legal">
-                                <div>
-                                    <span className="lp-service-icon icon-Certificate" />
-                                    <h3>Asesoría Jurídica Vitalicia</h3>
-                                    <p>
-                                        Mientras tu inmueble esté con nosotros,
-                                        nuestro bufete de abogados es tu bufete
-                                        personal para cualquier tema
-                                        inmobiliario.
-                                    </p>
-                                </div>
-                                <div className="lp-shield-box">
-                                    <span className="icon-Lifebuoy" />
-                                </div>
-                            </article>
-                        </div>
-                    </div>
-                </section>
+        <section className="lp-section lp-section-white" id="contacto">
+          <div className="lp-container lp-contact-grid">
+            <div className="lp-contact-copy">
+              <h2>Déjanos evaluar tu propiedad sin compromiso</h2>
+              <p>
+                Uno de nuestros directores jurídicos se pondrá en contacto
+                contigo en menos de 24 horas para una valoración inicial
+                gratuita.
+              </p>
+              <div className="lp-contact-items">
+                <Link href="tel:+573046035418">
+                  <span className="icon-PhoneCall" />
+                  +57 304 6035418
+                </Link>
+                <Link href="mailto:contacto@legalio.com.co">
+                  <span className="icon-EnvelopeSimple" />
+                  contacto@legalio.com.co
+                </Link>
+              </div>
+            </div>
 
-                <section className="lp-quote-section">
-                    <div className="lp-container lp-quote-wrap">
-                        <span className="lp-quote-mark icon-quote-line" />
-                        <blockquote>
-                            No somos solo una inmobiliaria que publica avisos;
-                            somos abogados que administran activos. Nuestra
-                            visión legal previene el problema antes de que
-                            ocurra.
-                        </blockquote>
-                        <p>
-                            Equipo Legalio - Expertos en Derecho Inmobiliario
-                        </p>
-                    </div>
-                </section>
+            <form
+              action={sendOwnerLead}
+              className="lp-form"
+              data-analytics-form="owner_lead"
+            >
+              {wasSent ? (
+                <div className="lp-form-alert" role="status">
+                  Recibimos tu solicitud. Nuestro equipo te contactará pronto.
+                </div>
+              ) : null}
+              <div className="lp-form-row">
+                <label>
+                  <span>Nombre Completo</span>
+                  <input
+                    autoComplete="name"
+                    name="nombre"
+                    placeholder="Ej: Maria Perez"
+                    required
+                    type="text"
+                  />
+                </label>
+                <label>
+                  <span>Email</span>
+                  <input
+                    autoComplete="email"
+                    name="email"
+                    placeholder="correo@ejemplo.com"
+                    required
+                    type="email"
+                  />
+                </label>
+              </div>
+              <div className="lp-form-row">
+                <label>
+                  <span>WhatsApp</span>
+                  <input
+                    autoComplete="tel"
+                    name="whatsapp"
+                    placeholder="+57 300 000 0000"
+                    required
+                    type="tel"
+                  />
+                </label>
+                <label>
+                  <span>Ciudad</span>
+                  <input
+                    autoComplete="address-level2"
+                    name="ciudad"
+                    placeholder="Palmira, Pradera, Tuluá..."
+                    required
+                    type="text"
+                  />
+                </label>
+                <label>
+                  <span>Barrio</span>
+                  <input name="barrio" placeholder="Ej: Cedritos" type="text" />
+                </label>
+              </div>
+              <label>
+                <span>Tipo de Propiedad</span>
+                <select
+                  name="tipoPropiedad"
+                  defaultValue="Apartamento"
+                  required
+                >
+                  <option>Apartamento</option>
+                  <option>Casa</option>
+                  <option>Local Comercial</option>
+                  <option>Oficina</option>
+                </select>
+              </label>
+              <label>
+                <span>Mensaje</span>
+                <textarea
+                  name="mensaje"
+                  placeholder="Cuéntanos sobre tu inmueble..."
+                  rows={4}
+                />
+              </label>
+              <button type="submit">Solicitar evaluación</button>
+            </form>
+          </div>
+        </section>
 
-                <section className="lp-section lp-section-white" id="contacto">
-                    <div className="lp-container lp-contact-grid">
-                        <div className="lp-contact-copy">
-                            <h2>
-                                Déjanos evaluar tu propiedad sin compromiso
-                            </h2>
-                            <p>
-                                Uno de nuestros directores jurídicos se pondrá
-                                en contacto contigo en menos de 24 horas para
-                                una valoración inicial gratuita.
-                            </p>
-                            <div className="lp-contact-items">
-                                <Link href="tel:+573046035418">
-                                    <span className="icon-PhoneCall" />
-                                    +57 304 6035418
-                                </Link>
-                                <Link href="mailto:contacto@legalio.com.co">
-                                    <span className="icon-EnvelopeSimple" />
-                                    contacto@legalio.com.co
-                                </Link>
-                            </div>
-                        </div>
+        <section className="lp-final-cta">
+          <div className="lp-container">
+            <h2>Convierte tu inmueble en un activo bien administrado</h2>
+            <Link
+              data-analytics-event="cta_click"
+              data-analytics-location="propietarios_final"
+              data-analytics-name="Empezar ahora"
+              href="#contacto"
+            >
+              Empezar ahora
+              <span className="icon-CaretRight" />
+            </Link>
+          </div>
+        </section>
+      </main>
 
-                        <form
-                            action={sendOwnerLead}
-                            className="lp-form"
-                            data-analytics-form="owner_lead"
-                        >
-                            {wasSent ? (
-                                <div className="lp-form-alert" role="status">
-                                    Recibimos tu solicitud. Nuestro equipo te
-                                    contactará pronto.
-                                </div>
-                            ) : null}
-                            <div className="lp-form-row">
-                                <label>
-                                    <span>Nombre Completo</span>
-                                    <input
-                                        autoComplete="name"
-                                        name="nombre"
-                                        placeholder="Ej: Maria Perez"
-                                        required
-                                        type="text"
-                                    />
-                                </label>
-                                <label>
-                                    <span>Email</span>
-                                    <input
-                                        autoComplete="email"
-                                        name="email"
-                                        placeholder="correo@ejemplo.com"
-                                        required
-                                        type="email"
-                                    />
-                                </label>
-                            </div>
-                            <div className="lp-form-row">
-                                <label>
-                                    <span>WhatsApp</span>
-                                    <input
-                                        autoComplete="tel"
-                                        name="whatsapp"
-                                        placeholder="+57 300 000 0000"
-                                        required
-                                        type="tel"
-                                    />
-                                </label>
-                                <label>
-                                    <span>Ciudad</span>
-                                    <input
-                                        autoComplete="address-level2"
-                                        name="ciudad"
-                                        placeholder="Palmira, Pradera, Tuluá..."
-                                        required
-                                        type="text"
-                                    />
-                                </label>
-                                <label>
-                                    <span>Barrio</span>
-                                    <input
-                                        name="barrio"
-                                        placeholder="Ej: Cedritos"
-                                        type="text"
-                                    />
-                                </label>
-                            </div>
-                            <label>
-                                <span>Tipo de Propiedad</span>
-                                <select
-                                    name="tipoPropiedad"
-                                    defaultValue="Apartamento"
-                                    required
-                                >
-                                    <option>Apartamento</option>
-                                    <option>Casa</option>
-                                    <option>Local Comercial</option>
-                                    <option>Oficina</option>
-                                </select>
-                            </label>
-                            <label>
-                                <span>Mensaje</span>
-                                <textarea
-                                    name="mensaje"
-                                    placeholder="Cuéntanos sobre tu inmueble..."
-                                    rows={4}
-                                />
-                            </label>
-                            <button type="submit">Solicitar evaluación</button>
-                        </form>
-                    </div>
-                </section>
-
-                <section className="lp-final-cta">
-                    <div className="lp-container">
-                        <h2>
-                            Convierte tu inmueble en un activo bien administrado
-                        </h2>
-                        <Link
-                            data-analytics-event="cta_click"
-                            data-analytics-location="propietarios_final"
-                            data-analytics-name="Empezar ahora"
-                            href="#contacto"
-                        >
-                            Empezar ahora
-                            <span className="icon-CaretRight" />
-                        </Link>
-                    </div>
-                </section>
-            </main>
-
-            <style
-                dangerouslySetInnerHTML={{
-                    __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
                     .legalio-propietarios {
                         --lp-on-tertiary: #ffffff;
                         --lp-on-secondary-container: #5c617c;
@@ -1606,8 +1596,8 @@ export default async function PropietariosPage({
 
                     }
                 `,
-                }}
-            />
-        </>
-    );
+        }}
+      />
+    </>
+  );
 }
